@@ -2,11 +2,25 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: 'Land of Hop',
+    description: 'Application with beer catalogue',
+    author: 'Tomek Różalski',
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-global-styles`,
+      options: {
+        pathToConfigModule: `src/utils/theme/GlobalStyleComponent`,
+        props: {},
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: { id: 'hlt6lgk' },
+      },
+    },
+    'gatsby-plugin-styled-components',
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -33,6 +47,22 @@ module.exports = {
       resolve: 'gatsby-plugin-root-import',
       options: {
         components: path.join(__dirname, 'src/components'),
+        utils: path.join(__dirname, 'src/utils'),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-redux`,
+      options: {
+        // [required] - path to your createStore module
+        pathToCreateStoreModule: './src/utils/store/index',
+        // [optional] - options passed to `serialize-javascript`
+        // info: https://github.com/yahoo/serialize-javascript#options
+        // will be merged with these defaults:
+        serialize: {
+          space: 0,
+          isJSON: true,
+          unsafe: false,
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
