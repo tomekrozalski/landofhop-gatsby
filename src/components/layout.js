@@ -3,7 +3,6 @@ import { node } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import GlobalStateProvider from 'utils/contexts/GlobalStateProvider';
 import { Header, NavBar } from './top';
 
 const Main = styled.main`
@@ -22,11 +21,11 @@ const Layout = ({ children }) => {
   `);
 
   return (
-    <GlobalStateProvider>
+    <>
       <NavBar />
       <Header />
       <Main>{children}</Main>
-    </GlobalStateProvider>
+    </>
   );
 };
 

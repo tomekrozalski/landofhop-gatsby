@@ -1,7 +1,7 @@
 import React from 'react';
 import { node } from 'prop-types';
 
-import { Language, Navigation } from './index';
+import { Navigation } from './index';
 
 const ProviderComposer = ({ contexts, children }) =>
   contexts.reduceRight(
@@ -13,9 +13,7 @@ const ProviderComposer = ({ contexts, children }) =>
   );
 
 const GlobalStateProvider = ({ children }) => (
-  <ProviderComposer contexts={[<Language />, <Navigation />]}>
-    {children}
-  </ProviderComposer>
+  <ProviderComposer contexts={[<Navigation />]}>{children}</ProviderComposer>
 );
 
 GlobalStateProvider.propTypes = {

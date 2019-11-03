@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { changeLocale, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-import { LanguageContext } from 'utils/contexts';
-import { siteLanguages } from 'utils/constants';
 import { StyledLink } from './elements';
 
 const List = styled.ul`
@@ -15,32 +14,24 @@ const ListItem = styled.li`
   display: flex;
 `;
 
-const LangNavigation = () => {
-  const { changeLanguage } = useContext(LanguageContext);
-  const { en, pl } = siteLanguages;
-
-  return (
-    <List>
-      <ListItem>
-        <StyledLink
-          as="button"
-          onClick={() => changeLanguage(pl)}
-          type="button"
-        >
-          {pl.toUpperCase()}
-        </StyledLink>
-      </ListItem>
-      <ListItem>
-        <StyledLink
-          as="button"
-          onClick={() => changeLanguage(en)}
-          type="button"
-        >
-          {en.toUpperCase()}
-        </StyledLink>
-      </ListItem>
-    </List>
-  );
-};
+const LangNavigation = () => (
+  <List>
+    <IntlContextConsumer>
+      {({ languages }) =>
+        languages.map(language => (
+          <ListItem key={language}>
+            <StyledLink
+              as="button"
+              onClick={() => changeLocale(language)}
+              type="button"
+            >
+              {language.toUpperCase()}
+            </StyledLink>
+          </ListItem>
+        ))
+      }
+    </IntlContextConsumer>
+  </List>
+);
 
 export default LangNavigation;
