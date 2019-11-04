@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { changeLocale, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-import { StyledLink } from './elements';
+import { styledLinkCSS } from './elements';
 
 const List = styled.ul`
   display: flex;
@@ -14,19 +14,19 @@ const ListItem = styled.li`
   display: flex;
 `;
 
+const Button = styled.button`
+  ${styledLinkCSS}
+`;
+
 const LangNavigation = () => (
   <List>
     <IntlContextConsumer>
       {({ languages }) =>
         languages.map(language => (
           <ListItem key={language}>
-            <StyledLink
-              as="button"
-              onClick={() => changeLocale(language)}
-              type="button"
-            >
+            <Button onClick={() => changeLocale(language)} type="button">
               {language.toUpperCase()}
-            </StyledLink>
+            </Button>
           </ListItem>
         ))
       }

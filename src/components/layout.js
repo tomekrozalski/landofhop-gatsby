@@ -3,7 +3,7 @@ import { node } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { Header, NavBar } from './top';
+import { Header, LoginBar, NavBar } from './top';
 
 const Main = styled.main`
   margin-top: var(--size-header-height);
@@ -23,6 +23,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <NavBar />
+      <LoginBar />
       <Header />
       <Main>{children}</Main>
     </>

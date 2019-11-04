@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
-import { StyledLink } from './elements';
+import { AuthenticationContext } from 'utils/contexts';
+import { styledLinkCSS } from './elements';
 
 const List = styled.ul`
   display: flex;
@@ -12,21 +14,32 @@ const ListItem = styled.li`
   display: flex;
 `;
 
+const StyledLink = styled(Link)`
+  ${styledLinkCSS}
+`;
+
 const ListOfLinks = () => {
-  console.log('list');
+  const { isLoggedIn } = useContext(AuthenticationContext);
+
   return (
     <List>
       <ListItem>
-        <StyledLink to="/about">O aplikacji</StyledLink>
+        <StyledLink to="/about">
+          <FormattedMessage id="navbar.about" />
+        </StyledLink>
       </ListItem>
       <ListItem>
-        <StyledLink to="/stats">Statystyki</StyledLink>
+        <StyledLink to="/stats">
+          <FormattedMessage id="navbar.stats" />
+        </StyledLink>
       </ListItem>
-      {/* {#if $isLoggedIn}
-				<ListItem>
-					<StyledLink>Dodaj piwo</StyledLink>
-				</ListItem>
-			{/if} */}
+      {isLoggedIn && (
+        <ListItem>
+          <StyledLink>
+            <FormattedMessage id="navbar.addBeverage" />
+          </StyledLink>
+        </ListItem>
+      )}
     </List>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby-plugin-intl';
+import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
@@ -43,7 +43,9 @@ const Header = styled.h1`
 
 const Logo = () => (
   <StyledLink to="/">
-    <Header>Land of Hop</Header>
+    <Header>
+      <FormattedMessage id="header.name" />
+    </Header>
   </StyledLink>
 );
 

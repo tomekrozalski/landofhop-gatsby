@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { breakpoints } from 'utils/theme';
 
@@ -40,7 +41,9 @@ const SearchbarSwitcher = () => (
   <Wrapper>
     <Button type="button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-        <title>Szukaj</title>
+        <title>
+          <FormattedMessage id="header.search" />
+        </title>
         <path
           d="M31.6 28.8L40 37.2 37.2 40l-8.4-8.4c-3.1 2.5-7 3.9-11.1 3.9C7.9 35.4
 					0 27.5 0 17.7S7.9 0 17.7 0s17.7 7.9 17.7 17.7C35.4 21.7 34.1 25.6 31.6

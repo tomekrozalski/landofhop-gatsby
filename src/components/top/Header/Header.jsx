@@ -16,12 +16,12 @@ const Wrapper = styled.header`
   z-index: var(--index-header);
   transform: translateY(
     ${({ isLoginbar, isNavbar }) => {
-      if (isNavbar) {
-        return 'var(--size-navbar-height)';
-      }
-
       if (isLoginbar) {
         return 'calc(var(--size-navbar-height) + var(--size-loginbar-height))';
+      }
+
+      if (isNavbar) {
+        return 'var(--size-navbar-height)';
       }
 
       return 0;

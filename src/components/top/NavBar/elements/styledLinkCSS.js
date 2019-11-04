@@ -1,7 +1,6 @@
-import { Link } from 'gatsby-plugin-intl';
-import styled from 'styled-components';
+import { css } from 'styled-components';
 
-export default styled(Link)`
+export default css`
   display: flex;
   align-items: center;
   padding: 1rem;

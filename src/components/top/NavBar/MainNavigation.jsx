@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Authorization from './Authorization';
 import ListOfLinks from './ListOfLinks';
 
 const Wrapper = styled.div`
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
 
 const MainNavigation = () => (
   <Wrapper>
-    {/* <Authorization /> */}
+    <Authorization />
     <ListOfLinks />
   </Wrapper>
 );

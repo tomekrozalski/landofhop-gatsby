@@ -1,3 +1,3 @@
-import StyledLink from './StyledLink';
+import styledLinkCSS from './styledLinkCSS';
 
-export { StyledLink };
+export { styledLinkCSS };

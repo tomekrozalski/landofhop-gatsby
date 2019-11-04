@@ -1,3 +1,22 @@
 {
-  "test": "Test is working"
+  "header": {
+    "name": "Land of Hop, beer catalogue",
+    "navigationSwitcher": {
+      "close": "Close",
+      "open": "Open"
+    },
+    "search": "Search"
+  },
+  "loginbar": {
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit"
+  },
+  "navbar": {
+    "about": "About the app",
+    "addBeverage": "Add beverage",
+    "logIn": "Log in",
+    "logOut": "Log out",
+    "stats": "Stats"
+  }
 }

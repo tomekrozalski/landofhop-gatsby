@@ -20,7 +20,12 @@ module.exports = {
         typekit: { id: 'hlt6lgk' },
       },
     },
-    'gatsby-plugin-styled-components',
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: false,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -45,6 +50,7 @@ module.exports = {
       resolve: 'gatsby-plugin-root-import',
       options: {
         components: path.join(__dirname, 'src/components'),
+        elements: path.join(__dirname, 'src/elements'),
         utils: path.join(__dirname, 'src/utils'),
       },
     },

@@ -17,7 +17,9 @@ const Navigation = ({ children }) => {
         setLoginbar,
         setNavbar,
         setSearchbar,
-        toggleLoginbar: () => setLoginbar(!loginbar),
+        toggleLoginbar: () => {
+          setLoginbar(!loginbar);
+        },
         toggleNavbar: () => setNavbar(!navbar),
       }}
     >

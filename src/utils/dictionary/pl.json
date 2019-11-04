@@ -1,3 +1,22 @@
 {
-  "test": "Test działa"
+  "header": {
+    "name": "Land of Hop, katalog piw",
+    "navigationSwitcher": {
+      "close": "Zamknij",
+      "open": "Otwórz"
+    },
+    "search": "Szukaj"
+  },
+  "loginbar": {
+    "email": "Email",
+    "password": "Hasło",
+    "submit": "Wyślij"
+  },
+  "navbar": {
+    "about": "O stronie",
+    "addBeverage": "Dodaj piwo",
+    "logIn": "Zaloguj",
+    "logOut": "Wyloguj",
+    "stats": "Statystyki"
+  }
 }

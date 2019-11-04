@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { NavigationContext } from 'utils/contexts';
 import { breakpoints } from 'utils/theme';
@@ -33,7 +34,7 @@ const Button = styled.button`
 `;
 
 const NavigationSwitcher = () => {
-  const { setLoginbar, toggleNavbar } = useContext(NavigationContext);
+  const { navbar, setLoginbar, toggleNavbar } = useContext(NavigationContext);
 
   return (
     <Button
@@ -44,7 +45,11 @@ const NavigationSwitcher = () => {
       type="button"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 9">
-        <title>Open</title>
+        <title>
+          <FormattedMessage
+            id={`header.navigationSwitcher.${navbar ? 'close' : 'open'}`}
+          />
+        </title>
         <circle cx="35.5" cy="4.5" r="4.5" />
         <circle cx="20" cy="4.5" r="4.5" />
         <circle cx="4.5" cy="4.5" r="4.5" />
