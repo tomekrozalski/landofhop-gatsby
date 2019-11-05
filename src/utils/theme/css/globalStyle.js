@@ -106,6 +106,7 @@ const globalStyles = css`
   }
 
   input[type='email'],
+  input[type='number'],
   input[type='password'],
   input[type='text'] {
     display: block;
@@ -120,10 +121,25 @@ const globalStyles = css`
   }
 
   input[type='email']:focus,
+  input[type='number']:focus,
   input[type='password']:focus,
   input[type='text']:focus {
     outline: none;
     border-bottom-color: var(--color-black);
+  }
+
+  input[type='email']:disabled,
+  input[type='number']:disabled,
+  input[type='password']:disabled,
+  input[type='text']:disabled {
+    border-bottom: 1px solid var(--color-bright);
+    background-color: var(--color-brightest);
+    color: var(--color-darker);
+    cursor: not-allowed;
+  }
+
+  input.withStatusIcon {
+    padding: 0 25px 0 1rem;
   }
 
   label {

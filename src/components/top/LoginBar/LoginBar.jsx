@@ -13,6 +13,10 @@ const LoginBar = () => {
   return (
     <Wrapper isActive={loginbar} isNavbar={navbar}>
       <Formik
+        initialErrors={{
+          email: 'required',
+          password: 'required',
+        }}
         initialValues={{
           email: '',
           password: '',
@@ -24,7 +28,7 @@ const LoginBar = () => {
         }}
         validationSchema={validationSchema}
       >
-        <FormBody />
+        {FormBody}
       </Formik>
     </Wrapper>
   );

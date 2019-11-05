@@ -2,7 +2,7 @@
 	default-case: 0,
 */
 import produce from 'immer';
-import { unionBy } from 'lodash';
+import unionBy from 'lodash/unionBy';
 import { isBefore } from 'date-fns';
 
 import actionsName from '../actionsName';

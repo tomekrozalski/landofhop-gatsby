@@ -4,105 +4,47 @@ import styled from 'styled-components';
 
 import ButtonSpinner from './ButtonSpinner';
 
-const Wrapper = styled.button.attrs({
-  type: 'button',
-})`
-  ${({ disabled, isSubmitting, resign, secondary, submit, wide }) => `
-			width: ${wide ? '100%' : 'auto'};
-			height: 3.4rem;
-			padding: 0 2rem;
-			background-color: var(--color-black);
-			color: var(--color-white);
-			transition: all .2s;
-			cursor: pointer;
+const Wrapper = styled.button`
+  display: flex;
+  align-items: center;
+  width: ${({ wide }) => (wide ? '100%' : 'auto')};
+  height: 3.4rem;
+  padding: 0 2rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  transition: all 0.2s;
+  cursor: pointer;
 
-			${
-        isSubmitting
-          ? `
-				padding-right: 2.4rem;
-				background-color: var(--color-dark);
-				cursor: not-allowed;
-				position: relative;
+  &.button-submitting {
+    padding: 0 1rem 0 1.5rem;
+    background-color: var(--color-dark);
+    cursor: not-allowed;
+    position: relative;
 
-				&:focus {
-					outline: none;
-				}
-			`
-          : ''
-      }
+    &:focus {
+      outline: none;
+    }
+  }
 
-			${resign ? 'background-color: var(--color-danger-light);' : ''}
+  &:disabled {
+    background-color: var(--color-dark);
+    color: var(--color-brighter);
+    cursor: not-allowed;
+  }
 
-			${
-        secondary
-          ? `
-				background-color: var(--color-brighter);
-				color: var(--color-dark);
-			`
-          : ''
-      }
+  &:hover:not(:disabled):not(.button-submitting) {
+    background-color: var(--color-dark);
+    color: var(--color-black);
+  }
 
-			${
-        disabled
-          ? `
-				background-color: var(--color-dark);
-				color: var(--color-brighter);
-				cursor: not-allowed;
-			`
-          : ''
-      }
-
-			${
-        !disabled
-          ? `
-				&:hover {
-					background-color: var(--color-dark);
-					color: var(--color-black);
-					
-					${
-            resign
-              ? `
-						background-color: var(--color-danger-strong);
-						color: var(--color-white);
-					`
-              : ''
-          }
-
-					${
-            secondary
-              ? `
-						background-color: var(--color-black);
-						color: var(--color-bright);
-					`
-              : ''
-          }
-
-					${
-            submit
-              ? `
-						background-color: var(--color-success-light);
-						color: var(--color-white);
-					`
-              : ''
-          }
-
-					${
-            isSubmitting
-              ? `
-						background-color: var(--color-dark);
-						color: var(--color-white);
-					`
-              : ''
-          }
-				}
-			`
-          : ''
-      }
-		`}
+  &[type='submit']:not(:disabled):not(.button-submitting):hover {
+    background-color: var(--color-success-strong);
+    color: var(--color-white);
+  }
 `;
 
 const Button = ({ children, isSubmitting, ...props }) => (
-  <Wrapper isSubmitting={isSubmitting} {...props}>
+  <Wrapper className={isSubmitting && 'button-submitting'} {...props}>
     {children}
     {isSubmitting && <ButtonSpinner />}
   </Wrapper>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, node } from 'prop-types';
+import { node, string } from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.span`
@@ -29,18 +29,9 @@ const Wrapper = styled.span`
   }
 `;
 
-const FieldStatusIndicator = ({ children, success, touched, warning }) => (
+const FieldStatusIndicator = ({ children, error }) => (
   <Wrapper>
-    {touched && success && (
-      <svg
-        className="icon-success"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 241 181"
-      >
-        <path d="M209 0l32 32L92 181 0 89l32-32 60 60L209 0z" />
-      </svg>
-    )}
-    {touched && warning && (
+    {error ? (
       <svg
         className="icon-warning"
         xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +47,14 @@ const FieldStatusIndicator = ({ children, success, touched, warning }) => (
 					8.17zM14 23c-1.1 0-2-0.9-2-2s0.9-2 2-2 2 0.9 2 2S15.1 23 14 23z"
         />
       </svg>
+    ) : (
+      <svg
+        className="icon-success"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 241 181"
+      >
+        <path d="M209 0l32 32L92 181 0 89l32-32 60 60L209 0z" />
+      </svg>
     )}
     {children}
   </Wrapper>
@@ -63,15 +62,11 @@ const FieldStatusIndicator = ({ children, success, touched, warning }) => (
 
 FieldStatusIndicator.propTypes = {
   children: node.isRequired,
-  success: bool,
-  touched: bool,
-  warning: bool,
+  error: string,
 };
 
 FieldStatusIndicator.defaultProps = {
-  success: false,
-  touched: false,
-  warning: false,
+  error: null,
 };
 
 export default FieldStatusIndicator;
