@@ -1,5 +1,9 @@
 const path = require('path');
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Land of Hop',
@@ -80,6 +84,18 @@ module.exports = {
         defaultLanguage: 'pl',
         // option to redirect to `/ko` when connecting `/`
         redirect: true,
+      },
+    },
+    {
+      resolve: `gatsby-source-mongodb`,
+      options: {
+        connectionString: `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@landofhop-ku9ye.mongodb.net/landofhop?retryWrites=true`,
+        dbName: `landofhop`,
+        collection: [`beverages`, `institutions`],
+        preserveObjectIds: true,
+        clientOptions: {
+          useUnifiedTopology: true,
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

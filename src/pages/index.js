@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-import Layout from 'components/layout';
+import Layout from 'components/Layout';
 import SEO from 'components/seo';
 
 const IndexPage = () => (
