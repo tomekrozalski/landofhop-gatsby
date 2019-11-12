@@ -23,7 +23,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const listPages = path.resolve(`src/components/List.jsx`);
+  const Tiles = path.resolve(`src/components/Tiles/Tiles.jsx`);
 
   const totalCountResult = await graphql(`
     query SingleBeverage {
@@ -40,7 +40,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   createPage({
     path: `/`,
-    component: listPages,
+    component: Tiles,
     context: {
       limit,
       skip: 0,
@@ -48,14 +48,16 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   arrayOfListPages.forEach((item, i) => {
-    const skip = i === 0 ? 0 : i * limit;
+    if (i === 0) {
+      return null;
+    }
 
-    createPage({
+    return createPage({
       path: `/list/${i + 1}`,
-      component: listPages,
+      component: Tiles,
       context: {
         limit,
-        skip,
+        skip: i * limit,
       },
     });
   });
