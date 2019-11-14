@@ -1,4 +1,6 @@
-import { arrayOf, number, shape, string } from 'prop-types';
+import { arrayOf, number, shape, string, oneOf } from 'prop-types';
+
+import { container } from 'utils/constants';
 
 export default {
   badge: string.isRequired,
@@ -11,6 +13,9 @@ export default {
     }).isRequired,
   }).isRequired,
   label: shape({
+    container: shape({
+      type: oneOf(Object.values(container.types)).isRequired,
+    }).isRequired,
     general: shape({
       brand: shape({
         badge: string.isRequired,

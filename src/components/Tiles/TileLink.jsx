@@ -4,19 +4,27 @@ import { Link } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
-  padding-bottom: ${({ dimension }) =>
-    (dimension.height / dimension.width).toFixed(5) * 100}%;
+  width: 100%;
+  margin-top: 2rem;
+  padding-bottom: ${({ height, width }) => (height / width).toFixed(5) * 100}%;
+  position: relative;
 `;
 
-const TileLink = ({ badge, brand, children, cover, shortId }) => {
-  console.log('TileLink');
-
-  return (
-    <StyledLink dimension={cover} to={`/details/${shortId}/${brand}/${badge}`}>
-      {children}
-    </StyledLink>
-  );
-};
+const TileLink = ({
+  badge,
+  brand,
+  children,
+  cover: { height, width },
+  shortId,
+}) => (
+  <StyledLink
+    height={height}
+    to={`/details/${shortId}/${brand}/${badge}`}
+    width={width}
+  >
+    {children}
+  </StyledLink>
+);
 
 TileLink.propTypes = {
   badge: string.isRequired,
@@ -25,16 +33,8 @@ TileLink.propTypes = {
   cover: shape({
     height: number.isRequired,
     width: number.isRequired,
-  }),
+  }).isRequired,
   shortId: string.isRequired,
-};
-
-// @ToRemove
-TileLink.defaultProps = {
-  cover: {
-    height: 0,
-    width: 0,
-  },
 };
 
 export default TileLink;

@@ -3,6 +3,7 @@ import { arrayOf, shape } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
+import { breakpoints } from 'utils/theme';
 import { beverageBasicsTypes } from 'utils/types';
 import Layout from '../Layout';
 import Tile from './Tile';
@@ -16,7 +17,7 @@ const Grid = styled.ul`
   padding: 0 var(--size-tiles-gap);
   margin: 0 auto 8rem auto;
 
-  @media (min-width: $breakpoint-xl) {
+  @media (min-width: ${breakpoints.xl}) {
     grid-template-columns: repeat(auto-fill, 220px);
   }
 `;
@@ -66,6 +67,9 @@ export const query = graphql`
             }
           }
           label {
+            container {
+              type
+            }
             general {
               brand {
                 badge

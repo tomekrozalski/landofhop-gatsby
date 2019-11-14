@@ -1,26 +1,34 @@
 import React from 'react';
-import get from 'lodash/get';
+import styled from 'styled-components';
 
 import { beverageBasicsTypes } from 'utils/types';
 import TileLink from './TileLink';
 import Image from './Image';
 
+const ListItem = styled.li`
+  display: flex;
+`;
+
 const Tile = ({ badge, editorial, label, shortId }) => {
-  // @ToDo: I should not use lodash here
-  const cover = get(editorial, 'photos.cover');
+  const { cover } = editorial.photos;
   const brandBadge = label.general.brand.badge;
 
   return (
-    <li>
+    <ListItem>
       <TileLink
         badge={badge}
         brand={brandBadge}
         cover={cover}
         shortId={shortId}
       >
-        <Image />
+        <Image
+          badge={badge}
+          brand={label.general.brand}
+          containerType={label.container.type}
+          shortId={shortId}
+        />
       </TileLink>
-    </li>
+    </ListItem>
   );
 };
 
