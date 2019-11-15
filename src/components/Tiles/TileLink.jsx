@@ -8,6 +8,12 @@ const StyledLink = styled(Link)`
   margin-top: 2rem;
   padding-bottom: ${({ height, width }) => (height / width).toFixed(5) * 100}%;
   position: relative;
+
+  &:hover {
+    img {
+      transform: scale(0.9);
+    }
+  }
 `;
 
 const TileLink = ({

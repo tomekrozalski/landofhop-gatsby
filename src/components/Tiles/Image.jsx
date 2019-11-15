@@ -10,6 +10,8 @@ const StyledImage = styled.img`
   position: absolute;
   bottom: 0;
   left: 0;
+  transform: scale(1);
+  transition: transform var(--transition-default);
 `;
 
 const Image = ({ badge, brand, containerType, shortId }) => {
