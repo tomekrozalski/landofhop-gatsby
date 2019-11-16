@@ -78,6 +78,10 @@ export const query = graphql`
                   language
                 }
               }
+              name {
+                value
+                language
+              }
             }
           }
           mongodb_id
