@@ -9,6 +9,17 @@ const StyledLink = styled(Link)`
   padding-bottom: ${({ height, width }) => (height / width).toFixed(5) * 100}%;
   position: relative;
 
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-white);
+  }
+
   &:hover {
     img {
       transform: scale(0.9);
