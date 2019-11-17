@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'utils/theme';
 import { beverageBasicsTypes, pageContextTypes } from 'utils/types';
 import Layout from '../Layout';
+import SEO from '../Seo';
 import Tile from './Tile';
 import Pagination from './Pagination';
 
@@ -25,6 +26,7 @@ const Grid = styled.ul`
 
 const Tiles = ({ data, pageContext }) => (
   <Layout>
+    <SEO title="main" />
     <Grid>
       {data.allMongodbLandofhopBeverages.edges.map(({ node }) => (
         <Tile key={node.mongodb_id} {...node} />

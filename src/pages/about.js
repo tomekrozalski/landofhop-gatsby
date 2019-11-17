@@ -1,11 +1,11 @@
 import React from 'react';
 import { func, shape } from 'prop-types';
-import styled from 'styled-components';
 import { FormattedMessage, injectIntl } from 'gatsby-plugin-intl';
 import Markdown from 'markdown-to-jsx';
+import styled from 'styled-components';
 
 import Layout from 'components/Layout';
-import SEO from 'components/seo';
+import SEO from 'components/Seo';
 
 const Wrapper = styled.div`
   max-width: 70rem;
@@ -32,12 +32,14 @@ const Header = styled.h1`
 
 const About = ({ intl }) => (
   <Layout>
-    <SEO title="About" />
+    <SEO title="about" />
     <Wrapper>
       <Header>
         <FormattedMessage id="about.header" />
       </Header>
-      <Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
+      <p>
+        <Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
+      </p>
     </Wrapper>
   </Layout>
 );

@@ -22,5 +22,14 @@
     "logIn": "Zaloguj",
     "logOut": "Wyloguj",
     "stats": "Statystyki"
+  },
+  "notFound": {
+    "title": "404 Nie znaleziono",
+    "body": "Przekierowanie do strony głównej za { seconds, plural, one {# sekundę} other {# sekundy}}"
+  },
+  "titles": {
+    "about": "O stronie",
+    "main": "Land of Hop",
+    "notFound": "404 Nie znaleziono"
   }
 }

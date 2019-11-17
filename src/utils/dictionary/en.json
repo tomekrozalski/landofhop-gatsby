@@ -22,5 +22,14 @@
     "logIn": "Log in",
     "logOut": "Log out",
     "stats": "Stats"
+  },
+  "notFound": {
+    "title": "404 Not Found",
+    "body": "Redirecting to the home page in { seconds, plural, one {# second} other {# seconds}}"
+  },
+  "titles": {
+    "about": "About the site",
+    "main": "Land of Hop",
+    "notFound": "404 Not Found"
   }
 }
