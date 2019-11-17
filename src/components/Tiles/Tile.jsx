@@ -13,7 +13,7 @@ const ListItem = styled.li`
 const Tile = props => {
   const { badge, label, shortId } = props;
   const cover = get(props, 'editorial.photos.cover', {
-    height: 220,
+    height: 380,
     width: 220,
   });
   const brandBadge = label.general.brand.badge;

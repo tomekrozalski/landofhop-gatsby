@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
   paginate({
     createPage,
     items: totalCountResult.data.allMongodbLandofhopBeverages.edges,
-    itemsPerPage: 10,
+    itemsPerPage: 50,
     pathPrefix,
     component: Tiles,
   });

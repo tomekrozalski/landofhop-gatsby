@@ -8,6 +8,7 @@ export default {
   limit: number.isRequired,
   nextPagePath: string.isRequired,
   numberOfPages: number.isRequired,
+  pageNumber: number.isRequired,
   previousPagePath: string.isRequired,
   skip: number.isRequired,
 };
