@@ -1,4 +1,5 @@
 const path = require('path');
+const { paginate } = require('gatsby-awesome-pagination');
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
@@ -26,39 +27,24 @@ exports.createPages = async ({ graphql, actions }) => {
   const Tiles = path.resolve(`src/components/Tiles/Tiles.jsx`);
 
   const totalCountResult = await graphql(`
-    query SingleBeverage {
+    query AllBeveragesId {
       allMongodbLandofhopBeverages {
-        totalCount
+        edges {
+          node {
+            id
+          }
+        }
       }
     }
   `);
 
-  const limit = 10;
-  const { totalCount } = totalCountResult.data.allMongodbLandofhopBeverages;
-  const listPagesCount = Math.ceil(totalCount / limit);
-  const arrayOfListPages = new Array(listPagesCount).fill('');
+  const pathPrefix = ({ pageNumber }) => (pageNumber === 0 ? '/' : '/list');
 
-  createPage({
-    path: `/`,
+  paginate({
+    createPage,
+    items: totalCountResult.data.allMongodbLandofhopBeverages.edges,
+    itemsPerPage: 10,
+    pathPrefix,
     component: Tiles,
-    context: {
-      limit,
-      skip: 0,
-    },
-  });
-
-  arrayOfListPages.forEach((item, i) => {
-    if (i === 0) {
-      return null;
-    }
-
-    return createPage({
-      path: `/list/${i + 1}`,
-      component: Tiles,
-      context: {
-        limit,
-        skip: i * limit,
-      },
-    });
   });
 };

@@ -4,9 +4,10 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
-import { beverageBasicsTypes } from 'utils/types';
+import { beverageBasicsTypes, pageContextTypes } from 'utils/types';
 import Layout from '../Layout';
 import Tile from './Tile';
+import Pagination from './Pagination';
 
 const Grid = styled.ul`
   display: grid;
@@ -22,19 +23,16 @@ const Grid = styled.ul`
   }
 `;
 
-const Tiles = ({ data }) => {
-  console.log('data', data);
-
-  return (
-    <Layout>
-      <Grid>
-        {data.allMongodbLandofhopBeverages.edges.map(({ node }) => (
-          <Tile key={node.mongodb_id} {...node} />
-        ))}
-      </Grid>
-    </Layout>
-  );
-};
+const Tiles = ({ data, pageContext }) => (
+  <Layout>
+    <Grid>
+      {data.allMongodbLandofhopBeverages.edges.map(({ node }) => (
+        <Tile key={node.mongodb_id} {...node} />
+      ))}
+    </Grid>
+    <Pagination {...pageContext} />
+  </Layout>
+);
 
 Tiles.propTypes = {
   data: shape({
@@ -46,6 +44,7 @@ Tiles.propTypes = {
       ).isRequired,
     }).isRequired,
   }).isRequired,
+  pageContext: shape(pageContextTypes).isRequired,
 };
 
 export const query = graphql`
