@@ -9,6 +9,7 @@ import BrokenContainer from './BrokenContainer';
 import Container from './Container';
 
 const StyledImage = styled.img`
+  width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;

@@ -4,18 +4,18 @@ const { paginate } = require('gatsby-awesome-pagination');
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
-		type mongodbLandofhopBeverages implements Node @infer {
+		type mongodbLandofhopBeverages implements Node {
 			badge: String!
 			label: Label!
 		}
 
-		type Label @infer {
+		type Label implements Node {
 			general: General!
-		}
+    }
 
-		type General @infer {
+		type General implements Node {
 			brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id")
-		}
+    }
 	`;
 
   createTypes(typeDefs);

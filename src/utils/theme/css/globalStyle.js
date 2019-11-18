@@ -39,6 +39,12 @@ const globalStyles = css`
     }
   }
 
+  @media (min-width: 1024px) {
+    :root {
+      --size-container-max-width: 1030px;
+    }
+  }
+
   @media (min-width: 1600px) {
     :root {
       --size-container-max-width: 1160px;
