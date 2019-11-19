@@ -1,10 +1,8 @@
 import React from 'react';
 import { func, shape } from 'prop-types';
-import { graphql, useStaticQuery } from 'gatsby';
 import { FormattedMessage, injectIntl } from 'gatsby-plugin-intl';
 import Markdown from 'markdown-to-jsx';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 
 import Layout from 'components/Layout';
 import SEO from 'components/Seo';
@@ -32,40 +30,19 @@ const Header = styled.h1`
   text-align: center;
 `;
 
-const StyledImage = styled(Img)`
-  max-width: 300px;
-`;
-
-const About = ({ intl }) => {
-  const data = useStaticQuery(graphql`
-    query Image {
-      file(relativePath: { regex: "/cover/" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `);
-
-  console.log('data', data);
-
-  return (
-    <Layout>
-      <SEO title="about" />
-      <Wrapper>
-        <Header>
-          <FormattedMessage id="about.header" />
-        </Header>
-        <p>
-          <Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
-        </p>
-        <StyledImage fluid={data.file.childImageSharp.fluid} />
-      </Wrapper>
-    </Layout>
-  );
-};
+const About = ({ intl }) => (
+  <Layout>
+    <SEO title="about" />
+    <Wrapper>
+      <Header>
+        <FormattedMessage id="about.header" />
+      </Header>
+      <p>
+        <Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
+      </p>
+    </Wrapper>
+  </Layout>
+);
 
 About.propTypes = {
   intl: shape({
