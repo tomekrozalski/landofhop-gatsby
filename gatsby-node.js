@@ -2,23 +2,29 @@ const path = require('path');
 const { paginate } = require('gatsby-awesome-pagination');
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
-  console.log('!!!!');
-
   const { createTypes } = actions;
   const typeDefs = [
-    'type mongodbLandofhopBeverages implements Node { badge: String! label: Label! }',
-    'type Label implements Node { general: General! }',
-    `type General implements Node {brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") aaa: Cccc }`,
     schema.buildObjectType({
-      name: 'Cccc',
+      name: 'mongodbLandofhopBeverages',
       fields: {
+        badge: 'String!',
+        label: 'Label!',
+      },
+      interfaces: ['Node'],
+    }),
+    schema.buildObjectType({
+      name: 'Label',
+      fields: {
+        general: 'General!',
         bbbbb: {
           type: 'File',
           resolve: (source, args, context) =>
             context.nodeModel.runQuery({
               query: {
                 filter: {
-                  name: { eq: 'cover' },
+                  relativePath: {
+                    eq: `beverages/alebrowar/${source.general.barcode}/b16zxw/cover.jpg`,
+                  },
                 },
               },
               type: 'File',
@@ -27,6 +33,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         },
       },
     }),
+    `type General implements Node {brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") }`,
   ];
 
   createTypes(typeDefs);
