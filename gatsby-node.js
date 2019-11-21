@@ -9,6 +9,25 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       fields: {
         badge: 'String!',
         label: 'Label!',
+        coverPhoto: {
+          type: 'File',
+          resolve: (source, args, context) => {
+            const institutions = context.nodeModel.getAllNodes({
+              type: 'mongodbLandofhopInstitutions',
+            });
+            const recentInstitution = institutions.find(
+              institution =>
+                institution.mongodb_id === source.label.general.brand
+            );
+
+            const files = context.nodeModel.getAllNodes({ type: 'File' });
+            return files.find(
+              file =>
+                file.relativePath ===
+                `beverages/${recentInstitution.badge}/${source.badge}/${source.shortId}/cover.jpg`
+            );
+          },
+        },
       },
       interfaces: ['Node'],
     }),
@@ -16,21 +35,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       name: 'Label',
       fields: {
         general: 'General!',
-        bbbbb: {
-          type: 'File',
-          resolve: (source, args, context) =>
-            context.nodeModel.runQuery({
-              query: {
-                filter: {
-                  relativePath: {
-                    eq: `beverages/alebrowar/${source.general.barcode}/b16zxw/cover.jpg`,
-                  },
-                },
-              },
-              type: 'File',
-              firstOnly: true,
-            }),
-        },
       },
     }),
     `type General implements Node {brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") }`,
@@ -38,6 +42,18 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
   createTypes(typeDefs);
 };
+
+// return context.nodeModel.runQuery({
+//   query: {
+//     filter: {
+//       relativePath: {
+//         eq: `beverages/${source.badge}/${recentInstitution.badge}/${source.shortId}/cover.jpg`,
+//       },
+//     },
+//   },
+//   type: 'File',
+//   firstOnly: true,
+// });
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
