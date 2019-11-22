@@ -5,11 +5,15 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
   width: 100%;
-  margin-top: 2rem;
+  min-height: 38rem;
 
   &:hover {
     img {
       transform: scale(0.9);
+    }
+
+    .icon-broken-container {
+      transform: scale(0.9) translateX(-50%);
     }
   }
 `;

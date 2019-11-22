@@ -7,6 +7,8 @@ import Image from './Image';
 
 const ListItem = styled.li`
   display: flex;
+  padding-top: 2rem;
+  position: relative;
 `;
 
 const Tile = ({ badge, coverPhoto, label, shortId }) => {

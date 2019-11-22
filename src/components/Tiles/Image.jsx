@@ -7,6 +7,10 @@ import { getValueByLanguage } from 'utils/helpers';
 
 const Broken = styled.img`
   height: 28rem;
+  position: absolute;
+  bottom: 6rem;
+  left: 50%;
+  transform: scale(1) translateX(-50%);
   transition: transform var(--transition-default);
   fill: var(--color-bright);
 `;
@@ -25,7 +29,11 @@ const Image = ({ brand, coverPhoto, name }) => {
       }}
     />
   ) : (
-    <Broken src={coverPhoto.publicURL} alt={imageTitle} />
+    <Broken
+      src={coverPhoto.publicURL}
+      className="icon-broken-container"
+      alt={imageTitle}
+    />
   );
 };
 
