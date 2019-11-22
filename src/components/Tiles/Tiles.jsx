@@ -59,18 +59,15 @@ export const query = graphql`
       edges {
         node {
           badge
-          editorial {
-            photos {
-              cover {
-                height
-                width
+          coverPhoto {
+            childImageSharp {
+              fluid(maxWidth: 220) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
               }
             }
+            publicURL
           }
           label {
-            container {
-              type
-            }
             general {
               brand {
                 badge
@@ -85,7 +82,6 @@ export const query = graphql`
               }
             }
           }
-          mongodb_id
           shortId
         }
       }

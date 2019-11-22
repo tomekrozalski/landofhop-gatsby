@@ -19,41 +19,33 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
               institution =>
                 institution.mongodb_id === source.label.general.brand
             );
-
             const files = context.nodeModel.getAllNodes({ type: 'File' });
-            return files.find(
-              file =>
-                file.relativePath ===
+            const coverPhoto = files.find(
+              ({ relativePath }) =>
+                relativePath ===
                 `beverages/${recentInstitution.badge}/${source.badge}/${source.shortId}/cover.jpg`
+            );
+
+            if (coverPhoto) {
+              return coverPhoto;
+            }
+
+            return files.find(
+              ({ relativePath }) =>
+                relativePath ===
+                `beverages/broken-${source.label.container.type}.svg`
             );
           },
         },
       },
       interfaces: ['Node'],
     }),
-    schema.buildObjectType({
-      name: 'Label',
-      fields: {
-        general: 'General!',
-      },
-    }),
-    `type General implements Node {brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") }`,
+    `type Label { general: General! }`,
+    `type General { brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") }`,
   ];
 
   createTypes(typeDefs);
 };
-
-// return context.nodeModel.runQuery({
-//   query: {
-//     filter: {
-//       relativePath: {
-//         eq: `beverages/${source.badge}/${recentInstitution.badge}/${source.shortId}/cover.jpg`,
-//       },
-//     },
-//   },
-//   type: 'File',
-//   firstOnly: true,
-// });
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;

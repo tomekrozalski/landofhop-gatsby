@@ -1,22 +1,15 @@
-import { arrayOf, number, shape, string, oneOf } from 'prop-types';
+import { arrayOf, object, shape, string } from 'prop-types';
 
-import { container } from 'utils/constants';
 import languageValue from './languageValue.types';
 
 export default {
   badge: string.isRequired,
-  editorial: shape({
-    photos: shape({
-      cover: shape({
-        height: number,
-        width: number,
-      }),
+  coverPhoto: shape({
+    childImageSharp: shape({
+      fluid: object,
     }),
-  }),
+  }).isRequired,
   label: shape({
-    container: shape({
-      type: oneOf(Object.values(container.types)).isRequired,
-    }).isRequired,
     general: shape({
       brand: shape({
         badge: string.isRequired,
@@ -25,6 +18,5 @@ export default {
       name: arrayOf(languageValue).isRequired,
     }).isRequired,
   }).isRequired,
-  mongodb_id: string.isRequired,
   shortId: string.isRequired,
 };

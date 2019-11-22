@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import get from 'lodash/get';
 
 import { beverageBasicsTypes } from 'utils/types';
 import TileLink from './TileLink';
@@ -10,28 +9,16 @@ const ListItem = styled.li`
   display: flex;
 `;
 
-const Tile = props => {
-  const { badge, label, shortId } = props;
-  const cover = get(props, 'editorial.photos.cover', {
-    height: 380,
-    width: 220,
-  });
+const Tile = ({ badge, coverPhoto, label, shortId }) => {
   const brandBadge = label.general.brand.badge;
 
   return (
     <ListItem>
-      <TileLink
-        badge={badge}
-        brand={brandBadge}
-        cover={cover}
-        shortId={shortId}
-      >
+      <TileLink badge={badge} brand={brandBadge} shortId={shortId}>
         <Image
-          badge={badge}
           brand={label.general.brand}
-          containerType={label.container.type}
+          coverPhoto={coverPhoto}
           name={label.general.name}
-          shortId={shortId}
         />
       </TileLink>
     </ListItem>
