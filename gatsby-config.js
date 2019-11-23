@@ -11,6 +11,7 @@ module.exports = {
     author: 'Tomek Różalski',
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-global-styles`,
       options: {

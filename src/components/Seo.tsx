@@ -1,14 +1,17 @@
 import React from 'react';
-import { string } from 'prop-types';
 import Helmet from 'react-helmet';
 import { useIntl, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-const SEO = ({ title }) => {
+interface Props {
+  title: string
+}
+
+const SEO = ({ title }: Props) => {
   const intl = useIntl();
 
   return (
     <IntlContextConsumer>
-      {({ language: lang }) => (
+      {({ language: lang }: { language: string }) => (
         <Helmet
           htmlAttributes={{ lang }}
           title={intl.formatMessage({ id: `titles.${title}` })}
@@ -16,10 +19,6 @@ const SEO = ({ title }) => {
       )}
     </IntlContextConsumer>
   );
-};
-
-SEO.propTypes = {
-  title: string.isRequired,
 };
 
 export default SEO;
