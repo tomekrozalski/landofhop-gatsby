@@ -35,7 +35,7 @@ const Button = styled.button.attrs({
   }
 `;
 
-const Authorization = () => {
+const Authorization: React.FC = () => {
   const { isLoggedIn, logOut } = useContext(AuthenticationContext);
   const { toggleLoginbar } = useContext(NavigationContext);
 

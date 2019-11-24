@@ -1,5 +1,4 @@
 import React from 'react';
-import { node, string } from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.span`
@@ -29,7 +28,12 @@ const Wrapper = styled.span`
   }
 `;
 
-const FieldStatusIndicator = ({ children, error }) => (
+interface Props {
+  children: React.ReactNode
+  error?: string
+}
+
+const FieldStatusIndicator: React.FC<Props> = ({ children, error }) => (
   <Wrapper>
     {error ? (
       <svg
@@ -59,14 +63,5 @@ const FieldStatusIndicator = ({ children, error }) => (
     {children}
   </Wrapper>
 );
-
-FieldStatusIndicator.propTypes = {
-  children: node.isRequired,
-  error: string,
-};
-
-FieldStatusIndicator.defaultProps = {
-  error: null,
-};
 
 export default FieldStatusIndicator;

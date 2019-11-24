@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
   ${styledLinkCSS}
 `;
 
-const ListOfLinks = () => {
+const ListOfLinks: React.FC = () => {
   const { isLoggedIn } = useContext(AuthenticationContext);
 
   return (

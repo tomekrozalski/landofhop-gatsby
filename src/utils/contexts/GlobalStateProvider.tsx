@@ -1,25 +1,26 @@
 import React from 'react';
-import { node } from 'prop-types';
 
 import { Device, Navigation } from './index';
 
-const ProviderComposer = ({ contexts, children }) =>
+interface Props {
+  contexts: any
+  children: React.ReactNode
+}
+
+const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   contexts.reduceRight(
-    (kids, parent) =>
+    (kids: React.ReactNode, parent: any) =>
       React.cloneElement(parent, {
         children: kids,
       }),
     children
   );
 
-const GlobalStateProvider = ({ children }) => (
+const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <ProviderComposer contexts={[<Device />, <Navigation />]}>
     {children}
   </ProviderComposer>
 );
 
-GlobalStateProvider.propTypes = {
-  children: node.isRequired,
-};
 
 export default GlobalStateProvider;

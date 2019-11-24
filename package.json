@@ -6,6 +6,8 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@nfront/global-styles": "^1.2.1",
+    "@types/styled-components": "^4.4.0",
+    "@types/yup": "^0.26.24",
     "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^2.6.0",
     "dotenv": "^8.2.0",

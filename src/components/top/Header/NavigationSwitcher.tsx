@@ -33,7 +33,7 @@ const Button = styled.button`
   }
 `;
 
-const NavigationSwitcher = () => {
+const NavigationSwitcher: React.FC = () => {
   const { navbar, setLoginbar, toggleNavbar } = useContext(NavigationContext);
 
   return (

@@ -41,7 +41,7 @@ const Header = styled.h1`
   }
 `;
 
-const Logo = () => (
+const Logo: React.FC = () => (
   <StyledLink to="/">
     <Header>
       <FormattedMessage id="header.name" />

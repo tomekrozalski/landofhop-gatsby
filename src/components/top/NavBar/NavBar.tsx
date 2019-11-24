@@ -31,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-const NavBar = () => (
+const NavBar: React.FC = () => (
   <Nav>
     <Container>
       <MainNavigation />

@@ -18,7 +18,7 @@ const Button = styled.button`
   ${styledLinkCSS}
 `;
 
-const LangNavigation = () => (
+const LangNavigation: React.FC = () => (
   <List>
     <IntlContextConsumer>
       {({ languages }) =>

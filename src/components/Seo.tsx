@@ -6,7 +6,7 @@ interface Props {
   title: string
 }
 
-const SEO = ({ title }: Props) => {
+const SEO: React.FC<Props> = ({ title }) => {
   const intl = useIntl();
 
   return (

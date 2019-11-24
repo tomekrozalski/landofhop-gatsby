@@ -6,7 +6,7 @@ import { Wrapper } from './elements';
 import FormBody from './FormBody';
 import validationSchema from './validationSchema';
 
-const LoginBar = () => {
+const LoginBar: React.FC = () => {
   const { logIn } = useContext(AuthenticationContext);
   const { loginbar, navbar } = useContext(NavigationContext);
 

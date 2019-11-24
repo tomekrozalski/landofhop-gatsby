@@ -8,15 +8,15 @@ export default styled.div`
   position: fixed;
   top: 0;
   transform: translateY(
-    ${({ isActive, isNavbar }) => {
-      if (!isNavbar) {
-        return 'calc(var(--size-header-height) - var(--size-loginbar-height))';
-      }
+  ${({ isActive, isNavbar }: { isActive: boolean, isNavbar: boolean }) => {
+    if (!isNavbar) {
+      return 'calc(var(--size-header-height) - var(--size-loginbar-height))';
+    }
 
-      return isActive
-        ? 'var(--size-navbar-height)'
-        : 'calc(var(--size-navbar-height) - var(--size-loginbar-height))';
-    }}
+    return isActive
+      ? 'var(--size-navbar-height)'
+      : 'calc(var(--size-navbar-height) - var(--size-loginbar-height))';
+  }}
   );
   transition: transform var(--transition-default);
 

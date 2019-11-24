@@ -1,15 +1,18 @@
 import React from 'react';
-import { node } from 'prop-types';
 import styled from 'styled-components';
 
-import GlobalStateProvider from 'utils/contexts/GlobalStateProvider';
+import GlobalStateProvider from 'utils/contexts';
 import { Header, LoginBar, NavBar } from './top';
 
 const Main = styled.main`
   margin-top: var(--size-header-height);
 `;
 
-const Layout = ({ children }) => (
+interface Props {
+  children: React.ReactNode,
+}
+
+const Layout: React.FC<Props> = ({ children }) => (
   <GlobalStateProvider>
     <NavBar />
     <LoginBar />
@@ -17,9 +20,5 @@ const Layout = ({ children }) => (
     <Main>{children}</Main>
   </GlobalStateProvider>
 );
-
-Layout.propTypes = {
-  children: node.isRequired,
-};
 
 export default Layout;

@@ -6,6 +6,11 @@ import Logo from './Logo';
 import NavigationSwitcher from './NavigationSwitcher';
 import SearchbarSwitcher from './SearchbarSwitcher';
 
+interface WrapperProps {
+  isLoginbar: boolean
+  isNavbar: boolean
+}
+
 const Wrapper = styled.header`
   display: block;
   width: 100%;
@@ -15,17 +20,17 @@ const Wrapper = styled.header`
   left: 0;
   z-index: var(--index-header);
   transform: translateY(
-    ${({ isLoginbar, isNavbar }) => {
-      if (isLoginbar) {
-        return 'calc(var(--size-navbar-height) + var(--size-loginbar-height))';
-      }
+    ${({ isLoginbar, isNavbar }: WrapperProps) => {
+    if (isLoginbar) {
+      return 'calc(var(--size-navbar-height) + var(--size-loginbar-height))';
+    }
 
-      if (isNavbar) {
-        return 'var(--size-navbar-height)';
-      }
+    if (isNavbar) {
+      return 'var(--size-navbar-height)';
+    }
 
-      return 0;
-    }}
+    return 0;
+  }}
   );
   transition: transform var(--transition-default);
 

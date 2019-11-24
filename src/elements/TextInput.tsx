@@ -1,5 +1,4 @@
 import React from 'react';
-import { string } from 'prop-types';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 import { useField } from 'formik';
@@ -23,9 +22,13 @@ const Label = styled.label`
   }
 `;
 
-const TextInput = ({ label, ...props }) => {
+interface Props {
+  label?: string
+}
+
+const TextInput: React.FC<Props> = ({ label, ...props }) => {
   const [field, { error, touched }] = useField(props);
-  const fieldName = label.toLowerCase().replace('.', '-');
+  const fieldName = label ? label.toLowerCase().replace('.', '-') : '';
 
   return (
     <Wrapper>
@@ -42,18 +45,10 @@ const TextInput = ({ label, ...props }) => {
           />
         </FieldStatusIndicator>
       ) : (
-        <input {...field} {...props} id={fieldName} />
-      )}
+          <input {...field} {...props} id={fieldName} />
+        )}
     </Wrapper>
   );
-};
-
-TextInput.propTypes = {
-  label: string,
-};
-
-TextInput.defaultProps = {
-  label: '',
 };
 
 export default TextInput;

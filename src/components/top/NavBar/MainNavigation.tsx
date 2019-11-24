@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   margin: 0 0.5rem;
 `;
 
-const MainNavigation = () => (
+const MainNavigation: React.FC = () => (
   <Wrapper>
     <Authorization />
     <ListOfLinks />
