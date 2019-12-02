@@ -1,14 +1,19 @@
 import React from 'react';
-import { func, node, shape } from 'prop-types';
 import { injectIntl } from 'gatsby-plugin-intl';
 import { ToastContainer, toast } from 'react-toastify';
 
 export const NotificationContext = React.createContext({});
 
-const Notification = ({ children, intl }) => {
-  const notify = ({ id, type, values }) =>
+interface Props {
+  intl: {
+    formatMessage: ({ id }: { id: string }) => void
+  }
+}
+
+const Notification: React.FC<Props> = ({ children, intl }) => {
+  const notify = ({ id, type, values = {} }: { id: string, type: string, values: object }) =>
     toast[type](
-      intl.formatMessage({ id: `notify.${type}.${id}` }, { ...(values || {}) }),
+      intl.formatMessage({ id: `notify.${type}.${id}` }, values),
       { position: toast.POSITION.BOTTOM_RIGHT }
     );
 
@@ -18,13 +23,6 @@ const Notification = ({ children, intl }) => {
       <ToastContainer />
     </NotificationContext.Provider>
   );
-};
-
-Notification.propTypes = {
-  children: node.isRequired,
-  intl: shape({
-    formatMessage: func.isRequired,
-  }).isRequired,
 };
 
 export default injectIntl(Notification);

@@ -30,7 +30,13 @@ const Header = styled.h1`
   text-align: center;
 `;
 
-const About = ({ intl }) => (
+interface Props {
+  intl: {
+    formatMessage: ({ id }: { id: string }) => void
+  }
+}
+
+const About: React.FC<Props> = ({ intl }) => (
   <Layout>
     <SEO title="about" />
     <Wrapper>

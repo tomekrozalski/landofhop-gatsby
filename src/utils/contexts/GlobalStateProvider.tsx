@@ -4,7 +4,6 @@ import { Device, Navigation } from './index';
 
 interface Props {
   contexts: any
-  children: React.ReactNode
 }
 
 const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
-import { useField } from 'formik';
+import { FieldAttributes, useField } from 'formik';
 
 import FieldStatusIndicator from './FieldStatusIndicator';
 
@@ -22,13 +22,13 @@ const Label = styled.label`
   }
 `;
 
-interface Props {
-  label?: string
-}
+const Input: any = styled.input``;
 
-const TextInput: React.FC<Props> = ({ label, ...props }) => {
-  const [field, { error, touched }] = useField(props);
-  const fieldName = label ? label.toLowerCase().replace('.', '-') : '';
+interface Props { label: string }
+
+const TextInput: React.FC<Props & FieldAttributes<{}>> = ({ label, ...props }) => {
+  const [field, { error, touched }] = useField<{}>(props);
+  const fieldName = label.toLowerCase().replace('.', '-');
 
   return (
     <Wrapper>
@@ -37,7 +37,7 @@ const TextInput: React.FC<Props> = ({ label, ...props }) => {
       </Label>
       {touched ? (
         <FieldStatusIndicator error={error}>
-          <input
+          <Input
             {...field}
             {...props}
             className="withStatusIcon"
@@ -45,7 +45,7 @@ const TextInput: React.FC<Props> = ({ label, ...props }) => {
           />
         </FieldStatusIndicator>
       ) : (
-          <input {...field} {...props} id={fieldName} />
+          <Input {...field} {...props} id={fieldName} />
         )}
     </Wrapper>
   );

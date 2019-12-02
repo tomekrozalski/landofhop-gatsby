@@ -43,12 +43,11 @@ const Wrapper = styled.button<{ wide: boolean }>`
 `;
 
 interface Props {
-  children: React.ReactNode
   isSubmitting?: boolean
 }
 
 const Button: React.FC<Props> = ({ children, isSubmitting, ...props }) => (
-  <Wrapper className={isSubmitting && 'button-submitting'} {...props}>
+  <Wrapper className={isSubmitting ? 'button-submitting' : ''} {...props}>
     {children}
     {isSubmitting && <ButtonSpinner />}
   </Wrapper>

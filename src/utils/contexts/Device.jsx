@@ -14,14 +14,14 @@ async function supportsWebp() {
 }
 
 const Device = ({ children }) => {
-  const [webpSupport, setWebpSurrot] = useState(false);
+  const [webpSupport, setWebpSupport] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (await supportsWebp()) {
-        setWebpSurrot(true);
+        setWebpSupport(true);
       } else {
-        setWebpSurrot(false);
+        setWebpSupport(false);
       }
     })();
   }, []);

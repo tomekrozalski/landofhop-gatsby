@@ -18,7 +18,7 @@ const Statement = styled.h1`
   color: transparent;
 `;
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   const [seconds, setSeconds] = useState(3);
 
   useEffect(() => {

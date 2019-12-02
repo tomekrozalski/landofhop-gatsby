@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const NavigationContext = React.createContext({});
+export const NavigationContext = React.createContext({
+  loginbar: false,
+  navbar: false,
+  searchbar: false,
+  setLoginbar: (val: boolean) => { val },
+  setNavbar: (val: boolean) => { val },
+  setSearchbar: (val: boolean) => { val },
+  toggleLoginbar: () => { },
+  toggleNavbar: () => { },
+});
 
-const Navigation = ({ children }) => {
+const Navigation: React.FC = ({ children }) => {
   const [loginbar, setLoginbar] = useState(false);
   const [navbar, setNavbar] = useState(false);
   const [searchbar, setSearchbar] = useState(false);
