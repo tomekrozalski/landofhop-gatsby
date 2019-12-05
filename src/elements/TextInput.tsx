@@ -24,7 +24,7 @@ const Label = styled.label`
 
 const Input: any = styled.input``;
 
-interface Props { label: string }
+type Props = { label: string }
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({ label, ...props }) => {
   const [field, { error, touched }] = useField<{}>(props);

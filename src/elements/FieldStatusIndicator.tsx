@@ -28,8 +28,7 @@ const Wrapper = styled.span`
   }
 `;
 
-interface Props {
-  children: React.ReactNode
+type Props = {
   error?: string
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useIntl, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-interface Props {
+type Props = {
   title: string
 }
 

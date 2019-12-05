@@ -1,10 +1,10 @@
 import React from 'react';
-import { arrayOf, shape } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
-import { beverageBasicsTypes, pageContextTypes } from 'utils/types';
+import BeverageBasicsType from 'utils/types/BeverageBasicsType';
+import PageContextType from 'utils/types/PageContextType';
 import Layout from '../Layout';
 import SEO from '../Seo';
 import Tile from './Tile';
@@ -25,7 +25,18 @@ const Grid = styled.ul`
   }
 `;
 
-const Tiles = ({ data, pageContext }) => (
+type Props = {
+  data: {
+    allMongodbLandofhopBeverages: {
+      edges: {
+        node: BeverageBasicsType
+      }[],
+    }
+  }
+  pageContext: PageContextType
+}
+
+const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>
     <SEO title="main" />
     <Grid>
@@ -36,19 +47,6 @@ const Tiles = ({ data, pageContext }) => (
     <Pagination {...pageContext} />
   </Layout>
 );
-
-Tiles.propTypes = {
-  data: shape({
-    allMongodbLandofhopBeverages: shape({
-      edges: arrayOf(
-        shape({
-          node: shape(beverageBasicsTypes).isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
-  pageContext: shape(pageContextTypes).isRequired,
-};
 
 export const query = graphql`
   query BeveragesList($limit: Int!, $skip: Int!) {

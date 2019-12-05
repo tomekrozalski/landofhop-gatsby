@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
-import { pageContextTypes } from 'utils/types';
+import PageContextType from 'utils/types/PageContext.type';
 
 const List = styled.ul`
   display: flex;
@@ -24,10 +24,10 @@ const Button = styled.button`
   color: var(--color-white);
 `;
 
-const ActiveButton = styled(Button)`
+const ActiveButton: any = styled(Button)`
   transition: background-color var(--transition-default),
     color var(--transition-default);
-  ${({ current }) =>
+  ${({ current }: { current: 1 | 0 }) =>
     current
       ? `
 			background: var(--color-black);
@@ -55,7 +55,7 @@ const InactiveButton = styled(Button)`
   cursor: not-allowed;
 `;
 
-const Pagination = ({
+const Pagination: React.FC<PageContextType> = ({
   humanPageNumber,
   nextPagePath,
   numberOfPages,
@@ -81,10 +81,10 @@ const Pagination = ({
         {humanPageNumber === 1 ? (
           <InactiveButton as="span">←</InactiveButton>
         ) : (
-          <ActiveButton as={Link} to={previousPagePath}>
-            ←
+            <ActiveButton as={Link} to={previousPagePath}>
+              ←
           </ActiveButton>
-        )}
+          )}
       </Item>
       {humanPageNumber > 4 && (
         <>
@@ -98,14 +98,14 @@ const Pagination = ({
           </Item>
         </>
       )}
-      {pages().map(item => (
-        <Item key={item}>
+      {pages().map((pageValue: number) => (
+        <Item key={pageValue}>
           <ActiveButton
             as={Link}
-            current={item === humanPageNumber ? 1 : 0}
-            to={item === 1 ? '/' : `/list/${item}`}
+            current={pageValue === humanPageNumber ? 1 : 0}
+            to={pageValue === 1 ? '/' : `/list/${pageValue}`}
           >
-            {item}
+            {pageValue}
           </ActiveButton>
         </Item>
       ))}
@@ -125,15 +125,13 @@ const Pagination = ({
         {numberOfPages === humanPageNumber ? (
           <InactiveButton as="span">→</InactiveButton>
         ) : (
-          <ActiveButton as={Link} to={nextPagePath}>
-            →
+            <ActiveButton as={Link} to={nextPagePath}>
+              →
           </ActiveButton>
-        )}
+          )}
       </Item>
     </List>
   );
 };
-
-Pagination.propTypes = pageContextTypes;
 
 export default Pagination;

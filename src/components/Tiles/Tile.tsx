@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { beverageBasicsTypes } from 'utils/types';
+import BeverageBasics from 'utils/types/BeverageBasics';
 import TileLink from './TileLink';
 import Image from './Image';
 
@@ -11,7 +11,7 @@ const ListItem = styled.li`
   position: relative;
 `;
 
-const Tile = ({ badge, coverPhoto, label, shortId }) => {
+const Tile: React.FC<BeverageBasics> = ({ badge, coverPhoto, label, shortId }) => {
   const brandBadge = label.general.brand.badge;
 
   return (
@@ -26,7 +26,5 @@ const Tile = ({ badge, coverPhoto, label, shortId }) => {
     </ListItem>
   );
 };
-
-Tile.propTypes = beverageBasicsTypes;
 
 export default Tile;

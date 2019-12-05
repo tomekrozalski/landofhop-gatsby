@@ -13,7 +13,7 @@ const LoginBarContainer = styled(Form)`
   margin: 0 auto;
 `;
 
-interface Props {
+type Props = {
   isSubmitting: boolean
   isValid: boolean
 }

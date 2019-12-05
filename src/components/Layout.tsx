@@ -8,11 +8,7 @@ const Main = styled.main`
   margin-top: var(--size-header-height);
 `;
 
-interface Props {
-  children: React.ReactNode,
-}
-
-const Layout: React.FC<Props> = ({ children }) => (
+const Layout: React.FC = ({ children }) => (
   <GlobalStateProvider>
     <NavBar />
     <LoginBar />
