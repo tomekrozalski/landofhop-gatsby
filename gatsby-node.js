@@ -50,7 +50,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const Tiles = path.resolve(`src/components/Tiles/Tiles.jsx`);
+  const Tiles = path.resolve(`src/components/Tiles/Tiles.tsx`);
 
   const totalCountResult = await graphql(`
     query AllBeveragesId {

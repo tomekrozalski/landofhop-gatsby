@@ -1,5 +1,7 @@
+import SiteLanguages from '../enums/SiteLanguages.enum';
+
 type LanguageValue = {
-  language?: string
+  language?: SiteLanguages
   value: string
 }
 

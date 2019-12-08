@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Device, Navigation } from './index';
 
-interface Props {
+type Props = {
   contexts: any
 }
 

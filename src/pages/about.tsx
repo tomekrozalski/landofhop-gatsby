@@ -1,6 +1,6 @@
 import React from 'react';
-import { func, shape } from 'prop-types';
 import { FormattedMessage, injectIntl } from 'gatsby-plugin-intl';
+import { IntlShape } from 'react-intl';
 import Markdown from 'markdown-to-jsx';
 import styled from 'styled-components';
 
@@ -30,10 +30,8 @@ const Header = styled.h1`
   text-align: center;
 `;
 
-interface Props {
-  intl: {
-    formatMessage: ({ id }: { id: string }) => void
-  }
+type Props = {
+  intl: IntlShape
 }
 
 const About: React.FC<Props> = ({ intl }) => (
@@ -49,11 +47,5 @@ const About: React.FC<Props> = ({ intl }) => (
     </Wrapper>
   </Layout>
 );
-
-About.propTypes = {
-  intl: shape({
-    formatMessage: func.isRequired,
-  }).isRequired,
-};
 
 export default injectIntl(About);

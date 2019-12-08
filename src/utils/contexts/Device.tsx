@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
 export const DeviceContext = React.createContext({});
 
@@ -13,7 +12,7 @@ async function supportsWebp() {
   return createImageBitmap(blob).then(() => true, () => false);
 }
 
-const Device = ({ children }) => {
+const Device: React.FC = ({ children }) => {
   const [webpSupport, setWebpSupport] = useState(false);
 
   useEffect(() => {
@@ -31,14 +30,6 @@ const Device = ({ children }) => {
       {children}
     </DeviceContext.Provider>
   );
-};
-
-Device.propTypes = {
-  children: PropTypes.node,
-};
-
-Device.defaultProps = {
-  children: null,
 };
 
 export default Device;

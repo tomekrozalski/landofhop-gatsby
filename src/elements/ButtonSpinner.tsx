@@ -16,13 +16,13 @@ const circleAnimation = keyframes`
     stroke-dashoffset: 280;
     transform: rotate(0);
   }
-  
+
   50%,
   75% {
     stroke-dashoffset: 75;
     transform: rotate(45deg);
   }
-  
+
   100% {
     stroke-dashoffset: 280;
     transform: rotate(360deg);

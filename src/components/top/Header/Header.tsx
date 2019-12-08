@@ -6,7 +6,7 @@ import Logo from './Logo';
 import NavigationSwitcher from './NavigationSwitcher';
 import SearchbarSwitcher from './SearchbarSwitcher';
 
-interface WrapperProps {
+type WrapperProps = {
   isLoginbar: boolean
   isNavbar: boolean
 }

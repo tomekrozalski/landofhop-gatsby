@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 export const NavigationContext = React.createContext({
   loginbar: false,
@@ -35,10 +34,6 @@ const Navigation: React.FC = ({ children }) => {
       {children}
     </NavigationContext.Provider>
   );
-};
-
-Navigation.propTypes = {
-  children: PropTypes.node,
 };
 
 Navigation.defaultProps = {

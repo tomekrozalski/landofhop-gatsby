@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   differenceInSeconds,
   formatDistanceStrict,
@@ -13,11 +12,11 @@ import { NotificationContext } from './Notification';
 
 export const AuthenticationContext = React.createContext({});
 
-const Authentication = ({ children }) => {
+const Authentication: React.FC = ({ children }) => {
   const { notify } = useContext(NotificationContext);
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
-  const [tokenExpiration, setTokenExpiration] = useState(null);
+  const [tokenExpiration, setTokenExpiration] = useState<string>(null);
   const [token, setToken] = useState(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -174,7 +173,7 @@ const Authentication = ({ children }) => {
     return false;
   });
 
-  const logIn = async formValues => {
+  const logIn = async (formValues: {}) => {
     const rawResponse = await fetch('http://localhost:3100/api/v2/auth', {
       method: 'POST',
       headers: {
@@ -218,14 +217,6 @@ const Authentication = ({ children }) => {
       {children}
     </AuthenticationContext.Provider>
   );
-};
-
-Authentication.propTypes = {
-  children: PropTypes.node,
-};
-
-Authentication.defaultProps = {
-  children: null,
 };
 
 export default Authentication;
