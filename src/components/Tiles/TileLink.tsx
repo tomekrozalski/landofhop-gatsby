@@ -4,16 +4,10 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
   width: 100%;
-  min-height: 38rem;
+  text-align: center;
 
-  &:hover {
-    img {
-      transform: scale(0.9);
-    }
-
-    .icon-broken-container {
-      transform: scale(0.9) translateX(-50%);
-    }
+  &:hover img {
+    transform: scale(0.9);
   }
 `;
 

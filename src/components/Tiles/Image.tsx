@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import Img, { GatsbyImageProps } from 'gatsby-image';
 
 import { getValueByLanguage } from 'utils/helpers';
 import LanguageValueType from 'utils/types/LanguageValue.type';
+import SiteLanguages from 'utils/enums/SiteLanguages.enum';
 
 const Broken = styled.img`
   height: 28rem;
-  position: absolute;
-  bottom: 6rem;
-  left: 50%;
-  transform: scale(1) translateX(-50%);
+  margin-top: 4rem;
+  transform: scale(1);
   transition: transform var(--transition-default);
   fill: var(--color-bright);
 `;
@@ -21,17 +20,15 @@ type Props = {
     name: LanguageValueType[]
   }
   coverPhoto: {
-    childImageSharp?: {
-      fluid: {}
-    }
+    childImageSharp?: GatsbyImageProps
     publicURL: string
   }
   name: LanguageValueType[]
 }
 
 const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
-  const formattedBrand = getValueByLanguage(brand.name, 'pl');
-  const formattedName = getValueByLanguage(name, 'pl');
+  const formattedBrand = getValueByLanguage(brand.name, SiteLanguages.pl);
+  const formattedName = getValueByLanguage(name, SiteLanguages.pl);
   const imageTitle = `${formattedName.value}, ${formattedBrand.value}`;
 
   return coverPhoto.childImageSharp ? (
@@ -45,7 +42,6 @@ const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
   ) : (
       <Broken
         src={coverPhoto.publicURL}
-        className="icon-broken-container"
         alt={imageTitle}
       />
     );
