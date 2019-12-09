@@ -10,7 +10,13 @@ import pl from 'date-fns/locale/pl';
 import { NavigationContext } from './Navigation';
 import { NotificationContext } from './Notification';
 
-export const AuthenticationContext = React.createContext({});
+export const AuthenticationContext = React.createContext({
+  isLoggedIn: false,
+  logIn: ({ }) => new Promise(() => { }),
+  logOut: () => { },
+  token: '',
+  tokenExpiration: ''
+});
 
 const Authentication: React.FC = ({ children }) => {
   const { notify } = useContext(NotificationContext);

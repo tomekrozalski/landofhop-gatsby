@@ -11,6 +11,7 @@ const LoginBarContainer = styled(Form)`
   align-items: center;
   width: var(--size-container-max-width);
   margin: 0 auto;
+  padding: 0 2rem;
 `;
 
 type Props = {

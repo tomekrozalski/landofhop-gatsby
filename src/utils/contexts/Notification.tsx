@@ -3,7 +3,9 @@ import { injectIntl } from 'gatsby-plugin-intl';
 import { IntlShape } from 'react-intl';
 import { ToastContainer, toast } from 'react-toastify';
 
-export const NotificationContext = React.createContext({});
+export const NotificationContext = React.createContext({
+  notify: ({ }) => { }
+});
 
 type Props = {
   intl: IntlShape

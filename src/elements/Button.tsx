@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import ButtonSpinner from './ButtonSpinner';
 
-const Wrapper = styled.button<{ wide?: boolean }>`
+const Wrapper: any = styled.button<{ wide?: boolean }>`
   display: flex;
   align-items: center;
   width: ${({ wide }) => (wide ? '100%' : 'auto')};
@@ -43,7 +43,9 @@ const Wrapper = styled.button<{ wide?: boolean }>`
 `;
 
 type Props = {
+  disabled?: boolean
   isSubmitting?: boolean
+  type?: string
 }
 
 const Button: React.FC<Props> = ({ children, isSubmitting, ...props }) => (

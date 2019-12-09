@@ -55,13 +55,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-intl`,
       options: {
-        // language JSON resource path
         path: `${__dirname}/src/utils/dictionary`,
-        // supported language
         languages: ['en', 'pl'],
-        // language file path
         defaultLanguage: 'pl',
-        // option to redirect to `/ko` when connecting `/`
         redirect: true,
       },
     },
