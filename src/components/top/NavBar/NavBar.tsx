@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
+import { NavigationContext } from 'utils/contexts';
 import LangNavigation from './LangNavigation';
 import MainNavigation from './MainNavigation';
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ isActive: boolean }>`
   display: block;
   width: 100%;
   height: var(--size-navbar-height);
@@ -14,6 +15,11 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   z-index: var(--index-navbar);
+
+  @media (max-width: ${breakpoints.md}) {
+    transform: translateY(${({ isActive }) => (isActive ? 0 : 'calc(var(--size-navbar-height) * -1)')});
+    transition: transform var(--transition-default);
+  }
 `;
 
 const Container = styled.div`
@@ -31,13 +37,17 @@ const Container = styled.div`
   }
 `;
 
-const NavBar: React.FC = () => (
-  <Nav>
-    <Container>
-      <MainNavigation />
-      <LangNavigation />
-    </Container>
-  </Nav>
-);
+const NavBar: React.FC = () => {
+  const { navbar } = useContext(NavigationContext);
+
+  return (
+    <Nav isActive={navbar}>
+      <Container>
+        <MainNavigation />
+        <LangNavigation />
+      </Container>
+    </Nav>
+  );
+}
 
 export default NavBar;

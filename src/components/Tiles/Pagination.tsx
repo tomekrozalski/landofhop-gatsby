@@ -7,12 +7,13 @@ import PageContextType from 'utils/types/PageContext.type';
 const List = styled.ul`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   max-width: var(--size-container-max-width);
   margin: 12rem auto 8rem auto;
 `;
 
 const Item = styled.li`
-  margin: 0 0.5rem;
+  margin: 0.5rem;
 `;
 
 const Button = styled.button`

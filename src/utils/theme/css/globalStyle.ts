@@ -26,7 +26,7 @@ const globalStyles = css`
     --size-header-height: 4rem;
     --size-input-height: 3.4rem;
     --size-loginbar-height: 8rem;
-    --size-navbar-height: calc(50vh - 4rem);
+    --size-navbar-height: 10rem;
     --size-tiles-gap: 1rem;
 
     --transition-default: 0.2s cubic-bezier(0.42, 0, 1, 1);
