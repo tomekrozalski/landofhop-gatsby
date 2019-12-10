@@ -3,8 +3,8 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
-import BeverageBasicsType from 'utils/types/BeverageBasicsType';
-import PageContextType from 'utils/types/PageContextType';
+import BeverageBasicsType from 'utils/types/BeverageBasics.type';
+import PageContextType from 'utils/types/PageContext.type';
 import Layout from '../Layout';
 import SEO from '../Seo';
 import Tile from './Tile';

@@ -51,26 +51,59 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const Tiles = path.resolve(`src/components/Tiles/Tiles.tsx`);
+  const BeverageDetails = path.resolve(
+    `src/components/BeverageDetails/BeverageDetails.tsx`
+  );
 
-  const totalCountResult = await graphql(`
-    query AllBeveragesId {
+  const allbeverages = await graphql(`
+    query AllBeverages {
       allMongodbLandofhopBeverages {
         edges {
           node {
-            id
+            badge
+            label {
+              general {
+                brand {
+                  badge
+                }
+              }
+            }
+            shortId
           }
         }
       }
     }
   `);
 
-  const pathPrefix = ({ pageNumber }) => (pageNumber === 0 ? '/' : '/list');
+  const items = allbeverages.data.allMongodbLandofhopBeverages.edges;
 
   paginate({
     createPage,
-    items: totalCountResult.data.allMongodbLandofhopBeverages.edges,
+    items,
     itemsPerPage: 50,
-    pathPrefix,
+    pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/list'),
     component: Tiles,
+  });
+
+  items.forEach(({ node }) => {
+    const {
+      badge,
+      label: {
+        general: {
+          brand: { badge: brandBadge },
+        },
+      },
+      shortId,
+    } = node;
+
+    createPage({
+      path: `/details/${shortId}/${brandBadge}/${badge}`,
+      component: BeverageDetails,
+      context: {
+        badge,
+        brandBadge,
+        shortId,
+      },
+    });
   });
 };
