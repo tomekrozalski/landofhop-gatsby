@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby-plugin-intl';
 
 const List = styled.ul`
 	display: flex;
@@ -22,10 +23,15 @@ const Item = styled.li`
 	color: #999;
 `;
 
-const Aside: React.FC = () => (
+type Props = {
+	nextLink: string | null
+	previousLink: string | null
+}
+
+const Aside: React.FC<Props> = ({ nextLink, previousLink }) => (
 	<List>
-		<Item>←</Item>
-		<Item>→</Item>
+		<Item><Link to={previousLink}>←</Link></Item>
+		<Item><Link to={nextLink}>→</Link></Item>
 	</List>
 );
 

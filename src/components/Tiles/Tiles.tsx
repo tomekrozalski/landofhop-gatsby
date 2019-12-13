@@ -81,6 +81,7 @@ export const query = graphql`
               }
             }
           }
+          mongodb_id
           shortId
         }
       }

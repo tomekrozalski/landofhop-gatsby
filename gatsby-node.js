@@ -57,8 +57,19 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allbeverages = await graphql(`
     query AllBeverages {
-      allMongodbLandofhopBeverages {
+      allMongodbLandofhopBeverages(sort: { fields: added, order: DESC }) {
         edges {
+          next {
+            badge
+            label {
+              general {
+                brand {
+                  badge
+                }
+              }
+            }
+            shortId
+          }
           node {
             badge
             label {
@@ -69,6 +80,17 @@ exports.createPages = async ({ graphql, actions }) => {
               }
             }
             shortId
+          }
+          previous {
+            badge
+            shortId
+            label {
+              general {
+                brand {
+                  badge
+                }
+              }
+            }
           }
         }
       }
@@ -85,7 +107,7 @@ exports.createPages = async ({ graphql, actions }) => {
     component: Tiles,
   });
 
-  items.forEach(({ node }) => {
+  items.forEach(({ next, node, previous }) => {
     const {
       badge,
       label: {
@@ -96,12 +118,21 @@ exports.createPages = async ({ graphql, actions }) => {
       shortId,
     } = node;
 
+    const previousLink = previous
+      ? `/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`
+      : null;
+    const nextLink = next
+      ? `/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`
+      : null;
+
     createPage({
       path: `/details/${shortId}/${brandBadge}/${badge}`,
       component: BeverageDetails,
       context: {
         badge,
         brandBadge,
+        nextLink,
+        previousLink,
         shortId,
       },
     });

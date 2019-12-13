@@ -2,9 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import LanguageValueType from 'utils/types/LanguageValue.type';
-import SiteLanguages from 'utils/enums/SiteLanguages.enum';
-import BeveragePreviousAndNext from 'utils/types/BeveragePreviousAndNext.type'
+import BeverageDetailsType from 'utils/types/BeverageDetails.type';
+import SiteLanguage from 'utils/enums/SiteLanguage.enum';
 
 import { getValueByLanguage } from 'utils/helpers';
 import Layout from '../Layout';
@@ -30,30 +29,25 @@ const Division = styled.div`
 
 type Props = {
 	data: {
-		mongodbLandofhopBeverages: {
-			badge: string
-			label: {
-				general: {
-					brand: {
-						badge: string
-					}
-					name: LanguageValueType[]
-				}
-			}
-			shortId: string
-		}
-		allMongodbLandofhopBeverages: {
-			edges: BeveragePreviousAndNext
-		}
+		mongodbLandofhopBeverages: BeverageDetailsType
 	}
 	pageContext: {
 		intl: {
-			language: SiteLanguages
+			language: SiteLanguage
 		}
+		nextLink: string | null
+		previousLink: string | null
 	}
 }
 
 const BeverageDetails: React.FC<Props> = (props) => {
+	const {
+		pageContext: {
+			nextLink,
+			previousLink
+		}
+	} = props;
+
 	console.log('BeverageDetails', props);
 
 	const formattedName = getValueByLanguage(props.data.mongodbLandofhopBeverages.label.general.name, props.pageContext.intl.language);
@@ -63,7 +57,7 @@ const BeverageDetails: React.FC<Props> = (props) => {
 			<Wrapper>
 				<Gallery />
 				<Division>{formattedName.value}</Division>
-				<Aside />
+				<Aside nextLink={nextLink} previousLink={previousLink} />
 			</Wrapper>
 		</Layout>
 	);
@@ -256,43 +250,6 @@ export const query = graphql`
 						language
 						value
 					}
-				}
-			}
-		}
-		allMongodbLandofhopBeverages(sort: {fields: added, order: DESC}) {
-			edges {
-				next {
-					badge
-					label {
-						general {
-							brand {
-								badge
-							}
-						}
-					}
-					shortId
-				}
-				previous {
-					badge
-					shortId
-					label {
-						general {
-							brand {
-								badge
-							}
-						}
-					}
-				}
-				node {
-					badge
-					label {
-						general {
-							brand {
-								badge
-							}
-						}
-					}
-					shortId
 				}
 			}
 		}

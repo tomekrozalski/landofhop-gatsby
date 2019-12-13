@@ -1,5 +1,5 @@
 import LanguageValueType from '../types/LanguageValue.type';
-import SiteLanguages from '../enums/SiteLanguages.enum';
+import SiteLanguage from '../enums/SiteLanguage.enum';
 
-export default (values: LanguageValueType[], language: SiteLanguages) =>
+export default (values: LanguageValueType[], language: SiteLanguage) =>
   values.find(item => item.language === language) || values[0];

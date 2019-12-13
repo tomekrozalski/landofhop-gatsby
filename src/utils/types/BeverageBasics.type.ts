@@ -16,6 +16,7 @@ type BeverageBasics = {
       name: LanguageValue[]
     }
   }
+  mongodb_id: string
   shortId: string
 }
 

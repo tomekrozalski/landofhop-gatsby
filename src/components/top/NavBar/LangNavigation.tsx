@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { changeLocale, IntlContextConsumer } from 'gatsby-plugin-intl';
 
-import SiteLanguages from 'utils/enums/SiteLanguages.enum';
+import SiteLanguage from 'utils/enums/SiteLanguage.enum';
 import { styledLinkCSS } from './elements';
 
 const List = styled.ul`
@@ -22,7 +22,7 @@ const Button = styled.button`
 const LangNavigation: React.FC = () => (
   <List>
     <IntlContextConsumer>
-      {({ languages }: { languages: SiteLanguages[] }) =>
+      {({ languages }: { languages: SiteLanguage[] }) =>
         languages.map(language => (
           <ListItem key={language}>
             <Button onClick={() => changeLocale(language)} type="button">
