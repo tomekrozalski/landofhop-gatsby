@@ -1,60 +1,24 @@
 import {
-	AgedTimeUnit,
-	AgedType,
-	AlcoholRelate,
 	AlcoholScope,
-	AlcoholUnit,
+	Clarity,
 	ContainerColor,
 	ContainerMaterial,
-	ExpirationDateUnit,
-	ExtractRelate,
-	ExtractUnit,
+	ContainerType,
+	ContainerUnit,
 	Fermentation,
-	IngredientType,
-	TemperatureUnit,
 } from '../enums/beverage';
 
-import { LanguageValue } from '.';
-
-type Institution = {
-	badge: string
-	name: LanguageValue[]
-	shortId: string
-	website?: string
-	consortium?: Institution
-}
-
-type Country = {
-	code: string
-	name: LanguageValue[]
-}
-
-type Place = {
-	city?: LanguageValue[]
-	country: Country
-	institution: Institution
-	location: {
-		type: 'Point'
-		coordinates: number[]
-	}
-	shortId: string
-}
-
-type Aged = {
-	type?: AgedType
-	wood?: string
-	time?: {
-		value: number
-		unit: AgedTimeUnit
-	}
-	previousContent?: string[]
-}
-
-type Ingredient = {
-	badge: string
-	name: LanguageValue[]
-	type: IngredientType
-}
+import {
+	Aged,
+	BeverageImpressions,
+	BeverageIngredients,
+	BeveragePrice,
+	Brewing,
+	Ingredient,
+	Institution,
+	LanguageValue,
+	Place,
+} from '.';
 
 export type BeverageDetails = {
 	shortId: string
@@ -70,17 +34,42 @@ export type BeverageDetails = {
 			tale?: LanguageValue[]
 			barcode?: string
 		}
+		brewing?: Brewing
+		ingredients?: BeverageIngredients
+		impressions?: BeverageImpressions
+		container: {
+			color: ContainerColor
+			material: ContainerMaterial
+			unit: ContainerUnit
+			type: ContainerType
+			value: number
+			hasCapWireFlip?: boolean
+		}
+		price?: BeveragePrice
+	}
+	producer?: {
+		general?: {
+			series?: LanguageValue[]
+			brand?: Institution
+			cooperation?: Institution[]
+			contract?: Institution
+			place?: Place
+			tale?: LanguageValue[]
+		}
+		brewing?: Brewing
+		ingredients?: BeverageIngredients
+		impressions?: BeverageImpressions
+		price?: BeveragePrice
+	}
+	editorial?: {
+		general?: {
+			cooperation?: Institution[]
+			contract?: Institution
+			place?: Place
+		}
 		brewing?: {
 			fermentation?: Fermentation[]
-			extract?: {
-				relate: ExtractRelate
-				unit: ExtractUnit
-				value: number
-			}
 			alcohol?: {
-				relate: AlcoholRelate
-				unit: AlcoholUnit
-				value: number
 				scope?: AlcoholScope
 			}
 			filtration?: boolean
@@ -93,213 +82,22 @@ export type BeverageDetails = {
 					type: Ingredient[]
 				}
 			}
-			expirationDate?: {
-				value: number
-				unit: ExpirationDateUnit
-			}
-		}
-		ingredients?: {
-			description?: {
-				complete: boolean
-				language?: string
-				value: string,
-			}[]
-			list?: Ingredient[]
-			smokedMalt?: boolean
 		}
 		impressions?: {
-			bitterness?: number
-			sweetness?: number
-			fullness?: number
-			power?: number
-			hoppyness?: number
-			temperature?: {
-				from: number
-				to: number
-				unit: TemperatureUnit
+			color?: string
+			clarity?: Clarity
+		}
+		price?: BeveragePrice
+		photos?: {
+			cap?: boolean
+			cover?: {
+				height: number
+				width: number
 			}
+			gallery?: number
 		}
-		container: {
-			color: ContainerColor
-			material: ContainerMaterial
-		}
-
+		notes?: string
 	}
-
 	added: Date
-	editorial: {
-		brewing: {
-			fermentation: Fermentation[]
-			alcohol: {
-				scope: AlcoholScope
-			}
-			style: LanguageValue[]
-		}
-		general: {
-			cooperation: 'xxx'
-		}
-		// impressions {
-		// 	color
-		// }
-		// notes
-		// photos {
-		// 	cap
-		// 	gallery
-		// }
-		// price {
-		// 	currency
-		// 	date
-		// }
-
-	}
-
-
-
-
-
-	// label {
-	// 	general {
-	// 		name {
-	// 			value
-	// 			language
-	// 		}
-	// 		barcode
-	// 		brand {
-	// 			badge
-	// 			consortium
-	// 			name {
-	// 				language
-	// 				value
-	// 			}
-	// 			shortId
-	// 			website
-	// 		}
-	// 		contract
-	// 		cooperation
-	// 		place
-	// 		series {
-	// 			language
-	// 			value
-	// 		}
-	// 		tale {
-	// 			language
-	// 			value
-	// 		}
-	// 	}
-	// 	brewing {
-	// 		aged {
-	// 			previousContent
-	// 			time {
-	// 				unit
-	// 				value
-	// 			}
-	// 			type
-	// 			wood
-	// 		}
-	// 		alcohol {
-	// 			relate
-	// 			scope
-	// 			unit
-	// 		}
-	// 		dryHopped {
-	// 			hops
-	// 		}
-	// 		expirationDate {
-	// 			unit
-	// 			value
-	// 		}
-	// 		extract {
-	// 			relate
-	// 			unit
-	// 		}
-	// 		fermentation
-	// 		filtration
-	// 		isDryHopped
-	// 		pasteurization
-	// 		style {
-	// 			language
-	// 			value
-	// 		}
-	// 	}
-	// 	container {
-	// 		color
-	// 		hasCapWireFlip
-	// 		material
-	// 		type
-	// 		unit
-	// 		value
-	// 	}
-	// 	impressions {
-	// 		bitterness
-	// 		fullness
-	// 		hoppyness
-	// 		power
-	// 		sweetness
-	// 		temperature {
-	// 			from
-	// 			to
-	// 			unit
-	// 		}
-	// 	}
-	// 	ingredients {
-	// 		description {
-	// 			complete
-	// 			language
-	// 			value
-	// 		}
-	// 		list
-	// 		smokedMalt
-	// 	}
-	// }
-	// shortId
-	// updated
-	// producer {
-	// 	brewing {
-	// 		alcohol {
-	// 			relate
-	// 			unit
-	// 		}
-	// 		dryHopped {
-	// 			hops
-	// 		}
-	// 		expirationDate {
-	// 			unit
-	// 			value
-	// 		}
-	// 		extract {
-	// 			relate
-	// 			unit
-	// 		}
-	// 		fermentation
-	// 		style {
-	// 			language
-	// 			value
-	// 		}
-	// 	}
-	// 	general {
-	// 		tale {
-	// 			language
-	// 			value
-	// 		}
-	// 	}
-	// 	impressions {
-	// 		bitterness
-	// 		fullness
-	// 		hoppyness
-	// 		sweetness
-	// 		temperature {
-	// 			from
-	// 			unit
-	// 			to
-	// 		}
-	// 	}
-	// 	ingredients {
-	// 		list
-	// 		description {
-	// 			complete
-	// 			language
-	// 			value
-	// 		}
-	// 	}
-	// }
+	updated?: Date
 }
