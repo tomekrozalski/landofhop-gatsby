@@ -118,21 +118,14 @@ exports.createPages = async ({ graphql, actions }) => {
       shortId,
     } = node;
 
-    const previousLink = previous
-      ? `/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`
-      : null;
-    const nextLink = next
-      ? `/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`
-      : null;
-
     createPage({
       path: `/details/${shortId}/${brandBadge}/${badge}`,
       component: BeverageDetails,
       context: {
         badge,
         brandBadge,
-        nextLink,
-        previousLink,
+        next,
+        previous,
         shortId,
       },
     });

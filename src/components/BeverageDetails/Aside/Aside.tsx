@@ -2,16 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
-const List = styled.ul`
+import { BeverageBase } from 'utils/types';
+
+const Wrapper = styled.ul`
 	display: flex;
 	justify-content: center;
-	border: 1px dotted #ddd;
 	padding: 1rem;
-	background-color: #eee;
-	text-align: center;
 `;
 
-const Item = styled.li`
+const Inactive = styled.span`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -19,20 +18,32 @@ const Item = styled.li`
 	height: 5rem;
 	margin: 1rem;
 	border-radius: 50%;
-	background-color: #ddd;
+	background-color: #eee;
 	color: #999;
 `;
 
+const Button = styled(Inactive)`
+	background-color: #ddd;
+
+	:hover {
+		background-color: #333;
+	}
+`;
+
 type Props = {
-	nextLink: string | null
-	previousLink: string | null
+	next: BeverageBase
+	previous: BeverageBase
 }
 
-const Aside: React.FC<Props> = ({ nextLink, previousLink }) => (
-	<List>
-		<Item><Link to={previousLink}>←</Link></Item>
-		<Item><Link to={nextLink}>→</Link></Item>
-	</List>
+const Aside: React.FC<Props> = ({ next, previous }) => (
+	<Wrapper>
+		{previous
+			? <Button as={Link} to={`/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`}>←</Button>
+			: <Inactive>←</Inactive>}
+		{next
+			? <Button as={Link} to={`/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`}>→</Button>
+			: <Inactive>→</Inactive>}
+	</Wrapper>
 );
 
 export default Aside;

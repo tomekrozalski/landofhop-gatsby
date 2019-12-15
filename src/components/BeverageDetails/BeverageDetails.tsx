@@ -2,7 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import BeverageDetailsType from 'utils/types/BeverageDetails.type';
+import {
+	BeverageBase as BeverageBaseType,
+	BeverageDetails as BeverageDetailsType
+} from 'utils/types';
 import SiteLanguage from 'utils/enums/SiteLanguage.enum';
 
 import { getValueByLanguage } from 'utils/helpers';
@@ -35,19 +38,12 @@ type Props = {
 		intl: {
 			language: SiteLanguage
 		}
-		nextLink: string | null
-		previousLink: string | null
+		next: BeverageBaseType
+		previous: BeverageBaseType
 	}
 }
 
 const BeverageDetails: React.FC<Props> = (props) => {
-	const {
-		pageContext: {
-			nextLink,
-			previousLink
-		}
-	} = props;
-
 	console.log('BeverageDetails', props);
 
 	const formattedName = getValueByLanguage(props.data.mongodbLandofhopBeverages.label.general.name, props.pageContext.intl.language);
@@ -57,7 +53,7 @@ const BeverageDetails: React.FC<Props> = (props) => {
 			<Wrapper>
 				<Gallery />
 				<Division>{formattedName.value}</Division>
-				<Aside nextLink={nextLink} previousLink={previousLink} />
+				<Aside next={props.pageContext.next} previous={props.pageContext.previous} />
 			</Wrapper>
 		</Layout>
 	);

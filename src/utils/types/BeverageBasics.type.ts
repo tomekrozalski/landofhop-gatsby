@@ -1,6 +1,6 @@
-import LanguageValue from './LanguageValue.type';
+import { LanguageValue } from '.';
 
-type BeverageBasics = {
+export type BeverageBasics = {
   badge: string
   coverPhoto: {
     childImageSharp: {
@@ -19,5 +19,3 @@ type BeverageBasics = {
   mongodb_id: string
   shortId: string
 }
-
-export default BeverageBasics

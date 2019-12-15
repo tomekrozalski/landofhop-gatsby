@@ -1,4 +1,4 @@
-type PageContext = {
+export type PageContext = {
 	humanPageNumber: number
 	intl: {
 		language: string
@@ -10,5 +10,3 @@ type PageContext = {
 	previousPagePath: string
 	skip: number
 }
-
-export default PageContext;

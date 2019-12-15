@@ -1,10 +1,24 @@
-import { AlcoholScope, Fermentation } from '../enums/beverage';
+import {
+	AgedTimeUnit,
+	AgedType,
+	AlcoholRelate,
+	AlcoholScope,
+	AlcoholUnit,
+	ContainerColor,
+	ContainerMaterial,
+	ExpirationDateUnit,
+	ExtractRelate,
+	ExtractUnit,
+	Fermentation,
+	IngredientType,
+	TemperatureUnit,
+} from '../enums/beverage';
 
-import LanguageValueType from './LanguageValue.type';
+import { LanguageValue } from '.';
 
 type Institution = {
 	badge: string
-	name: LanguageValueType[]
+	name: LanguageValue[]
 	shortId: string
 	website?: string
 	consortium?: Institution
@@ -12,11 +26,11 @@ type Institution = {
 
 type Country = {
 	code: string
-	name: LanguageValueType[]
+	name: LanguageValue[]
 }
 
 type Place = {
-	city?: LanguageValueType[]
+	city?: LanguageValue[]
 	country: Country
 	institution: Institution
 	location: {
@@ -26,20 +40,90 @@ type Place = {
 	shortId: string
 }
 
-type BeverageDetails = {
+type Aged = {
+	type?: AgedType
+	wood?: string
+	time?: {
+		value: number
+		unit: AgedTimeUnit
+	}
+	previousContent?: string[]
+}
+
+type Ingredient = {
+	badge: string
+	name: LanguageValue[]
+	type: IngredientType
+}
+
+export type BeverageDetails = {
 	shortId: string
 	badge: string
 	label: {
 		general: {
-			name: LanguageValueType[]
-			series?: LanguageValueType[]
+			name: LanguageValue[]
+			series?: LanguageValue[]
 			brand: Institution
 			cooperation?: Institution[]
 			contract?: Institution
 			place?: Place
-			tale?: LanguageValueType[]
+			tale?: LanguageValue[]
 			barcode?: string
 		}
+		brewing?: {
+			fermentation?: Fermentation[]
+			extract?: {
+				relate: ExtractRelate
+				unit: ExtractUnit
+				value: number
+			}
+			alcohol?: {
+				relate: AlcoholRelate
+				unit: AlcoholUnit
+				value: number
+				scope?: AlcoholScope
+			}
+			filtration?: boolean
+			pasteurization?: boolean
+			aged?: Aged[]
+			style?: LanguageValue[]
+			isDryHopped?: boolean
+			dryHopped?: {
+				hops: {
+					type: Ingredient[]
+				}
+			}
+			expirationDate?: {
+				value: number
+				unit: ExpirationDateUnit
+			}
+		}
+		ingredients?: {
+			description?: {
+				complete: boolean
+				language?: string
+				value: string,
+			}[]
+			list?: Ingredient[]
+			smokedMalt?: boolean
+		}
+		impressions?: {
+			bitterness?: number
+			sweetness?: number
+			fullness?: number
+			power?: number
+			hoppyness?: number
+			temperature?: {
+				from: number
+				to: number
+				unit: TemperatureUnit
+			}
+		}
+		container: {
+			color: ContainerColor
+			material: ContainerMaterial
+		}
+
 	}
 
 	added: Date
@@ -49,7 +133,7 @@ type BeverageDetails = {
 			alcohol: {
 				scope: AlcoholScope
 			}
-			style: LanguageValueType[]
+			style: LanguageValue[]
 		}
 		general: {
 			cooperation: 'xxx'
@@ -219,5 +303,3 @@ type BeverageDetails = {
 	// 	}
 	// }
 }
-
-export default BeverageDetails;
