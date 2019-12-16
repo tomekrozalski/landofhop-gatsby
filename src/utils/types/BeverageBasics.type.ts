@@ -1,11 +1,11 @@
+import { GatsbyImageProps } from 'gatsby-image';
 import { LanguageValue } from '.';
 
 export type BeverageBasics = {
   badge: string
   coverPhoto: {
-    childImageSharp: {
-      fluid: object
-    }
+    childImageSharp?: GatsbyImageProps
+    publicURL: string
   }
   label: {
     general: {

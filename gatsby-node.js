@@ -3,6 +3,31 @@ const { paginate } = require('gatsby-awesome-pagination');
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions;
+
+  const getPhoto = ({ context, source, type }) => {
+    const institutions = context.nodeModel.getAllNodes({
+      type: 'mongodbLandofhopInstitutions',
+    });
+    const recentInstitution = institutions.find(
+      institution => institution.mongodb_id === source.label.general.brand
+    );
+    const files = context.nodeModel.getAllNodes({ type: 'File' });
+    const photo = files.find(
+      ({ relativePath }) =>
+        relativePath ===
+        `beverages/${recentInstitution.badge}/${source.badge}/${source.shortId}/${type}.jpg`
+    );
+
+    if (photo) {
+      return photo;
+    }
+
+    return files.find(
+      ({ relativePath }) =>
+        relativePath === `beverages/broken-${source.label.container.type}.svg`
+    );
+  };
+
   const typeDefs = [
     schema.buildObjectType({
       name: 'mongodbLandofhopBeverages',
@@ -11,31 +36,13 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         label: 'Label!',
         coverPhoto: {
           type: 'File',
-          resolve: (source, args, context) => {
-            const institutions = context.nodeModel.getAllNodes({
-              type: 'mongodbLandofhopInstitutions',
-            });
-            const recentInstitution = institutions.find(
-              institution =>
-                institution.mongodb_id === source.label.general.brand
-            );
-            const files = context.nodeModel.getAllNodes({ type: 'File' });
-            const coverPhoto = files.find(
-              ({ relativePath }) =>
-                relativePath ===
-                `beverages/${recentInstitution.badge}/${source.badge}/${source.shortId}/cover.jpg`
-            );
-
-            if (coverPhoto) {
-              return coverPhoto;
-            }
-
-            return files.find(
-              ({ relativePath }) =>
-                relativePath ===
-                `beverages/broken-${source.label.container.type}.svg`
-            );
-          },
+          resolve: (source, args, context) =>
+            getPhoto({ context, source, type: 'cover' }),
+        },
+        galleryPhoto: {
+          type: 'File',
+          resolve: (source, args, context) =>
+            getPhoto({ context, source, type: 'gallery' }),
         },
       },
       interfaces: ['Node'],

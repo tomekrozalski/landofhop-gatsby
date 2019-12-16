@@ -51,7 +51,7 @@ const BeverageDetails: React.FC<Props> = (props) => {
 	return (
 		<Layout>
 			<Wrapper>
-				<Gallery />
+				<Gallery galleryPhoto={props.data.mongodbLandofhopBeverages.galleryPhoto} />
 				<Division>{formattedName.value}</Division>
 				<Aside next={props.pageContext.next} previous={props.pageContext.previous} />
 			</Wrapper>
@@ -247,6 +247,14 @@ export const query = graphql`
 						value
 					}
 				}
+			}
+			galleryPhoto {
+				childImageSharp {
+					fixed(width: 220) {
+						...GatsbyImageSharpFixed_withWebp_tracedSVG
+					}
+				}
+				publicURL
 			}
 		}
 	}

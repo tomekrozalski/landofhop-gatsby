@@ -1,3 +1,5 @@
+import { GatsbyImageProps } from 'gatsby-image';
+
 import {
 	AlcoholScope,
 	Clarity,
@@ -100,4 +102,8 @@ export type BeverageDetails = {
 	}
 	added: Date
 	updated?: Date
+	galleryPhoto: {
+		childImageSharp?: GatsbyImageProps
+		publicURL: string
+	}
 }

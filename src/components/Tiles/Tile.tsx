@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 
-import BeverageBasics from 'utils/types/BeverageBasics';
+import { BeverageBasics } from 'utils/types';
 import TileLink from './TileLink';
 import Image from './Image';
 

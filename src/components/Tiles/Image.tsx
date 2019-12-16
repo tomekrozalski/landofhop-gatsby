@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Img, { GatsbyImageProps } from 'gatsby-image';
 
 import { getValueByLanguage } from 'utils/helpers';
-import LanguageValueType from 'utils/types/LanguageValue.type';
+import { LanguageValue } from 'utils/types';
 import SiteLanguage from 'utils/enums/SiteLanguage.enum';
 
 const Broken = styled.img`
@@ -17,13 +17,13 @@ const Broken = styled.img`
 type Props = {
   brand: {
     badge: string
-    name: LanguageValueType[]
+    name: LanguageValue[]
   }
   coverPhoto: {
     childImageSharp?: GatsbyImageProps
     publicURL: string
   }
-  name: LanguageValueType[]
+  name: LanguageValue[]
 }
 
 const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
