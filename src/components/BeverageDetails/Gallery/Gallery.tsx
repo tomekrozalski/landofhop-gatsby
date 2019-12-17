@@ -5,10 +5,7 @@ import Img, { GatsbyImageProps } from 'gatsby-image';
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	border: 1px dotted #ddd;
-	padding: 1rem;
-	background-color: #eee;
-	text-align: center;
+
 `;
 
 type Props = {

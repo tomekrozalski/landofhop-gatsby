@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
 import { BeverageBase } from 'utils/types';
+import { LeftIcon, RightIcon } from '.';
 
 const Wrapper = styled.ul`
 	display: flex;
@@ -18,15 +19,30 @@ const Inactive = styled.span`
 	height: 5rem;
 	margin: 1rem;
 	border-radius: 50%;
-	background-color: #eee;
-	color: #999;
+	background-color: var(--color-brighter);
+	color: var(--color-darker);
+	pointer-events: none;
+
+	svg {
+		width: 1.6rem;
+		fill: var(--color-darker);
+		transition: fill var(--transition-default);
+	}
 `;
 
 const Button = styled(Inactive)`
-	background-color: #ddd;
+	border: .2rem solid var(--color-darker);
+	background-color: transparent;
+	transition: all var(--transition-default);
+	pointer-events: auto;
 
 	:hover {
-		background-color: #333;
+		background-color: var(--color-black);
+		border-color: var(--color-black);
+
+		svg {
+			fill: var(--color-white);
+		}
 	}
 `;
 
@@ -38,11 +54,11 @@ type Props = {
 const Aside: React.FC<Props> = ({ next, previous }) => (
 	<Wrapper>
 		{previous
-			? <Button as={Link} to={`/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`}>←</Button>
-			: <Inactive>←</Inactive>}
+			? <Button as={Link} to={`/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`}><LeftIcon /></Button>
+			: <Inactive><LeftIcon /></Inactive>}
 		{next
-			? <Button as={Link} to={`/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`}>→</Button>
-			: <Inactive>→</Inactive>}
+			? <Button as={Link} to={`/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`}><RightIcon /></Button>
+			: <Inactive><RightIcon /></Inactive>}
 	</Wrapper>
 );
 

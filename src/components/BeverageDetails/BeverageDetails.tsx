@@ -14,20 +14,15 @@ import { Aside, Gallery } from '.';
 
 const Wrapper = styled.article`
   display: grid;
-  grid-template-columns: 220px 1fr 220px;
+  grid-template-columns: 22rem 1fr 18rem;
   grid-gap: 40px;
-
-
   max-width: var(--size-container-max-width);
   padding: 2rem 10px;
   margin: 0 auto 6rem auto;
-
 `;
 
 const Division = styled.div`
-	border: 1px dotted #ddd;
 	padding: 1rem;
-	background-color: #eee;
 `;
 
 type Props = {
