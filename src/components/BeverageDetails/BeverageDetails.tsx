@@ -6,23 +6,18 @@ import {
 	BeverageBase as BeverageBaseType,
 	BeverageDetails as BeverageDetailsType
 } from 'utils/types';
-import SiteLanguage from 'utils/enums/SiteLanguage.enum';
-
-import { getValueByLanguage } from 'utils/helpers';
+import { SiteLanguage } from 'utils/enums';
 import Layout from '../Layout';
+import { Header } from './Content';
 import { Aside, Gallery } from '.';
 
-const Wrapper = styled.article`
+const GridWrapper = styled.article`
   display: grid;
   grid-template-columns: 22rem 1fr 18rem;
-  grid-gap: 40px;
+  grid-gap: 4rem;
   max-width: var(--size-container-max-width);
-  padding: 2rem 10px;
+  padding: 2rem 1rem;
   margin: 0 auto 6rem auto;
-`;
-
-const Division = styled.div`
-	padding: 1rem;
 `;
 
 type Props = {
@@ -38,21 +33,25 @@ type Props = {
 	}
 }
 
-const BeverageDetails: React.FC<Props> = (props) => {
-	console.log('BeverageDetails', props);
-
-	const formattedName = getValueByLanguage(props.data.mongodbLandofhopBeverages.label.general.name, props.pageContext.intl.language);
-
-	return (
+const BeverageDetails: React.FC<Props> = ({
+	data: {
+		mongodbLandofhopBeverages: details
+	},
+	pageContext: {
+		next,
+		previous,
+	}
+}) => (
 		<Layout>
-			<Wrapper>
-				<Gallery galleryPhoto={props.data.mongodbLandofhopBeverages.galleryPhoto} />
-				<Division>{formattedName.value}</Division>
-				<Aside next={props.pageContext.next} previous={props.pageContext.previous} />
-			</Wrapper>
+			<GridWrapper>
+				<Gallery galleryPhoto={details.galleryPhoto} />
+				<div>
+					<Header details={details} />
+				</div>
+				<Aside next={next} previous={previous} />
+			</GridWrapper>
 		</Layout>
 	);
-}
 
 export const query = graphql`
 	query BeverageDetails($badge: String!, $brandBadge: String!, $shortId: String!) {

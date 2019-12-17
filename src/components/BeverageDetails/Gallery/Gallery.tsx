@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Img, { GatsbyImageProps } from 'gatsby-image';
 
+import { BrokenContainer } from 'elements';
+
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
@@ -29,7 +31,10 @@ const Gallery: React.FC<Props> = ({ galleryPhoto }) => {
 			/>
 		</Wrapper>
 	) : (
-			<Wrapper>Broken</Wrapper>
+			<BrokenContainer
+				src={galleryPhoto.publicURL}
+				alt=""
+			/>
 		);
 }
 

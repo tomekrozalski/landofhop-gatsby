@@ -1,18 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import Img, { GatsbyImageProps } from 'gatsby-image';
 
 import { getValueByLanguage } from 'utils/helpers';
 import { LanguageValue } from 'utils/types';
 import SiteLanguage from 'utils/enums/SiteLanguage.enum';
-
-const Broken = styled.img`
-  height: 28rem;
-  margin-top: 4rem;
-  transform: scale(1);
-  transition: transform var(--transition-default);
-  fill: var(--color-bright);
-`;
+import { BrokenContainer } from 'elements';
 
 type Props = {
   brand: {
@@ -40,7 +32,7 @@ const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
       }}
     />
   ) : (
-      <Broken
+      <BrokenContainer
         src={coverPhoto.publicURL}
         alt={imageTitle}
       />
