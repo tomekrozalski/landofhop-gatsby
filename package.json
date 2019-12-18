@@ -8,6 +8,7 @@
     "@nfront/global-styles": "^1.2.1",
     "@types/styled-components": "^4.4.0",
     "@types/yup": "^0.26.24",
+    "aws-sdk": "^2.592.0",
     "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^2.6.0",
     "dotenv": "^8.2.0",
@@ -26,6 +27,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.35",
     "gatsby-source-mongodb": "^2.1.20",
+    "gatsby-source-s3-image": "^1.6.120",
     "gatsby-transformer-sharp": "^2.3.5",
     "immer": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -76,6 +78,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-source-s3": "0.0.0",
     "prettier": "^1.18.2"
   }
 }
