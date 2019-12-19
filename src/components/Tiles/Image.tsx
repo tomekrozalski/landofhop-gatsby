@@ -1,9 +1,9 @@
 import React from 'react';
 import Img, { GatsbyImageProps } from 'gatsby-image';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { getValueByLanguage } from 'utils/helpers';
 import { LanguageValue } from 'utils/types';
-import SiteLanguage from 'utils/enums/SiteLanguage.enum';
 import { BrokenContainer } from 'elements';
 
 type Props = {
@@ -19,8 +19,10 @@ type Props = {
 }
 
 const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
-  const formattedBrand = getValueByLanguage(brand.name, SiteLanguage.pl);
-  const formattedName = getValueByLanguage(name, SiteLanguage.pl);
+  const { locale } = useIntl();
+
+  const formattedBrand = getValueByLanguage(brand.name, locale);
+  const formattedName = getValueByLanguage(name, locale);
   const imageTitle = `${formattedName.value}, ${formattedBrand.value}`;
 
   return coverPhoto.childImageSharp ? (

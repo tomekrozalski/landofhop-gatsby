@@ -6,9 +6,10 @@ import { SiteLanguage } from 'utils/enums';
 
 type Props = {
   title: string
+  values?: {}
 }
 
-const SEO: React.FC<Props> = ({ title }) => {
+const SEO: React.FC<Props> = ({ title, values }) => {
   const intl = useIntl();
 
   return (
@@ -16,7 +17,7 @@ const SEO: React.FC<Props> = ({ title }) => {
       {({ language: lang }: { language: SiteLanguage }) => (
         <Helmet
           htmlAttributes={{ lang }}
-          title={intl.formatMessage({ id: `titles.${title}` })}
+          title={intl.formatMessage({ id: `titles.${title}` }, values)}
         />
       )}
     </IntlContextConsumer>

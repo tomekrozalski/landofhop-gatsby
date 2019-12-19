@@ -9,7 +9,7 @@ import {
 import { SiteLanguage } from 'utils/enums';
 import Layout from '../Layout';
 import { Header } from './Content';
-import { Aside, Gallery } from '.';
+import { Aside, BeverageDetailsSeo, Gallery } from '.';
 
 const GridWrapper = styled.article`
   display: grid;
@@ -50,6 +50,7 @@ const BeverageDetails: React.FC<Props> = ({
 				</div>
 				<Aside next={next} previous={previous} />
 			</GridWrapper>
+			<BeverageDetailsSeo details={details} />
 		</Layout>
 	);
 

@@ -7,7 +7,9 @@ import { BrokenContainer } from 'elements';
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
-
+	align-items: center;
+	width: 22rem;
+	height: 50rem;
 `;
 
 type Props = {
@@ -17,25 +19,22 @@ type Props = {
 	}
 }
 
-const Gallery: React.FC<Props> = ({ galleryPhoto }) => {
-	console.log('--')
-
-	return galleryPhoto.childImageSharp ? (
-		<Wrapper>
+const Gallery: React.FC<Props> = ({ galleryPhoto }) => (
+	<Wrapper>
+		{galleryPhoto.childImageSharp ? (
 			<Img
 				fixed={galleryPhoto.childImageSharp.fixed}
 				alt=""
 				imgStyle={{
 					transition: 'var(--transition-default)',
 				}}
-			/>
-		</Wrapper>
-	) : (
-			<BrokenContainer
-				src={galleryPhoto.publicURL}
-				alt=""
-			/>
-		);
-}
+			/>) : (
+				<BrokenContainer
+					src={galleryPhoto.publicURL}
+					alt=""
+				/>
+			)}
+	</Wrapper>
+);
 
 export default Gallery;

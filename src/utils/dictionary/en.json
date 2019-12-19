@@ -29,6 +29,7 @@
   },
   "titles": {
     "about": "About the site",
+    "beverageDetails": "🍻 {brand}, {name}",
     "main": "Land of Hop",
     "notFound": "404 Not Found"
   }
