@@ -1,13 +1,7 @@
 const path = require('path');
-const AWS = require('aws-sdk');
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-});
-
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
 module.exports = {
@@ -86,22 +80,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    // {
-    //   resolve: 'gatsby-source-s3-image',
-    //   options: {
-    //     bucketName: 'land-of-hop-images',
-    //   },
-    // },
-    {
-      resolve: 'gatsby-source-s3',
-      options: {
-        aws: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        },
-        buckets: ['land-of-hop-images'],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
