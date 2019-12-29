@@ -19,11 +19,11 @@ type Props = {
 }
 
 const Image: React.FC<Props> = ({ brand, coverPhoto, name }) => {
-  const { locale } = useIntl();
+  // const { locale } = useIntl();
 
-  const formattedBrand = getValueByLanguage(brand.name, locale);
-  const formattedName = getValueByLanguage(name, locale);
-  const imageTitle = `${formattedName.value}, ${formattedBrand.value}`;
+  // const formattedBrand = getValueByLanguage(brand.name, locale);
+  // const formattedName = getValueByLanguage(name, locale);
+  const imageTitle = `${name.value}, ${brand.value}`;
 
   return coverPhoto.childImageSharp ? (
     <Img

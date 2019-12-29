@@ -22,7 +22,7 @@ const GridWrapper = styled.article`
 
 type Props = {
 	data: {
-		mongodbLandofhopBeverages: BeverageDetailsType
+		beverage: BeverageDetailsType
 	}
 	pageContext: {
 		intl: {
@@ -35,7 +35,7 @@ type Props = {
 
 const BeverageDetails: React.FC<Props> = ({
 	data: {
-		mongodbLandofhopBeverages: details
+		beverage: details
 	},
 	pageContext: {
 		next,
@@ -46,203 +46,27 @@ const BeverageDetails: React.FC<Props> = ({
 			<GridWrapper>
 				<Gallery galleryPhoto={details.galleryPhoto} />
 				<div>
-					<Header details={details} />
+					{/* <Header details={details} /> */}
 				</div>
 				<Aside next={next} previous={previous} />
 			</GridWrapper>
-			<BeverageDetailsSeo details={details} />
+			{/* <BeverageDetailsSeo details={details} /> */}
 		</Layout>
 	);
 
 export const query = graphql`
 	query BeverageDetails($badge: String!, $brandBadge: String!, $shortId: String!) {
-		mongodbLandofhopBeverages(
+		beverage(
 			badge: { eq: $badge },
-			label: {
-				general: {
-					brand: {
-						badge: {
-							eq: $brandBadge
-						}
-					}
+			brand: {
+				badge: {
+					eq: $brandBadge
 				}
 			},
 			shortId: { eq: $shortId }
 		) {
 			badge
 			added
-			editorial {
-				brewing {
-					fermentation
-					alcohol {
-						scope
-					}
-					style {
-						language
-						value
-					}
-				}
-				general {
-					cooperation
-				}
-				impressions {
-					color
-				}
-				notes
-				photos {
-					cap
-					gallery
-				}
-				price {
-					currency
-					date
-				}
-			}
-			label {
-				general {
-					name {
-						value
-						language
-					}
-					barcode
-					brand {
-						badge
-						consortium
-						name {
-							language
-							value
-						}
-						shortId
-						website
-					}
-					contract
-					cooperation
-					place
-					series {
-						language
-						value
-					}
-					tale {
-						language
-						value
-					}
-				}
-				brewing {
-					aged {
-						previousContent
-						time {
-							unit
-							value
-						}
-						type
-						wood
-					}
-					alcohol {
-						relate
-						scope
-						unit
-					}
-					dryHopped {
-						hops
-					}
-					expirationDate {
-						unit
-						value
-					}
-					extract {
-						relate
-						unit
-					}
-					fermentation
-					filtration
-					isDryHopped
-					pasteurization
-					style {
-						language
-						value
-					}
-				}
-				container {
-					color
-					hasCapWireFlip
-					material
-					type
-					unit
-					value
-				}
-				impressions {
-					bitterness
-					fullness
-					hoppyness
-					power
-					sweetness
-					temperature {
-						from
-						to
-						unit
-					}
-				}
-				ingredients {
-					description {
-						complete
-						language
-						value
-					}
-					list
-					smokedMalt
-				}
-			}
-			shortId
-			updated
-			producer {
-				brewing {
-					alcohol {
-						relate
-						unit
-					}
-					dryHopped {
-						hops
-					}
-					expirationDate {
-						unit
-						value
-					}
-					extract {
-						relate
-						unit
-					}
-					fermentation
-					style {
-						language
-						value
-					}
-				}
-				general {
-					tale {
-						language
-						value
-					}
-				}
-				impressions {
-					bitterness
-					fullness
-					hoppyness
-					sweetness
-					temperature {
-						from
-						unit
-						to
-					}
-				}
-				ingredients {
-					list
-					description {
-						complete
-						language
-						value
-					}
-				}
-			}
 			galleryPhoto {
 				childImageSharp {
 					fixed(width: 220) {

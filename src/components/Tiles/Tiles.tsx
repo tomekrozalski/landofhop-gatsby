@@ -27,7 +27,7 @@ const Grid = styled.ul`
 
 type Props = {
   data: {
-    allMongodbLandofhopBeverages: {
+    allBeverage: {
       edges: {
         node: BeverageBasicsType
       }[],
@@ -40,8 +40,8 @@ const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>
     <SEO title="main" />
     <Grid>
-      {data.allMongodbLandofhopBeverages.edges.map(({ node }) => (
-        <Tile key={node.mongodb_id} {...node} />
+      {data.allBeverage.edges.map(({ node }) => (
+        <Tile key={node.id} {...node} />
       ))}
     </Grid>
     <Pagination {...pageContext} />
@@ -50,13 +50,15 @@ const Tiles: React.FC<Props> = ({ data, pageContext }) => (
 
 export const query = graphql`
   query BeveragesList($limit: Int!, $skip: Int!) {
-    allMongodbLandofhopBeverages(
+    allBeverage(
       limit: $limit
       skip: $skip
       sort: { fields: added, order: DESC }
     ) {
       edges {
         node {
+          id
+          shortId
           badge
           coverPhoto {
             childImageSharp {
@@ -66,23 +68,17 @@ export const query = graphql`
             }
             publicURL
           }
-          label {
-            general {
-              brand {
-                badge
-                name {
-                  value
-                  language
-                }
-              }
-              name {
-                value
-                language
-              }
+          brand {
+            badge
+            name {
+              value
+              language
             }
           }
-          mongodb_id
-          shortId
+          name {
+            value
+            language
+          }
         }
       }
     }

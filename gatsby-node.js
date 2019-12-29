@@ -1,21 +1,38 @@
 const path = require('path');
+const axios = require('axios');
 const { paginate } = require('gatsby-awesome-pagination');
+
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const results = await axios.get('http://localhost:4000/beverage/pl');
+
+  results.data.forEach(beverage => {
+    const node = {
+      ...beverage,
+      id: createNodeId(beverage.id),
+      internal: {
+        type: 'Beverage',
+        contentDigest: createContentDigest(beverage),
+      },
+    };
+
+    actions.createNode(node);
+  });
+};
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions;
 
   const getPhoto = ({ context, source, type }) => {
-    const institutions = context.nodeModel.getAllNodes({
-      type: 'mongodbLandofhopInstitutions',
-    });
-    const recentInstitution = institutions.find(
-      institution => institution.mongodb_id === source.label.general.brand
-    );
     const files = context.nodeModel.getAllNodes({ type: 'File' });
+
     const photo = files.find(
       ({ relativePath }) =>
         relativePath ===
-        `beverages/${recentInstitution.badge}/${source.badge}/${source.shortId}/${type}.jpg`
+        `beverages/${source.brand.badge}/${source.badge}/${source.shortId}/${type}.jpg`
     );
 
     if (photo) {
@@ -24,16 +41,15 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
     return files.find(
       ({ relativePath }) =>
-        relativePath === `beverages/broken-${source.label.container.type}.svg`
+        relativePath === `beverages/broken-${source.container.type}.svg`
     );
   };
 
   const typeDefs = [
     schema.buildObjectType({
-      name: 'mongodbLandofhopBeverages',
+      name: 'Beverage',
       fields: {
         badge: 'String!',
-        label: 'Label!',
         coverPhoto: {
           type: 'File',
           resolve: (source, args, context) =>
@@ -47,8 +63,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       },
       interfaces: ['Node'],
     }),
-    `type Label { general: General! }`,
-    `type General { brand: mongodbLandofhopInstitutions! @link(by: "mongodb_id") }`,
   ];
 
   createTypes(typeDefs);
@@ -64,47 +78,35 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allbeverages = await graphql(`
     query AllBeverages {
-      allMongodbLandofhopBeverages(sort: { fields: added, order: DESC }) {
+      allBeverage(sort: { fields: added, order: DESC }) {
         edges {
           next {
             badge
-            label {
-              general {
-                brand {
-                  badge
-                }
-              }
+            brand {
+              badge
             }
             shortId
           }
           node {
             badge
-            label {
-              general {
-                brand {
-                  badge
-                }
-              }
+            brand {
+              badge
             }
             shortId
           }
           previous {
             badge
-            shortId
-            label {
-              general {
-                brand {
-                  badge
-                }
-              }
+            brand {
+              badge
             }
+            shortId
           }
         }
       }
     }
   `);
 
-  const items = allbeverages.data.allMongodbLandofhopBeverages.edges;
+  const items = allbeverages.data.allBeverage.edges;
 
   paginate({
     createPage,
@@ -117,11 +119,7 @@ exports.createPages = async ({ graphql, actions }) => {
   items.forEach(({ next, node, previous }) => {
     const {
       badge,
-      label: {
-        general: {
-          brand: { badge: brandBadge },
-        },
-      },
+      brand: { badge: brandBadge },
       shortId,
     } = node;
 
