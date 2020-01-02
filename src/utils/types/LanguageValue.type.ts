@@ -1,6 +1,6 @@
-import SiteLanguage from '../enums/SiteLanguage.enum';
+import { DataLanguage } from '../enums';
 
 export type LanguageValue = {
-  language?: SiteLanguage
-  value: string
+	language?: DataLanguage
+	value: string
 }

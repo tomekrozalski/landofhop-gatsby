@@ -2,17 +2,21 @@ const path = require('path');
 const axios = require('axios');
 const { paginate } = require('gatsby-awesome-pagination');
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 exports.sourceNodes = async ({
   actions,
   createNodeId,
   createContentDigest,
 }) => {
-  const results = await axios.get('http://localhost:4000/beverage/pl');
+  const results = await axios.get(`${process.env.API_SERVER}/beverage`);
 
   results.data.forEach(beverage => {
     const node = {
       ...beverage,
-      id: createNodeId(beverage.id),
+      id: createNodeId(`beverage-${beverage.id}`),
       internal: {
         type: 'Beverage',
         contentDigest: createContentDigest(beverage),
@@ -47,9 +51,19 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
   const typeDefs = [
     schema.buildObjectType({
+      name: 'LanguageValue',
+      fields: {
+        language: 'String', // @ToDo: DataLanguage
+        value: 'String!',
+      },
+    }),
+    schema.buildObjectType({
       name: 'Beverage',
       fields: {
+        shortId: 'String!',
         badge: 'String!',
+        name: '[LanguageValue]!',
+
         coverPhoto: {
           type: 'File',
           resolve: (source, args, context) =>

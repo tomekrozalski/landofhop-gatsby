@@ -1,5 +1,7 @@
+import AgedPreviousContent from './AgedPreviousContent.enum';
 import AgedTimeUnit from './AgedTimeUnit.enum';
 import AgedType from './AgedType.enum';
+import AgedWood from './AgedWood.enum';
 import AlcoholRelate from './AlcoholRelate.enum';
 import AlcoholScope from './AlcoholScope.enum';
 import AlcoholUnit from './AlcoholUnit.enum';
@@ -17,8 +19,10 @@ import IngredientType from './IngredientType.enum';
 import TemperatureUnit from './TemperatureUnit.enum';
 
 export {
+	AgedPreviousContent,
 	AgedTimeUnit,
 	AgedType,
+	AgedWood,
 	AlcoholRelate,
 	AlcoholScope,
 	AlcoholUnit,

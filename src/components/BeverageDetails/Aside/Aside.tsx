@@ -47,17 +47,29 @@ const Button = styled(Inactive)`
 `;
 
 type Props = {
-	next: BeverageBase
-	previous: BeverageBase
+	next: {
+		badge: string
+		brand: {
+			badge: string
+		}
+		shortId: string
+	}
+	previous: {
+		badge: string
+		brand: {
+			badge: string
+		}
+		shortId: string
+	}
 }
 
 const Aside: React.FC<Props> = ({ next, previous }) => (
 	<Wrapper>
 		{previous
-			? <Button as={Link} to={`/details/${previous.shortId}/${previous.label.general.brand.badge}/${previous.badge}`}><LeftIcon /></Button>
+			? <Button as={Link} to={`/details/${previous.shortId}/${previous.brand.badge}/${previous.badge}`}><LeftIcon /></Button>
 			: <Inactive><LeftIcon /></Inactive>}
 		{next
-			? <Button as={Link} to={`/details/${next.shortId}/${next.label.general.brand.badge}/${next.badge}`}><RightIcon /></Button>
+			? <Button as={Link} to={`/details/${next.shortId}/${next.brand.badge}/${next.badge}`}><RightIcon /></Button>
 			: <Inactive><RightIcon /></Inactive>}
 	</Wrapper>
 );

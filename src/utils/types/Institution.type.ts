@@ -5,5 +5,5 @@ export type Institution = {
 	name: LanguageValue[]
 	shortId: string
 	website?: string
-	consortium?: Institution
+	consortium?: LanguageValue[]
 }

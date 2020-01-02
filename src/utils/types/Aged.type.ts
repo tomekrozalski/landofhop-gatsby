@@ -1,11 +1,16 @@
-import { AgedTimeUnit, AgedType } from '../enums/beverage';
+import {
+	AgedPreviousContent,
+	AgedTimeUnit,
+	AgedType,
+	AgedWood,
+} from '../enums/beverage';
 
 export type Aged = {
 	type?: AgedType
-	wood?: string
+	wood?: AgedWood
 	time?: {
 		value: number
 		unit: AgedTimeUnit
 	}
-	previousContent?: string[]
+	previousContent?: AgedPreviousContent[]
 }

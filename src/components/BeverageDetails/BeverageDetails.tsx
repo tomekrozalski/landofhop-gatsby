@@ -2,13 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import {
-	BeverageBase as BeverageBaseType,
-	BeverageDetails as BeverageDetailsType
-} from 'utils/types';
+import { Beverage as BeverageType } from 'utils/types';
 import { SiteLanguage } from 'utils/enums';
 import Layout from '../Layout';
-import { Header } from './Content';
+// import { Header } from './Content';
 import { Aside, BeverageDetailsSeo, Gallery } from '.';
 
 const GridWrapper = styled.article`
@@ -22,14 +19,26 @@ const GridWrapper = styled.article`
 
 type Props = {
 	data: {
-		beverage: BeverageDetailsType
+		beverage: BeverageType
 	}
 	pageContext: {
 		intl: {
 			language: SiteLanguage
 		}
-		next: BeverageBaseType
-		previous: BeverageBaseType
+		next: {
+			badge: string
+			brand: {
+				badge: string
+			}
+			shortId: string
+		}
+		previous: {
+			badge: string
+			brand: {
+				badge: string
+			}
+			shortId: string
+		}
 	}
 }
 

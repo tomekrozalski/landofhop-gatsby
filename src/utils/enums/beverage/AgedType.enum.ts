@@ -3,4 +3,4 @@ enum AgedType {
 	wood = 'wood'
 }
 
-export default AgedType
+export default AgedType;

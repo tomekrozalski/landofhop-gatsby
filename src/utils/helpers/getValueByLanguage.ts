@@ -1,5 +1,16 @@
-import LanguageValueType from '../types/LanguageValue.type';
-import SiteLanguage from '../enums/SiteLanguage.enum';
+import { LanguageValue } from '../types';
+import { DataLanguage, SiteLanguage } from '../enums';
 
-export default (values: LanguageValueType[], language: SiteLanguage) =>
-  values.find(item => item.language === language) || values[0];
+type ExtendedLanguageValue = LanguageValue & { complete?: boolean };
+
+export default (
+  values: ExtendedLanguageValue[],
+  language: DataLanguage | SiteLanguage = SiteLanguage.pl,
+  strict: boolean = false
+) => {
+  if (strict && !values.find(item => item.language === language)) {
+    return null;
+  }
+
+  return values.find(item => item.language === language) || values[0];
+}
