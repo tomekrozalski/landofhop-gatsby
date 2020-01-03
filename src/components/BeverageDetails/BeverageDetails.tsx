@@ -2,10 +2,15 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { Beverage as BeverageType } from 'utils/types';
+import {
+	BaseBeverage as BaseBeverageTypes,
+	Beverage as BeverageTypes
+} from 'utils/types';
 import { SiteLanguage } from 'utils/enums';
+import { initialBeverageData } from './utils';
+
 import Layout from '../Layout';
-// import { Header } from './Content';
+import { Header } from './Content';
 import { Aside, BeverageDetailsSeo, Gallery } from '.';
 
 const GridWrapper = styled.article`
@@ -19,32 +24,23 @@ const GridWrapper = styled.article`
 
 type Props = {
 	data: {
-		beverage: BeverageType
+		beverage: BeverageTypes
 	}
 	pageContext: {
 		intl: {
 			language: SiteLanguage
 		}
-		next: {
-			badge: string
-			brand: {
-				badge: string
-			}
-			shortId: string
-		}
-		previous: {
-			badge: string
-			brand: {
-				badge: string
-			}
-			shortId: string
-		}
+		next: BaseBeverageTypes
+		previous: BaseBeverageTypes
 	}
 }
 
+// @Info: I could use Partial generic, but it would complicate displaying some components
+export const BeverageContext = React.createContext<BeverageTypes>(initialBeverageData);
+
 const BeverageDetails: React.FC<Props> = ({
 	data: {
-		beverage: details
+		beverage
 	},
 	pageContext: {
 		next,
@@ -52,14 +48,16 @@ const BeverageDetails: React.FC<Props> = ({
 	}
 }) => (
 		<Layout>
-			<GridWrapper>
-				<Gallery galleryPhoto={details.galleryPhoto} />
-				<div>
-					{/* <Header details={details} /> */}
-				</div>
-				<Aside next={next} previous={previous} />
-			</GridWrapper>
-			{/* <BeverageDetailsSeo details={details} /> */}
+			<BeverageContext.Provider value={beverage}>
+				<GridWrapper>
+					<Gallery />
+					<div>
+						<Header />
+					</div>
+					<Aside next={next} previous={previous} />
+				</GridWrapper>
+				{/* <BeverageDetailsSeo details={details} /> */}
+			</BeverageContext.Provider>
 		</Layout>
 	);
 
@@ -76,6 +74,10 @@ export const query = graphql`
 		) {
 			badge
 			added
+			name {
+				language
+				value
+			}
 			galleryPhoto {
 				childImageSharp {
 					fixed(width: 220) {

@@ -3,8 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
-import BeverageBasicsType from 'utils/types/BeverageBasics.type';
-import PageContextType from 'utils/types/PageContext.type';
+import { Beverage as BeverageTypes } from 'utils/types';
 import Layout from '../Layout';
 import SEO from '../Seo';
 import Tile from './Tile';
@@ -29,11 +28,22 @@ type Props = {
   data: {
     allBeverage: {
       edges: {
-        node: BeverageBasicsType
+        node: BeverageTypes
       }[],
     }
   }
-  pageContext: PageContextType
+  pageContext: {
+    humanPageNumber: number
+    intl: {
+      language: string
+    },
+    limit: number
+    nextPagePath: string
+    numberOfPages: number
+    pageNumber: number
+    previousPagePath: string
+    skip: number
+  }
 }
 
 const Tiles: React.FC<Props> = ({ data, pageContext }) => (
@@ -60,14 +70,6 @@ export const query = graphql`
           id
           shortId
           badge
-          coverPhoto {
-            childImageSharp {
-              fluid(maxWidth: 220) {
-                ...GatsbyImageSharpFluid_withWebp_tracedSVG
-              }
-            }
-            publicURL
-          }
           brand {
             badge
             name {
@@ -78,6 +80,14 @@ export const query = graphql`
           name {
             value
             language
+          }
+          coverPhoto {
+            childImageSharp {
+              fluid(maxWidth: 220) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              }
+            }
+            publicURL
           }
         }
       }

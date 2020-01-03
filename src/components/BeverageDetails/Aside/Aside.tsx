@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
-import { BeverageBase } from 'utils/types';
+import { BaseBeverage as BaseBeverageTypes } from 'utils/types';
 import { LeftIcon, RightIcon } from '.';
 
 const Wrapper = styled.ul`
@@ -47,20 +47,8 @@ const Button = styled(Inactive)`
 `;
 
 type Props = {
-	next: {
-		badge: string
-		brand: {
-			badge: string
-		}
-		shortId: string
-	}
-	previous: {
-		badge: string
-		brand: {
-			badge: string
-		}
-		shortId: string
-	}
+	next: BaseBeverageTypes
+	previous: BaseBeverageTypes
 }
 
 const Aside: React.FC<Props> = ({ next, previous }) => (

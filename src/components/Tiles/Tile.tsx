@@ -11,19 +11,16 @@ const ListItem = styled.li`
   position: relative;
 `;
 
-const Tile: React.FC<BeverageTypes> = ({ badge, brand, coverPhoto, name, shortId }) => {
-
-  return (
-    <ListItem>
-      <TileLink badge={badge} brand={brand.badge} shortId={shortId}>
-        <Image
-          brand={brand}
-          coverPhoto={coverPhoto}
-          name={name}
-        />
-      </TileLink>
-    </ListItem>
-  );
-};
+const Tile: React.FC<BeverageTypes> = ({ badge, brand, coverPhoto, name, shortId }) => (
+  <ListItem>
+    <TileLink badge={badge} brand={brand.badge} shortId={shortId}>
+      <Image
+        brand={brand}
+        coverPhoto={coverPhoto}
+        name={name}
+      />
+    </TileLink>
+  </ListItem>
+);
 
 export default Tile;

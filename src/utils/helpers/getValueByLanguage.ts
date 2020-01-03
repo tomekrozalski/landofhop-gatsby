@@ -1,16 +1,8 @@
 import { LanguageValue } from '../types';
 import { DataLanguage, SiteLanguage } from '../enums';
 
-type ExtendedLanguageValue = LanguageValue & { complete?: boolean };
-
 export default (
-  values: ExtendedLanguageValue[],
+  values: LanguageValue[],
   language: DataLanguage | SiteLanguage = SiteLanguage.pl,
-  strict: boolean = false
-) => {
-  if (strict && !values.find(item => item.language === language)) {
-    return null;
-  }
+) => values.find(item => item.language === language) || values[0];
 
-  return values.find(item => item.language === language) || values[0];
-}

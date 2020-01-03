@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { BeverageDetails as BeverageDetailsType } from 'utils/types';
 import { getValueByLanguage } from 'utils/helpers';
+import { BeverageContext } from 'components/BeverageDetails';
 
 const Wrapper = styled.h1`
 	padding: 1rem;
@@ -11,14 +11,10 @@ const Wrapper = styled.h1`
 	text-transform: uppercase;
 `;
 
-type Props = {
-	details: BeverageDetailsType
-}
-
-const Header: React.FC<Props> = ({ details }) => {
+const Header: React.FC = () => {
+	const { name } = useContext(BeverageContext);
 	const { locale } = useIntl();
-
-	const formattedName = getValueByLanguage(details.label.general.name, locale);
+	const formattedName = getValueByLanguage(name, locale);
 
 	return (
 		<Wrapper>{formattedName.value}</Wrapper>

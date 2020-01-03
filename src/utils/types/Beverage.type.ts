@@ -21,6 +21,7 @@ import {
 import { Aged, BeveragePrice, Institution, LanguageValue } from '.';
 
 export type Beverage = {
+  id: string
   shortId: string
   badge: string
   name: LanguageValue[]
@@ -41,21 +42,21 @@ export type Beverage = {
   }
   place?: {
     label?: {
-      city: LanguageValue
-      country: LanguageValue
+      city: LanguageValue[]
+      country: LanguageValue[]
     }
     producer?: {
-      city: LanguageValue
-      country: LanguageValue
+      city: LanguageValue[]
+      country: LanguageValue[]
     }
     editorial?: {
-      city: LanguageValue
-      country: LanguageValue
+      city: LanguageValue[]
+      country: LanguageValue[]
     }
   }
   tale?: {
     label?: LanguageValue[]
-    producer?: LanguageValue
+    producer?: LanguageValue[]
   }
   barcode?: string
   fermentation?: {
@@ -113,9 +114,9 @@ export type Beverage = {
     editorial?: LanguageValue[]
   }
   dryHopped?: {
-    label?: true | LanguageValue[]
-    producer?: true | LanguageValue[]
-    editorial?: true | LanguageValue[]
+    label?: true | Array<LanguageValue[]>
+    producer?: true | Array<LanguageValue[]>
+    editorial?: true | Array<LanguageValue[]>
   }
   expirationDate?: {
     label?: {
@@ -132,20 +133,20 @@ export type Beverage = {
       complete: boolean
       language: DataLanguage
       value: string
-    }
+    }[]
     producer?: {
       complete: boolean
       language: DataLanguage
       value: string
-    }
+    }[]
   }
   ingredientsList?: {
     label?: {
-      name: LanguageValue
+      name: LanguageValue[]
       type: IngredientType
     }[]
     producer?: {
-      name: LanguageValue
+      name: LanguageValue[]
       type: IngredientType
     }[]
   }

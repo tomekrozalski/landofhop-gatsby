@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Img, { GatsbyImageProps } from 'gatsby-image';
+import Img from 'gatsby-image';
 
 import { BrokenContainer } from 'elements';
+import { BeverageContext } from 'components/BeverageDetails';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -12,29 +13,26 @@ const Wrapper = styled.div`
 	height: 50rem;
 `;
 
-type Props = {
-	galleryPhoto: {
-		childImageSharp?: GatsbyImageProps
-		publicURL: string
-	}
-}
+const Gallery: React.FC = () => {
+	const { galleryPhoto } = useContext(BeverageContext);
 
-const Gallery: React.FC<Props> = ({ galleryPhoto }) => (
-	<Wrapper>
-		{galleryPhoto.childImageSharp ? (
-			<Img
-				fixed={galleryPhoto.childImageSharp.fixed}
-				alt=""
-				imgStyle={{
-					transition: 'var(--transition-default)',
-				}}
-			/>) : (
-				<BrokenContainer
-					src={galleryPhoto.publicURL}
+	return (
+		<Wrapper>
+			{galleryPhoto.childImageSharp ? (
+				<Img
+					fixed={galleryPhoto.childImageSharp.fixed}
 					alt=""
-				/>
-			)}
-	</Wrapper>
-);
+					imgStyle={{
+						transition: 'var(--transition-default)',
+					}}
+				/>) : (
+					<BrokenContainer
+						src={galleryPhoto.publicURL}
+						alt=""
+					/>
+				)}
+		</Wrapper>
+	);
+}
 
 export default Gallery;

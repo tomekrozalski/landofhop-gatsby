@@ -63,7 +63,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         shortId: 'String!',
         badge: 'String!',
         name: '[LanguageValue]!',
-
         coverPhoto: {
           type: 'File',
           resolve: (source, args, context) =>
