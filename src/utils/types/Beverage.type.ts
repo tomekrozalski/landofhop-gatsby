@@ -103,20 +103,30 @@ export type Beverage = {
     producer?: boolean
     editorial?: boolean
   }
+  isAged?: {
+    label?: true
+    producer?: true
+    editorial?: true
+  }
   aged?: {
-    label?: true | Aged[]
-    producer?: true | Aged[]
-    editorial?: true | Aged[]
+    label?: Aged[]
+    producer?: Aged[]
+    editorial?: Aged[]
   }
   style?: {
     label?: LanguageValue[]
     producer?: LanguageValue[]
     editorial?: LanguageValue[]
   }
+  isDryHopped?: {
+    label?: true
+    producer?: true
+    editorial?: true
+  }
   dryHopped?: {
-    label?: true | Array<LanguageValue[]>
-    producer?: true | Array<LanguageValue[]>
-    editorial?: true | Array<LanguageValue[]>
+    label?: Array<LanguageValue[]>
+    producer?: Array<LanguageValue[]>
+    editorial?: Array<LanguageValue[]>
   }
   expirationDate?: {
     label?: {
