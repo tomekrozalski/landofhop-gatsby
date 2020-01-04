@@ -20,7 +20,7 @@ import {
 
 import { Aged, BeveragePrice, Institution, LanguageValue } from '.';
 
-export type Beverage = {
+export type BeverageDetails = {
   id: string
   shortId: string
   badge: string

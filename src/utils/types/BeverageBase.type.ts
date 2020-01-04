@@ -1,4 +1,4 @@
-export type BaseBeverage = {
+export type BeverageBase = {
 	badge: string
 	brand: {
 		badge: string

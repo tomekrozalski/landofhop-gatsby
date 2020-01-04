@@ -1,62 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
-import PageContextType from 'utils/types/PageContext.type';
+import { BeveragePageContext as BeveragePageContextTypes } from 'utils/types';
+import {
+  ActiveButton,
+  InactiveButton,
+  PaginationItem,
+  PaginationList,
+} from './elements';
 
-const List = styled.ul`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: var(--size-container-max-width);
-  margin: 12rem auto 8rem auto;
-`;
-
-const Item = styled.li`
-  margin: 0.5rem;
-`;
-
-const Button = styled.button`
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-dark);
-  background-color: var(--color-dark);
-  font: 400 1.6rem / 1 var(--font-primary);
-  color: var(--color-white);
-`;
-
-const ActiveButton: any = styled(Button)`
-  transition: background-color var(--transition-default),
-    color var(--transition-default);
-  ${({ current }: { current: 1 | 0 }) =>
-    current
-      ? `
-			background: var(--color-black);
-			color: var(--color-white);
-			border-color: var(--color-black);
-		`
-      : `
-			background-color: var(--color-brighter);
-			color: var(--color-darker);
-		`}
-
-  &:hover {
-    background-color: var(--color-white);
-    color: var(--color-black);
-  }
-
-  &.active {
-    background-color: var(--color-black);
-    border-color: var(--color-black);
-    color: var(--color-white);
-  }
-`;
-
-const InactiveButton = styled(Button)`
-  cursor: not-allowed;
-`;
-
-const Pagination: React.FC<PageContextType> = ({
+const Pagination: React.FC<BeveragePageContextTypes> = ({
   humanPageNumber,
   nextPagePath,
   numberOfPages,
@@ -77,30 +30,24 @@ const Pagination: React.FC<PageContextType> = ({
   };
 
   return (
-    <List>
-      <Item>
-        {humanPageNumber === 1 ? (
-          <InactiveButton as="span">←</InactiveButton>
-        ) : (
-            <ActiveButton as={Link} to={previousPagePath}>
-              ←
-          </ActiveButton>
-          )}
-      </Item>
+    <PaginationList>
+      <PaginationItem>
+        {humanPageNumber === 1
+          ? <InactiveButton as="span">←</InactiveButton>
+          : <ActiveButton as={Link} to={previousPagePath}>←</ActiveButton>}
+      </PaginationItem>
       {humanPageNumber > 4 && (
         <>
-          <Item>
-            <ActiveButton as={Link} to="/">
-              1
-            </ActiveButton>
-          </Item>
-          <Item>
+          <PaginationItem>
+            <ActiveButton as={Link} to="/">1</ActiveButton>
+          </PaginationItem>
+          <PaginationItem>
             <InactiveButton as="span">…</InactiveButton>
-          </Item>
+          </PaginationItem>
         </>
       )}
       {pages().map((pageValue: number) => (
-        <Item key={pageValue}>
+        <PaginationItem key={pageValue}>
           <ActiveButton
             as={Link}
             current={pageValue === humanPageNumber ? 1 : 0}
@@ -108,30 +55,26 @@ const Pagination: React.FC<PageContextType> = ({
           >
             {pageValue}
           </ActiveButton>
-        </Item>
+        </PaginationItem>
       ))}
       {numberOfPages > humanPageNumber + 3 && (
         <>
-          <Item>
+          <PaginationItem>
             <InactiveButton as="span">…</InactiveButton>
-          </Item>
-          <Item>
+          </PaginationItem>
+          <PaginationItem>
             <ActiveButton as={Link} to={`/list/${numberOfPages}`}>
               {numberOfPages}
             </ActiveButton>
-          </Item>
+          </PaginationItem>
         </>
       )}
-      <Item>
-        {numberOfPages === humanPageNumber ? (
-          <InactiveButton as="span">→</InactiveButton>
-        ) : (
-            <ActiveButton as={Link} to={nextPagePath}>
-              →
-          </ActiveButton>
-          )}
-      </Item>
-    </List>
+      <PaginationItem>
+        {numberOfPages === humanPageNumber
+          ? <InactiveButton as="span">→</InactiveButton>
+          : <ActiveButton as={Link} to={nextPagePath}>→</ActiveButton>}
+      </PaginationItem>
+    </PaginationList>
   );
 };
 

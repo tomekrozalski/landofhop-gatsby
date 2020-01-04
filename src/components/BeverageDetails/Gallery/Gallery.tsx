@@ -22,9 +22,6 @@ const Gallery: React.FC = () => {
 				<Img
 					fixed={galleryPhoto.childImageSharp.fixed}
 					alt=""
-					imgStyle={{
-						transition: 'var(--transition-default)',
-					}}
 				/>) : (
 					<BrokenContainer
 						src={galleryPhoto.publicURL}

@@ -1,57 +1,30 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
 
-import { breakpoints } from 'utils/theme';
-import { Beverage as BeverageTypes } from 'utils/types';
-import Layout from '../Layout';
-import SEO from '../Seo';
-import Tile from './Tile';
-import Pagination from './Pagination';
-
-const Grid = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 160px);
-  grid-gap: var(--size-tiles-gap);
-  justify-content: center;
-  align-items: flex-end;
-  max-width: var(--size-container-max-width);
-  padding: 2rem var(--size-tiles-gap);
-  margin: 0 auto 6rem auto;
-
-  @media (min-width: ${breakpoints.xl}) {
-    grid-template-columns: repeat(auto-fill, 220px);
-  }
-`;
+import {
+  BeverageBasics as BeverageBasicsTypes,
+  BeveragePageContext as BeveragePageContextTypes,
+} from 'utils/types';
+import { translateBeverageBasics } from 'utils/helpers';
+import { Layout, SEO } from '../';
+import { Grid } from './elements';
+import { Pagination, Tile } from '.';
 
 type Props = {
   data: {
     allBeverage: {
-      edges: {
-        node: BeverageTypes
-      }[],
+      edges: { node: BeverageBasicsTypes }[],
     }
   }
-  pageContext: {
-    humanPageNumber: number
-    intl: {
-      language: string
-    },
-    limit: number
-    nextPagePath: string
-    numberOfPages: number
-    pageNumber: number
-    previousPagePath: string
-    skip: number
-  }
+  pageContext: BeveragePageContextTypes
 }
 
 const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>
-    <SEO title="main" />
+    <SEO title="main" values={{ page: pageContext.humanPageNumber }} />
     <Grid>
       {data.allBeverage.edges.map(({ node }) => (
-        <Tile key={node.id} {...node} />
+        <Tile key={node.id} {...translateBeverageBasics(node)} />
       ))}
     </Grid>
     <Pagination {...pageContext} />

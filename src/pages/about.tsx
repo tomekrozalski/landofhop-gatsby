@@ -4,8 +4,7 @@ import { IntlShape } from 'react-intl';
 import Markdown from 'markdown-to-jsx';
 import styled from 'styled-components';
 
-import Layout from 'components/Layout';
-import SEO from 'components/Seo';
+import { Layout, SEO } from 'components';
 
 const Wrapper = styled.div`
   max-width: 70rem;

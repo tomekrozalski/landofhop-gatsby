@@ -3,8 +3,8 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import {
-	BaseBeverage as BaseBeverageTypes,
-	Beverage as BeverageTypes
+	BeverageBase as BeverageBaseTypes,
+	BeverageDetails as BeverageDetailsTypes
 } from 'utils/types';
 import { SiteLanguage } from 'utils/enums';
 import { initialBeverageData } from './utils';
@@ -24,19 +24,19 @@ const GridWrapper = styled.article`
 
 type Props = {
 	data: {
-		beverage: BeverageTypes
+		beverage: BeverageDetailsTypes
 	}
 	pageContext: {
 		intl: {
 			language: SiteLanguage
 		}
-		next: BaseBeverageTypes
-		previous: BaseBeverageTypes
+		next: BeverageBaseTypes
+		previous: BeverageBaseTypes
 	}
 }
 
 // @Info: I could use Partial generic, but it would complicate displaying some components
-export const BeverageContext = React.createContext<BeverageTypes>(initialBeverageData);
+export const BeverageContext = React.createContext<BeverageDetailsTypes>(initialBeverageData);
 
 const BeverageDetails: React.FC<Props> = ({
 	data: {
@@ -56,7 +56,7 @@ const BeverageDetails: React.FC<Props> = ({
 					</div>
 					<Aside next={next} previous={previous} />
 				</GridWrapper>
-				{/* <BeverageDetailsSeo details={details} /> */}
+				<BeverageDetailsSeo />
 			</BeverageContext.Provider>
 		</Layout>
 	);

@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { BeverageDetails as BeverageDetailsType } from 'utils/types';
 import { getValueByLanguage } from 'utils/helpers';
 import SEO from 'components/Seo';
+import { BeverageContext } from 'components/BeverageDetails';
 
-type Props = {
-	details: BeverageDetailsType
-}
-
-const BeverageDetailsSeo: React.FC<Props> = ({ details }) => {
+const BeverageDetailsSeo: React.FC = () => {
 	const { locale } = useIntl();
+	const { brand, name } = useContext(BeverageContext);
 
-	const { brand, name } = details.label.general;
 	const formattedBrand = getValueByLanguage(brand.name, locale);
 	const formattedName = getValueByLanguage(name, locale);
 
