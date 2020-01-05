@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "landofhop-gatsby",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Gatsby PWA with beer catalogue",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Tomek Rozalski <kontakt@tomaszrozalski.pl>",
   "dependencies": {
     "@nfront/global-styles": "^1.2.1",
     "@types/styled-components": "^4.4.0",
@@ -27,7 +27,6 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.35",
     "gatsby-transformer-sharp": "^2.3.5",
-    "immer": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "markdown-to-jsx": "^6.10.3",
@@ -35,7 +34,6 @@
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-intl": "^3.9.1",
-    "react-toastify": "^5.4.0",
     "styled-components": "^4.4.1",
     "yup": "^0.27.0"
   },
