@@ -1,23 +1,23 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useIntl } from 'gatsby-plugin-intl';
 
-import { getValueByLanguage } from 'utils/helpers';
 import { BeverageContext } from 'components/BeverageDetails';
 
-const Wrapper = styled.h1`
-	padding: 1rem;
+const Brand = styled.h1`
+	padding: 1rem 0;
 	font: 700 3rem / 3.8rem var(--font-primary);
 	text-transform: uppercase;
 `;
 
 const Header: React.FC = () => {
-	const { name } = useContext(BeverageContext);
-	const { locale } = useIntl();
-	const formattedName = getValueByLanguage(name, locale);
+	const { name, series } = useContext(BeverageContext);
 
 	return (
-		<Wrapper>{formattedName.value}</Wrapper>
+		<>
+			<Brand>{name.value}</Brand>
+			<p>seria: {series && series.label && series.label.map(item => item.value).join(', ')} / {series && series.producer && series.producer.map(item => item.value).join(', ')}</p>
+		</>
+
 	);
 }
 

@@ -4,6 +4,6 @@ export type InstitutionTranslated = {
 	badge: string
 	name: LanguageValue
 	shortId: string
-	website?: string
-	consortium?: LanguageValue
+	website: string | null
+	consortium: LanguageValue | null
 }

@@ -6,11 +6,11 @@ import {
 } from '../enums/beverage';
 
 export type Aged = {
-	type?: AgedType
-	wood?: AgedWood
-	time?: {
+	type: AgedType | null
+	wood: AgedWood | null
+	time: {
 		value: number
 		unit: AgedTimeUnit
-	}
-	previousContent?: AgedPreviousContent[]
+	} | null
+	previousContent: AgedPreviousContent[] | null
 }

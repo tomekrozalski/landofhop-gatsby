@@ -4,7 +4,8 @@
     "body": "**Land of Hop** is a web application which I develop to practice programming skills (React, Gatsby, Node.js, MongoDB). It is catalog of beers which I have drunk since October 2017. Unfortunatelly it doesn't work as I wish yet. I work on it [almost every single day](https://github.com/tomekrozalski). I hope on May 2020 it will be ready. At least the most basic functionalities. [Tomek Różalski](http://tomaszrozalski.pl)"
   },
   "errors": {
-    "tileImageNotFound": "Tile image not found"
+    "tileImageNotFound": "Tile image not found",
+    "bevereageDetailsImageNotFound": "Beverage details image not found"
   },
   "header": {
     "name": "Land of Hop, beer catalogue",

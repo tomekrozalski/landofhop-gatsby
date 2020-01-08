@@ -4,8 +4,10 @@ import styled from 'styled-components';
 
 import {
 	BeverageBase as BeverageBaseTypes,
-	BeverageDetails as BeverageDetailsTypes
+	BeverageDetails as BeverageDetailsTypes,
+	BeverageDetailsTranslated as BeverageDetailsTranslatedTypes
 } from 'utils/types';
+import { translateBeverageDetails } from 'utils/helpers';
 import { SiteLanguage } from 'utils/enums';
 import { initialBeverageData } from './utils';
 
@@ -36,7 +38,7 @@ type Props = {
 }
 
 // @Info: I could use Partial generic, but it would complicate displaying some components
-export const BeverageContext = React.createContext<BeverageDetailsTypes>(initialBeverageData);
+export const BeverageContext = React.createContext<BeverageDetailsTranslatedTypes>(initialBeverageData);
 
 const BeverageDetails: React.FC<Props> = ({
 	data: {
@@ -48,7 +50,7 @@ const BeverageDetails: React.FC<Props> = ({
 	}
 }) => (
 		<Layout>
-			<BeverageContext.Provider value={beverage}>
+			<BeverageContext.Provider value={translateBeverageDetails(beverage)}>
 				<GridWrapper>
 					<Gallery />
 					<div>

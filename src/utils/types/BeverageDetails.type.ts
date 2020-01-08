@@ -25,213 +25,213 @@ export type BeverageDetails = {
   shortId: string
   badge: string
   name: LanguageValue[]
-  series?: {
-    label?: LanguageValue[]
-    producer?: LanguageValue[]
-  }
+  series: {
+    label: LanguageValue[] | null
+    producer: LanguageValue[] | null
+  } | null
   brand: Institution
-  cooperation?: {
-    label?: Institution[]
-    producer?: Institution[]
-    editorial?: Institution[]
-  }
-  contract?: {
-    label?: Institution
-    producer?: Institution
-    editorial?: Institution
-  }
-  place?: {
-    label?: {
+  cooperation: {
+    label: Institution[] | null
+    producer: Institution[] | null
+    editorial: Institution[] | null
+  } | null
+  contract: {
+    label: Institution | null
+    producer: Institution | null
+    editorial: Institution | null
+  } | null
+  place: {
+    label: {
       city: LanguageValue[]
       country: LanguageValue[]
-    }
-    producer?: {
+    } | null
+    producer: {
       city: LanguageValue[]
       country: LanguageValue[]
-    }
-    editorial?: {
+    } | null
+    editorial: {
       city: LanguageValue[]
       country: LanguageValue[]
-    }
-  }
-  tale?: {
-    label?: LanguageValue[]
-    producer?: LanguageValue[]
-  }
-  barcode?: string
-  fermentation?: {
-    label?: Fermentation[]
-    producer?: Fermentation[]
-    editorial?: Fermentation[]
-  }
-  extract?: {
-    label?: {
+    } | null
+  } | null
+  tale: {
+    label: LanguageValue[] | null
+    producer: LanguageValue[] | null
+  } | null
+  barcode: string | null
+  fermentation: {
+    label: Fermentation[] | null
+    producer: Fermentation[] | null
+    editorial: Fermentation[] | null
+  } | null
+  extract: {
+    label: {
       relate: ExtractRelate
       unit: ExtractUnit
       value: number
-    }
-    producer?: {
+    } | null
+    producer: {
       relate: ExtractRelate
       unit: ExtractUnit
       value: number
-    }
-  }
-  alcohol?: {
-    label?: {
+    } | null
+  } | null
+  alcohol: {
+    label: {
       relate: AlcoholRelate
       unit: AlcoholUnit
       value: number
-      scope?: AlcoholScope
-    }
-    producer?: {
+      scope: AlcoholScope | null
+    } | null
+    producer: {
       relate: AlcoholRelate
       unit: AlcoholUnit
       value: number
-      scope?: AlcoholScope
-    }
-    editorial?: {
+      scope: AlcoholScope | null
+    } | null
+    editorial: {
       scope: AlcoholScope
-    }
-  }
-  filtration?: {
-    label?: boolean
-    producer?: boolean
-    editorial?: boolean
-  }
-  pasteurization?: {
-    label?: boolean
-    producer?: boolean
-    editorial?: boolean
-  }
-  isAged?: {
-    label?: true
-    producer?: true
-    editorial?: true
-  }
-  aged?: {
-    label?: Aged[]
-    producer?: Aged[]
-    editorial?: Aged[]
-  }
-  style?: {
-    label?: LanguageValue[]
-    producer?: LanguageValue[]
-    editorial?: LanguageValue[]
-  }
-  isDryHopped?: {
-    label?: true
-    producer?: true
-    editorial?: true
-  }
-  dryHopped?: {
-    label?: Array<LanguageValue[]>
-    producer?: Array<LanguageValue[]>
-    editorial?: Array<LanguageValue[]>
-  }
-  expirationDate?: {
-    label?: {
+    } | null
+  } | null
+  filtration: {
+    label: boolean | null
+    producer: boolean | null
+    editorial: boolean | null
+  } | null
+  pasteurization: {
+    label: boolean | null
+    producer: boolean | null
+    editorial: boolean | null
+  } | null
+  isAged: {
+    label: true | null
+    producer: true | null
+    editorial: true | null
+  } | null
+  aged: {
+    label: Aged[] | null
+    producer: Aged[] | null
+    editorial: Aged[] | null
+  } | null
+  style: {
+    label: LanguageValue[] | null
+    producer: LanguageValue[] | null
+    editorial: LanguageValue[] | null
+  } | null
+  isDryHopped: {
+    label: true | null
+    producer: true | null
+    editorial: true | null
+  } | null
+  dryHopped: {
+    label: Array<LanguageValue[]> | null
+    producer: Array<LanguageValue[]> | null
+    editorial: Array<LanguageValue[]> | null
+  } | null
+  expirationDate: {
+    label: {
       value: number
       unit: ExpirationDateUnit
-    }
-    producer?: {
+    } | null
+    producer: {
       value: number
       unit: ExpirationDateUnit
-    }
-  }
-  ingredientsDescription?: {
-    label?: {
+    } | null
+  } | null
+  ingredientsDescription: {
+    label: {
       complete: boolean
       language: DataLanguage
       value: string
-    }[]
-    producer?: {
+    }[] | null
+    producer: {
       complete: boolean
       language: DataLanguage
       value: string
-    }[]
-  }
-  ingredientsList?: {
-    label?: {
+    }[] | null
+  } | null
+  ingredientsList: {
+    label: {
       name: LanguageValue[]
       type: IngredientType
-    }[]
-    producer?: {
+    }[] | null
+    producer: {
       name: LanguageValue[]
       type: IngredientType
-    }[]
-  }
-  smokedMalt?: {
-    label?: boolean
-    producer?: boolean
-  }
-  bitterness?: {
-    label?: number
-    producer?: number
-  }
-  sweetness?: {
-    label?: number
-    producer?: number
-  }
-  fullness?: {
-    label?: number
-    producer?: number
-  }
-  power?: {
-    label?: number
-    producer?: number
-  }
-  hoppyness?: {
-    label?: number
-    producer?: number
-  }
-  temperature?: {
-    label?: {
+    }[] | null
+  } | null
+  smokedMalt: {
+    label: boolean | null
+    producer: boolean | null
+  } | null
+  bitterness: {
+    label: number | null
+    producer: number | null
+  } | null
+  sweetness: {
+    label: number | null
+    producer: number | null
+  } | null
+  fullness: {
+    label: number | null
+    producer: number | null
+  } | null
+  power: {
+    label: number | null
+    producer: number | null
+  } | null
+  hoppyness: {
+    label: number | null
+    producer: number | null
+  } | null
+  temperature: {
+    label: {
       from: number
       to: number
       unit: TemperatureUnit
-    }
-    producer?: {
+    } | null
+    producer: {
       from: number
       to: number
       unit: TemperatureUnit
-    }
-  }
-  color?: {
-    editorial?: string
-  }
-  clarity?: {
-    editorial?: Clarity
-  }
+    } | null
+  } | null
+  color: {
+    editorial: string | null
+  } | null
+  clarity: {
+    editorial: Clarity | null
+  } | null
   container: {
     color: ContainerColor
     material: ContainerMaterial
     unit: ContainerUnit
     type: ContainerType
     value: number
-    hasCapWireFlip?: boolean
+    hasCapWireFlip: boolean | null
   }
-  price?: {
-    label?: BeveragePrice[]
-    producer?: BeveragePrice[]
-    editorial?: BeveragePrice[]
-  }
-  photos?: {
-    cap?: boolean
-    cover?: {
+  price: {
+    label: BeveragePrice[] | null
+    producer: BeveragePrice[] | null
+    editorial: BeveragePrice[] | null
+  } | null
+  photos: {
+    cap: boolean | null
+    cover: {
       height: number
       width: number
-    }
-    gallery?: number
-  }
-  notes?: string
+    } | null
+    gallery: number | null
+  } | null
+  notes: string | null
   added: Date
-  updated?: Date
+  updated: Date | null
   coverPhoto: {
-    childImageSharp?: GatsbyImageProps
+    childImageSharp: GatsbyImageProps | null
     publicURL: string
   }
   galleryPhoto: {
-    childImageSharp?: GatsbyImageProps
+    childImageSharp: GatsbyImageProps | null
     publicURL: string
   }
 }

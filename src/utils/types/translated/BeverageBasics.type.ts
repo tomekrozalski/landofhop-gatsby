@@ -8,7 +8,7 @@ export type BeverageBasicsTranslated = {
 	name: LanguageValue
 	brand: InstitutionTranslated
 	coverPhoto: {
-		childImageSharp?: GatsbyImageProps
+		childImageSharp: GatsbyImageProps | null
 		publicURL: string
 	}
 }
