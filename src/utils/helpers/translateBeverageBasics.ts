@@ -14,8 +14,8 @@ const translateBeverageBasics = ({ name, brand, ...rest }: BeverageBasicsTypes):
 			badge: brand.badge,
 			name: getValueByLanguage(brand.name, locale),
 			shortId: brand.shortId,
-			...(brand.website && { website: brand.website }),
-			...(brand.consortium && { consortium: getValueByLanguage(brand.consortium, locale) }),
+			website: brand.website,
+			consortium: brand.consortium ? getValueByLanguage(brand.consortium, locale) : null,
 		},
 		...rest,
 	}
