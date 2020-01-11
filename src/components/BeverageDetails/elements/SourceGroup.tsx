@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { DataLanguage } from 'utils/enums';
 
 export const SourceGroup = styled.span`
-	font: 300 1.6rem / 2.2rem var(--font-primary);
+	font: var(--font-weight-light) 1.6rem / 2.2rem var(--font-primary);
 
 	> span + span {
 		&::before {

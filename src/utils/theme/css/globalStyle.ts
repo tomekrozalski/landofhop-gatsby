@@ -15,8 +15,10 @@ const globalStyles = css`
     --color-danger-strong: #be5656;
     --color-danger-light: #dec1c1;
 
-    // Sofia Pro weights: 300, 400, 500
-    --font-primary: 'sofia-pro', 'foco', sans-serif;
+    --font-primary: 'fira-sans', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
 
     --index-spinner: 9;
     --index-loginbar: 10;
@@ -68,12 +70,13 @@ const globalStyles = css`
   body {
     margin: 0;
     background-color: var(--color-white);
-    font: 300 1.5rem / 2rem var(--font-primary);
+    font: var(--font-weight-light) 1.5rem / 2rem var(--font-primary);
     color: var(--color-black);
   }
 
   h1 {
     margin: 0;
+    font: var(--font-weight-medium) 3rem / 3.8rem var(--font-primary);
   }
 
   button,
@@ -104,7 +107,7 @@ const globalStyles = css`
   }
 
   strong, em {
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     font-style: normal;
   }
 
@@ -128,7 +131,7 @@ const globalStyles = css`
     border-bottom: 1px solid var(--color-dark);
     padding: 0 1rem;
     background-color: var(--color-brighter);
-    font: 300 1.6rem / 1 var(--font-primary);
+    font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
     color: var(--color-black);
   }
 
@@ -155,7 +158,7 @@ const globalStyles = css`
   }
 
   label {
-    font: 300 1.6rem / 1 var(--font-primary);
+    font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
     margin-right: 1rem;
   }
 `;

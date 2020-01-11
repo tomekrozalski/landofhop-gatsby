@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-right: 1rem;
-  font: 300 1.6rem / 1 var(--font-primary);
+  font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
 
   &::after {
     content: ':';

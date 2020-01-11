@@ -7,7 +7,6 @@ import { getLangAttr } from 'utils/helpers';
 
 const Wrapper = styled.h1<{ lang?: DataLanguage }>`
 	padding: 1rem 0;
-	font: 500 3rem / 3.8rem var(--font-primary);
 	text-transform: uppercase;
 `;
 

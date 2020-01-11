@@ -13,6 +13,7 @@ const Header: React.FC = () => (
 		<Contract />
 		<Cooperation />
 		<Brand />
+		{/* <Series /> */}
 	</>
 );
 

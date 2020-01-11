@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   max-width: 70rem;
   margin: 0 auto;
   padding: 4rem 0;
-  font: 300 1.5rem / 2.5rem var(--font-primary);
+  font: var(--font-weight-light) 1.5rem / 2.5rem var(--font-primary);
 
   a {
     color: var(--color-success-strong);
@@ -25,15 +25,10 @@ const Wrapper = styled.div`
 
 const Header = styled.h1`
   margin: 3rem 0;
-  font: 500 3rem / 4rem var(--font-primary);
   text-align: center;
 `;
 
-type Props = {
-  intl: IntlShape
-}
-
-const About: React.FC<Props> = ({ intl }) => (
+const About: React.FC<{ intl: IntlShape }> = ({ intl }) => (
   <Layout>
     <SEO title="about" />
     <Wrapper>
