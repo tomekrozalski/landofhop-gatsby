@@ -15,6 +15,7 @@ const globalStyles = css`
     --color-danger-strong: #be5656;
     --color-danger-light: #dec1c1;
 
+    // Sofia Pro weights: 300, 400, 500
     --font-primary: 'sofia-pro', 'foco', sans-serif;
 
     --index-spinner: 9;
@@ -67,7 +68,7 @@ const globalStyles = css`
   body {
     margin: 0;
     background-color: var(--color-white);
-    font: 400 1.5rem / 2rem var(--font-primary);
+    font: 300 1.5rem / 2rem var(--font-primary);
     color: var(--color-black);
   }
 
@@ -100,6 +101,11 @@ const globalStyles = css`
     background-color: transparent;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  strong, em {
+    font-weight: 400;
+    font-style: normal;
   }
 
   ul {

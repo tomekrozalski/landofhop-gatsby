@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { BeverageContext } from 'components/BeverageDetails';
+import { DataLanguage } from 'utils/enums';
 import { getLangAttr } from 'utils/helpers';
 
-const Wrapper = styled.h1<{ lang?: string }>`
+const Wrapper = styled.h1<{ lang?: DataLanguage }>`
 	padding: 1rem 0;
-	font: 700 3rem / 3.8rem var(--font-primary);
+	font: 500 3rem / 3.8rem var(--font-primary);
 	text-transform: uppercase;
 `;
 

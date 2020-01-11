@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   max-width: 70rem;
   margin: 0 auto;
   padding: 4rem 0;
-  font: 400 1.5rem / 2.5rem var(--font-primary);
+  font: 300 1.5rem / 2.5rem var(--font-primary);
 
   a {
     color: var(--color-success-strong);

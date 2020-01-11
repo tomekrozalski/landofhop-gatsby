@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { BeverageContext } from 'components/BeverageDetails';
-import { Contract, Name } from '.';
+import {
+	Brand,
+	Contract,
+	Cooperation,
+	Name,
+} from '.';
 
-const Header: React.FC = () => {
-	const { series, brand, cooperation } = useContext(BeverageContext);
-
-	return (
-		<>
-			<Name />
-			<Contract />
-		</>
-
-	);
-}
+const Header: React.FC = () => (
+	<>
+		<Name />
+		<Contract />
+		<Cooperation />
+		<Brand />
+	</>
+);
 
 export default Header;

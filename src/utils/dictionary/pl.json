@@ -3,6 +3,13 @@
     "header": "O stronie",
     "body": "**Land of Hop** to aplikacja webowa, którą tworzę, by ćwiczyć programowanie (React, Gatsby, Node.js, MongoDB). Jest to katalog piw, które wypiłem od października 2017. Niestety jeszcze nie działa w pełni. Staram się [codziennie](https://github.com/tomekrozalski) nad nią pracować. Planuję jej zakończenie, przynajmniej najważniejszych funkcji, w maju 2020. [Tomek Różalski](http://tomaszrozalski.pl)"
   },
+  "beverage": {
+    "details": {
+      "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
+      "contract": "Uwarzono przez {brands}",
+      "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}"
+    }
+  },
   "errors": {
     "tileImageNotFound": "Nie znaleziono zdjęcia",
     "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia"

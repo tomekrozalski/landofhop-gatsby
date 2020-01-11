@@ -1,37 +1,49 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
-
+import { FormattedMessage } from 'gatsby-plugin-intl';
 import { BeverageContext } from 'components/BeverageDetails';
 import { getLangAttr } from 'utils/helpers';
 
-const Wrapper = styled.h2<{ lang?: string }>`
-	padding: 0;
-	font: 700 2rem / 2.8rem var(--font-primary);
-`;
-
-const Par = styled.span``;
+import {
+	Editorial,
+	Label,
+	Producer,
+	SourceGroup,
+	SourceItem,
+} from 'components/BeverageDetails/elements';
 
 const Contact: React.FC = () => {
 	const { contract } = useContext(BeverageContext);
 
-	if (!contract) {
-		return null;
-	}
-
-	const values = [];
-
-	if (contract.label) {
-		values.push(<Par>{contract.label.name.value}</Par>)
-		values.push('/');
-	}
-
-	console.log('contract', contract);
-
-	return (
-		<Wrapper>
-			{values}
-		</Wrapper>
-	);
+	return contract ? (
+		<FormattedMessage
+			id="beverage.details.contract"
+			values={{
+				brands: <SourceGroup>
+					{contract.label && (
+						<Label>
+							<SourceItem lang={getLangAttr(contract.label.name.language)}>
+								{contract.label.name.value}
+							</SourceItem>
+						</Label>
+					)}
+					{contract.producer && (
+						<Producer>
+							<SourceItem lang={getLangAttr(contract.producer.name.language)}>
+								{contract.producer.name.value}
+							</SourceItem>
+						</Producer>
+					)}
+					{contract.editorial && (
+						<Editorial>
+							<SourceItem lang={getLangAttr(contract.editorial.name.language)}>
+								{contract.editorial.name.value}
+							</SourceItem>
+						</Editorial>
+					)}
+				</SourceGroup>
+			}}
+		/>
+	) : null;
 }
 
 export default Contact;
