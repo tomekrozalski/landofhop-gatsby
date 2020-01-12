@@ -5,6 +5,7 @@ import {
 	Contract,
 	Cooperation,
 	Name,
+	Series,
 } from '.';
 
 const Header: React.FC = () => (
@@ -13,7 +14,7 @@ const Header: React.FC = () => (
 		<Contract />
 		<Cooperation />
 		<Brand />
-		{/* <Series /> */}
+		<Series />
 	</>
 );
 

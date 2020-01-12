@@ -7,7 +7,8 @@
     "details": {
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "contract": "Uwarzono przez {brands}",
-      "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}"
+      "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
+      "series": ", w serii {series}"
     }
   },
   "errors": {
