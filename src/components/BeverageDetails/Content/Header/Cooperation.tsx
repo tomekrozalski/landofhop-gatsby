@@ -24,7 +24,7 @@ const Cooperation: React.FC = () => {
 						<Label>
 							<FormattedList type="conjunction" value={
 								cooperation.label.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)}>
+									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
 										{name.value}
 									</SourceItem>
 								))
@@ -35,7 +35,7 @@ const Cooperation: React.FC = () => {
 						<Producer>
 							<FormattedList type="conjunction" value={
 								cooperation.producer.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)}>
+									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
 										{name.value}
 									</SourceItem>
 								))
@@ -46,7 +46,7 @@ const Cooperation: React.FC = () => {
 						<Editorial>
 							<FormattedList type="conjunction" value={
 								cooperation.editorial.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)}>
+									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
 										{name.value}
 									</SourceItem>
 								))

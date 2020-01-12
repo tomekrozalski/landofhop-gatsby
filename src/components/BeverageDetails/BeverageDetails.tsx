@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
+import { NavigationContext } from 'utils/contexts';
 import {
 	BeverageBase as BeverageBaseTypes,
 	BeverageDetails as BeverageDetailsTypes,
@@ -33,6 +34,7 @@ type Props = {
 			language: SiteLanguage
 		}
 		next: BeverageBaseTypes
+		page: number
 		previous: BeverageBaseTypes
 	}
 }
@@ -46,9 +48,19 @@ const BeverageDetails: React.FC<Props> = ({
 	},
 	pageContext: {
 		next,
+		page,
 		previous,
 	}
-}) => (
+}) => {
+	const { setMainLink } = useContext(NavigationContext);
+
+	useEffect(() => {
+		console.log('page', page);
+
+		setMainLink(`/list/${page}`);
+	}, [])
+
+	return (
 		<Layout>
 			<BeverageContext.Provider value={translateBeverageDetails(beverage)}>
 				<GridWrapper>
@@ -62,6 +74,7 @@ const BeverageDetails: React.FC<Props> = ({
 			</BeverageContext.Provider>
 		</Layout>
 	);
+}
 
 export const query = graphql`
 	query BeverageDetails($badge: String!, $brandBadge: String!, $shortId: String!) {

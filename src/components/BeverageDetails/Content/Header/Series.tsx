@@ -13,8 +13,6 @@ import {
 const Series: React.FC = () => {
 	const { series } = useContext(BeverageContext);
 
-	console.log('series', series);
-
 	return series ? (
 		<FormattedMessage
 			id="beverage.details.series"
@@ -24,7 +22,7 @@ const Series: React.FC = () => {
 						<Label>
 							<FormattedList type="conjunction" value={
 								series.label.map(({ language, value }) => (
-									<SourceItem lang={getLangAttr(language)}>
+									<SourceItem lang={getLangAttr(language)} key={value}>
 										{value}
 									</SourceItem>
 								))
@@ -35,7 +33,7 @@ const Series: React.FC = () => {
 						<Producer>
 							<FormattedList type="conjunction" value={
 								series.producer.map(({ language, value }) => (
-									<SourceItem lang={getLangAttr(language)}>
+									<SourceItem lang={getLangAttr(language)} key={value}>
 										{value}
 									</SourceItem>
 								))

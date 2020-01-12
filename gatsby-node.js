@@ -463,7 +463,7 @@ exports.createPages = async ({ graphql, actions }) => {
     component: Tiles,
   });
 
-  items.forEach(({ next, node, previous }) => {
+  items.forEach(({ next, node, previous }, index) => {
     const {
       badge,
       brand: { badge: brandBadge },
@@ -477,6 +477,7 @@ exports.createPages = async ({ graphql, actions }) => {
         badge,
         brandBadge,
         next,
+        page: Math.floor(index / 50) + 1,
         previous,
         shortId,
       },
