@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { BrokenContainer } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails';
+import { BrokenContainer } from '.';
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
+	grid-area: gallery;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 22rem;
+	width: 100%;
 	height: 50rem;
 `;
 

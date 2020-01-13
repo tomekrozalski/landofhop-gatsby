@@ -2,13 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby-plugin-intl';
 
-import { BaseBeverage as BaseBeverageTypes } from 'utils/types';
+import { breakpoints } from 'utils/theme';
+import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { LeftIcon, RightIcon } from '.';
 
-const Wrapper = styled.ul`
+const Wrapper = styled.aside`
+	grid-area: aside;
 	display: flex;
 	justify-content: center;
 	padding: 1rem;
+
+	@media (min-width: ${breakpoints.md}) {
+		justify-content: flex-end;
+  }
+
+	@media (min-width: ${breakpoints.lg}) {
+		justify-content: center;
+  }
 `;
 
 const Inactive = styled.span`
@@ -47,8 +57,8 @@ const Button = styled(Inactive)`
 `;
 
 type Props = {
-	next: BaseBeverageTypes
-	previous: BaseBeverageTypes
+	next: BeverageBaseTypes
+	previous: BeverageBaseTypes
 }
 
 const Aside: React.FC<Props> = ({ next, previous }) => (

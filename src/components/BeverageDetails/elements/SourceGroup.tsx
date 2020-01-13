@@ -14,33 +14,18 @@ export const SourceGroup = styled.span`
 `;
 
 const GeneralWrapper = styled.span`
-	position: relative;
-
-	::after {
-		display: inline-block;
-		width: 100%;
-		height: 60%;
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		z-index: -1;
-		opacity: .4;
-	}
+	background-position: 0 0.8em;
+	background-repeat: repeat-x;
 `;
 
 const LabelWrapper = styled.span``;
 
 const ProducerWrapper = styled(GeneralWrapper)`
-	::after {
-		background-color: pink;
-	}
+	background-image: linear-gradient(#ffe6ea, #ffe6ea);
 `;
 
 const EditorialWrapper = styled(GeneralWrapper)`
-	::after {
-		background-color: cornflowerblue;
-	}
+	background-image: linear-gradient(#c1d5f8, #c1d5f8);
 `;
 
 export const Label: React.FC = ({ children }) => (

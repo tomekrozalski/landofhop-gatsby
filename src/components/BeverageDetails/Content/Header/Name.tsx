@@ -6,7 +6,7 @@ import { DataLanguage } from 'utils/enums';
 import { getLangAttr } from 'utils/helpers';
 
 const Wrapper = styled.h1<{ lang?: DataLanguage }>`
-	padding: 1rem 0;
+	margin-bottom: 1rem;
 	text-transform: uppercase;
 `;
 

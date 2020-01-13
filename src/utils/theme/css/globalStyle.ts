@@ -79,6 +79,10 @@ const globalStyles = css`
     font: var(--font-weight-medium) 3rem / 3.8rem var(--font-primary);
   }
 
+  p {
+    margin: 0;
+  }
+
   button,
   input,
   optgroup,

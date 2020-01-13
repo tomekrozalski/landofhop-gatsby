@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
 
 import { NavigationContext } from 'utils/contexts';
 import {
@@ -13,17 +12,9 @@ import { SiteLanguage } from 'utils/enums';
 import { initialBeverageData } from './utils';
 
 import Layout from '../Layout';
-import { Header } from './Content';
+import { Header, Testimony } from './Content';
+import { GridWrapper } from './elements';
 import { Aside, BeverageDetailsSeo, Gallery } from '.';
-
-const GridWrapper = styled.article`
-  display: grid;
-  grid-template-columns: 22rem 1fr 18rem;
-  grid-gap: 4rem;
-  max-width: var(--size-container-max-width);
-  padding: 2rem 1rem;
-  margin: 0 auto 6rem auto;
-`;
 
 type Props = {
 	data: {
@@ -55,8 +46,6 @@ const BeverageDetails: React.FC<Props> = ({
 	const { setMainLink } = useContext(NavigationContext);
 
 	useEffect(() => {
-		console.log('page', page);
-
 		setMainLink(`/list/${page}`);
 	}, [])
 
@@ -65,9 +54,8 @@ const BeverageDetails: React.FC<Props> = ({
 			<BeverageContext.Provider value={translateBeverageDetails(beverage)}>
 				<GridWrapper>
 					<Gallery />
-					<div>
-						<Header />
-					</div>
+					<Header />
+					<Testimony />
 					<Aside next={next} previous={previous} />
 				</GridWrapper>
 				<BeverageDetailsSeo />

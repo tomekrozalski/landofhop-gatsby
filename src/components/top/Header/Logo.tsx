@@ -45,8 +45,6 @@ const Header = styled.h1`
 const Logo: React.FC = () => {
   const { mainLink } = useContext(NavigationContext);
 
-  console.log('mainLink', mainLink);
-
   return (
     <StyledLink to={mainLink}>
       <Header>

@@ -1,3 +1,4 @@
+import GridWrapper from './GridWrapper';
 import {
 	Editorial,
 	Label,
@@ -8,6 +9,7 @@ import {
 
 export {
 	Editorial,
+	GridWrapper,
 	Label,
 	Producer,
 	SourceGroup,
