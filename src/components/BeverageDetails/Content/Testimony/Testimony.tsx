@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TestimonyWrapper = styled.section`
+import {
+	Barcode,
+	City,
+	Country,
+} from '.';
+
+const TestimonyWrapper = styled.dl`
 	grid-area: testimony;
 	margin: 1rem 0;
 `;
 
 const Testimony: React.FC = () => (
 	<TestimonyWrapper>
-		Testimony
+		<City />
+		<Country />
+		<Barcode />
 	</TestimonyWrapper>
 );
 

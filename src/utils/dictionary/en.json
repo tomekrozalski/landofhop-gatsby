@@ -5,6 +5,7 @@
   },
   "beverage": {
     "details": {
+      "barcode": "barcode",
       "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
       "contract": "Brewed by {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
@@ -12,6 +13,8 @@
         "next": "Next beverage",
         "previous": "Previous beverage"
       },
+      "city": "city",
+      "country": "country",
       "series": ", in series {series}"
     }
   },

@@ -5,6 +5,7 @@
   },
   "beverage": {
     "details": {
+      "barcode": "kod kreskowy",
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "contract": "Uwarzono przez {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
@@ -12,6 +13,8 @@
         "next": "Następna pozycja",
         "previous": "Poprzednia pozycja"
       },
+      "city": "miejscowość",
+      "country": "kraj",
       "series": ", w serii {series}"
     }
   },
