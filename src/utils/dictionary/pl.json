@@ -9,6 +9,7 @@
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "contract": "Uwarzono przez {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
+      "fermentation": "fermentacja",
       "navigation": {
         "next": "Następna pozycja",
         "previous": "Poprzednia pozycja"
@@ -16,6 +17,11 @@
       "city": "miejscowość",
       "country": "kraj",
       "series": ", w serii {series}"
+    },
+    "fermentationType": {
+      "bottom": "dolna",
+      "spontaneous": "spontaniczna",
+      "top": "górna"
     }
   },
   "errors": {

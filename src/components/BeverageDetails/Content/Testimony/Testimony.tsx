@@ -5,6 +5,7 @@ import {
 	Barcode,
 	City,
 	Country,
+	Fermentation,
 } from '.';
 
 const TestimonyWrapper = styled.dl`
@@ -17,6 +18,20 @@ const Testimony: React.FC = () => (
 		<City />
 		<Country />
 		<Barcode />
+		<Fermentation />
+		{/* <Extract /> */}
+		{/* <Alcohol /> */}
+		{/* <Filtration /> */}
+		{/* <Pasteurization /> */}
+		{/* <Aged /> */}
+		{/* <Style /> */}
+		{/* <DryHopped /> */}
+		{/* <ExpirationDate /> */}
+		{/* <Ingredients /> */}
+		{/* <SmokedMalt /> */}
+		{/* <Temperature /> */}
+		{/* <Container /> */}
+		{/* <Price /> */}
 	</TestimonyWrapper>
 );
 
