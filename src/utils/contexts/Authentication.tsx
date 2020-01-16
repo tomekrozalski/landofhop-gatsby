@@ -1,25 +1,17 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import {
-  differenceInSeconds,
-  formatDistanceStrict,
-  fromUnixTime,
-} from 'date-fns';
+import { differenceInSeconds, fromUnixTime } from 'date-fns';
 import jwt from 'jsonwebtoken';
 
-import pl from 'date-fns/locale/pl';
 import { NavigationContext } from './Navigation';
-import { NotificationContext } from './Notification';
 
 export const AuthenticationContext = React.createContext({
   isLoggedIn: false,
   logIn: ({ }) => new Promise(() => { }),
   logOut: () => { },
-  token: '',
   tokenExpiration: ''
 });
 
 const Authentication: React.FC = ({ children }) => {
-  const { notify } = useContext(NotificationContext);
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
   const [tokenExpiration, setTokenExpiration] = useState<string>(null);
@@ -41,10 +33,10 @@ const Authentication: React.FC = ({ children }) => {
     setLoginbar(false);
     setNavbar(false);
 
-    notify({
-      id: 'successfullyLoggedOut',
-      type: 'success',
-    });
+    // notify({
+    //   id: 'successfullyLoggedOut',
+    //   type: 'success',
+    // });
   };
 
   const checkTimeToLogout = useCallback(() => {
@@ -58,25 +50,25 @@ const Authentication: React.FC = ({ children }) => {
       setNavbar(true);
       setLoginbar(true);
 
-      notify({
-        id: 'successfullyLoggedOut',
-        type: 'success',
-      });
+      // notify({
+      //   id: 'successfullyLoggedOut',
+      //   type: 'success',
+      // });
 
       return false;
     }
 
     if (secondsToExpiration < 15 * 60) {
-      notify({
-        id: 'tokenExpiresIn',
-        type: 'info',
-        values: {
-          diff: formatDistanceStrict(new Date(tokenExpiration), new Date(), {
-            addSuffix: true,
-            locale: pl,
-          }),
-        },
-      });
+      // notify({
+      //   id: 'tokenExpiresIn',
+      //   type: 'info',
+      //   values: {
+      //     diff: formatDistanceStrict(new Date(tokenExpiration), new Date(), {
+      //       addSuffix: true,
+      //       locale: pl,
+      //     }),
+      //   },
+      // });
     }
 
     let delay;
@@ -129,16 +121,16 @@ const Authentication: React.FC = ({ children }) => {
       const expirationDate = fromUnixTime(decodedToken.payload.exp);
 
       if (differenceInSeconds(expirationDate, new Date()) > 10) {
-        notify({
-          id: type === 'init' ? 'tokenExpiresIn' : 'loggedIn',
-          type: 'success',
-          values: {
-            diff: formatDistanceStrict(new Date(expirationDate), new Date(), {
-              addSuffix: true,
-              locale: pl,
-            }),
-          },
-        });
+        // notify({
+        //   id: type === 'init' ? 'tokenExpiresIn' : 'loggedIn',
+        //   type: 'success',
+        //   values: {
+        //     diff: formatDistanceStrict(new Date(expirationDate), new Date(), {
+        //       addSuffix: true,
+        //       locale: pl,
+        //     }),
+        //   },
+        // });
 
         setToken(value);
         setTokenExpiration(expirationDate);
@@ -149,16 +141,16 @@ const Authentication: React.FC = ({ children }) => {
         return true;
       }
 
-      notify({
-        id: 'tokenExpired',
-        type: 'warning',
-        values: {
-          diff: formatDistanceStrict(new Date(expirationDate), new Date(), {
-            addSuffix: true,
-            locale: pl,
-          }),
-        },
-      });
+      // notify({
+      //   id: 'tokenExpired',
+      //   type: 'warning',
+      //   values: {
+      //     diff: formatDistanceStrict(new Date(expirationDate), new Date(), {
+      //       addSuffix: true,
+      //       locale: pl,
+      //     }),
+      //   },
+      // });
 
       setLogout();
       setNavbar(true);
@@ -171,10 +163,10 @@ const Authentication: React.FC = ({ children }) => {
     setNavbar(true);
     setLoginbar(true);
 
-    notify({
-      id: 'invalidToken',
-      type: 'warning',
-    });
+    // notify({
+    //   id: 'invalidToken',
+    //   type: 'warning',
+    // });
 
     return false;
   });
@@ -193,10 +185,10 @@ const Authentication: React.FC = ({ children }) => {
       checkTokenExpiration(response.token, 'login');
     } else {
       setLogout();
-      notify({
-        id: 'wrongLoginAttempt',
-        type: 'warning',
-      });
+      // notify({
+      //   id: 'wrongLoginAttempt',
+      //   type: 'warning',
+      // });
     }
 
     return rawResponse.status;
@@ -216,7 +208,6 @@ const Authentication: React.FC = ({ children }) => {
         isLoggedIn,
         logIn,
         logOut,
-        token,
         tokenExpiration,
       }}
     >

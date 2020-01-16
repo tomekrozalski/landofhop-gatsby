@@ -5,17 +5,23 @@
   },
   "beverage": {
     "details": {
+      "alcohol": "alcohol",
+      "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",
       "barcode": "barcode",
       "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
+      "city": "city",
       "contract": "Brewed by {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
+      "country": "country",
+      "extract": "extract",
+      "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {weight} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentation",
+      "filtration": "filtration",
       "navigation": {
         "next": "Next beverage",
         "previous": "Previous beverage"
       },
-      "city": "city",
-      "country": "country",
+      "pasteurization": "pasteurization",
       "series": ", in series {series}"
     },
     "fermentationType": {
@@ -48,6 +54,7 @@
     "logOut": "Log out",
     "stats": "Stats"
   },
+  "no": "no",
   "notFound": {
     "title": "404 Not Found",
     "body": "Redirecting to the home page in { seconds, plural, one {# second} other {# seconds}}"
@@ -57,5 +64,6 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Not Found"
-  }
+  },
+  "yes": "yes"
 }

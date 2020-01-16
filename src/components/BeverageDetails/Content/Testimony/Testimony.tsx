@@ -2,10 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
+	Alcohol,
 	Barcode,
 	City,
 	Country,
+	Extract,
 	Fermentation,
+	Filtration,
+	Pasteurization,
 } from '.';
 
 const TestimonyWrapper = styled.dl`
@@ -19,10 +23,10 @@ const Testimony: React.FC = () => (
 		<Country />
 		<Barcode />
 		<Fermentation />
-		{/* <Extract /> */}
-		{/* <Alcohol /> */}
-		{/* <Filtration /> */}
-		{/* <Pasteurization /> */}
+		<Extract />
+		<Alcohol />
+		<Filtration />
+		<Pasteurization />
 		{/* <Aged /> */}
 		{/* <Style /> */}
 		{/* <DryHopped /> */}

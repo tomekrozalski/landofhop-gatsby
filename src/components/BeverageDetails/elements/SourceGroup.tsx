@@ -6,9 +6,15 @@ import { DataLanguage } from 'utils/enums';
 export const SourceGroup = styled.span`
 	font: var(--font-weight-light) 1.6rem / 2.2rem var(--font-primary);
 
-	> span + span {
+	> span + span:not(.noSeparator) {
 		&::before {
 			content: ' / '
+		}
+	}
+
+	> span + .noSeparator {
+		&::before {
+			content: ' '
 		}
 	}
 `;
@@ -44,8 +50,8 @@ export const Producer: React.FC = ({ children }) => (
 	</span>
 );
 
-export const Editorial: React.FC = ({ children }) => (
-	<span>
+export const Editorial: React.FC<{ noSeparator?: boolean }> = ({ children, noSeparator }) => (
+	<span className={noSeparator ? 'noSeparator' : ''}>
 		<EditorialWrapper>
 			{children}
 		</EditorialWrapper>
