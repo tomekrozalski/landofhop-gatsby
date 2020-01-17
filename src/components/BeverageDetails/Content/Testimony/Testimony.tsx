@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
+	Aged,
 	Alcohol,
 	Barcode,
 	City,
@@ -27,7 +28,7 @@ const Testimony: React.FC = () => (
 		<Alcohol />
 		<Filtration />
 		<Pasteurization />
-		{/* <Aged /> */}
+		<Aged />
 		{/* <Style /> */}
 		{/* <DryHopped /> */}
 		{/* <ExpirationDate /> */}

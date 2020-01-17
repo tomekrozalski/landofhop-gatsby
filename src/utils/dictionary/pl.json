@@ -5,6 +5,26 @@
   },
   "beverage": {
     "details": {
+      "aged": {
+        "barrel": {
+          "beech": "w beczce bukowej",
+          "oak": "w beczce dębowej"
+        },
+        "previousContent": {
+          "name": "po",
+          "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}"
+        },
+        "time": {
+          "day": "{value} {value, plural, one {dzień} other {dni}}",
+          "month": "{value} {value, plural, one {miesiąc} few {miesiące} other {miesięcy}}",
+          "year": "{value} {value, plural, one {rok} few {lata} other {lat}}"
+        },
+        "wood": {
+          "beech": "z drewnem bukowym",
+          "oak": "z drewnem dębowym"
+        },
+        "name": "leżakowane"
+      },
       "alcohol": "alkohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",
       "barcode": "kod kreskowy",

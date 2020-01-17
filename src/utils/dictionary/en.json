@@ -5,6 +5,26 @@
   },
   "beverage": {
     "details": {
+      "aged": {
+        "barrel": {
+          "beech": "inside beech barrel",
+          "oak": "inside oak barrel"
+        },
+        "previousContent": {
+          "name": "after",
+          "content": "{content}"
+        },
+        "time": {
+          "day": "{value} {value, plural, one {day} other {days}}",
+          "month": "{value} {value, plural, one {month} other {months}}",
+          "year": "{value} {value, plural, one {year} other {years}}"
+        },
+        "wood": {
+          "beech": "with beech wood",
+          "oak": "with oak wood"
+        },
+        "name": "leżakowane"
+      },
       "alcohol": "alcohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",
       "barcode": "barcode",
