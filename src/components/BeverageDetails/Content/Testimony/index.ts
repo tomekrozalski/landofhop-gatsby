@@ -4,6 +4,7 @@ import Barcode from './Barcode';
 import City from './City';
 import Country from './Country';
 import DryHopped from './DryHopped';
+import ExpirationDate from './ExpirationDate';
 import Extract from './Extract';
 import Fermentation from './Fermentation';
 import Filtration from './Filtration';
@@ -18,6 +19,7 @@ export {
 	City,
 	Country,
 	DryHopped,
+	ExpirationDate,
 	Extract,
 	Fermentation,
 	Filtration,

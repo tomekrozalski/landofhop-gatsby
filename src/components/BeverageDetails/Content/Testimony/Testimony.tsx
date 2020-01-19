@@ -8,6 +8,7 @@ import {
 	City,
 	Country,
 	DryHopped,
+	ExpirationDate,
 	Extract,
 	Fermentation,
 	Filtration,
@@ -33,7 +34,7 @@ const Testimony: React.FC = () => (
 		<Aged />
 		<Style />
 		<DryHopped />
-		{/* <ExpirationDate /> */}
+		<ExpirationDate />
 		{/* <Ingredients /> */}
 		{/* <SmokedMalt /> */}
 		{/* <Temperature /> */}

@@ -6,7 +6,7 @@ import { SourceItem } from 'components/BeverageDetails/elements';
 
 const AgedItem: React.FC<AgedTypes> = ({ previousContent, type, time, wood }) => (
 	<SourceItem>
-		{time && <FormattedMessage id={`beverage.details.aged.time.${time.unit}`} values={{ value: time.value }} />}
+		{time && <FormattedMessage id={`beverage.details.time.${time.unit}`} values={{ value: time.value }} />}
 		{(wood || previousContent) && ' '}
 		{wood && <FormattedMessage id={`beverage.details.aged.${type}.${wood}`} />}
 		{previousContent && ' '}

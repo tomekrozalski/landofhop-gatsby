@@ -14,11 +14,6 @@
           "name": "after",
           "content": "{content}"
         },
-        "time": {
-          "day": "{value} {value, plural, one {day} other {days}}",
-          "month": "{value} {value, plural, one {month} other {months}}",
-          "year": "{value} {value, plural, one {year} other {years}}"
-        },
         "wood": {
           "beech": "with beech wood",
           "oak": "with oak wood"
@@ -34,6 +29,7 @@
       "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
       "country": "country",
       "dryHopped": "dry-hopped",
+      "expirationDate": "expiration date",
       "extract": "extract",
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {weight} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentation",
@@ -44,7 +40,12 @@
       },
       "pasteurization": "pasteurization",
       "series": ", in series {series}",
-      "style": "style"
+      "style": "style",
+      "time": {
+        "day": "{value} {value, plural, one {day} other {days}}",
+        "month": "{value} {value, plural, one {month} other {months}}",
+        "year": "{value} {value, plural, one {year} other {years}}"
+      }
     },
     "fermentationType": {
       "bottom": "bottom",

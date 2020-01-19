@@ -14,11 +14,6 @@
           "name": "po",
           "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}"
         },
-        "time": {
-          "day": "{value} {value, plural, one {dzień} other {dni}}",
-          "month": "{value} {value, plural, one {miesiąc} few {miesiące} other {miesięcy}}",
-          "year": "{value} {value, plural, one {rok} few {lata} other {lat}}"
-        },
         "wood": {
           "beech": "z drewnem bukowym",
           "oak": "z drewnem dębowym"
@@ -34,6 +29,7 @@
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
       "country": "kraj",
       "dryHopped": "chmielone na zimno",
+      "expirationDate": "czas przydatności do spożycia",
       "extract": "ekstrakt",
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {wag.} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentacja",
@@ -44,7 +40,12 @@
       },
       "pasteurization": "pasteryzacja",
       "series": ", w serii {series}",
-      "style": "styl"
+      "style": "styl",
+      "time": {
+        "day": "{value} {value, plural, one {dzień} other {dni}}",
+        "month": "{value} {value, plural, one {miesiąc} few {miesiące} other {miesięcy}}",
+        "year": "{value} {value, plural, one {rok} few {lata} other {lat}}"
+      }
     },
     "fermentationType": {
       "bottom": "dolna",
