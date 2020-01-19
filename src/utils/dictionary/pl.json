@@ -33,6 +33,7 @@
       "contract": "Uwarzono przez {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
       "country": "kraj",
+      "dryHopped": "chmielone na zimno",
       "extract": "ekstrakt",
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {wag.} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentacja",
@@ -42,7 +43,8 @@
         "previous": "Poprzednia pozycja"
       },
       "pasteurization": "pasteryzacja",
-      "series": ", w serii {series}"
+      "series": ", w serii {series}",
+      "style": "styl"
     },
     "fermentationType": {
       "bottom": "dolna",

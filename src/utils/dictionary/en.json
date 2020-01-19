@@ -33,6 +33,7 @@
       "contract": "Brewed by {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
       "country": "country",
+      "dryHopped": "dry-hopped",
       "extract": "extract",
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {weight} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentation",
@@ -42,7 +43,8 @@
         "previous": "Previous beverage"
       },
       "pasteurization": "pasteurization",
-      "series": ", in series {series}"
+      "series": ", in series {series}",
+      "style": "style"
     },
     "fermentationType": {
       "bottom": "bottom",

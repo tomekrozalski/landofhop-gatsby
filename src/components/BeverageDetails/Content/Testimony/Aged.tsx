@@ -7,43 +7,46 @@ import {
 	Label,
 	Producer,
 	SourceGroup,
-	SourceItem,
 } from 'components/BeverageDetails/elements';
+import AgedItem from './AgedItem';
 
 const Aged: React.FC = () => {
-	const { aged } = useContext(BeverageContext);
+	const { aged, isAged } = useContext(BeverageContext);
 
-	return aged ? (
+	return isAged ? (
 		<>
 			<dt><FormattedMessage id="beverage.details.aged.name" /></dt>
 			<dd>
 				<SourceGroup>
-					{aged.label && (
+					{(isAged && isAged.label) && (
 						<Label>
-							<FormattedList type="conjunction" value={
-								aged.label.map(({ previousContent, type, time, wood }) => (
-									<SourceItem>
-										{time && <FormattedMessage id={`beverage.details.aged.time.${time.unit}`} values={{ value: time.value }} />}
-										{(wood || previousContent) && ' '}
-										{wood && <FormattedMessage id={`beverage.details.aged.${type}.${wood}`} />}
-										{previousContent && ' '}
-										{previousContent && (
-											<>
-												<FormattedMessage id="beverage.details.aged.previousContent.name" />
-												{' '}
-												<FormattedList type="conjunction" value={
-													previousContent.map(content =>
-														<FormattedMessage
-															id="beverage.details.aged.previousContent.content"
-															values={{ content }}
-														/>)
-												} />
-											</>
-										)}
-									</SourceItem>
-								))}
-							/>
+							{(aged && aged.label) ? (
+								<FormattedList
+									type="conjunction"
+									value={aged.label.map((props, i) => <AgedItem {...props} key={i} />)}
+								/>
+							) : <FormattedMessage id="yes" />}
 						</Label>
+					)}
+					{(isAged && isAged.producer) && (
+						<Producer>
+							{(aged && aged.producer) ? (
+								<FormattedList
+									type="conjunction"
+									value={aged.producer.map((props, i) => <AgedItem {...props} key={i} />)}
+								/>
+							) : <FormattedMessage id="yes" />}
+						</Producer>
+					)}
+					{(isAged && isAged.editorial) && (
+						<Editorial>
+							{(aged && aged.editorial) ? (
+								<FormattedList
+									type="conjunction"
+									value={aged.editorial.map((props, i) => <AgedItem {...props} key={i} />)}
+								/>
+							) : <FormattedMessage id="yes" />}
+						</Editorial>
 					)}
 				</SourceGroup>
 			</dd>
