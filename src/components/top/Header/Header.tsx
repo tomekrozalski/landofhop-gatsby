@@ -2,9 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { NavigationContext } from 'utils/contexts';
-import Logo from './Logo';
-import NavigationSwitcher from './NavigationSwitcher';
-import SearchbarSwitcher from './SearchbarSwitcher';
+import { Logo, NavigationSwitcher, Searchbar } from '.';
 
 type WrapperProps = {
   isLoginbar: boolean
@@ -53,6 +51,7 @@ const Grid = styled.div`
   width: 100%;
   max-width: var(--size-container-max-width);
   margin: 0 auto;
+  position: relative;
 `;
 
 const Header = () => {
@@ -62,7 +61,7 @@ const Header = () => {
     <Wrapper isLoginbar={loginbar} isNavbar={navbar}>
       <Grid>
         <Logo />
-        <SearchbarSwitcher />
+        <Searchbar />
         <NavigationSwitcher />
       </Grid>
     </Wrapper>

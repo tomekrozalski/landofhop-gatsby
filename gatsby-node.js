@@ -454,11 +454,12 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const items = allbeverages.data.allBeverage.edges;
+  const itemsPerPage = 60;
 
   paginate({
     createPage,
     items,
-    itemsPerPage: 50,
+    itemsPerPage,
     pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/list'),
     component: Tiles,
   });
@@ -477,7 +478,7 @@ exports.createPages = async ({ graphql, actions }) => {
         badge,
         brandBadge,
         next,
-        page: Math.floor(index / 50) + 1,
+        page: Math.floor(index / itemsPerPage) + 1,
         previous,
         shortId,
       },

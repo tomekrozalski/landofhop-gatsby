@@ -149,48 +149,6 @@ const globalStyles = css`
   li {
     list-style-type: none;
   }
-
-  input[type='email'],
-  input[type='number'],
-  input[type='password'],
-  input[type='text'] {
-    display: block;
-    width: 100%;
-    height: var(--size-input-height);
-    border: 0;
-    border-bottom: 1px solid var(--color-dark);
-    padding: 0 1rem;
-    background-color: var(--color-brighter);
-    font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
-    color: var(--color-black);
-  }
-
-  input[type='email']:focus,
-  input[type='number']:focus,
-  input[type='password']:focus,
-  input[type='text']:focus {
-    outline: none;
-    border-bottom-color: var(--color-black);
-  }
-
-  input[type='email']:disabled,
-  input[type='number']:disabled,
-  input[type='password']:disabled,
-  input[type='text']:disabled {
-    border-bottom: 1px solid var(--color-bright);
-    background-color: var(--color-brightest);
-    color: var(--color-darker);
-    cursor: not-allowed;
-  }
-
-  input.withStatusIcon {
-    padding: 0 25px 0 1rem;
-  }
-
-  label {
-    font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
-    margin-right: 1rem;
-  }
 `;
 
 export default globalStyles;
