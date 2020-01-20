@@ -22,7 +22,29 @@ const Label = styled.label`
   }
 `;
 
-const Input: any = styled.input``;
+const Input: any = styled.input`
+  display: block;
+  width: 100%;
+  height: var(--size-input-height);
+  border: 0;
+  border-bottom: 1px solid var(--color-dark);
+  padding: 0 25px 0 1rem;
+  background-color: var(--color-brighter);
+  font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
+  color: var(--color-black);
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--color-black);
+  }
+
+  &:disabled {
+    border-bottom: 1px solid var(--color-bright);
+    background-color: var(--color-brightest);
+    color: var(--color-darker);
+    cursor: not-allowed;
+  }
+`;
 
 type Props = { label: string }
 
@@ -40,7 +62,6 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({ label, ...props }) =
           <Input
             {...field}
             {...props}
-            className="withStatusIcon"
             id={fieldName}
           />
         </FieldStatusIndicator>
