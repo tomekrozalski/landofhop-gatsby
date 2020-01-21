@@ -57,6 +57,12 @@
     "tileImageNotFound": "Nie znaleziono zdjęcia",
     "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia"
   },
+  "formattedList": {
+    "conjunction": {
+      "short": " i ",
+      "long": " oraz "
+    }
+  },
   "header": {
     "name": "Land of Hop, katalog piw",
     "navigationSwitcher": {

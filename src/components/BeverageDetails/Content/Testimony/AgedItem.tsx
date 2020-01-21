@@ -1,6 +1,7 @@
 import React from 'react';
-import { FormattedList, FormattedMessage } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { FormattedList } from 'elements';
 import { Aged as AgedTypes } from 'utils/types';
 import { SourceItem } from 'components/BeverageDetails/elements';
 
@@ -14,14 +15,16 @@ const AgedItem: React.FC<AgedTypes> = ({ previousContent, type, time, wood }) =>
 			<>
 				<FormattedMessage id="beverage.details.aged.previousContent.name" />
 				{' '}
-				<FormattedList type="conjunction" value={
-					previousContent.map(content =>
-						<FormattedMessage
-							id="beverage.details.aged.previousContent.content"
-							key={content}
-							values={{ content }}
-						/>)
-				} />
+				<FormattedList type="conjunction" style="short">
+					{
+						previousContent.map(content =>
+							<FormattedMessage
+								id="beverage.details.aged.previousContent.content"
+								key={content}
+								values={{ content }}
+							/>)
+					}
+				</FormattedList>
 			</>
 		)}
 	</SourceItem>
