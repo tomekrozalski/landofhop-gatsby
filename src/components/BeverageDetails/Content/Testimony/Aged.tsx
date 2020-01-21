@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedList, FormattedMessage } from 'gatsby-plugin-intl';
-import { BeverageContext } from 'components/BeverageDetails';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { FormattedList } from 'elements';
+import { BeverageContext } from 'components/BeverageDetails';
 import {
 	Editorial,
 	Label,
@@ -21,30 +22,27 @@ const Aged: React.FC = () => {
 					{(isAged && isAged.label) && (
 						<Label>
 							{(aged && aged.label) ? (
-								<FormattedList
-									type="conjunction"
-									value={aged.label.map((props, i) => <AgedItem {...props} key={i} />)}
-								/>
+								<FormattedList type="conjunction" style="long">
+									{aged.label.map((props, i) => <AgedItem {...props} key={i} />)}
+								</FormattedList>
 							) : <FormattedMessage id="yes" />}
 						</Label>
 					)}
 					{(isAged && isAged.producer) && (
 						<Producer>
 							{(aged && aged.producer) ? (
-								<FormattedList
-									type="conjunction"
-									value={aged.producer.map((props, i) => <AgedItem {...props} key={i} />)}
-								/>
+								<FormattedList type="conjunction" style="long">
+									{aged.producer.map((props, i) => <AgedItem {...props} key={i} />)}}
+								</FormattedList>
 							) : <FormattedMessage id="yes" />}
 						</Producer>
 					)}
 					{(isAged && isAged.editorial) && (
 						<Editorial>
 							{(aged && aged.editorial) ? (
-								<FormattedList
-									type="conjunction"
-									value={aged.editorial.map((props, i) => <AgedItem {...props} key={i} />)}
-								/>
+								<FormattedList type="conjunction" style="long">
+									{aged.editorial.map((props, i) => <AgedItem {...props} key={i} />)}
+								</FormattedList>
 							) : <FormattedMessage id="yes" />}
 						</Editorial>
 					)}

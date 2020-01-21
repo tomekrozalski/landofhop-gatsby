@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { FormattedList, FormattedMessage } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
+
+import { FormattedList } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails';
 import { getLangAttr } from 'utils/helpers';
-
 import {
 	Label,
 	Producer,
@@ -20,24 +21,28 @@ const Series: React.FC = () => {
 				series: <SourceGroup>
 					{series.label && (
 						<Label>
-							<FormattedList type="conjunction" value={
-								series.label.map(({ language, value }) => (
-									<SourceItem lang={getLangAttr(language)} key={value}>
-										{value}
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									series.label.map(({ language, value }) => (
+										<SourceItem lang={getLangAttr(language)} key={value}>
+											{value}
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Label>
 					)}
 					{series.producer && (
 						<Producer>
-							<FormattedList type="conjunction" value={
-								series.producer.map(({ language, value }) => (
-									<SourceItem lang={getLangAttr(language)} key={value}>
-										{value}
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									series.producer.map(({ language, value }) => (
+										<SourceItem lang={getLangAttr(language)} key={value}>
+											{value}
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Producer>
 					)}
 				</SourceGroup>

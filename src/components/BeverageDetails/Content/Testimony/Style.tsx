@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
-import { BeverageContext } from 'components/BeverageDetails';
-import { getLangAttr } from 'utils/helpers';
 
-import { LanguageValue } from 'utils/types';
+import { FormattedList } from 'elements';
+import { getLangAttr } from 'utils/helpers';
+import { BeverageContext } from 'components/BeverageDetails';
 import {
 	Editorial,
 	Label,
@@ -15,11 +15,6 @@ import {
 const Style: React.FC = () => {
 	const { style } = useContext(BeverageContext);
 
-	const ItemsWithCommas = ({ language, value }: LanguageValue, i: number) => [
-		<SourceItem lang={getLangAttr(language)} key={value}>
-			{value}
-		</SourceItem>, <React.Fragment key={i}>, </React.Fragment>]
-
 	return style ? (
 		<>
 			<dt><FormattedMessage id="beverage.details.style" /></dt>
@@ -27,17 +22,35 @@ const Style: React.FC = () => {
 				<SourceGroup>
 					{style.label && (
 						<Label>
-							{style.label.flatMap(ItemsWithCommas).slice(0, -1)}
+							<FormattedList type="conjunction" style="narrow">
+								{style.label.map(({ language, value }) => (
+									<SourceItem lang={getLangAttr(language)} key={value}>
+										{value}
+									</SourceItem>
+								))}
+							</FormattedList>
 						</Label>
 					)}
 					{style.producer && (
 						<Producer>
-							{style.producer.flatMap(ItemsWithCommas).slice(0, -1)}
+							<FormattedList type="conjunction" style="narrow">
+								{style.producer.map(({ language, value }) => (
+									<SourceItem lang={getLangAttr(language)} key={value}>
+										{value}
+									</SourceItem>
+								))}
+							</FormattedList>
 						</Producer>
 					)}
 					{style.editorial && (
 						<Editorial>
-							{style.editorial.flatMap(ItemsWithCommas).slice(0, -1)}
+							<FormattedList type="conjunction" style="narrow">
+								{style.editorial.map(({ language, value }) => (
+									<SourceItem lang={getLangAttr(language)} key={value}>
+										{value}
+									</SourceItem>
+								))}
+							</FormattedList>
 						</Editorial>
 					)}
 				</SourceGroup>

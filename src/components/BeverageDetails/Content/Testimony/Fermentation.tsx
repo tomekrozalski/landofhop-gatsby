@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedList, FormattedMessage } from 'gatsby-plugin-intl';
-import { BeverageContext } from 'components/BeverageDetails';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { FormattedList } from 'elements';
+import { BeverageContext } from 'components/BeverageDetails';
 import {
 	Editorial,
 	Label,
@@ -20,35 +21,41 @@ const Fermentation: React.FC = () => {
 				<SourceGroup>
 					{fermentation.label && (
 						<Label>
-							<FormattedList type="conjunction" value={
-								fermentation.label.map(type => (
-									<SourceItem key={type}>
-										<FormattedMessage id={`beverage.fermentationType.${type}`} />
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									fermentation.label.map(type => (
+										<SourceItem key={type}>
+											<FormattedMessage id={`beverage.fermentationType.${type}`} />
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Label>
 					)}
 					{fermentation.producer && (
 						<Producer>
-							<FormattedList type="conjunction" value={
-								fermentation.producer.map(type => (
-									<SourceItem key={type}>
-										<FormattedMessage id={`beverage.fermentationType.${type}`} />
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									fermentation.producer.map(type => (
+										<SourceItem key={type}>
+											<FormattedMessage id={`beverage.fermentationType.${type}`} />
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Producer>
 					)}
 					{fermentation.editorial && (
 						<Editorial>
-							<FormattedList type="conjunction" value={
-								fermentation.editorial.map(type => (
-									<SourceItem key={type}>
-										<FormattedMessage id={`beverage.fermentationType.${type}`} />
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									fermentation.editorial.map(type => (
+										<SourceItem key={type}>
+											<FormattedMessage id={`beverage.fermentationType.${type}`} />
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Editorial>
 					)}
 				</SourceGroup>

@@ -57,6 +57,12 @@
     "tileImageNotFound": "Tile image not found",
     "bevereageDetailsImageNotFound": "Beverage details image not found"
   },
+  "formattedList": {
+    "conjunction": {
+      "short": " and ",
+      "long": " and "
+    }
+  },
   "header": {
     "name": "Land of Hop, beer catalogue",
     "navigationSwitcher": {

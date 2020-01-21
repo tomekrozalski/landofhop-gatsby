@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { FormattedList, FormattedMessage } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
+
+import { FormattedList } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails';
 import { getLangAttr } from 'utils/helpers';
-
 import {
 	Editorial,
 	Label,
@@ -22,35 +23,41 @@ const Cooperation: React.FC = () => {
 				cooperation: <SourceGroup>
 					{cooperation.label && (
 						<Label>
-							<FormattedList type="conjunction" value={
-								cooperation.label.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
-										{name.value}
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									cooperation.label.map(({ name }) => (
+										<SourceItem lang={getLangAttr(name.language)} key={name.value}>
+											{name.value}
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Label>
 					)}
 					{cooperation.producer && (
 						<Producer>
-							<FormattedList type="conjunction" value={
-								cooperation.producer.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
-										{name.value}
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									cooperation.producer.map(({ name }) => (
+										<SourceItem lang={getLangAttr(name.language)} key={name.value}>
+											{name.value}
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Producer>
 					)}
 					{cooperation.editorial && (
 						<Editorial>
-							<FormattedList type="conjunction" value={
-								cooperation.editorial.map(({ name }) => (
-									<SourceItem lang={getLangAttr(name.language)} key={name.value}>
-										{name.value}
-									</SourceItem>
-								))
-							} />
+							<FormattedList type="conjunction" style="short">
+								{
+									cooperation.editorial.map(({ name }) => (
+										<SourceItem lang={getLangAttr(name.language)} key={name.value}>
+											{name.value}
+										</SourceItem>
+									))
+								}
+							</FormattedList>
 						</Editorial>
 					)}
 				</SourceGroup>
