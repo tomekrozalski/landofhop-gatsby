@@ -6,8 +6,10 @@
   "author": "Tomek Rozalski <kontakt@tomaszrozalski.pl>",
   "dependencies": {
     "@nfront/global-styles": "^1.2.1",
+    "@types/react-instantsearch-dom": "^5.2.6",
     "@types/styled-components": "^4.4.0",
     "@types/yup": "^0.26.24",
+    "algoliasearch": "^3.35.1",
     "axios": "^0.19.0",
     "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^2.6.0",
@@ -16,6 +18,7 @@
     "gatsby": "^2.17.6",
     "gatsby-awesome-pagination": "^0.3.5",
     "gatsby-image": "^2.2.33",
+    "gatsby-plugin-algolia": "^0.5.0",
     "gatsby-plugin-global-styles": "^1.0.17",
     "gatsby-plugin-intl": "^0.3.1",
     "gatsby-plugin-manifest": "^2.2.25",
@@ -33,6 +36,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
+    "react-instantsearch-dom": "^6.2.0",
     "react-intl": "^3.9.1",
     "styled-components": "^4.4.1",
     "yup": "^0.27.0"

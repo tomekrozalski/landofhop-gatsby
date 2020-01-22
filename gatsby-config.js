@@ -1,5 +1,82 @@
 const path = require('path');
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const beverageQuery = `{
+  allBeverage {
+    edges {
+      node {
+        added
+        barcode
+        brand {
+          name {
+            value
+            language
+          }
+          badge
+        }
+        coverPhoto {
+          childImageSharp {
+            fluid(maxWidth: 220) {
+              src
+              srcSetWebp
+              srcSet
+              srcWebp
+            }
+          }
+          publicURL
+        }
+        objectID: id
+        ingredientsDescription {
+          label {
+            language
+            value
+          }
+          producer {
+            language
+            value
+          }
+        }
+        name {
+          language
+          value
+        }
+        series {
+          label {
+            language
+            value
+          }
+          producer {
+            language
+            value
+          }
+        }
+        shortId
+        badge
+        tale {
+          label {
+            language
+            value
+          }
+          producer {
+            language
+            value
+          }
+        }
+      }
+    }
+  }
+}`;
+
+const queries = [
+  {
+    query: beverageQuery,
+    transformer: ({ data }) => data.allBeverage.edges.map(({ node }) => node),
+  },
+];
+
 module.exports = {
   siteMetadata: {
     title: 'Land of Hop',
@@ -64,6 +141,16 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME,
+        queries,
+        chunkSize: 1000,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

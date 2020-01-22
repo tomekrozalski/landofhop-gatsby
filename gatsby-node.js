@@ -6,17 +6,13 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-exports.sourceNodes = async ({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) => {
+exports.sourceNodes = async ({ actions, createContentDigest }) => {
   const results = await axios.get(`${process.env.API_SERVER}/beverage`);
 
   results.data.forEach(beverage => {
     const node = {
       ...beverage,
-      id: createNodeId(`beverage-${beverage.id}`),
+      // id: createNodeId(`beverage-${beverage.id}`), // Don't need it because MongoDB id is highly unique
       internal: {
         type: 'Beverage',
         contentDigest: createContentDigest(beverage),
@@ -53,6 +49,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     schema.buildObjectType({
       name: 'Beverage',
       fields: {
+        id: 'String!',
         shortId: 'String!',
         badge: 'String!',
         name: '[LanguageValue!]!',
