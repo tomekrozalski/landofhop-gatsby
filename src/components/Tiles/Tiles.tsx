@@ -5,10 +5,9 @@ import {
   BeverageBasics as BeverageBasicsTypes,
   BeveragePageContext as BeveragePageContextTypes,
 } from 'utils/types';
-import { translateBeverageBasics } from 'utils/helpers';
 import { Layout, SEO } from '../';
 import { Grid } from './elements';
-import { Pagination, Tile } from '.';
+import { Pagination, SearchResults, TileMap } from '.';
 
 type Props = {
   data: {
@@ -23,9 +22,8 @@ const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>
     <SEO title="main" values={{ page: pageContext.humanPageNumber }} />
     <Grid>
-      {data.allBeverage.edges.map(({ node }) => (
-        <Tile key={node.id} {...translateBeverageBasics(node)} />
-      ))}
+      <SearchResults />
+      <TileMap edges={data.allBeverage.edges} />
     </Grid>
     <Pagination {...pageContext} />
   </Layout>

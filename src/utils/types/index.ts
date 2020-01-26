@@ -6,6 +6,7 @@ export * from './BeveragePageContext.type';
 export * from './BeveragePrice.type';
 export * from './Institution.type';
 export * from './LanguageValue.type';
+export * from './SearchResult.type';
 export * from './translated/BeverageBasics.type';
 export * from './translated/BeverageDetails.type';
 export * from './translated/Institution.type';

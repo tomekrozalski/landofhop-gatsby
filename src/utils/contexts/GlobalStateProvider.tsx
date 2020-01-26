@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Device, Navigation } from './index';
+import { Device, Navigation, Search } from './index';
 
 type Props = {
   contexts: any
@@ -16,7 +16,7 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   );
 
 const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <ProviderComposer contexts={[<Device />, <Navigation />]}>
+  <ProviderComposer contexts={[<Device />, <Navigation />, <Search />]}>
     {children}
   </ProviderComposer>
 );
