@@ -25,6 +25,24 @@
       "barcode": "barcode",
       "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
       "city": "city",
+      "container": {
+        "color": {
+          "brown": "brown",
+          "green": "green",
+          "black": "black",
+          "silver": "silver"
+        },
+        "material": {
+          "glass": "glass",
+          "aluminum": "aluminum"
+        },
+        "name": "container",
+        "type": {
+          "bottle": "bottle",
+          "can": "can"
+        },
+        "value": "{value} {unit, select, ml {ml} other {}}"
+      },
       "contains": "contains",
       "contract": "Brewed by {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
@@ -41,9 +59,12 @@
         "previous": "Previous beverage"
       },
       "pasteurization": "pasteurization",
+      "price": "price",
       "series": ", in series {series}",
       "smokedMalt": "contains malt dried with smoke",
       "style": "style",
+      "temperature": "recommended serving temperature",
+      "temperatureUnit": "{unit, select, celcius {°C} other {}}",
       "time": {
         "day": "{value} {value, plural, one {day} other {days}}",
         "month": "{value} {value, plural, one {month} other {months}}",

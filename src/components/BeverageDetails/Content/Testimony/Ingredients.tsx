@@ -13,8 +13,6 @@ import {
 const Ingredients: React.FC = () => {
 	const { ingredientsDescription } = useContext(BeverageContext);
 
-	console.log('ingredientsDescription', ingredientsDescription);
-
 	return ingredientsDescription ? (
 		ingredientsDescription.label && (
 			<>

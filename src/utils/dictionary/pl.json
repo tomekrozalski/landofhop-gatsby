@@ -27,6 +27,24 @@
       "barcode": "kod kreskowy",
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "city": "miejscowość",
+      "container": {
+        "color": {
+          "brown": "brązowa",
+          "green": "zielona",
+          "black": "czarna",
+          "silver": "srebrna"
+        },
+        "material": {
+          "glass": "szklana",
+          "aluminum": "aluminiowa"
+        },
+        "name": "opakowanie",
+        "type": {
+          "bottle": "butelka",
+          "can": "puszka"
+        },
+        "value": "{value} {unit, select, ml {ml} other {}}"
+      },
       "contains": "zawiera",
       "contract": "Uwarzono przez {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
@@ -43,9 +61,12 @@
         "previous": "Poprzednia pozycja"
       },
       "pasteurization": "pasteryzacja",
+      "price": "cena",
       "series": ", w serii {series}",
       "smokedMalt": "zawiera słód suszony dymem",
       "style": "styl",
+      "temperature": "zalecana temperatura podawania",
+      "temperatureUnit": "{unit, select, celcius {°C} other {}}",
       "time": {
         "day": "{value} {value, plural, one {dzień} other {dni}}",
         "month": "{value} {value, plural, one {miesiąc} few {miesiące} other {miesięcy}}",
