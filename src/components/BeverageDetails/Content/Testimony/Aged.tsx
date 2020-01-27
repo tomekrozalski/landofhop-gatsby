@@ -32,7 +32,7 @@ const Aged: React.FC = () => {
 						<Producer>
 							{(aged && aged.producer) ? (
 								<FormattedList type="conjunction" style="long">
-									{aged.producer.map((props, i) => <AgedItem {...props} key={i} />)}}
+									{aged.producer.map((props, i) => <AgedItem {...props} key={i} />)}
 								</FormattedList>
 							) : <FormattedMessage id="yes" />}
 						</Producer>

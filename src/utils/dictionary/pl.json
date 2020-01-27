@@ -7,6 +7,7 @@
     "details": {
       "aged": {
         "barrel": {
+          "unknown": "w beczce",
           "beech": "w beczce bukowej",
           "oak": "w beczce dębowej"
         },
@@ -15,6 +16,7 @@
           "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}"
         },
         "wood": {
+          "unknown": "z drewnem",
           "beech": "z drewnem bukowym",
           "oak": "z drewnem dębowym"
         },
@@ -25,6 +27,7 @@
       "barcode": "kod kreskowy",
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "city": "miejscowość",
+      "contains": "zawiera",
       "contract": "Uwarzono przez {brands}",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
       "country": "kraj",
@@ -34,12 +37,14 @@
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {wag.} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentacja",
       "filtration": "filtracja",
+      "ingredients": "składniki",
       "navigation": {
         "next": "Następna pozycja",
         "previous": "Poprzednia pozycja"
       },
       "pasteurization": "pasteryzacja",
       "series": ", w serii {series}",
+      "smokedMalt": "zawiera słód suszony dymem",
       "style": "styl",
       "time": {
         "day": "{value} {value, plural, one {dzień} other {dni}}",

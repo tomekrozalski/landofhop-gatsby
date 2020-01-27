@@ -12,7 +12,9 @@ import {
 	Extract,
 	Fermentation,
 	Filtration,
+	Ingredients,
 	Pasteurization,
+	SmokedMalt,
 	Style,
 } from '.';
 
@@ -35,8 +37,8 @@ const Testimony: React.FC = () => (
 		<Style />
 		<DryHopped />
 		<ExpirationDate />
-		{/* <Ingredients /> */}
-		{/* <SmokedMalt /> */}
+		<Ingredients />
+		<SmokedMalt />
 		{/* <Temperature /> */}
 		{/* <Container /> */}
 		{/* <Price /> */}

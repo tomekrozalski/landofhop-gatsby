@@ -23,7 +23,7 @@ const FormattedList: React.FC<Props> = ({ children, style }) => {
 					{
 						children.flatMap((item, index) => [
 							item,
-							index === children.length - 2
+							children.length > 1 && index === children.length - 2
 								? <FormattedMessage id="formattedList.conjunction.short" key={item} />
 								: ', '
 						]).slice(0, -1)
@@ -37,7 +37,7 @@ const FormattedList: React.FC<Props> = ({ children, style }) => {
 				{
 					children.flatMap((item, index) => [
 						item,
-						index === children.length - 2
+						children.length > 1 && index === children.length - 2
 							? <FormattedMessage id="formattedList.conjunction.long" key={item} />
 							: ', '
 					]).slice(0, -1)

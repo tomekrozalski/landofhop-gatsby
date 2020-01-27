@@ -8,7 +8,9 @@ import ExpirationDate from './ExpirationDate';
 import Extract from './Extract';
 import Fermentation from './Fermentation';
 import Filtration from './Filtration';
+import Ingredients from './Ingredients';
 import Pasteurization from './Pasteurization';
+import SmokedMalt from './SmokedMalt';
 import Style from './Style';
 import Testimony from './Testimony';
 
@@ -23,7 +25,9 @@ export {
 	Extract,
 	Fermentation,
 	Filtration,
+	Ingredients,
 	Pasteurization,
+	SmokedMalt,
 	Style,
 };
 
