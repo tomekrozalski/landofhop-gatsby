@@ -63,6 +63,10 @@
       "series": ", in series {series}",
       "smokedMalt": "contains malt dried with smoke",
       "style": "style",
+      "tale": {
+        "readMore": "read more",
+        "readLess": "read less"
+      },
       "temperature": "recommended serving temperature",
       "temperatureUnit": "{unit, select, celcius {°C} other {}}",
       "time": {

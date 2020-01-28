@@ -70,7 +70,7 @@ const globalStyles = css`
   body {
     margin: 0;
     background-color: var(--color-white);
-    font: var(--font-weight-light) 1.5rem / 2rem var(--font-primary);
+    font: var(--font-weight-light) 1.5rem / 2.5rem var(--font-primary);
     color: var(--color-black);
   }
 

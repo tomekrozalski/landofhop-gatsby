@@ -9,6 +9,7 @@ const GridWrapper = styled.article`
 		'aside'
 		'gallery'
 		'header'
+		'tale'
 		'testimony';
 	column-gap: 4rem;
   max-width: var(--size-container-max-width);
@@ -20,6 +21,7 @@ const GridWrapper = styled.article`
 		grid-template-areas:
 			'aside aside aside'
 			'gallery header header'
+			'gallery tale testimony'
 			'gallery testimony testimony'
 			'gallery . .';
   }
@@ -28,6 +30,7 @@ const GridWrapper = styled.article`
 		grid-template-columns: 22rem 1fr 18rem;
 		grid-template-areas:
 			'gallery header aside'
+			'gallery tale aside'
 			'gallery testimony aside'
 			'gallery . aside';
 		padding: 2rem 1rem;

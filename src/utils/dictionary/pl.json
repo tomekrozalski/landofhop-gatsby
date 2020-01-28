@@ -65,6 +65,10 @@
       "series": ", w serii {series}",
       "smokedMalt": "zawiera słód suszony dymem",
       "style": "styl",
+      "tale": {
+        "readMore": "rozwiń",
+        "readLess": "zwiń"
+      },
       "temperature": "zalecana temperatura podawania",
       "temperatureUnit": "{unit, select, celcius {°C} other {}}",
       "time": {
