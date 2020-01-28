@@ -25,6 +25,7 @@
       "alcohol": "alkohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",
       "barcode": "kod kreskowy",
+      "bitterness": "gorycz",
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "city": "miejscowość",
       "container": {

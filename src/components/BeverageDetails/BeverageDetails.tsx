@@ -12,7 +12,12 @@ import { SiteLanguage } from 'utils/enums';
 import { initialBeverageData } from './utils';
 
 import Layout from '../Layout';
-import { Header, Tale, Testimony } from './Content';
+import {
+	Header,
+	Impressions,
+	Tale,
+	Testimony,
+} from './Content';
 import { GridWrapper } from './elements';
 import { Aside, BeverageDetailsSeo, Gallery } from '.';
 
@@ -57,6 +62,7 @@ const BeverageDetails: React.FC<Props> = ({
 					<Header />
 					<Tale />
 					<Testimony />
+					<Impressions />
 					<Aside next={next} previous={previous} />
 				</GridWrapper>
 				<BeverageDetailsSeo />

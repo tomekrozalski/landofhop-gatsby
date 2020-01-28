@@ -23,6 +23,7 @@
       "alcohol": "alcohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",
       "barcode": "barcode",
+      "bitterness": "bitterness",
       "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
       "city": "city",
       "container": {

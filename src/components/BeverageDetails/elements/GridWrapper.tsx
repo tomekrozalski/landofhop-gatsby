@@ -10,7 +10,8 @@ const GridWrapper = styled.article`
 		'gallery'
 		'header'
 		'tale'
-		'testimony';
+		'testimony'
+		'impressions';
 	column-gap: 4rem;
   max-width: var(--size-container-max-width);
   padding: 2rem;
@@ -21,8 +22,9 @@ const GridWrapper = styled.article`
 		grid-template-areas:
 			'aside aside aside'
 			'gallery header header'
-			'gallery tale testimony'
+			'gallery tale tale'
 			'gallery testimony testimony'
+			'gallery impressions impressions'
 			'gallery . .';
   }
 
@@ -32,6 +34,7 @@ const GridWrapper = styled.article`
 			'gallery header aside'
 			'gallery tale aside'
 			'gallery testimony aside'
+			'gallery impressions aside'
 			'gallery . aside';
 		padding: 2rem 1rem;
   }

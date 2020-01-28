@@ -316,24 +316,24 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 		    producer: Boolean
       }
       type Bitterness {
-        label: Boolean
-		    producer: Boolean
+        label: Int
+		    producer: Int
       }
       type Sweetness {
-        label: Boolean
-		    producer: Boolean
+        label: Int
+		    producer: Int
       }
       type Fullness {
-        label: Boolean
-		    producer: Boolean
+        label: Int
+		    producer: Int
       }
       type Power {
-        label: Boolean
-		    producer: Boolean
+        label: Int
+		    producer: Int
       }
       type Hoppyness {
-        label: Boolean
-		    producer: Boolean
+        label: Int
+		    producer: Int
       }
       type Temperature {
         label: TemperatureValues

@@ -6,11 +6,9 @@ import { SearchResults } from 'components/Tiles';
 const ContentWrapper: React.FC = ({ children }) => {
 	const { searchbarActive } = useContext(NavigationContext);
 
-	return (
-		<>
-			{searchbarActive ? <SearchResults /> : children}
-		</>
-	);
+	return (<>
+		{searchbarActive ? <SearchResults /> : children}
+	</>);
 }
 
 export default ContentWrapper;
