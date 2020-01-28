@@ -7,7 +7,7 @@ import {
 } from 'utils/types';
 import { Layout, SEO } from '../';
 import { Grid } from './elements';
-import { Pagination, SearchResults, TileMap } from '.';
+import { Pagination, TileMap } from '.';
 
 type Props = {
   data: {
@@ -22,7 +22,6 @@ const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>
     <SEO title="main" values={{ page: pageContext.humanPageNumber }} />
     <Grid>
-      <SearchResults />
       <TileMap edges={data.allBeverage.edges} />
     </Grid>
     <Pagination {...pageContext} />

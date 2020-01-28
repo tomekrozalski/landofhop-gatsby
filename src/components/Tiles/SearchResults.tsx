@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 
-import { NavigationContext, SearchContext } from 'utils/contexts';
+import { SearchContext } from 'utils/contexts';
+import { Grid } from './elements';
 
 const SearchResults: React.FC = () => {
-	const { searchbarActive } = useContext(NavigationContext);
 	const { searchResults } = useContext(SearchContext);
 
-	return searchbarActive ? (
-		<>
+	return (
+		<Grid>
 			{searchResults.map(({ id, name }) => <li key={id}>{name.value}</li>)}
-		</>
-	) : null;
+		</Grid>
+	);
 };
 
 export default SearchResults;
