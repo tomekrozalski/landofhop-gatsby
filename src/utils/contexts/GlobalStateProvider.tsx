@@ -21,5 +21,4 @@ const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children
   </ProviderComposer>
 );
 
-
 export default GlobalStateProvider;

@@ -51,13 +51,11 @@ export const query = graphql`
             value
             language
           }
-          coverPhoto {
-            childImageSharp {
-              fluid(maxWidth: 220) {
-                ...GatsbyImageSharpFluid_withWebp_tracedSVG
-              }
+          photos {
+            cover {
+              height
+              width
             }
-            publicURL
           }
         }
       }

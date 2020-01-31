@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 
 import { NavigationContext } from 'utils/contexts';
@@ -26,12 +26,15 @@ type Props = {
 		beverage: BeverageDetailsTypes
 	}
 	pageContext: {
+		badge: string
+		brandBadge: string
 		intl: {
 			language: SiteLanguage
 		}
 		next: BeverageBaseTypes
 		page: number
 		previous: BeverageBaseTypes
+		shortId: string
 	}
 }
 
@@ -43,20 +46,33 @@ const BeverageDetails: React.FC<Props> = ({
 		beverage
 	},
 	pageContext: {
+		badge,
+		brandBadge,
 		next,
 		page,
 		previous,
+		shortId,
 	}
 }) => {
 	const { setMainLink } = useContext(NavigationContext);
+	const [fetchedBeverage, setFetchedBeverage] = useState(null);
 
 	useEffect(() => {
 		setMainLink(`/list/${page}`);
+
+		console.log('fetch', badge, brandBadge, shortId);
+
+		// fetch('http://localhost:4000/beverage/pl/s0d8j4/browar-pinta/hazy-disco-haarlem')
+		// 	.then(res => res.json())
+		// 	.then(setFetchedBeverage)
+		// 	.catch((e) => {
+		// 		console.log('e', e);
+		// 	});
 	}, [])
 
 	return (
 		<Layout>
-			<BeverageContext.Provider value={translateBeverageDetails(beverage)}>
+			<BeverageContext.Provider value={fetchedBeverage || translateBeverageDetails(beverage)}>
 				<GridWrapper>
 					<Gallery />
 					<Header />

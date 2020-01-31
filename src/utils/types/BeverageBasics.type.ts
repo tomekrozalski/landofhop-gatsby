@@ -1,4 +1,3 @@
-import { GatsbyImageProps } from 'gatsby-image';
 import { Institution, LanguageValue } from '.';
 
 export type BeverageBasics = {
@@ -7,8 +6,10 @@ export type BeverageBasics = {
 	badge: string
 	name: LanguageValue[]
 	brand: Institution
-	coverPhoto: {
-		childImageSharp: GatsbyImageProps | null
-		publicURL: string
-	}
+	photos: {
+		cover: {
+			height: number
+			width: number
+		} | null
+	} | null
 }

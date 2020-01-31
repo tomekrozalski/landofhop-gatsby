@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
 import { FormattedMessage } from 'gatsby-plugin-intl';
@@ -6,16 +6,9 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { LanguageValue } from 'utils/types';
 import { getLangAttr } from 'utils/helpers';
 
-const TaleItemWrapper = styled.div<{ show: boolean }>`
+const TaleItemWrapper = styled.div`
 	& + & {
 		margin-top: 1rem;
-	}
-	
-	div {
-		${({ show }) => (!show && (`
-			max-height: 7.5rem;
-			overflow: hidden;
-		`))}
 	}
 
 	button {
@@ -32,16 +25,25 @@ const TaleItemWrapper = styled.div<{ show: boolean }>`
 	}
 `;
 
-const TaleItem: React.FC<LanguageValue> = ({ language, value }) => {
-	const [show, setShow] = useState(false);
+const slicedText = (value: string) => value.split(' ').slice(0, 30).join(' ');
 
-	const toggle = () => { setShow(value => !value) }
+const TaleItem: React.FC<LanguageValue> = ({ language, value }) => {
+	const [expanded, setExpanded] = useState(false);
+	const [text, setText] = useState(slicedText(value));
+
+	useEffect(() => {
+		setText(expanded ? value : slicedText(value));
+	}, [expanded]);
+
+	const toggle = () => {
+		setExpanded(!expanded);
+	};
 
 	return (
-		<TaleItemWrapper lang={getLangAttr(language)} show={show}>
-			<Markdown>{value}</Markdown>
+		<TaleItemWrapper lang={getLangAttr(language)}>
+			<Markdown>{text}</Markdown>
 			<button onClick={toggle}>
-				<FormattedMessage id={`beverage.details.tale.${show ? 'readLess' : 'readMore'}`} />
+				<FormattedMessage id={`beverage.details.tale.${expanded ? 'readLess' : 'readMore'}`} />
 			</button>
 		</TaleItemWrapper>
 	);

@@ -12,8 +12,6 @@ import {
 const Bitterness: React.FC = () => {
 	const { bitterness } = useContext(BeverageContext);
 
-	console.log('bitterness', bitterness);
-
 	return bitterness ? (
 		<>
 			<dt><FormattedMessage id="beverage.details.bitterness" /></dt>
