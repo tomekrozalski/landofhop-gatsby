@@ -57,6 +57,9 @@ export const query = graphql`
               width
             }
           }
+          container {
+            type
+          }
         }
       }
     }

@@ -1,3 +1,4 @@
+import { ContainerType } from 'utils/enums/beverage';
 import { InstitutionTranslated, LanguageValue } from '../';
 
 export type BeverageBasicsTranslated = {
@@ -12,4 +13,7 @@ export type BeverageBasicsTranslated = {
 			width: number
 		} | null
 	} | null
+	container: {
+		type: ContainerType
+	}
 }
