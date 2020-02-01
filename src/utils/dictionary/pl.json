@@ -28,6 +28,16 @@
       "bitterness": "gorycz",
       "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
       "city": "miejscowość",
+      "clarity": {
+        "clear": "czyste",
+        "crystalline": "krystaliczne",
+        "hazy": "hazy",
+        "misty": "zamglone",
+        "muddy": "błotniste",
+        "name": "klarowność",
+        "opalescent": "opalizujące"
+      },
+      "color": "kolor",
       "container": {
         "color": {
           "brown": "brązowa",
@@ -57,12 +67,14 @@
       "fermentation": "fermentacja",
       "filtration": "filtracja",
       "fullness": "pełnia",
+      "hoppyness": "chmielowość",
       "ingredients": "składniki",
       "navigation": {
         "next": "Następna pozycja",
         "previous": "Poprzednia pozycja"
       },
       "pasteurization": "pasteryzacja",
+      "power": "moc",
       "price": "cena",
       "series": ", w serii {series}",
       "smokedMalt": "zawiera słód suszony dymem",

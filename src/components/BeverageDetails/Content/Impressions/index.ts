@@ -1,14 +1,7 @@
-import Bitterness from './Bitterness';
-import Fullness from './Fullness';
+import Appearance from './Appearance';
 import Impressions from './Impressions';
-import Progress from './Progress';
-import Sweetness from './Sweetness';
+import Taste from './Taste';
 
-export {
-	Bitterness,
-	Fullness,
-	Progress,
-	Sweetness,
-};
+export { Appearance, Taste };
 
 export default Impressions;

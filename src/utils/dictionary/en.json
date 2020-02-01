@@ -26,6 +26,16 @@
       "bitterness": "bitterness",
       "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
       "city": "city",
+      "clarity": {
+        "clear": "clear",
+        "crystalline": "crystalline",
+        "hazy": "hazy",
+        "misty": "misty",
+        "muddy": "muddy",
+        "name": "clarity",
+        "opalescent": "opalescent"
+      },
+      "color": "color",
       "container": {
         "color": {
           "brown": "brown",
@@ -55,12 +65,14 @@
       "fermentation": "fermentation",
       "filtration": "filtration",
       "fullness": "fullness",
+      "hoppyness": "hoppyness",
       "ingredients": "ingredients",
       "navigation": {
         "next": "Next beverage",
         "previous": "Previous beverage"
       },
       "pasteurization": "pasteurization",
+      "power": "power",
       "price": "price",
       "series": ", in series {series}",
       "smokedMalt": "contains malt dried with smoke",
