@@ -30,25 +30,6 @@ exports.sourceNodes = async ({
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions;
 
-  const getPhoto = ({ context, source, type }) => {
-    const files = context.nodeModel.getAllNodes({ type: 'File' });
-
-    const photo = files.find(
-      ({ relativePath }) =>
-        relativePath ===
-        `beverages/${source.brand.badge}/${source.badge}/${source.shortId}/${type}.jpg`
-    );
-
-    if (photo) {
-      return photo;
-    }
-
-    return files.find(
-      ({ relativePath }) =>
-        relativePath === `beverages/broken-${source.container.type}.svg`
-    );
-  };
-
   const typeDefs = [
     schema.buildObjectType({
       name: 'Beverage',
@@ -91,16 +72,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         notes: 'String',
         added: 'Date!',
         updated: 'Date',
-        coverPhoto: {
-          type: 'File',
-          resolve: (source, args, context) =>
-            getPhoto({ context, source, type: 'cover' }),
-        },
-        galleryPhoto: {
-          type: 'File',
-          resolve: (source, args, context) =>
-            getPhoto({ context, source, type: 'gallery' }),
-        },
       },
       interfaces: ['Node'],
     }),

@@ -476,14 +476,6 @@ export const query = graphql`
 				}
 			}
 			updated
-			galleryPhoto {
-				childImageSharp {
-					fixed(width: 220) {
-						...GatsbyImageSharpFixed_withWebp_tracedSVG
-					}
-				}
-				publicURL
-			}
 		}
 	}
 `;

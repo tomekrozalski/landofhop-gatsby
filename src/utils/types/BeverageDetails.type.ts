@@ -217,21 +217,9 @@ export type BeverageDetails = {
   } | null
   photos: {
     cap: boolean | null
-    cover: {
-      height: number
-      width: number
-    } | null
     gallery: number | null
   } | null
   notes: string | null
   added: Date
   updated: Date | null
-  coverPhoto: {
-    childImageSharp: GatsbyImageProps | null
-    publicURL: string
-  }
-  galleryPhoto: {
-    childImageSharp: GatsbyImageProps | null
-    publicURL: string
-  }
 }

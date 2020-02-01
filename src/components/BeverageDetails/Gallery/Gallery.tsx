@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'components/BeverageDetails';
+import { Servers } from 'utils/enums';
+import { CoverImage } from 'elements';
 import { BrokenContainer } from '.';
 
 const Wrapper = styled.aside`
@@ -17,17 +18,30 @@ const Wrapper = styled.aside`
 
 const Gallery: React.FC = () => {
 	const { formatMessage } = useIntl();
-	const { brand, galleryPhoto, name } = useContext(BeverageContext);
+	const {
+		badge,
+		brand,
+		container,
+		name,
+		photos,
+		shortId,
+	} = useContext(BeverageContext);
 
 	return (
 		<Wrapper>
-			{galleryPhoto.childImageSharp ? (
-				<Img
-					fixed={galleryPhoto.childImageSharp.fixed}
-					alt={`${name.value}, ${brand.name.value}`}
-				/>) : (
+			{photos && photos.gallery ? (
+				<CoverImage
+					badge={badge}
+					brand={{ badge: brand.badge, name: brand.name }}
+					height={500}
+					name={name}
+					shortId={shortId}
+					type="container"
+					width={220}
+				/>
+			) : (
 					<BrokenContainer
-						src={galleryPhoto.publicURL}
+						src={`${Servers.images}/broken-${container.type}.svg`}
 						alt={formatMessage({ id: 'errors.bevereageDetailsImageNotFound' })}
 					/>
 				)}
