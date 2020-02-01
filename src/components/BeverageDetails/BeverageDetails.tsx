@@ -12,14 +12,16 @@ import { SiteLanguage } from 'utils/enums';
 import { initialBeverageData } from './utils';
 
 import Layout from '../Layout';
+import { GridWrapper } from './elements';
 import {
+	Aside,
+	BeverageDetailsSeo,
+	Gallery,
 	Header,
 	Impressions,
 	Tale,
 	Testimony,
-} from './Content';
-import { GridWrapper } from './elements';
-import { Aside, BeverageDetailsSeo, Gallery } from '.';
+} from '.';
 
 type Props = {
 	data: {
