@@ -1,13 +1,9 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
+import isNumber from 'lodash/isNumber';
 
 import { BeverageContext } from 'components/BeverageDetails';
-import {
-	Label,
-	Producer,
-	SourceGroup,
-	SourceItem,
-} from 'components/BeverageDetails/elements';
+import { Progress } from '.';
 
 const Bitterness: React.FC = () => {
 	const { bitterness } = useContext(BeverageContext);
@@ -16,22 +12,10 @@ const Bitterness: React.FC = () => {
 		<>
 			<dt><FormattedMessage id="beverage.details.bitterness" /></dt>
 			<dd>
-				<SourceGroup>
-					{bitterness.label && (
-						<Label>
-							<SourceItem>
-								{bitterness.label}
-							</SourceItem>
-						</Label>
-					)}
-					{bitterness.producer && (
-						<Producer>
-							<SourceItem>
-								{bitterness.producer}
-							</SourceItem>
-						</Producer>
-					)}
-				</SourceGroup>
+				{isNumber(bitterness.label) &&
+					<Progress value={bitterness.label}>{bitterness.label}%</Progress>}
+				{isNumber(bitterness.producer) &&
+					<Progress value={bitterness.producer} producer>{bitterness.producer}%</Progress>}
 			</dd>
 		</>
 	) : null;

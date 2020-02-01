@@ -54,6 +54,7 @@
       "extractValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, weight {weight} blg {Blg} plato {Plato} other {}}",
       "fermentation": "fermentation",
       "filtration": "filtration",
+      "fullness": "fullness",
       "ingredients": "ingredients",
       "navigation": {
         "next": "Next beverage",
@@ -64,6 +65,7 @@
       "series": ", in series {series}",
       "smokedMalt": "contains malt dried with smoke",
       "style": "style",
+      "sweetness": "sweetness",
       "tale": {
         "readMore": "read more",
         "readLess": "read less"

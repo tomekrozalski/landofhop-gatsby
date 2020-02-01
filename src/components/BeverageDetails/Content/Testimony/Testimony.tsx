@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import {
 	Aged,
@@ -19,12 +18,8 @@ import {
 	SmokedMalt,
 	Style,
 	Temperature,
+	TestimonyWrapper,
 } from '.';
-
-const TestimonyWrapper = styled.dl`
-	grid-area: testimony;
-	margin: 1rem 0;
-`;
 
 const Testimony: React.FC = () => (
 	<TestimonyWrapper>

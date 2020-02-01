@@ -27,11 +27,17 @@ const GeneralWrapper = styled.span`
 const LabelWrapper = styled.span``;
 
 const ProducerWrapper = styled(GeneralWrapper)`
-	background-image: linear-gradient(#ffe6ea, #ffe6ea);
+	background-image: linear-gradient(
+		var(--color-producer-light),
+		var(--color-producer-light)
+	);
 `;
 
 const EditorialWrapper = styled(GeneralWrapper)`
-	background-image: linear-gradient(#c1d5f8, #c1d5f8);
+	background-image: linear-gradient(
+		var(--color-editorial-light),
+		var(--color-editorial-light)
+	);
 `;
 
 export const Label: React.FC = ({ children }) => (

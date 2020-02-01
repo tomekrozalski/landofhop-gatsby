@@ -16,6 +16,7 @@ import SmokedMalt from './SmokedMalt';
 import Style from './Style';
 import Temperature from './Temperature';
 import Testimony from './Testimony';
+import TestimonyWrapper from './TestimonyWrapper';
 
 export {
 	Aged,
@@ -35,6 +36,7 @@ export {
 	SmokedMalt,
 	Style,
 	Temperature,
+	TestimonyWrapper,
 };
 
 export default Testimony;

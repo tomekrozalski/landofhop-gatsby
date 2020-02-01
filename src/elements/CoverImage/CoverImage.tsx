@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { LanguageValue } from 'utils/types';
@@ -37,6 +37,13 @@ type Props = {
 	width?: number
 }
 
+const inImageCache = (src: string) => {
+	var image = new Image();
+	image.src = src;
+
+	return image.complete;
+}
+
 const CoverImage: React.FC<Props> = ({
 	badge,
 	brand,
@@ -60,6 +67,7 @@ const CoverImage: React.FC<Props> = ({
 			: `${basicPath}/${type}/${format}/${size}x/01.${format}`;
 	}
 
+	const seenBefore = inImageCache(getPath('webp', 1));
 
 	return (
 		<Wrapper>
@@ -91,7 +99,7 @@ const CoverImage: React.FC<Props> = ({
 						src={getPath('jpg', 1)}
 						alt={loaded ? `${name.value}, ${brand.name.value}` : ''}
 						onLoad={onPictureLoad}
-						isLoaded={loaded}
+						isLoaded={seenBefore || loaded}
 					/>
 				</picture>
 			) : (

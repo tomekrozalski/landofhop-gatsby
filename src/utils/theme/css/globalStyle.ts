@@ -14,6 +14,10 @@ const globalStyles = css`
     --color-warning-strong: #d0be26;
     --color-danger-strong: #be5656;
     --color-danger-light: #dec1c1;
+    --color-producer-light: #ffe6ea;
+    --color-producer-strong: #c67e89;
+    --color-editorial-light: #c1d5f8;
+    --color-editorial-strong: #577dc0;
 
     --font-primary: 'fira-sans', sans-serif;
     --font-weight-light: 300;
@@ -113,32 +117,6 @@ const globalStyles = css`
   strong, em {
     font-weight: var(--font-weight-regular);
     font-style: normal;
-  }
-
-  dl {
-    margin: 0;
-  }
-
-  dl::first-letter {
-    text-transform: uppercase;
-  }
-
-  dt {
-    display: inline;
-  }
-
-  dt::after {
-    content: ': ';
-  }
-
-  dd {
-    display: inline;
-    margin: 0;
-    padding: 0;
-  }
-
-  dd:not(:last-of-type)::after {
-    content: ', ';
   }
 
   ul {
