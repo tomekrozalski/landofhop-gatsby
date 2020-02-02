@@ -5,6 +5,7 @@
   },
   "beverage": {
     "details": {
+      "added": "added",
       "aged": {
         "barrel": {
           "beech": "inside beech barrel",

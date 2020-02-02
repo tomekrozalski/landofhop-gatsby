@@ -5,6 +5,7 @@
   },
   "beverage": {
     "details": {
+      "added": "dodano",
       "aged": {
         "barrel": {
           "unknown": "w beczce",

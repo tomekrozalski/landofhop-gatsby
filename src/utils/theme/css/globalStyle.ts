@@ -14,6 +14,7 @@ const globalStyles = css`
     --color-warning-strong: #d0be26;
     --color-danger-strong: #be5656;
     --color-danger-light: #dec1c1;
+    --color-producer-lightest: #fef6f7;
     --color-producer-light: #ffe6ea;
     --color-producer-strong: #c67e89;
     --color-editorial-light: #c1d5f8;

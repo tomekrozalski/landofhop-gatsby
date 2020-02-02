@@ -19,7 +19,7 @@ const Tale: React.FC = () => {
 						{tale.label && (
 							tale.label.map(props => <TaleItem key={props.value} {...props} />)
 						)}
-						{tale.producer && <TaleItem {...tale.producer} />}
+						{tale.producer && <TaleItem {...tale.producer} producer />}
 					</>
 				)
 			}

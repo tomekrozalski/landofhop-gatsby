@@ -16,6 +16,7 @@ import { GridWrapper } from './elements';
 import {
 	Aside,
 	BeverageDetailsSeo,
+	FootNotes,
 	Gallery,
 	Header,
 	Impressions,
@@ -81,6 +82,7 @@ const BeverageDetails: React.FC<Props> = ({
 					<Tale />
 					<Testimony />
 					<Impressions />
+					<FootNotes />
 					<Aside next={next} previous={previous} />
 				</GridWrapper>
 				<BeverageDetailsSeo />

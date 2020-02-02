@@ -7,11 +7,11 @@ const AppearanceWrapper = styled.dl`
 	flex-basis: 50%;
 	display: flex;
 	flex-wrap: wrap;
-	margin: 1rem;
+	margin: 1rem 0;
 
 	dt {
-		flex-basis: 50%;
-		padding-right: 1rem;
+		flex-basis: 40%;
+		padding-right: .7rem;
 		text-align: right;
 
 		&::first-letter {
@@ -24,7 +24,7 @@ const AppearanceWrapper = styled.dl`
 	}
 
 	dd {
-		flex-basis: 50%;
+		flex-basis: 60%;
 		margin: 0;
 		padding: 0;
 	}
