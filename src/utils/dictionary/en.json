@@ -98,8 +98,8 @@
     }
   },
   "errors": {
-    "tileImageNotFound": "Tile image not found",
-    "bevereageDetailsImageNotFound": "Beverage details image not found"
+    "bevereageDetailsImageNotFound": "Beverage details image not found",
+    "tileImageNotFound": "Tile image not found"
   },
   "formattedList": {
     "conjunction": {
@@ -120,6 +120,10 @@
     "password": "Password",
     "submit": "Submit"
   },
+  "loginFailed": {
+    "title": "Login failed",
+    "description": "The login script probably didn't load correctly or you have JavaScript turned off in your browser. Try again"
+  },
   "navbar": {
     "about": "About the app",
     "addBeverage": "Add beverage",
@@ -135,6 +139,7 @@
   "titles": {
     "about": "About the site",
     "beverageDetails": "🍻 {brand}, {name}",
+    "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Not Found"
   },

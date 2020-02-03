@@ -5,7 +5,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Button, TextInput } from 'elements';
 
-const LoginBarContainer = styled<any>(Form)`
+const LoginBarContainer = styled(Form)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@ type Props = {
 }
 
 const FormBody: React.FC<Props> = ({ isSubmitting, isValid }) => (
-  <LoginBarContainer noValidate>
+  <LoginBarContainer action="/admin" noValidate>
     <TextInput label="loginbar.email" name="email" type="email" />
     <TextInput label="loginbar.password" name="password" type="password" />
     <Button disabled={!isValid} isSubmitting={isSubmitting} type="submit">

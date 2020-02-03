@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
-import styled from 'styled-components';
 
 import Layout from 'components/Layout';
 import SEO from 'components/Seo';
-
-const Wrapper = styled.div`
-  padding: 4rem 0;
-  text-align: center;
-`;
-
-const Statement = styled.h1`
-  margin: 4rem;
-  font: var(--font-weight-medium) 8rem / 1 var(--font-primary);
-  text-shadow: 1px 1px 1px var(--color-brighter), 0 0 0 var(--color-darker),
-    1px 1px 1px var(--color-brighter);
-  color: transparent;
-`;
+import { ErrorHeader, ErrorWrapper } from 'elements';
 
 const NotFoundPage: React.FC = () => {
   const [seconds, setSeconds] = useState(3);
@@ -36,14 +23,14 @@ const NotFoundPage: React.FC = () => {
   return (
     <Layout>
       <SEO title="notFound" />
-      <Wrapper>
-        <Statement>
+      <ErrorWrapper>
+        <ErrorHeader>
           <FormattedMessage id="notFound.title" />
-        </Statement>
+        </ErrorHeader>
         <p>
           <FormattedMessage id="notFound.body" values={{ seconds }} />
         </p>
-      </Wrapper>
+      </ErrorWrapper>
     </Layout>
   );
 };

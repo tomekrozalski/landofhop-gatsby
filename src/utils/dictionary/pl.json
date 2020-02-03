@@ -122,6 +122,10 @@
     "password": "Hasło",
     "submit": "Wyślij"
   },
+  "loginFailed": {
+    "title": "Błąd logowania",
+    "description": "Prawdopodnie nie załadował się skrypt logowania lub masz wyłączoną obsługę JavaScript w przeglądarce. Spróbuj ponownie"
+  },
   "navbar": {
     "about": "O stronie",
     "addBeverage": "Dodaj piwo",
@@ -137,6 +141,7 @@
   "titles": {
     "about": "O stronie",
     "beverageDetails": "🍻 {brand}, {name}",
+    "loginFailed": "Błąd logowania",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Nie znaleziono"
   },

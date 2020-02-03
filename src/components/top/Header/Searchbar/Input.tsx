@@ -37,6 +37,7 @@ const Input = styled.input.attrs({
 	&:focus {
 		opacity: 1;
 		cursor: initial;
+		outline: none;
 	}
 `;
 

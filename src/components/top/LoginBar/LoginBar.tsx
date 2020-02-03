@@ -7,7 +7,7 @@ import FormBody from './FormBody';
 import validationSchema from './validationSchema';
 
 const LoginBar: React.FC = () => {
-  const { logIn } = useContext(AuthenticationContext);
+  const { isAuthenticationError, logIn } = useContext(AuthenticationContext);
   const { loginbar, navbar } = useContext(NavigationContext);
 
   return (
@@ -28,7 +28,7 @@ const LoginBar: React.FC = () => {
         }}
         validationSchema={validationSchema}
       >
-        {FormBody}
+        {isAuthenticationError ? <div>isError</div> : FormBody}
       </Formik>
     </Wrapper>
   );
