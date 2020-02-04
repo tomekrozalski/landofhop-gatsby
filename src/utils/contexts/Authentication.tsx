@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
-// import { differenceInSeconds, fromUnixTime } from 'date-fns';
-// import jwt from 'jsonwebtoken';
+import React, { useContext, useEffect, useState } from 'react';
+import { differenceInSeconds, fromUnixTime } from 'date-fns';
+import jwt from 'jsonwebtoken';
+import isObject from 'lodash/isObject';
 
 import { NavigationContext } from './Navigation';
 
@@ -9,10 +10,12 @@ export const AuthenticationContext = React.createContext({
   logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
   logOut: () => { },
   setAuthenticationStatus: (value: 'idle' | 'error' | 'success') => { value },
+  tokenExpirationDate: new Date()
 });
 
 const Authentication: React.FC = ({ children }) => {
   const [authenticationStatus, setAuthenticationStatus] = useState('idle');
+  const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(new Date());
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
   const logOut = () => {
@@ -20,9 +23,46 @@ const Authentication: React.FC = ({ children }) => {
       window.localStorage.removeItem('token');
     }
 
-    setNavbar(false);
+    setLoginbar(false);
+    setTokenExpirationDate(new Date());
     setAuthenticationStatus('idle');
   };
+
+  const checkTokenExpiration = (value: string) => {
+    return new Promise((resolve, reject) => {
+      const decodedToken = jwt.decode(value, { complete: true });
+
+      if (isObject(decodedToken)) {
+        const expirationDate = fromUnixTime(decodedToken.payload.exp);
+
+        if (differenceInSeconds(expirationDate, new Date()) > 10) {
+          setTokenExpirationDate(expirationDate);
+          setAuthenticationStatus('success');
+          resolve();
+        }
+      }
+
+      reject();
+    });
+  }
+
+  useEffect(() => {
+    const storageToken = window.localStorage.getItem('token');
+
+    if (storageToken) {
+      checkTokenExpiration(storageToken)
+        .then(() => {
+          setLoginbar(true);
+          setNavbar(true);
+
+          setTimeout(() => {
+            setLoginbar(false);
+            setNavbar(false);
+          }, 4000);
+        })
+        .catch(logOut);
+    }
+  }, []);
 
   const logIn = (formValues: { email: string, password: string }) => {
     return fetch(`${process.env.API_SERVER}/auth`, {
@@ -38,17 +78,16 @@ const Authentication: React.FC = ({ children }) => {
           throw Error(response.message);
         }
 
-        console.log('response', response);
-        setAuthenticationStatus('success');
+        checkTokenExpiration(response.token)
+          .then(() => {
+            window.localStorage.setItem('token', response.token);
 
-        setTimeout(() => {
-          console.log('setTimeout')
-          setLoginbar(false);
-          setNavbar(false);
-        }, 2000);
-
-        console.log('success');
-        return response;
+            setTimeout(() => {
+              setLoginbar(false);
+              setNavbar(false);
+            }, 2000);
+          })
+          .catch(logOut);
       })
       .catch(() => {
         setAuthenticationStatus('error');
@@ -62,6 +101,7 @@ const Authentication: React.FC = ({ children }) => {
         logIn,
         logOut,
         setAuthenticationStatus,
+        tokenExpirationDate,
       }}
     >
       {children}

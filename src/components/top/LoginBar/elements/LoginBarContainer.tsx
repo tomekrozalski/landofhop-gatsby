@@ -8,6 +8,7 @@ const LoginBarContainer = styled(Form)`
   width: var(--size-container-max-width);
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
 `;
 
 export default LoginBarContainer;

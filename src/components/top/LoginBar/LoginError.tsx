@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { AuthenticationContext } from 'utils/contexts';
-import { LoginBarContainer } from './elements';
+import { Warning } from 'elements/icons';
+import { IconWrapper, LoginBarContainer } from './elements';
 
 const Button = styled.button`
 	margin-left: 2rem;
@@ -25,6 +26,7 @@ const LoginError = () => {
 
 	return (
 		<LoginBarContainer as="div">
+			<IconWrapper><Warning /></IconWrapper>
 			<FormattedMessage id="loginbar.loginFailed" />
 			<Button onClick={() => setAuthenticationStatus('idle')}>
 				<FormattedMessage id="loginbar.tryAgain" />

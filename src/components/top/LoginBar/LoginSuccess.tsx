@@ -1,16 +1,25 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
+import { formatDistanceStrict, } from 'date-fns';
+import pl from 'date-fns/locale/pl';
 
 import { AuthenticationContext } from 'utils/contexts';
-import { LoginBarContainer } from './elements';
+import { Checkmark } from 'elements/icons';
+import { IconWrapper, LoginBarContainer } from './elements';
 
 const LoginSuccess = () => {
-	const { setAuthenticationStatus } = useContext(AuthenticationContext);
+	const { tokenExpirationDate } = useContext(AuthenticationContext);
 
 	return (
 		<LoginBarContainer as="div">
-			<FormattedMessage id="loginbar.loginSuccess" />
+			<IconWrapper><Checkmark /></IconWrapper>
+			<FormattedMessage id="loginbar.loginSuccess" values={{
+				expiresIn: formatDistanceStrict(
+					new Date(tokenExpirationDate),
+					new Date(),
+					{ addSuffix: true, locale: pl },
+				)
+			}} />
 		</LoginBarContainer>
 	);
 }

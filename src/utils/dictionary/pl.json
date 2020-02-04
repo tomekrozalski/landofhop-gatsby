@@ -119,7 +119,7 @@
   },
   "loginbar": {
     "email": "Email",
-    "loginSuccess": "Zalogowano poprawnie",
+    "loginSuccess": "Zalogowano poprawnie. Token dostępowy wygasa {expiresIn}.",
     "loginFailed": "Logowanie zakończyło się niepowowdzeniem",
     "password": "Hasło",
     "submit": "Wyślij",

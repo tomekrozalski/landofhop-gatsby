@@ -118,7 +118,7 @@
   "loginbar": {
     "email": "Email",
     "loginFailed": "Log in failed",
-    "loginSuccess": "Successfully logged in",
+    "loginSuccess": "Successfully logged in. Access token expires {expiresIn}.",
     "password": "Password",
     "submit": "Submit",
     "tryAgain": "Try again"
