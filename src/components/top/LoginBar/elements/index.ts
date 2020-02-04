@@ -1,3 +1,4 @@
+import LoginBarContainer from './LoginBarContainer';
 import Wrapper from './Wrapper';
 
-export { Wrapper };
+export { LoginBarContainer, Wrapper };

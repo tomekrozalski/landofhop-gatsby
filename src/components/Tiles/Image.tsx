@@ -2,7 +2,6 @@ import React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
-import { Servers } from 'utils/enums';
 import { CoverImage } from 'elements';
 import { BrokenContainer } from './elements';
 
@@ -28,7 +27,7 @@ const Image: React.FC<BeverageBasicsTranslatedTypes> = ({
     />
   ) : (
       <BrokenContainer
-        src={`${Servers.images}/broken-${container.type}.svg`}
+        src={`${process.env.PHOTO_SERVER}/broken-${container.type}.svg`}
         alt={formatMessage({ id: 'errors.tileImageNotFound' })}
       />
     );

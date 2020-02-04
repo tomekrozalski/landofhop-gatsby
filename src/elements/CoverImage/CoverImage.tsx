@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { LanguageValue } from 'utils/types';
-import { Servers } from 'utils/enums';
 import { Stretcher } from '.';
 
 const Wrapper = styled.div`
@@ -60,7 +59,7 @@ const CoverImage: React.FC<Props> = ({
 	}
 
 	const getPath = (format: 'webp' | 'jpg', size: 1 | 2) => {
-		const basicPath = `${Servers.images}/${brand.badge}/${badge}/${shortId}`;
+		const basicPath = `${process.env.PHOTO_SERVER}/${brand.badge}/${badge}/${shortId}`;
 
 		return type === 'cover'
 			? `${basicPath}/${type}/${format}/${size}x.${format}`

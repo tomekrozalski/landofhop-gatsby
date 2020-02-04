@@ -117,8 +117,11 @@
   },
   "loginbar": {
     "email": "Email",
+    "loginFailed": "Log in failed",
+    "loginSuccess": "Successfully logged in",
     "password": "Password",
-    "submit": "Submit"
+    "submit": "Submit",
+    "tryAgain": "Try again"
   },
   "loginFailed": {
     "title": "Login failed",

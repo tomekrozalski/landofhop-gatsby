@@ -36,12 +36,12 @@ const Button = styled.button.attrs({
 `;
 
 const Authorization: React.FC = () => {
-  const { isLoggedIn, logOut } = useContext(AuthenticationContext);
+  const { authenticationStatus, logOut } = useContext(AuthenticationContext);
   const { toggleLoginbar } = useContext(NavigationContext);
 
   return (
     <Wrapper>
-      {isLoggedIn ? (
+      {authenticationStatus === 'success' ? (
         <Button onClick={logOut}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 24.84">
             <path

@@ -100,8 +100,8 @@
     }
   },
   "errors": {
-    "tileImageNotFound": "Nie znaleziono zdjęcia",
-    "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia"
+    "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia",
+    "tileImageNotFound": "Nie znaleziono zdjęcia"
   },
   "formattedList": {
     "conjunction": {
@@ -119,8 +119,11 @@
   },
   "loginbar": {
     "email": "Email",
+    "loginSuccess": "Zalogowano poprawnie",
+    "loginFailed": "Logowanie zakończyło się niepowowdzeniem",
     "password": "Hasło",
-    "submit": "Wyślij"
+    "submit": "Wyślij",
+    "tryAgain": "Spróbuj ponownie"
   },
   "loginFailed": {
     "title": "Błąd logowania",

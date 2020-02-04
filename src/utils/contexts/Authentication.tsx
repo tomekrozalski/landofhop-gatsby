@@ -5,29 +5,27 @@ import React, { useContext, useState } from 'react';
 import { NavigationContext } from './Navigation';
 
 export const AuthenticationContext = React.createContext({
-  isAuthenticationError: false,
+  authenticationStatus: 'idle',
   logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
   logOut: () => { },
+  setAuthenticationStatus: (value: 'idle' | 'error' | 'success') => { value },
 });
 
 const Authentication: React.FC = ({ children }) => {
-  const [isAuthenticationError, setAuthenticationError] = useState(false);
+  const [authenticationStatus, setAuthenticationStatus] = useState('idle');
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
-  const setLogout = () => {
+  const logOut = () => {
     if (window.localStorage.getItem('token')) {
       window.localStorage.removeItem('token');
     }
-  };
 
-  const logOut = () => {
-    setLogout();
-    setLoginbar(false);
     setNavbar(false);
+    setAuthenticationStatus('idle');
   };
 
   const logIn = (formValues: { email: string, password: string }) => {
-    return fetch('http://localhost:4000/auth', {
+    return fetch(`${process.env.API_SERVER}/auth`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,24 +39,29 @@ const Authentication: React.FC = ({ children }) => {
         }
 
         console.log('response', response);
+        setAuthenticationStatus('success');
 
-        setLoginbar(false);
-        setNavbar(false);
+        setTimeout(() => {
+          console.log('setTimeout')
+          setLoginbar(false);
+          setNavbar(false);
+        }, 2000);
 
         console.log('success');
         return response;
       })
       .catch(() => {
-        setAuthenticationError(true);
+        setAuthenticationStatus('error');
       });
   };
 
   return (
     <AuthenticationContext.Provider
       value={{
-        isAuthenticationError,
+        authenticationStatus,
         logIn,
-        logOut
+        logOut,
+        setAuthenticationStatus,
       }}
     >
       {children}

@@ -21,7 +21,7 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   );
 
 const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <ProviderComposer contexts={[<Device />, <Authentication />, <Navigation />, <Search />]}>
+  <ProviderComposer contexts={[<Device />, <Navigation />, <Authentication />, <Search />]}>
     {children}
   </ProviderComposer>
 );

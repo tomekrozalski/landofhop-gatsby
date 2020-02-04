@@ -22,14 +22,14 @@ const Label = styled.label`
   }
 `;
 
-const Input: any = styled.input`
+const Input: any = styled.input<{ invert: boolean }>`
   display: block;
   width: 100%;
   height: var(--size-input-height);
   border: 0;
   border-bottom: 1px solid var(--color-dark);
   padding: 0 25px 0 1rem;
-  background-color: var(--color-brighter);
+  background-color: var(--color-${({ invert }) => (invert ? 'white' : 'brighter')});
   font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
   color: var(--color-black);
 
@@ -46,9 +46,16 @@ const Input: any = styled.input`
   }
 `;
 
-type Props = { label: string }
+type Props = {
+  invert?: boolean
+  label: string
+}
 
-const TextInput: React.FC<Props & FieldAttributes<{}>> = ({ label, ...props }) => {
+const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
+  invert = false,
+  label,
+  ...props
+}) => {
   const [field, { error, touched }] = useField<{}>(props);
   const fieldName = label.toLowerCase().replace('.', '-');
 
@@ -63,10 +70,16 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({ label, ...props }) =
             {...field}
             {...props}
             id={fieldName}
+            invert={invert}
           />
         </FieldStatusIndicator>
       ) : (
-          <Input {...field} {...props} id={fieldName} />
+          <Input
+            {...field}
+            {...props}
+            id={fieldName}
+            invert={invert}
+          />
         )}
     </Wrapper>
   );

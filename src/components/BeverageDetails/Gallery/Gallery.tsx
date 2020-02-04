@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'components/BeverageDetails';
-import { Servers } from 'utils/enums';
 import { CoverImage } from 'elements';
 import { BrokenContainer } from '.';
 
@@ -41,7 +40,7 @@ const Gallery: React.FC = () => {
 				/>
 			) : (
 					<BrokenContainer
-						src={`${Servers.images}/broken-${container.type}.svg`}
+						src={`${process.env.PHOTO_SERVER}/broken-${container.type}.svg`}
 						alt={formatMessage({ id: 'errors.bevereageDetailsImageNotFound' })}
 					/>
 				)}

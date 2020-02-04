@@ -3,12 +3,28 @@ import { Formik } from 'formik';
 
 import { AuthenticationContext, NavigationContext } from 'utils/contexts';
 import { Wrapper } from './elements';
-import FormBody from './FormBody';
-import validationSchema from './validationSchema';
+import {
+  FormBody,
+  LoginError,
+  LoginSuccess,
+  validationSchema,
+} from '.';
 
 const LoginBar: React.FC = () => {
-  const { isAuthenticationError, logIn } = useContext(AuthenticationContext);
+  const { authenticationStatus, logIn } = useContext(AuthenticationContext);
   const { loginbar, navbar } = useContext(NavigationContext);
+
+  const renderContent = () => {
+    switch (authenticationStatus) {
+      case 'error':
+        return <LoginError />;
+      case 'success':
+        return <LoginSuccess />;
+      case 'idle':
+      default:
+        return FormBody;
+    }
+  }
 
   return (
     <Wrapper isActive={loginbar} isNavbar={navbar}>
@@ -28,7 +44,7 @@ const LoginBar: React.FC = () => {
         }}
         validationSchema={validationSchema}
       >
-        {isAuthenticationError ? <div>isError</div> : FormBody}
+        {renderContent()}
       </Formik>
     </Wrapper>
   );
