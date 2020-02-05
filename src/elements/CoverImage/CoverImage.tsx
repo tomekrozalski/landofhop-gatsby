@@ -66,7 +66,13 @@ const CoverImage: React.FC<Props> = ({
 			: `${basicPath}/${type}/${format}/${size}x/01.${format}`;
 	}
 
-	const seenBefore = inImageCache(getPath('webp', 1));
+	const isBrowser = typeof window !== `undefined`;
+
+	const seenBefore = () => {
+		return isBrowser
+			? inImageCache(getPath('webp', 1))
+			: null;
+	}
 
 	return (
 		<Wrapper>
@@ -86,7 +92,7 @@ const CoverImage: React.FC<Props> = ({
 					transition: 'var(--transition-default)'
 				}}
 			/>
-			{typeof window !== `undefined` ? (
+			{isBrowser ? (
 				<picture>
 					<source
 						type="image/webp"
@@ -98,7 +104,7 @@ const CoverImage: React.FC<Props> = ({
 						src={getPath('jpg', 1)}
 						alt={loaded ? `${name.value}, ${brand.name.value}` : ''}
 						onLoad={onPictureLoad}
-						isLoaded={seenBefore || loaded}
+						isLoaded={seenBefore() || loaded}
 					/>
 				</picture>
 			) : (

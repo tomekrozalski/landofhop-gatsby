@@ -1,45 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
 
-import { Clarity, Color } from '.';
+import { BeverageContext } from 'components/BeverageDetails';
+import { AppearanceWrapper, Clarity, Color } from '.';
 
-const AppearanceWrapper = styled.dl`
-	flex-basis: 50%;
-	display: flex;
-	flex-wrap: wrap;
-	margin: 1rem 0;
+const Appearance = () => {
+	const { clarity, color } = useContext(BeverageContext);
 
-	dt {
-		flex-basis: 40%;
-		padding-right: .7rem;
-		text-align: right;
-
-		&::first-letter {
-			text-transform: uppercase;
-		}
-
-		&::after {
-			content: ':';
-		}
-	}
-
-	dd {
-		flex-basis: 60%;
-		margin: 0;
-		padding: 0;
-	}
-
-	dd::after {
-		display: block;
-		content: '';
-	}
-`;
-
-const Appearance = () => (
-	<AppearanceWrapper>
-		<Color />
-		<Clarity />
-	</AppearanceWrapper>
-);
+	return (clarity || color) ? (
+		<AppearanceWrapper>
+			<Color />
+			<Clarity />
+		</AppearanceWrapper>
+	) : null;
+}
 
 export default Appearance;

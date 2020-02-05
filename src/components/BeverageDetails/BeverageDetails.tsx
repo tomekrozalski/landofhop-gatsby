@@ -14,6 +14,7 @@ import { initialBeverageData } from './utils';
 import Layout from '../Layout';
 import { GridWrapper } from './elements';
 import {
+	AdminBar,
 	Aside,
 	BeverageDetailsSeo,
 	FootNotes,
@@ -83,6 +84,7 @@ const BeverageDetails: React.FC<Props> = ({
 					<Testimony />
 					<Impressions />
 					<FootNotes />
+					<AdminBar />
 					<Aside next={next} previous={previous} />
 				</GridWrapper>
 				<BeverageDetailsSeo />

@@ -12,7 +12,8 @@ const GridWrapper = styled.article`
 		'tale'
 		'testimony'
 		'impressions'
-		'footnotes';
+		'footnotes'
+		'admin';
 	column-gap: 4rem;
   max-width: var(--size-container-max-width);
   padding: 2rem;
@@ -27,6 +28,7 @@ const GridWrapper = styled.article`
 			'gallery testimony testimony'
 			'gallery impressions impressions'
 			'gallery footnotes footnotes'
+			'gallery admin admin'
 			'gallery . .';
   }
 
@@ -38,6 +40,7 @@ const GridWrapper = styled.article`
 			'gallery testimony aside'
 			'gallery impressions aside'
 			'gallery footnotes aside'
+			'gallery admin aside'
 			'gallery . aside';
 		padding: 2rem 1rem;
   }

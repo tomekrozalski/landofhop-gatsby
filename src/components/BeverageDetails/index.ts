@@ -1,3 +1,4 @@
+import AdminBar from './AdminBar';
 import Aside from './Aside';
 import BeverageDetails, { BeverageContext } from './BeverageDetails';
 import BeverageDetailsSeo from './BeverageDetailsSeo';
@@ -9,6 +10,7 @@ import Tale from './Tale';
 import Testimony from './Testimony';
 
 export {
+	AdminBar,
 	Aside,
 	BeverageContext,
 	BeverageDetailsSeo,

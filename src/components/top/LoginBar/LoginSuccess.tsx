@@ -15,7 +15,7 @@ const LoginSuccess = () => {
 			<IconWrapper><Checkmark /></IconWrapper>
 			<FormattedMessage id="loginbar.loginSuccess" values={{
 				expiresIn: formatDistanceStrict(
-					new Date(tokenExpirationDate),
+					tokenExpirationDate,
 					new Date(),
 					{ addSuffix: true, locale: pl },
 				)
