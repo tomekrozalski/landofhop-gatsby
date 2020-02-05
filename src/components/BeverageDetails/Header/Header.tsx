@@ -11,7 +11,7 @@ import {
 
 const HeaderWrapper = styled.header`
 	grid-area: header;
-	margin: 1rem 0;
+	margin-top: 1rem;
 `;
 
 const Header: React.FC = () => (

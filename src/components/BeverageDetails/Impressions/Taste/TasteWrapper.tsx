@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+import { breakpoints } from 'utils/theme';
+
 const TasteWrapper = styled.dl`
-	flex-basis: 50%;
+	flex-basis: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	margin: 1rem 0;
+
+	@media (min-width: ${breakpoints.lg}) {
+		flex-basis: 50%;
+  }
 
 	dt {
 		flex-basis: 40%;

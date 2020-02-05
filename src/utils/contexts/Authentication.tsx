@@ -50,17 +50,7 @@ const Authentication: React.FC = ({ children }) => {
     const storageToken = window.localStorage.getItem('token');
 
     if (storageToken) {
-      checkTokenExpiration(storageToken)
-        .then(() => {
-          setLoginbar(true);
-          setNavbar(true);
-
-          setTimeout(() => {
-            setLoginbar(false);
-            setNavbar(false);
-          }, 4000);
-        })
-        .catch(logOut);
+      checkTokenExpiration(storageToken).catch(logOut);
     }
   }, []);
 

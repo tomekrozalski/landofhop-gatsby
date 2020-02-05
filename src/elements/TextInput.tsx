@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-grow: 1;
   max-width: 35rem;
-  margin-right: 1rem;
+  margin: 1rem;
 `;
 
 const Label = styled.label`

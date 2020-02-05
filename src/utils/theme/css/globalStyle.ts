@@ -33,11 +33,17 @@ const globalStyles = css`
     --size-container-max-width: 100%;
     --size-header-height: 4rem;
     --size-input-height: 3.4rem;
-    --size-loginbar-height: 8rem;
+    --size-loginbar-height: 18rem;
     --size-navbar-height: 10rem;
     --size-tiles-gap: 1rem;
 
     --transition-default: 0.2s cubic-bezier(0.42, 0, 1, 1);
+  }
+
+  @media (min-width: 560px) {
+    :root {
+      --size-loginbar-height: 12rem;
+    }
   }
 
   @media (min-width: 768px) {
@@ -50,6 +56,7 @@ const globalStyles = css`
   @media (min-width: 1024px) {
     :root {
       --size-container-max-width: 1030px;
+      --size-loginbar-height: 8rem;
     }
   }
 
@@ -82,10 +89,6 @@ const globalStyles = css`
   h1 {
     margin: 0;
     font: var(--font-weight-medium) 3rem / 3.8rem var(--font-primary);
-  }
-
-  p {
-    margin: 0;
   }
 
   button,

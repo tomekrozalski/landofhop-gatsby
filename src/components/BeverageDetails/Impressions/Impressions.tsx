@@ -6,6 +6,7 @@ import { Appearance, Taste } from '.';
 const ImpressionsWrapper = styled.div`
 	grid-area: impressions;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: flex-start;
 `;
 
