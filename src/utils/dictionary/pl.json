@@ -6,6 +6,9 @@
   "beverage": {
     "details": {
       "added": "dodano",
+      "adminBar": {
+        "updatePhotos": "Popraw zdjęcia"
+      },
       "aged": {
         "barrel": {
           "unknown": "w beczce",
@@ -99,6 +102,11 @@
       "top": "górna"
     }
   },
+  "dashboard": {
+    "updateBeverageImages": {
+      "title": "Popraw grafiki dla napoju"
+    }
+  },
   "errors": {
     "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia",
     "tileImageNotFound": "Nie znaleziono zdjęcia"
@@ -120,9 +128,11 @@
   "loginbar": {
     "email": "Email",
     "loginSuccess": "Zalogowano poprawnie. Token dostępowy wygasa {expiresIn}.",
+    "loginAgain": "Zaloguj się ponownie",
     "loginFailed": "Logowanie zakończyło się niepowowdzeniem",
     "password": "Hasło",
     "submit": "Wyślij",
+    "tokenExpired": "Wygasł token dostępowy",
     "tryAgain": "Spróbuj ponownie"
   },
   "loginFailed": {

@@ -7,6 +7,7 @@ import {
   FormBody,
   LoginError,
   LoginSuccess,
+  TokenExpired,
   validationSchema,
 } from '.';
 
@@ -18,6 +19,8 @@ const LoginBar: React.FC = () => {
     switch (authenticationStatus) {
       case 'error':
         return <LoginError />;
+      case 'expired':
+        return <TokenExpired />;
       case 'success':
         return <LoginSuccess />;
       case 'idle':

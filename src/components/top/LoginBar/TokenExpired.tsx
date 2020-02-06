@@ -5,18 +5,18 @@ import { AuthenticationContext } from 'utils/contexts';
 import { Warning } from 'elements/icons';
 import { IconWrapper, LoginBarContainer, ResetButton } from './elements';
 
-const LoginError = () => {
+const TokenExpired = () => {
 	const { setAuthenticationStatus } = useContext(AuthenticationContext);
 
 	return (
 		<LoginBarContainer as="div">
 			<IconWrapper><Warning /></IconWrapper>
-			<FormattedMessage id="loginbar.loginFailed" />
+			<FormattedMessage id="loginbar.tokenExpired" />
 			<ResetButton onClick={() => setAuthenticationStatus('idle')}>
-				<FormattedMessage id="loginbar.tryAgain" />
+				<FormattedMessage id="loginbar.loginAgain" />
 			</ResetButton>
 		</LoginBarContainer>
 	);
 }
 
-export default LoginError;
+export default TokenExpired;

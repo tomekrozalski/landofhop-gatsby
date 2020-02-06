@@ -9,7 +9,7 @@ export const AuthenticationContext = React.createContext({
   authenticationStatus: 'idle',
   logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
   logOut: () => { },
-  setAuthenticationStatus: (value: 'idle' | 'error' | 'success') => { value },
+  setAuthenticationStatus: (value: 'idle' | 'error' | 'success' | 'expired') => { value },
   tokenExpirationDate: new Date()
 });
 
@@ -27,6 +27,18 @@ const Authentication: React.FC = ({ children }) => {
     setTokenExpirationDate(new Date());
     setAuthenticationStatus('idle');
   };
+
+  const tokenExpired = () => {
+    setAuthenticationStatus('expired');
+    setLoginbar(true);
+    setNavbar(true);
+
+    setTimeout(() => {
+      setLoginbar(false);
+      setNavbar(false);
+      logOut();
+    }, 5000);
+  }
 
   const checkTokenExpiration = (value: string) => {
     return new Promise((resolve, reject) => {
@@ -50,7 +62,7 @@ const Authentication: React.FC = ({ children }) => {
     const storageToken = window.localStorage.getItem('token');
 
     if (storageToken) {
-      checkTokenExpiration(storageToken).catch(logOut);
+      checkTokenExpiration(storageToken).catch(tokenExpired);
     }
   }, []);
 

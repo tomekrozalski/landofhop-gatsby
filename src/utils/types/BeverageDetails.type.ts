@@ -1,5 +1,3 @@
-import { GatsbyImageProps } from 'gatsby-image';
-
 import { DataLanguage } from '../enums';
 import {
   AlcoholRelate,

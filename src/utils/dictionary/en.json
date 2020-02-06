@@ -6,8 +6,12 @@
   "beverage": {
     "details": {
       "added": "added",
+      "adminBar": {
+        "updatePhotos": "Update photos"
+      },
       "aged": {
         "barrel": {
+          "unknown": "barrel",
           "beech": "inside beech barrel",
           "oak": "inside oak barrel"
         },
@@ -16,6 +20,7 @@
           "content": "{content}"
         },
         "wood": {
+          "unknown": "wood",
           "beech": "with beech wood",
           "oak": "with oak wood"
         },
@@ -97,6 +102,11 @@
       "top": "top"
     }
   },
+  "dashboard": {
+    "updateBeverageImages": {
+      "title": "Update beverage images"
+    }
+  },
   "errors": {
     "bevereageDetailsImageNotFound": "Beverage details image not found",
     "tileImageNotFound": "Tile image not found"
@@ -117,10 +127,12 @@
   },
   "loginbar": {
     "email": "Email",
+    "loginAgain": "Login again",
     "loginFailed": "Log in failed",
     "loginSuccess": "Successfully logged in. Access token expires {expiresIn}.",
     "password": "Password",
     "submit": "Submit",
+    "tokenExpired": "Access token expired",
     "tryAgain": "Try again"
   },
   "loginFailed": {

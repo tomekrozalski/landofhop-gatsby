@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button, { ButtonBasicCSS } from './Button';
 import ContentWrapper from './ContentWrapper';
 import CoverImage from './CoverImage';
 import ErrorHeader from './ErrorHeader';
@@ -8,6 +8,7 @@ import TextInput from './TextInput';
 
 export {
 	Button,
+	ButtonBasicCSS,
 	ContentWrapper,
 	CoverImage,
 	ErrorHeader,

@@ -1,18 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import ButtonSpinner from './ButtonSpinner';
 
-const Wrapper: any = styled.button<{ wide?: boolean }>`
+export const ButtonBasicCSS = css`
   display: flex;
   align-items: center;
-  width: ${({ wide }) => (wide ? '100%' : 'auto')};
   height: 3.4rem;
   padding: 0 2rem;
+  transition: background-color var(--transition-default), color var(--transition-default);
+  cursor: pointer;
+`;
+
+const Wrapper: any = styled.button<{ wide?: boolean }>`
+  ${ButtonBasicCSS}
+  width: ${({ wide }) => (wide ? '100%' : 'auto')};
   background-color: var(--color-black);
   color: var(--color-white);
-  transition: all 0.2s;
-  cursor: pointer;
 
   &.button-submitting {
     padding: 0 1rem 0 1.5rem;

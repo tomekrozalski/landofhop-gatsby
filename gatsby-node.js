@@ -393,6 +393,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const BeverageDetails = path.resolve(
     `src/components/BeverageDetails/BeverageDetails.tsx`
   );
+  const UpdateBeverageImages = path.resolve(
+    `src/components/Dashboard/UpdateBeverageImages/UpdateBeverageImages.tsx`
+  );
 
   const allbeverages = await graphql(`
     query AllBeverages {
@@ -452,6 +455,16 @@ exports.createPages = async ({ graphql, actions }) => {
         page: Math.floor(index / itemsPerPage) + 1,
         previous,
         shortId,
+      },
+    });
+
+    createPage({
+      path: `/update-beverage-images/${shortId}/${brandBadge}/${badge}`,
+      component: UpdateBeverageImages,
+      context: {
+        shortId,
+        badge,
+        brandBadge,
       },
     });
   });
