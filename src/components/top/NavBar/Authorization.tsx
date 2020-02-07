@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext, NavigationContext } from 'utils/contexts';
 import { styledLinkCSS } from './elements';
 
@@ -41,7 +42,7 @@ const Authorization: React.FC = () => {
 
   return (
     <Wrapper>
-      {authenticationStatus === 'success' ? (
+      {authenticationStatus === AuthenticationStatusEnum.success ? (
         <Button onClick={logOut}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 24.84">
             <path

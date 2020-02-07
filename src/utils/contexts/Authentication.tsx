@@ -3,18 +3,19 @@ import { differenceInSeconds, fromUnixTime } from 'date-fns';
 import jwt from 'jsonwebtoken';
 import isObject from 'lodash/isObject';
 
+import { AuthenticationStatus } from 'utils/enums';
 import { NavigationContext } from './Navigation';
 
 export const AuthenticationContext = React.createContext({
-  authenticationStatus: 'idle',
+  authenticationStatus: AuthenticationStatus.loading,
   logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
   logOut: () => { },
-  setAuthenticationStatus: (value: 'idle' | 'error' | 'success' | 'expired') => { value },
+  setAuthenticationStatus: (value: AuthenticationStatus) => { value },
   tokenExpirationDate: new Date()
 });
 
 const Authentication: React.FC = ({ children }) => {
-  const [authenticationStatus, setAuthenticationStatus] = useState('idle');
+  const [authenticationStatus, setAuthenticationStatus] = useState(AuthenticationStatus.loading);
   const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(new Date());
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
@@ -25,11 +26,11 @@ const Authentication: React.FC = ({ children }) => {
 
     setLoginbar(false);
     setTokenExpirationDate(new Date());
-    setAuthenticationStatus('idle');
+    setAuthenticationStatus(AuthenticationStatus.idle);
   };
 
   const tokenExpired = () => {
-    setAuthenticationStatus('expired');
+    setAuthenticationStatus(AuthenticationStatus.expired);
     setLoginbar(true);
     setNavbar(true);
 
@@ -49,7 +50,7 @@ const Authentication: React.FC = ({ children }) => {
 
         if (differenceInSeconds(expirationDate, new Date()) > 10) {
           setTokenExpirationDate(expirationDate);
-          setAuthenticationStatus('success');
+          setAuthenticationStatus(AuthenticationStatus.success);
           resolve();
         }
       }
@@ -63,6 +64,8 @@ const Authentication: React.FC = ({ children }) => {
 
     if (storageToken) {
       checkTokenExpiration(storageToken).catch(tokenExpired);
+    } else {
+      setAuthenticationStatus(AuthenticationStatus.idle);
     }
   }, []);
 
@@ -92,7 +95,7 @@ const Authentication: React.FC = ({ children }) => {
           .catch(logOut);
       })
       .catch(() => {
-        setAuthenticationStatus('error');
+        setAuthenticationStatus(AuthenticationStatus.error);
       });
   };
 

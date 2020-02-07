@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
+import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { BeverageContext } from 'components/BeverageDetails';
 import { ButtonBasicCSS } from 'elements';
@@ -26,7 +27,7 @@ const AdminBar = () => {
 	const { authenticationStatus } = useContext(AuthenticationContext);
 	const { badge, brand, shortId } = useContext(BeverageContext);
 
-	return authenticationStatus === 'success' ? (
+	return authenticationStatus === AuthenticationStatusEnum.success ? (
 		<AdminBarWrapper>
 			<StyledLink to={`/update-beverage-images/${shortId}/${brand.badge}/${badge}`}>
 				<FormattedMessage id="beverage.details.adminBar.updatePhotos" />
