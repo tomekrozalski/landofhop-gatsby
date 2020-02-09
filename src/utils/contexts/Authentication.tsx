@@ -11,12 +11,15 @@ export const AuthenticationContext = React.createContext({
   logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
   logOut: () => { },
   setAuthenticationStatus: (value: AuthenticationStatus) => { value },
+  token: '',
   tokenExpirationDate: new Date()
 });
 
 const Authentication: React.FC = ({ children }) => {
   const [authenticationStatus, setAuthenticationStatus] = useState(AuthenticationStatus.loading);
   const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(new Date());
+  const [token, setToken] = useState('');
+
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
   const logOut = () => {
@@ -49,6 +52,7 @@ const Authentication: React.FC = ({ children }) => {
         const expirationDate = fromUnixTime(decodedToken.payload.exp);
 
         if (differenceInSeconds(expirationDate, new Date()) > 10) {
+          setToken(value);
           setTokenExpirationDate(expirationDate);
           setAuthenticationStatus(AuthenticationStatus.success);
           resolve();
@@ -106,6 +110,7 @@ const Authentication: React.FC = ({ children }) => {
         logIn,
         logOut,
         setAuthenticationStatus,
+        token,
         tokenExpirationDate,
       }}
     >
