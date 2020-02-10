@@ -465,6 +465,8 @@ exports.createPages = async ({ graphql, actions }) => {
         shortId,
         badge,
         brandBadge,
+        next,
+        previous,
       },
     });
   });

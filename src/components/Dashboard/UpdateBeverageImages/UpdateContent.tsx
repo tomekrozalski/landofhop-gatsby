@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
+import {
+	BeverageBase as BeverageBaseTypes,
+	BeverageBasicsTranslated as BeverageBasicsTranslatedTypes,
+} from 'utils/types';
 import { withAdmin } from '../utils'
 import {
 	CoverPhoto,
@@ -8,7 +11,12 @@ import {
 	Wrapper,
 } from '.';
 
-const UpdateContent: React.FC<BeverageBasicsTranslatedTypes> = props => (
+type Props = BeverageBasicsTranslatedTypes & {
+	next: BeverageBaseTypes
+	previous: BeverageBaseTypes
+};
+
+const UpdateContent: React.FC<Props> = props => (
 	<Wrapper>
 		<Header />
 		<CoverPhoto {...props} />

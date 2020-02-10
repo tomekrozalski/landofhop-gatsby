@@ -2,7 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO } from 'components';
-import { BeverageBasics as BeverageBasicsTypes } from 'utils/types';
+import {
+	BeverageBase as BeverageBaseTypes,
+	BeverageBasics as BeverageBasicsTypes,
+} from 'utils/types';
 import { translateBeverageBasics } from 'utils/helpers';
 import { UpdateContent } from '.';
 
@@ -13,14 +16,20 @@ type Props = {
 	pageContext: {
 		badge: string
 		brandBadge: string
+		next: BeverageBaseTypes
+		previous: BeverageBaseTypes
 		shortId: string
 	}
 }
 
-const UpdateBeverageImages: React.FC<Props> = ({ data }) => (
+const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => (
 	<Layout>
-		<SEO title="about" />
-		<UpdateContent {...translateBeverageBasics(data.beverage)} />
+		<SEO title="updateBeverageImages" />
+		<UpdateContent
+			{...translateBeverageBasics(data.beverage)}
+			next={pageContext.next}
+			previous={pageContext.previous}
+		/>
 	</Layout>
 );
 

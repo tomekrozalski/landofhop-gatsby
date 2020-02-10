@@ -73,10 +73,6 @@
       "fullness": "fullness",
       "hoppyness": "hoppyness",
       "ingredients": "ingredients",
-      "navigation": {
-        "next": "Next beverage",
-        "previous": "Previous beverage"
-      },
       "pasteurization": "pasteurization",
       "power": "power",
       "price": "price",
@@ -104,6 +100,8 @@
   },
   "dashboard": {
     "updateBeverageImages": {
+      "coverPhoto": "Cover photo",
+      "navigation": "Navigation",
       "title": "Update beverage images"
     }
   },
@@ -146,6 +144,10 @@
     "logOut": "Log out",
     "stats": "Stats"
   },
+  "navigation": {
+    "next": "Next beverage",
+    "previous": "Previous beverage"
+  },
   "no": "no",
   "notFound": {
     "title": "404 Not Found",
@@ -156,7 +158,8 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
-    "notFound": "404 Not Found"
+    "notFound": "404 Not Found",
+    "updateBeverageImages": "🔒 Update beverage images"
   },
   "yes": "yes"
 }

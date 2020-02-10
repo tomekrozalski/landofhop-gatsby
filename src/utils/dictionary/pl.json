@@ -73,10 +73,6 @@
       "fullness": "pełnia",
       "hoppyness": "chmielowość",
       "ingredients": "składniki",
-      "navigation": {
-        "next": "Następna pozycja",
-        "previous": "Poprzednia pozycja"
-      },
       "pasteurization": "pasteryzacja",
       "power": "moc",
       "price": "cena",
@@ -104,6 +100,8 @@
   },
   "dashboard": {
     "updateBeverageImages": {
+      "coverPhoto": "Zdjęcie okładkowe",
+      "navigation": "Nawigacja",
       "title": "Popraw grafiki dla napoju"
     }
   },
@@ -146,6 +144,10 @@
     "logOut": "Wyloguj",
     "stats": "Statystyki"
   },
+  "navigation": {
+    "next": "Następna pozycja",
+    "previous": "Poprzednia pozycja"
+  },
   "no": "nie",
   "notFound": {
     "title": "404 Nie znaleziono",
@@ -156,7 +158,8 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Błąd logowania",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
-    "notFound": "404 Nie znaleziono"
+    "notFound": "404 Nie znaleziono",
+    "updateBeverageImages": "🔒 Popraw grafiki dla napoju"
   },
   "yes": "tak"
 }

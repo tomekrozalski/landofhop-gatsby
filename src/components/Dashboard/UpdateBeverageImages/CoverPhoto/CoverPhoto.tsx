@@ -1,61 +1,78 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'gatsby-plugin-intl';
+
 import { AuthenticationContext } from 'utils/contexts';
+import {
+	BeverageBase as BeverageBaseTypes,
+	BeverageBasicsTranslated as BeverageBasicsTranslatedTypes,
+} from 'utils/types';
 import { Image } from 'components/Tiles';
+import { DragableArea, SectionHeader } from '../elements';
+import { Navigation } from '.';
 
-import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
-
-const Abd = styled.div`
-	grid-area: aaa;
-	height: 500px;
-	width: 220px;
+const ContentWrapper = styled.div`
+	display: flex;
+	align-items: flex-start;
 `;
 
-const ImageWrapper = styled.div`
-	grid-area: bbb;
-	height: 500px;
-	width: 220px;
-	position: relative;
+const Frame = styled.div<{ active?: boolean }>`
+	display: flex;
+	align-items: flex-end;
+	min-height: 508px;
+	width: 228px;
+	border: 4px ${({ active }) => (active ? 'dashed' : 'solid')} var(--color-brighter);
 
-	svg {
-		width: 100%;
-		height: 100%;
+	& + & {
+		margin-left: 2rem;
 	}
 `;
 
-const CoverPhoto: React.FC<BeverageBasicsTranslatedTypes> = (props) => {
+type Props = BeverageBasicsTranslatedTypes & {
+	next: BeverageBaseTypes
+	previous: BeverageBaseTypes
+};
+
+const CoverPhoto: React.FC<Props> = (props) => {
 	const { token } = useContext(AuthenticationContext);
 	const [theSvg, setTheSvg] = useState('');
 
-	const { badge, brand, shortId } = props;
+	const { badge, brand, next, previous, shortId } = props;
 	const api = `${process.env.API_SERVER}/beverage/create-traced-svgs`;
 	const apiWithParams = `${api}/${shortId}/${brand.badge}/${badge}/666`;
 
-	const getSvg = () => {
+	useEffect(() => {
 		fetch(apiWithParams, {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 		})
 			.then(r => r.text())
-			.then(res => {
-				console.log('res', res);
-				setTheSvg(res);
-			});
-	}
+			.then(setTheSvg);
+	}, []);
 
 	return (
 		<>
-			<div>CoverPhoto</div>
-			<Abd>
-				<Image {...props} />
-			</Abd>
-			<ImageWrapper>
-				{<div dangerouslySetInnerHTML={{
+			<SectionHeader>
+				<FormattedMessage id="dashboard.updateBeverageImages.coverPhoto" />
+			</SectionHeader>
+			<ContentWrapper>
+				<Frame>
+					<Image {...props} />
+				</Frame>
+				<Frame dangerouslySetInnerHTML={{
 					__html: theSvg,
-				}} />}
-			</ImageWrapper>
-			<button onClick={getSvg}>get svg</button>
+				}}>
+				</Frame>
+				<Frame active>
+					<DragableArea />
+				</Frame>
+				<Navigation
+					current={{ badge, brand, shortId }}
+					next={next}
+					previous={previous}
+				/>
+			</ContentWrapper>
 		</>
 	);
 }
