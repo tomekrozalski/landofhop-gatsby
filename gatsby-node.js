@@ -6,17 +6,12 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-exports.sourceNodes = async ({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) => {
+exports.sourceNodes = async ({ actions, createContentDigest }) => {
   const results = await axios.get(`${process.env.API_SERVER}/beverage`);
 
   results.data.forEach(beverage => {
     const node = {
       ...beverage,
-      id: createNodeId(`beverage-${beverage.id}`),
       internal: {
         type: 'Beverage',
         contentDigest: createContentDigest(beverage),

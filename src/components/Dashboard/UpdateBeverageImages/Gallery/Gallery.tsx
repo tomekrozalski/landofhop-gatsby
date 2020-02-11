@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage } from 'elements';
-import { TranslatedBeverage as TranslatedBeverageTypes } from '../utils/types';
+import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame, SectionHeader, SectionWrapper } from '../elements';
 
-type Props = TranslatedBeverageTypes & {
-	next: BeverageBaseTypes
-	previous: BeverageBaseTypes
-};
-
-const Gallery: React.FC<Props> = ({ badge, brand, photos, shortId }) => {
-	console.log('gallery');
+const Gallery: React.FC = () => {
+	const {
+		badge,
+		brand,
+		photos,
+		shortId,
+	} = useContext(BeverageContext);
 
 	return (
 		<>

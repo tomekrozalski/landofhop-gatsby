@@ -1,3 +1,4 @@
+import initialBeverageData from './initialBeverageData';
 import translateBeverage from './translateBeverage';
 
-export { translateBeverage };
+export { initialBeverageData, translateBeverage };

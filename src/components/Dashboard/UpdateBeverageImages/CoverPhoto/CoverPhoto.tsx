@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage } from 'elements';
-import { TranslatedBeverage as TranslatedBeverageTypes } from '../utils/types';
+import { BeverageContext } from '../UpdateBeverageImages';
 import {
 	DragableArea,
 	Frame,
@@ -14,24 +13,18 @@ import {
 } from '../elements';
 import { Navigation } from '.';
 
-type Props = TranslatedBeverageTypes & {
+type Props = {
 	next: BeverageBaseTypes
 	previous: BeverageBaseTypes
 };
 
-const CoverPhoto: React.FC<Props> = (props) => {
-	console.log('props', props);
-
-	const { token } = useContext(AuthenticationContext);
-
+const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
 	const {
 		badge,
 		brand,
-		next,
 		photos,
-		previous,
 		shortId,
-	} = props;
+	} = useContext(BeverageContext);
 
 	return (
 		<>
