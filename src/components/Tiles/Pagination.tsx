@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby-plugin-intl';
 
-import { BeveragePageContext as BeveragePageContextTypes } from 'utils/types';
+import { PageContext as PageContextTypes } from './utils/types';
 import {
   ActiveButton,
   InactiveButton,
@@ -9,7 +9,7 @@ import {
   PaginationList,
 } from './elements';
 
-const Pagination: React.FC<BeveragePageContextTypes> = ({
+const Pagination: React.FC<PageContextTypes> = ({
   humanPageNumber,
   nextPagePath,
   numberOfPages,

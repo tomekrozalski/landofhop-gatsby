@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 
 import { NavigationContext } from 'utils/contexts';
-import {
-	BeverageBase as BeverageBaseTypes,
-	BeverageDetails as BeverageDetailsTypes,
-	BeverageDetailsTranslated as BeverageDetailsTranslatedTypes
-} from 'utils/types';
+import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { translateBeverageDetails } from 'utils/helpers';
 import { SiteLanguage } from 'utils/enums';
-import { initialBeverageData } from './utils';
+import { initialBeverageData } from './utils/helpers';
+import {
+	Beverage as BeverageTypes,
+	TranslatedBeverage as TranslatedBeverageTypes,
+} from './utils/types';
 
 import Layout from '../Layout';
 import { GridWrapper } from './elements';
@@ -27,7 +27,7 @@ import {
 
 type Props = {
 	data: {
-		beverage: BeverageDetailsTypes
+		beverage: BeverageTypes
 	}
 	pageContext: {
 		badge: string
@@ -43,7 +43,7 @@ type Props = {
 }
 
 // @Info: I could use Partial generic, but it would complicate displaying some components
-export const BeverageContext = React.createContext<BeverageDetailsTranslatedTypes>(initialBeverageData);
+export const BeverageContext = React.createContext<TranslatedBeverageTypes>(initialBeverageData);
 
 const BeverageDetails: React.FC<Props> = ({
 	data: {

@@ -1,16 +1,19 @@
 import { ContainerType } from 'utils/enums/beverage';
-import { InstitutionTranslated, LanguageValue } from '../';
+import { Institution, LanguageValue } from 'utils/types';
 
-export type BeverageBasicsTranslated = {
+export type Beverage = {
 	id: string
 	shortId: string
 	badge: string
-	name: LanguageValue
-	brand: InstitutionTranslated
+	name: LanguageValue[]
+	brand: Institution
 	photos: {
 		cover: {
 			height: number
 			width: number
+		} | null
+		outlines: {
+			cover?: string
 		} | null
 	} | null
 	container: {

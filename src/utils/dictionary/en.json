@@ -99,8 +99,10 @@
     }
   },
   "dashboard": {
+    "notLoggedInError": "Not logged in. Access denied",
     "updateBeverageImages": {
       "coverPhoto": "Cover photo",
+      "gallery": "Photo gallery",
       "navigation": "Navigation",
       "title": "Update beverage images"
     }

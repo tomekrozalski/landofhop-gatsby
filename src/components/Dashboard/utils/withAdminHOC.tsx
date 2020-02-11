@@ -2,17 +2,18 @@ import React, { useContext } from 'react';
 
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
+import { NotLoggedIn, Spinner } from '.';
 
 const withAdminHOC = (Component: any) => (props: any) => {
 	const { authenticationStatus } = useContext(AuthenticationContext);
 
 	switch (authenticationStatus) {
 		case AuthenticationStatusEnum.loading:
-			return <div>loading</div>;
+			return <Spinner />;
 		case AuthenticationStatusEnum.success:
 			return <Component {...props} />;
 		default:
-			return <div>niezalogowany</div>
+			return <NotLoggedIn />
 	}
 }
 

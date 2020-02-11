@@ -375,10 +375,15 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         height: Int
 		  	width: Int
       }
+      type Outlines {
+        cover: String
+        gallery: String
+      }
       type Photos {
         cap: Boolean
         cover: Cover
         gallery: Int
+        outlines: Outlines
       }
     `,
   ];

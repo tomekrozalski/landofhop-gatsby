@@ -1,11 +1,12 @@
 import React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
+import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
+import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage } from 'elements';
 import { BrokenContainer } from './elements';
 
-const Image: React.FC<BeverageBasicsTranslatedTypes> = ({
+const Image: React.FC<TranslatedBeverageTypes> = ({
   badge,
   brand,
   container,
@@ -21,8 +22,9 @@ const Image: React.FC<BeverageBasicsTranslatedTypes> = ({
       brand={{ badge: brand.badge, name: brand.name }}
       height={photos?.cover?.height}
       name={name}
+      outline={photos.outlines?.cover}
       shortId={shortId}
-      type="cover"
+      type={BeverageImageType.cover}
       width={photos?.cover?.width}
     />
   ) : (

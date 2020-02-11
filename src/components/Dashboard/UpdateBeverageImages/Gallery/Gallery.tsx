@@ -1,75 +1,48 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage } from 'elements';
 import { TranslatedBeverage as TranslatedBeverageTypes } from '../utils/types';
-import {
-	DragableArea,
-	Frame,
-	SectionHeader,
-	SectionWrapper,
-} from '../elements';
-import { Navigation } from '.';
+import { Frame, SectionHeader, SectionWrapper } from '../elements';
 
 type Props = TranslatedBeverageTypes & {
 	next: BeverageBaseTypes
 	previous: BeverageBaseTypes
 };
 
-const CoverPhoto: React.FC<Props> = (props) => {
-	console.log('props', props);
-
-	const { token } = useContext(AuthenticationContext);
-
-	const {
-		badge,
-		brand,
-		next,
-		photos,
-		previous,
-		shortId,
-	} = props;
+const Gallery: React.FC<Props> = ({ badge, brand, photos, shortId }) => {
+	console.log('gallery');
 
 	return (
 		<>
 			<SectionHeader>
-				<FormattedMessage id="dashboard.updateBeverageImages.coverPhoto" />
+				<FormattedMessage id="dashboard.updateBeverageImages.gallery" />
 			</SectionHeader>
 			<SectionWrapper>
 				<Frame>
 					{
-						photos?.cover && (
+						photos?.gallery && (
 							<CoverImage
 								badge={badge}
 								brand={{ badge: brand.badge, name: brand.name }}
 								height={photos?.cover?.height}
 								name={name}
-								outline={photos?.outlines?.cover}
 								shortId={shortId}
-								type={BeverageImageType.cover}
+								type={BeverageImageType.container}
 								width={photos?.cover?.width}
 							/>
 						)
 					}
 				</Frame>
 				<Frame dangerouslySetInnerHTML={{
-					__html: photos?.outlines?.cover || '',
+					__html: photos?.outlines?.gallery || '',
 				}}>
 				</Frame>
-				<Frame active>
-					<DragableArea />
-				</Frame>
-				<Navigation
-					current={{ badge, brand, shortId }}
-					next={next}
-					previous={previous}
-				/>
 			</SectionWrapper>
 		</>
 	);
 }
 
-export default CoverPhoto;
+export default Gallery;

@@ -2,16 +2,14 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { Layout, SEO } from 'components';
-import {
-	BeverageBase as BeverageBaseTypes,
-	BeverageBasics as BeverageBasicsTypes,
-} from 'utils/types';
-import { translateBeverageBasics } from 'utils/helpers';
+import { BeverageBase as BeverageBaseTypes } from 'utils/types';
+import { Beverage as BeverageTypes } from './utils/types';
+import { translateBeverage } from './utils/helpers';
 import { UpdateContent } from '.';
 
 type Props = {
 	data: {
-		beverage: BeverageBasicsTypes
+		beverage: BeverageTypes
 	}
 	pageContext: {
 		badge: string
@@ -26,7 +24,7 @@ const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => (
 	<Layout>
 		<SEO title="updateBeverageImages" />
 		<UpdateContent
-			{...translateBeverageBasics(data.beverage)}
+			{...translateBeverage(data.beverage)}
 			next={pageContext.next}
 			previous={pageContext.previous}
 		/>
@@ -62,6 +60,11 @@ export const query = graphql`
 				cover {
 					height
 					width
+				}
+				gallery
+				outlines {
+					cover
+					gallery
 				}
 			}
 			container {

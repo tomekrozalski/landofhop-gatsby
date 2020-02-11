@@ -1,11 +1,11 @@
 import { useIntl } from 'gatsby-plugin-intl';
 import {
-	BeverageBasics as BeverageBasicsTypes,
-	BeverageBasicsTranslated as BeverageBasicsTranslatedTypes
-} from 'utils/types';
-import { getValueByLanguage } from '.';
+	Beverage as BeverageTypes,
+	TranslatedBeverage as TranslatedBeverageTypes
+} from '../types';
+import { getValueByLanguage } from 'utils/helpers';
 
-const translateBeverageBasics = ({ name, brand, ...rest }: BeverageBasicsTypes): BeverageBasicsTranslatedTypes => {
+const translateBeverage = ({ name, brand, ...rest }: BeverageTypes): TranslatedBeverageTypes => {
 	const { locale } = useIntl();
 
 	return {
@@ -21,4 +21,4 @@ const translateBeverageBasics = ({ name, brand, ...rest }: BeverageBasicsTypes):
 	}
 };
 
-export default translateBeverageBasics;
+export default translateBeverage;

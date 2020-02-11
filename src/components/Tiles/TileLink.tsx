@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
+import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
 import { StyledLink } from './elements';
 
-const TileLink: React.FC<BeverageBasicsTranslatedTypes> = ({ badge, brand, children, shortId }) => (
+const TileLink: React.FC<TranslatedBeverageTypes> = ({ badge, brand, children, shortId }) => (
   <StyledLink to={`/details/${shortId}/${brand.badge}/${badge}`}>
     {children}
   </StyledLink>

@@ -1,4 +1,4 @@
-export type BeveragePageContext = {
+export type PageContext = {
 	humanPageNumber: number
 	intl: {
 		language: string

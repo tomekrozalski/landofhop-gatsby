@@ -5,6 +5,7 @@ import AgedWood from './AgedWood.enum';
 import AlcoholRelate from './AlcoholRelate.enum';
 import AlcoholScope from './AlcoholScope.enum';
 import AlcoholUnit from './AlcoholUnit.enum';
+import BeverageImageType from './BeverageImageType.enum';
 import Clarity from './Clarity.enum';
 import ContainerColor from './ContainerColor.enum';
 import ContainerMaterial from './ContainerMaterial.enum';
@@ -26,6 +27,7 @@ export {
 	AlcoholRelate,
 	AlcoholScope,
 	AlcoholUnit,
+	BeverageImageType,
 	Clarity,
 	ContainerColor,
 	ContainerMaterial,

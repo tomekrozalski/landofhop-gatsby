@@ -99,8 +99,10 @@
     }
   },
   "dashboard": {
+    "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverageImages": {
       "coverPhoto": "Zdjęcie okładkowe",
+      "gallery": "Galeria zdjęć",
       "navigation": "Nawigacja",
       "title": "Popraw grafiki dla napoju"
     }

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { BeverageBasicsTranslated as BeverageBasicsTranslatedTypes } from 'utils/types';
+import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
 import { ListItem } from './elements';
 import { Image, TileLink } from '.';
 
-const Tile: React.FC<BeverageBasicsTranslatedTypes> = props => (
+const Tile: React.FC<TranslatedBeverageTypes> = props => (
   <ListItem>
     <TileLink {...props}>
       <Image {...props} />

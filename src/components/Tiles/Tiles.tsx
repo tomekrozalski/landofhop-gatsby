@@ -2,9 +2,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import {
-  BeverageBasics as BeverageBasicsTypes,
-  BeveragePageContext as BeveragePageContextTypes,
-} from 'utils/types';
+  Beverage as BeverageTypes,
+  PageContext as PageContextTypes,
+} from './utils/types';
 import { Layout, SEO } from '../';
 import { Grid } from './elements';
 import { Pagination, TileMap } from '.';
@@ -12,10 +12,10 @@ import { Pagination, TileMap } from '.';
 type Props = {
   data: {
     allBeverage: {
-      edges: { node: BeverageBasicsTypes }[],
+      edges: { node: BeverageTypes }[],
     }
   }
-  pageContext: BeveragePageContextTypes
+  pageContext: PageContextTypes
 }
 
 const Tiles: React.FC<Props> = ({ data, pageContext }) => (
@@ -55,6 +55,9 @@ export const query = graphql`
             cover {
               height
               width
+            }
+            outlines {
+              cover
             }
           }
           container {

@@ -1,6 +1,4 @@
-import { GatsbyImageProps } from 'gatsby-image';
-
-import { DataLanguage } from '../../enums';
+import { DataLanguage } from 'utils/enums';
 import {
 	AlcoholRelate,
 	AlcoholScope,
@@ -16,11 +14,11 @@ import {
 	Fermentation,
 	IngredientType,
 	TemperatureUnit,
-} from '../../enums/beverage';
+} from 'utils/enums/beverage';
 
-import { Aged, BeveragePrice, InstitutionTranslated, LanguageValue } from '../';
+import { Aged, BeveragePrice, InstitutionTranslated, LanguageValue } from 'utils/types';
 
-export type BeverageDetailsTranslated = {
+export type TranslatedBeverage = {
 	id: string
 	shortId: string
 	badge: string
