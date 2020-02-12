@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import isObject from 'lodash/isObject';
 
 import { AuthenticationStatus } from 'utils/enums';
+import { serverCall } from 'utils/helpers';
 import { NavigationContext } from './Navigation';
 
 export const AuthenticationContext = React.createContext({
@@ -74,14 +75,11 @@ const Authentication: React.FC = ({ children }) => {
   }, []);
 
   const logIn = (formValues: { email: string, password: string }) => {
-    return fetch(`${process.env.API_SERVER}/auth`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    return serverCall({
       body: JSON.stringify(formValues),
+      method: 'POST',
+      path: 'auth',
     })
-      .then(response => response.json())
       .then((response) => {
         if (!response.token) {
           throw Error(response.message);

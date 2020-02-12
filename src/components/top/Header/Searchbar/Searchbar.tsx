@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useContext, useState } from 'react';
 import debounce from 'lodash/debounce';
 
 import { NavigationContext, SearchContext } from 'utils/contexts';
+import { serverCall } from 'utils/helpers';
 import { Button, Input, Wrapper } from '.';
 
 const Searchbar = () => {
@@ -33,14 +34,11 @@ const Searchbar = () => {
 
 	useEffect(() => {
 		if (searchFor) {
-			fetch(`${process.env.API_SERVER}/beverage/search`, {
+			serverCall({
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
+				path: 'beverage/search',
 				body: JSON.stringify({ phrase: searchFor, language: "pl" })
 			})
-				.then(response => response.json())
 				.then(setSearchResults);
 		} else {
 			setSearchResults([]);
