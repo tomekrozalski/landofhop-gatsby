@@ -5,7 +5,12 @@ const StyledLink = styled(Link)`
 	width: 100%;
 	text-align: center;
 
-	&:hover img {
+	> div {
+		transform: scale(1);
+		transition: transform var(--transition-default);
+	}
+
+	&:hover > div {
 		transform: scale(0.9);
 	}
 `;

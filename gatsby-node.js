@@ -452,7 +452,7 @@ exports.createPages = async ({ graphql, actions }) => {
         badge,
         brandBadge,
         next,
-        page: Math.floor(index / itemsPerPage) + 1,
+        page: Math.floor(index / itemsPerPage) + 1, // @ToDo: I don't use it right now
         previous,
         shortId,
       },

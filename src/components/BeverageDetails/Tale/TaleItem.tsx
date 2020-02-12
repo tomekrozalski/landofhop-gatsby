@@ -47,18 +47,19 @@ const TaleItemWrapper = styled.div<{ producer: boolean }>`
 	}
 `;
 
-const slicedText = (value: string) => value.split('.').slice(0, 3).join('.') + '.';
-
 type Props = LanguageValue & { producer?: boolean }
 
 const TaleItem: React.FC<Props> = ({ language, producer = false, value }) => {
+	const slicedText = value.split('.').slice(0, 3).join('.') + '.';
 	const sentences = value.split('.').length - 1;
 
 	const [expanded, setExpanded] = useState(false);
-	const [text, setText] = useState(sentences > 3 ? slicedText(value) : value);
+	const [text, setText] = useState(sentences > 3 ? slicedText : value);
 
 	useEffect(() => {
-		setText(expanded ? value : slicedText(value));
+		if (sentences > 3) {
+			setText(expanded ? value : slicedText);
+		}
 	}, [expanded]);
 
 	const toggle = () => {

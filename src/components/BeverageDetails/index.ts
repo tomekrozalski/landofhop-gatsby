@@ -1,7 +1,7 @@
 import AdminBar from './AdminBar';
 import Aside from './Aside';
 import BeverageDetails, { BeverageContext } from './BeverageDetails';
-import BeverageDetailsSeo from './BeverageDetailsSeo';
+import BeverageDetailsContent from './BeverageDetailsContent';
 import FootNotes from './FootNotes';
 import Gallery from './Gallery';
 import Header from './Header';
@@ -13,7 +13,7 @@ export {
 	AdminBar,
 	Aside,
 	BeverageContext,
-	BeverageDetailsSeo,
+	BeverageDetailsContent,
 	FootNotes,
 	Gallery,
 	Header,

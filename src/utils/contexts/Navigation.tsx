@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 
 export const NavigationContext = React.createContext({
   loginbar: false,
-  mainLink: '/',
   navbar: false,
   searchbarActive: false,
   setLoginbar: (val: boolean) => { val },
-  setMainLink: (val: string) => { val },
   setNavbar: (val: boolean) => { val },
   setSearchbarActive: (val: boolean) => { val },
   toggleLoginbar: () => { },
@@ -14,7 +12,6 @@ export const NavigationContext = React.createContext({
 });
 
 const Navigation: React.FC = ({ children }) => {
-  const [mainLink, setMainLink] = useState('/');
   const [loginbar, setLoginbar] = useState(false);
   const [navbar, setNavbar] = useState(false);
   const [searchbarActive, setSearchbarActive] = useState(false);
@@ -23,11 +20,9 @@ const Navigation: React.FC = ({ children }) => {
     <NavigationContext.Provider
       value={{
         loginbar,
-        mainLink,
         navbar,
         searchbarActive,
         setLoginbar,
-        setMainLink,
         setNavbar,
         setSearchbarActive,
         toggleLoginbar: () => {

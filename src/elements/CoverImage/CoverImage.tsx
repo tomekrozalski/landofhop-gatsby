@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { LanguageValue } from 'utils/types';
@@ -26,7 +26,7 @@ const Img = styled.img<{ isLoaded: boolean }>`
 	object-fit: cover;
 	object-position: center center;
 	opacity: ${({ isLoaded }) => (isLoaded ? 1 : 0)};
-	transition: var(--transition-default);
+	transition: opacity var(--transition-default);
 `;
 
 const inImageCache = (src: string) => {
@@ -60,6 +60,8 @@ const CoverImage: React.FC<Props> = ({
 	type,
 	width,
 }) => {
+	const container = useRef(null);
+	const [visible, setVisible] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 
 	const onPictureLoad = () => {
@@ -87,13 +89,25 @@ const CoverImage: React.FC<Props> = ({
 		return outline.replace('<svg', `<svg style="${styles}"`);
 	}
 
+	useEffect(() => {
+		const observer = new IntersectionObserver((entries) => {
+			if (entries[0].isIntersecting) {
+				setVisible(true);
+			}
+		}, { threshold: 0 });
+
+		if (container.current) {
+			observer.observe(container.current!);
+		}
+	}, []);
+
 	return (
-		<Wrapper loaded={loaded}>
+		<Wrapper loaded={loaded} ref={container}>
 			<Stretcher height={height} type={type} width={width} />
 			<div dangerouslySetInnerHTML={{
 				__html: outline ? enhanceOutlineWithStyles(outline) : ''
-			}}></div>
-			{isBrowser ? (
+			}} className="outline-wrapper"></div>
+			{(isBrowser && visible) ? (
 				<picture>
 					<source
 						type="image/webp"
@@ -108,13 +122,15 @@ const CoverImage: React.FC<Props> = ({
 						isLoaded={seenBefore() || loaded}
 					/>
 				</picture>
-			) : (
-					<noscript
-						dangerouslySetInnerHTML={{
-							__html: `<picture><img src="${getPath('jpg', 1)}" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center;" /></picture>`,
-						}}
-					/>
-				)}
+			) : null}
+			{!isBrowser ? (
+				<noscript
+					dangerouslySetInnerHTML={{
+						__html: `<picture><img src="${getPath('jpg', 1)}" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center;" /></picture>`,
+					}}
+				/>
+			) : null
+			}
 		</Wrapper >
 	)
 }

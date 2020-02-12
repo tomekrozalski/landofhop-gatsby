@@ -1,44 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
-import { NavigationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import { translateBeverageDetails } from 'utils/helpers';
-import { SiteLanguage } from 'utils/enums';
-import { initialBeverageData } from './utils/helpers';
+import { initialBeverageData, translateBeverage } from './utils/helpers';
 import {
 	Beverage as BeverageTypes,
 	TranslatedBeverage as TranslatedBeverageTypes,
 } from './utils/types';
-
-import Layout from '../Layout';
-import { GridWrapper } from './elements';
-import {
-	AdminBar,
-	Aside,
-	BeverageDetailsSeo,
-	FootNotes,
-	Gallery,
-	Header,
-	Impressions,
-	Tale,
-	Testimony,
-} from '.';
+import { BeverageDetailsContent } from '.';
 
 type Props = {
 	data: {
 		beverage: BeverageTypes
 	}
 	pageContext: {
-		badge: string
-		brandBadge: string
-		intl: {
-			language: SiteLanguage
-		}
 		next: BeverageBaseTypes
-		page: number
 		previous: BeverageBaseTypes
-		shortId: string
 	}
 }
 
@@ -46,52 +23,13 @@ type Props = {
 export const BeverageContext = React.createContext<TranslatedBeverageTypes>(initialBeverageData);
 
 const BeverageDetails: React.FC<Props> = ({
-	data: {
-		beverage
-	},
-	pageContext: {
-		badge,
-		brandBadge,
-		next,
-		page,
-		previous,
-		shortId,
-	}
-}) => {
-	const { setMainLink } = useContext(NavigationContext);
-	const [fetchedBeverage, setFetchedBeverage] = useState(null);
-
-	useEffect(() => {
-		setMainLink(`/list/${page}`);
-
-		console.log('fetch', badge, brandBadge, shortId);
-
-		// fetch('http://localhost:4000/beverage/pl/s0d8j4/browar-pinta/hazy-disco-haarlem')
-		// 	.then(res => res.json())
-		// 	.then(setFetchedBeverage)
-		// 	.catch((e) => {
-		// 		console.log('e', e);
-		// 	});
-	}, [])
-
-	return (
-		<Layout>
-			<BeverageContext.Provider value={fetchedBeverage || translateBeverageDetails(beverage)}>
-				<GridWrapper>
-					<Gallery />
-					<Header />
-					<Tale />
-					<Testimony />
-					<Impressions />
-					<FootNotes />
-					<AdminBar />
-					<Aside next={next} previous={previous} />
-				</GridWrapper>
-				<BeverageDetailsSeo />
-			</BeverageContext.Provider>
-		</Layout>
+	data: { beverage },
+	pageContext
+}) => (
+		<BeverageContext.Provider value={translateBeverage(beverage)}>
+			<BeverageDetailsContent {...pageContext} />
+		</BeverageContext.Provider>
 	);
-}
 
 export const query = graphql`
 	query BeverageDetails($badge: String!, $brandBadge: String!, $shortId: String!) {
@@ -372,6 +310,9 @@ export const query = graphql`
 			photos {
 				cap
 				gallery
+				outlines {
+					gallery
+				}
 			}
 			place {
 				editorial {

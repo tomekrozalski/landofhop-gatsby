@@ -216,6 +216,9 @@ export type Beverage = {
 	photos: {
 		cap: boolean | null
 		gallery: number | null
+		outlines: {
+			gallery?: string
+		} | null
 	} | null
 	notes: string | null
 	added: Date

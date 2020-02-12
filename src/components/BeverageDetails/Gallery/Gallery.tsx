@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useIntl } from 'gatsby-plugin-intl';
 
+import { BeverageImageType } from 'utils/enums/beverage';
 import { BeverageContext } from 'components/BeverageDetails';
 import { CoverImage } from 'elements';
 import { BrokenContainer } from '.';
@@ -34,8 +35,9 @@ const Gallery: React.FC = () => {
 					brand={{ badge: brand.badge, name: brand.name }}
 					height={500}
 					name={name}
+					outline={photos.outlines?.gallery}
 					shortId={shortId}
-					type="container"
+					type={BeverageImageType.container}
 					width={220}
 				/>
 			) : (

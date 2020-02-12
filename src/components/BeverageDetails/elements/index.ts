@@ -1,3 +1,4 @@
+import BeverageDetailsSeo from './BeverageDetailsSeo';
 import GridWrapper from './GridWrapper';
 import {
 	Editorial,
@@ -8,6 +9,7 @@ import {
 } from './SourceGroup';
 
 export {
+	BeverageDetailsSeo,
 	Editorial,
 	GridWrapper,
 	Label,

@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
 
-import { NavigationContext } from 'utils/contexts';
 import { breakpoints } from 'utils/theme';
 
 const StyledLink = styled(Link)`
@@ -42,16 +41,12 @@ const Header = styled.h1`
   }
 `;
 
-const Logo: React.FC = () => {
-  const { mainLink } = useContext(NavigationContext);
-
-  return (
-    <StyledLink to={mainLink}>
-      <Header>
-        <FormattedMessage id="header.name" />
-      </Header>
-    </StyledLink>
-  );
-}
+const Logo: React.FC = () => (
+  <StyledLink to="/">
+    <Header>
+      <FormattedMessage id="header.name" />
+    </Header>
+  </StyledLink>
+);
 
 export default Logo;
