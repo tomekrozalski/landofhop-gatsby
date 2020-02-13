@@ -12,8 +12,8 @@ const Wrapper = styled.aside`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	height: 50rem;
+	width: 220px;
+	margin: 0 auto;
 `;
 
 const Gallery: React.FC = () => {
