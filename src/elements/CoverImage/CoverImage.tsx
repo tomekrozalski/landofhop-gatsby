@@ -85,7 +85,7 @@ const CoverImage: React.FC<Props> = ({
 	}
 
 	const enhanceOutlineWithStyles = (outline: string) => {
-		const styles = "position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: var(--transition-default);";
+		const styles = "position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1; transition: var(--transition-default);";
 		return outline.replace('<svg', `<svg style="${styles}"`);
 	}
 
