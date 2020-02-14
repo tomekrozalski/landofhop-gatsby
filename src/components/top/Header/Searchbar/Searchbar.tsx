@@ -8,55 +8,56 @@ import { Button, Input, Wrapper } from '.';
 const Searchbar = () => {
 	const { setSearchbarActive } = useContext(NavigationContext);
 	const { setSearchResults } = useContext(SearchContext);
+	const [isActive, setActive] = useState(false);
 	const [input, setInput] = useState('');
 	const [searchFor, setSearchFor] = useState('');
 
-	const changeSearchFor = debounce(setSearchFor, 1000);
-	const handleChange = useCallback(changeSearchFor, []);
+	// const changeSearchFor = debounce(setSearchFor, 1000);
+	// const handleChange = useCallback(changeSearchFor, []);
 
-	const onSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-		const { value } = e.currentTarget;
+	// const onSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
+	// 	const { value } = e.currentTarget;
 
-		if (value) {
-			setSearchbarActive(true);
-		}
+	// 	if (value) {
+	// 		setSearchbarActive(true);
+	// 	}
 
-		handleChange(value);
-		setInput(value);
-	}
+	// 	handleChange(value);
+	// 	setInput(value);
+	// }
 
-	const onSearchExit = () => {
-		setSearchbarActive(false);
-		setInput('');
-		setSearchResults([]);
-		setSearchFor('');
-	}
+	// const onSearchExit = () => {
+	// 	setSearchbarActive(false);
+	// 	setInput('');
+	// 	setSearchResults([]);
+	// 	setSearchFor('');
+	// }
 
-	useEffect(() => {
-		if (searchFor) {
-			serverCall({
-				method: 'POST',
-				path: 'beverage/search',
-				body: JSON.stringify({ phrase: searchFor, language: "pl" })
-			})
-				.then(setSearchResults);
-		} else {
-			setSearchResults([]);
-		}
-	}, [searchFor])
+	// useEffect(() => {
+	// 	if (searchFor) {
+	// 		serverCall({
+	// 			method: 'POST',
+	// 			path: 'beverage/search',
+	// 			body: JSON.stringify({ phrase: searchFor, language: "pl" })
+	// 		})
+	// 			.then(setSearchResults);
+	// 	} else {
+	// 		setSearchResults([]);
+	// 	}
+	// }, [searchFor])
 
-	useEffect(() => {
-		return () => changeSearchFor.cancel();
-	}, []);
+	// useEffect(() => {
+	// 	return () => changeSearchFor.cancel();
+	// }, []);
 
 	return (
-		<Wrapper>
-			<Input
+		<Wrapper isActive={isActive}>
+			{/* <Input
 				value={input}
 				onChange={onSearchChange}
-				onBlur={onSearchExit}
-			/>
-			<Button />
+
+			/> */}
+			<Button isActive={isActive} setActive={setActive} />
 		</Wrapper>
 	);
 }

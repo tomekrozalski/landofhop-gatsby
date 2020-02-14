@@ -90,14 +90,15 @@ const CoverImage: React.FC<Props> = ({
 	}
 
 	useEffect(() => {
-		const observer = new IntersectionObserver((entries) => {
+		const io = new IntersectionObserver((entries, observer) => {
 			if (entries[0].isIntersecting) {
 				setVisible(true);
+				observer.disconnect();
 			}
 		}, { threshold: 0 });
 
 		if (container.current) {
-			observer.observe(container.current!);
+			io.observe(container.current!);
 		}
 	}, []);
 
