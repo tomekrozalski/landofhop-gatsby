@@ -4,6 +4,7 @@ import CoverImage from './CoverImage';
 import ErrorHeader from './ErrorHeader';
 import ErrorWrapper from './ErrorWrapper';
 import FormattedList from './FormattedList';
+import Spinner from './Spinner';
 import TextInput from './TextInput';
 
 export {
@@ -14,5 +15,6 @@ export {
 	ErrorHeader,
 	ErrorWrapper,
 	FormattedList,
+	Spinner,
 	TextInput,
 };

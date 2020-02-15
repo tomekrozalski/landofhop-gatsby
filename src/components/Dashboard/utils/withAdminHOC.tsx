@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
-import { NotLoggedIn, Spinner } from '.';
+import { Spinner } from 'elements';
+import { NotLoggedIn } from '.';
 
 const withAdminHOC = (Component: any) => (props: any) => {
 	const { authenticationStatus } = useContext(AuthenticationContext);

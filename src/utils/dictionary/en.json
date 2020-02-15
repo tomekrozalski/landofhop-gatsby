@@ -109,6 +109,7 @@
   },
   "errors": {
     "bevereageDetailsImageNotFound": "Beverage details image not found",
+    "nothingFound": "Nothing found",
     "tileImageNotFound": "Tile image not found"
   },
   "formattedList": {

@@ -25,15 +25,28 @@ const initialSearchResultsData = [{
 }];
 
 export const SearchContext = React.createContext({
+	loading: false,
+	nothingFound: false,
 	searchResults: initialSearchResultsData,
+	setLoading: (val: boolean) => { val },
+	setNothingFound: (val: boolean) => { val },
 	setSearchResults: (val: TranslatedBeverageTypes[]) => val,
 });
 
 const Search: React.FC = ({ children }) => {
+	const [loading, setLoading] = useState(false);
+	const [nothingFound, setNothingFound] = useState(false);
 	const [searchResults, setSearchResults]: [any[], any] = useState([]);
 
 	return (
-		<SearchContext.Provider value={{ searchResults, setSearchResults }}>
+		<SearchContext.Provider value={{
+			loading,
+			nothingFound,
+			searchResults,
+			setLoading,
+			setNothingFound,
+			setSearchResults,
+		}}>
 			{children}
 		</SearchContext.Provider>
 	);

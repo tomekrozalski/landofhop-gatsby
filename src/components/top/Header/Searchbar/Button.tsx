@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FormattedMessage } from 'gatsby-plugin-intl';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { breakpoints } from 'utils/theme';
 
 const StyledButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 10rem;
   height: 100%;
+  opacity: 1;
   transition: opacity var(--transition-default);
 
   :hover {
@@ -23,45 +21,81 @@ const Icon = styled.i<{ isActive: boolean }>`
   height: 100%;
   position: relative;
 
-  ::before {
+  ::before,
+  ::after {
     display: inline-block;
-    transition: all var(--transition-default);
+    width: 0.5rem;
+    height: 0.5rem;
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
+
+    @media (min-width: ${breakpoints.lg}) {
+      width: 0.7rem;
+      height: 0.7rem;
+    }
+
+    @media (min-width: ${breakpoints.xl}) {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  ::before {
+    transition: all var(--transition-default);
+
     ${({ isActive }) => (isActive ? `
-      width: 4rem;
-      height: 0.3rem;
       background-color: var(--color-white);
-      transform: rotate(-45deg);
+      transform: translateY(-0.2rem) rotate(-45deg) scale(4, 0.3);
     ` : `
-      width: 2.6rem;
-      height: 2.6rem;
       border-radius: 50%;
-      border: 0.3rem solid var(--color-white);
-      transform: translate(-50%, -50%);
+      border: 0.09rem solid var(--color-white);
+      transform: translate(-50%, -50%) scale(3.6, 3.6);
     `)}
+
+    @media (min-width: ${breakpoints.lg}) {
+    ${({ isActive }) => (isActive ? `
+      background-color: var(--color-white);
+      transform: translateY(-0.5rem) rotate(-45deg) scale(4, 0.3);
+    ` : `
+      border-radius: 50%;
+      border: 0.09rem solid var(--color-white);
+      transform: translate(-50%, -50%) scale(3, 3);
+    `)}
+    }
+
+    @media (min-width: ${breakpoints.xl}) {
+    ${({ isActive }) => (isActive ? `
+      background-color: var(--color-white);
+      transform: translateY(-0.5rem) rotate(-45deg) scale(4, 0.3);
+    ` : `
+      border-radius: 50%;
+      border: 0.1rem solid var(--color-white);
+      transform: translate(-50%, -50%) scale(2.6, 2.6);
+    `)}
+    }
   }
 
   ::after {
-    display: inline-block;
-    height: 0.3rem;
-    content: '';
     background-color: var(--color-white);
-    position: absolute;
-    
-    top: 50%;
-    left: 50%;
+    transition: transform var(--transition-default);
 
-    ${({ isActive }) => (isActive ? `
-      width: 4rem;
-      transform: rotate(45deg);
-    ` : `
-      width: 1rem;
-      transform: rotate(45deg) translate(1.3rem, 0.3rem);
-    `)}
+    ${({ isActive }) => (isActive
+    ? 'transform: translateY(-0.2rem) rotate(45deg) scale(4, 0.3);'
+    : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.4, 0.4);')}
 
+    @media (min-width: ${breakpoints.lg}) {
+      ${({ isActive }) => (isActive
+    ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
+    : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.2, 0.3);')}
+    }
+
+    @media (min-width: ${breakpoints.xl}) {
+    ${({ isActive }) => (isActive
+    ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
+    : 'transform: translate(0.7rem, 0.8rem) rotate(45deg) scale(1, 0.3);')}
+    }
   }
 `;
 
@@ -70,11 +104,14 @@ type Props = {
   setActive: (val: boolean) => void
 }
 
-const Button: React.FC<Props> = ({ isActive, setActive }) => (
-  <StyledButton type="button" onClick={() => setActive(!isActive)}>
-    {/* <FormattedMessage id="header.search" /> */}
-    <Icon isActive={isActive} />
-  </StyledButton>
-);
+const Button: React.FC<Props> = ({ isActive, setActive }) => {
+  const intl = useIntl();
+
+  return (
+    <StyledButton type="button" onClick={() => setActive(!isActive)}>
+      <Icon isActive={isActive} aria-label={intl.formatMessage({ id: 'header.search' })} />
+    </StyledButton>
+  );
+}
 
 export default Button;

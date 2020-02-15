@@ -109,6 +109,7 @@
   },
   "errors": {
     "bevereageDetailsImageNotFound": "Nie znaleziono zdjęcia",
+    "nothingFound": "Nic nie znaleziono",
     "tileImageNotFound": "Nie znaleziono zdjęcia"
   },
   "formattedList": {
