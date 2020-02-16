@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { NavigationContext } from 'utils/contexts';
+import { breakpoints } from 'utils/theme';
 import { Logo, NavigationSwitcher, Searchbar } from '.';
 
 type WrapperProps = {
@@ -45,13 +46,17 @@ const Wrapper = styled.header`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: minmax(10rem, auto) 1fr minmax(10rem, auto);
+  grid-template-columns: minmax(5rem, auto) 1fr minmax(5rem, auto);
   grid-template-areas: 'search logo more';
   grid-template-rows: var(--size-header-height);
   width: 100%;
   max-width: var(--size-container-max-width);
   margin: 0 auto;
   position: relative;
+
+  @media (min-width: ${breakpoints.md}) {
+		grid-template-columns: minmax(10rem, auto) 1fr minmax(10rem, auto);
+  }
 `;
 
 const Header = () => {

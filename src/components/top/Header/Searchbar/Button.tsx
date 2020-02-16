@@ -5,10 +5,14 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { breakpoints } from 'utils/theme';
 
 const StyledButton = styled.button`
-  width: 10rem;
+  width: 5rem;
   height: 100%;
   opacity: 1;
   transition: opacity var(--transition-default);
+
+  @media (min-width: ${breakpoints.md}) {
+		width: 10rem;
+  }
 
   :hover {
     opacity: .5;

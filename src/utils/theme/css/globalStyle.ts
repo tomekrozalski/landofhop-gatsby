@@ -31,7 +31,7 @@ const globalStyles = css`
     --index-header: 12;
 
     --size-container-max-width: 100%;
-    --size-header-height: 4rem;
+    --size-header-height: 6rem;
     --size-input-height: 3.4rem;
     --size-loginbar-height: 18rem;
     --size-navbar-height: 10rem;
