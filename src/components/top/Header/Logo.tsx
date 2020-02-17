@@ -15,7 +15,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Header = styled.h1`
-  width: 2rem;
+  width: 3rem;
   height: 100%;
   overflow: hidden;
   position: relative;

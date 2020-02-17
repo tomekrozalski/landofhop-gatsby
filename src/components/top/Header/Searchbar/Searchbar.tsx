@@ -13,7 +13,7 @@ import { serverCall } from 'utils/helpers';
 import { Button, Input, Wrapper } from '.';
 
 const Searchbar = () => {
-	const { locale } = useIntl();
+	const { formatMessage, locale } = useIntl();
 	const inputRef = useRef<HTMLInputElement>(null!);
 	const { setLoginbar, setNavbar, setSearchbarActive } = useContext(NavigationContext);
 	const { setLoading, setNothingFound, setSearchResults } = useContext(SearchContext);
@@ -80,9 +80,10 @@ const Searchbar = () => {
 		<Wrapper isActive={isActive}>
 			<Input
 				isActive={isActive}
-				value={input}
 				onChange={onSearchChange}
+				placeholder={formatMessage({ id: 'header.search' })}
 				ref={inputRef}
+				value={input}
 			/>
 			<Button isActive={isActive} setActive={setActive} />
 		</Wrapper>
