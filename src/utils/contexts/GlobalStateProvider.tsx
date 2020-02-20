@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  Authentication,
-  Device,
-  Navigation,
-  Search,
-} from './index';
+import { Authentication, Navigation, Search } from './index';
 
 type Props = {
   contexts: any
@@ -20,8 +15,8 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
     children
   );
 
-const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <ProviderComposer contexts={[<Device />, <Navigation />, <Authentication />, <Search />]}>
+const GlobalStateProvider: React.FC = ({ children }) => (
+  <ProviderComposer contexts={[<Navigation />, <Authentication />, <Search />]}>
     {children}
   </ProviderComposer>
 );
