@@ -1,4 +1,4 @@
-import React, { useContext, Suspense } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { Canvas } from 'react-three-fiber';
 
@@ -10,12 +10,10 @@ import {
 	BrokenContainer,
 	CanvasWrapper,
 	GalleryContent,
+	Icon360,
+	Spinner,
 	Wrapper,
 } from '.';
-
-const BigBox = () => (
-	<div>div BOX BOX</div>
-);
 
 const Gallery: React.FC = () => {
 	const { formatMessage } = useIntl();
@@ -44,8 +42,9 @@ const Gallery: React.FC = () => {
 					/>
 					<CanvasWrapper>
 						<Canvas orthographic={true}>
-							<Suspense fallback={BigBox}>
-								<ambientLight />
+							<ambientLight />
+							<Suspense fallback={Spinner}>
+								<Icon360 />
 								<GalleryContent
 									badge={badge}
 									brand={brand.badge}

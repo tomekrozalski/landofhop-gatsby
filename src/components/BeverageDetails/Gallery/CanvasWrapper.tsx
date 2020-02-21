@@ -5,7 +5,7 @@ const CanvasWrapper = styled.div`
 	height: 100%;
 	position: absolute;
 	top: 0;
-	left: -180px;
+	left: 0;
 
 	@media
 		(-webkit-min-device-pixel-ratio: 2), 

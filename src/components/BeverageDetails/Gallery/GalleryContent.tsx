@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { LinearFilter, TextureLoader } from 'three';
 import { useLoader, useThree } from 'react-three-fiber';
 
@@ -43,7 +43,7 @@ const GalleryContent: React.FC<Props> = ({
 	// const [rotatable, setRotatable] = useState(false);
 	// const [position, setPosition] = useState([0, 0]);
 	const [img, setImg] = useState(0);
-	const [part, setPart] = useState(0);
+	const [activeImg, setActiveImg] = useState(0);
 
 	// useEffect(() => {
 	// 	if (position[0] !== position[1]) {
@@ -79,6 +79,26 @@ const GalleryContent: React.FC<Props> = ({
 	// 	setPosition(val => [e.deltaX, val[0]])
 
 	// }
+
+
+	const rotate = useCallback(val => {
+		let timeout;
+
+		if (val === 23) {
+			setImg(0);
+			clearTimeout(timeout);
+		} else {
+			setImg(val);
+
+			timeout = setTimeout(() => {
+				rotate(val + 1);
+			}, 10);
+		}
+	}, []);
+
+	useEffect(() => {
+		rotate(1);
+	}, []);
 
 	return (
 		<mesh
