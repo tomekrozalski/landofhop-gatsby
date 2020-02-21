@@ -31,6 +31,10 @@ const Input = styled.input.attrs({
 	:focus {
 		outline: none;
 	}
+
+	::-webkit-input-placeholder {
+		line-height: normal;
+	}
 `;
 
 export default Input;

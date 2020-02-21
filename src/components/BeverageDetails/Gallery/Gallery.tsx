@@ -40,20 +40,22 @@ const Gallery: React.FC = () => {
 						type={BeverageImageType.container}
 						width={220}
 					/>
-					<CanvasWrapper>
-						<Canvas orthographic={true} pixelRatio={window.devicePixelRatio}>
-							<ambientLight />
-							<Suspense fallback={<Spinner />}>
-								<Icon360 />
-								<GalleryContent
-									badge={badge}
-									brand={brand.badge}
-									shortId={shortId}
-									photos={photos.gallery}
-								/>
-							</Suspense>
-						</Canvas>
-					</CanvasWrapper>
+					{typeof window !== `undefined` && (
+						<CanvasWrapper>
+							<Canvas orthographic={true} pixelRatio={window.devicePixelRatio}>
+								<ambientLight />
+								<Suspense fallback={<Spinner />}>
+									<Icon360 />
+									<GalleryContent
+										badge={badge}
+										brand={brand.badge}
+										shortId={shortId}
+										photos={photos.gallery}
+									/>
+								</Suspense>
+							</Canvas>
+						</CanvasWrapper>
+					)}
 				</>
 			) : (
 					<BrokenContainer
