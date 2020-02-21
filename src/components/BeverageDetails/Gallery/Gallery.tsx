@@ -43,7 +43,7 @@ const Gallery: React.FC = () => {
 					<CanvasWrapper>
 						<Canvas orthographic={true} pixelRatio={window.devicePixelRatio}>
 							<ambientLight />
-							<Suspense fallback={Spinner}>
+							<Suspense fallback={<Spinner />}>
 								<Icon360 />
 								<GalleryContent
 									badge={badge}

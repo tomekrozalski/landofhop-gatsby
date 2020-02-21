@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const CanvasWrapper = styled.div`
-	width: 100%;
-	height: 100%;
+	width: 220px;
+	height: 500px;
 	position: absolute;
 	top: 0;
 	left: 0;

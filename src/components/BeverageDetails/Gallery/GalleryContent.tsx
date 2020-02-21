@@ -68,12 +68,17 @@ const GalleryContent: React.FC<Props> = ({
 		}
 	}
 
-	// const onWheelMove = (e) => {
-	// 	console.log('e.clientY', e.deltaX, e.deltaY);
+	const onWheelMove = (e: any) => {
+		const direction = e.deltaY > 0
+			? img + 1
+			: img - 1;
 
-	// 	setPosition(val => [e.deltaX, val[0]])
+		const nextImg = direction < 0
+			? (photos + direction) % photos
+			: direction % photos;
 
-	// }
+		setImg(nextImg);
+	}
 
 	const rotate = useCallback(val => {
 		let timeout;
@@ -101,7 +106,7 @@ const GalleryContent: React.FC<Props> = ({
 			onPointerDown={() => setRotatable(true)}
 			onPointerLeave={() => setRotatable(false)}
 			onPointerMove={onMove}
-		// onWheel={onWheelMove}
+			onWheel={onWheelMove}
 		>
 			<planeBufferGeometry attach="geometry" />
 			<meshStandardMaterial attach="material" map={textures[img]} />
