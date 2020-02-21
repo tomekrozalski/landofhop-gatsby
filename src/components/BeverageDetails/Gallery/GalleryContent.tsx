@@ -40,38 +40,33 @@ const GalleryContent: React.FC<Props> = ({
 		[rawTextures]
 	);
 
-	// const [rotatable, setRotatable] = useState(false);
-	// const [position, setPosition] = useState([0, 0]);
+	const [rotatable, setRotatable] = useState(false);
+	const [dragData, setDragData] = useState({
+		beforeXPosition: 0,
+		currentXPosition: 0,
+	});
 	const [img, setImg] = useState(0);
-	const [activeImg, setActiveImg] = useState(0);
 
-	// useEffect(() => {
-	// 	if (position[0] !== position[1]) {
+	useEffect(() => {
+		const direction = dragData.beforeXPosition > dragData.currentXPosition
+			? img - 1
+			: img + 1;
 
-	// 		const abs = +img - 1;
-	// 		const parsed = position[0] < position[1] ? +abs - 1 : +abs + 1;
-	// 		const aaa = parsed % 24;
+		const nextImg = direction < 0
+			? (photos + direction) % photos
+			: direction % photos;
 
-	// 		let bbb = 0;
+		setImg(nextImg);
+	}, [dragData]);
 
-	// 		if (aaa < 0) {
-	// 			bbb = 23 + aaa;
-	// 		} else {
-	// 			bbb = aaa;
-	// 		}
-
-	// 		const ccc = bbb + 1;
-	// 		const normalized = ccc < 10 ? `0${ccc}` : ccc.toString();
-
-	// 		setImg(normalized);
-	// 	}
-	// }, [position]);
-
-	// const onMove = (e) => {
-	// 	if (rotatable) {
-	// 		setPosition(val => [e.clientX, val[0]])
-	// 	}
-	// }
+	const onMove = (e: React.MouseEvent) => {
+		if (rotatable && e.clientX !== dragData.currentXPosition) {
+			setDragData(({ currentXPosition }) => ({
+				beforeXPosition: currentXPosition,
+				currentXPosition: e.clientX,
+			}));
+		}
+	}
 
 	// const onWheelMove = (e) => {
 	// 	console.log('e.clientY', e.deltaX, e.deltaY);
@@ -79,7 +74,6 @@ const GalleryContent: React.FC<Props> = ({
 	// 	setPosition(val => [e.deltaX, val[0]])
 
 	// }
-
 
 	const rotate = useCallback(val => {
 		let timeout;
@@ -103,10 +97,10 @@ const GalleryContent: React.FC<Props> = ({
 	return (
 		<mesh
 			scale={[viewport.width, viewport.height, 1]}
-		// onPointerUp={() => setRotatable(false)}
-		// onPointerDown={() => setRotatable(true)}
-		// onPointerOver={() => setRotatable(false)}
-		// onPointerMove={onMove}
+			onPointerUp={() => setRotatable(false)}
+			onPointerDown={() => setRotatable(true)}
+			onPointerLeave={() => setRotatable(false)}
+			onPointerMove={onMove}
 		// onWheel={onWheelMove}
 		>
 			<planeBufferGeometry attach="geometry" />

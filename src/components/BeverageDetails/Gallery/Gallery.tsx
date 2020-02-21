@@ -41,7 +41,7 @@ const Gallery: React.FC = () => {
 						width={220}
 					/>
 					<CanvasWrapper>
-						<Canvas orthographic={true}>
+						<Canvas orthographic={true} pixelRatio={window.devicePixelRatio}>
 							<ambientLight />
 							<Suspense fallback={Spinner}>
 								<Icon360 />

@@ -6,18 +6,6 @@ const CanvasWrapper = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
-
-	@media
-		(-webkit-min-device-pixel-ratio: 2), 
-		(min-resolution: 192dpi) { 
-			width: 200%;
-			height: 200%;
-
-			canvas {
-				transform: scale(.5, .5);
-				transform-origin: top left;
-			}
-	}
 `;
 
 export default CanvasWrapper;
