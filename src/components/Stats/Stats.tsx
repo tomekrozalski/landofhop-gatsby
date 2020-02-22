@@ -3,28 +3,22 @@ import React from 'react';
 import Layout from 'components/Layout';
 import SEO from 'components/Seo';
 import {
-	Axis,
-	Barchart,
 	ChartWrapper,
+	Scatterplot,
 	Wrapper,
 } from '.';
 
-const Stats: React.FC = () => {
-	console.log('stats');
-
-	return (
-		<Layout>
-			<SEO title="stats" />
-			<Wrapper>
-				<ChartWrapper>
-					<svg viewBox="0 0 500 300" id="svg">
-						<Barchart positionX={50} positionY={50} sizeX={400} sizeY={200} />
-					</svg>
-				</ChartWrapper>
-			</Wrapper>
-
-		</Layout>
-	);
-};
+const Stats: React.FC = () => (
+	<Layout>
+		<SEO title="stats" />
+		<Wrapper>
+			<ChartWrapper>
+				<svg viewBox="0 0 1160 600">
+					<Scatterplot padding={[40, 40, 60, 60]} size={[1160, 600]} />
+				</svg>
+			</ChartWrapper>
+		</Wrapper>
+	</Layout>
+);
 
 export default Stats;
