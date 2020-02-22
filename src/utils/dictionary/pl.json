@@ -162,6 +162,7 @@
     "loginFailed": "Błąd logowania",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Nie znaleziono",
+    "stats": "📈 Statystyki",
     "updateBeverageImages": "🔒 Popraw grafiki dla napoju"
   },
   "yes": "tak"

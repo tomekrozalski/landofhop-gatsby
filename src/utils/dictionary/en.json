@@ -162,6 +162,7 @@
     "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Not Found",
+    "stats": "📈 Statistics",
     "updateBeverageImages": "🔒 Update beverage images"
   },
   "yes": "yes"
