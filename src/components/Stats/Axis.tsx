@@ -24,7 +24,7 @@ const Axis: React.FC<Props> = ({ x, y, type, scale, label }) => {
 
 	useEffect(() => {
 		d3.select(group.current).call(d3[`axis${type}`](scale));
-	}, []);
+	});
 
 	const labelPosition = () => {
 		switch (type) {

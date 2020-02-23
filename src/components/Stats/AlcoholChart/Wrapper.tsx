@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ChartWrapper = styled.div`
+const Wrapper = styled.div`
 	width: 100%;
 	
 
@@ -11,4 +11,4 @@ const ChartWrapper = styled.div`
 	}
 `;
 
-export default ChartWrapper;
+export default Wrapper;
