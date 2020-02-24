@@ -156,6 +156,13 @@
     "title": "404 Not Found",
     "body": "Redirecting to the home page in { seconds, plural, one {# second} other {# seconds}}"
   },
+  "stats": {
+    "alcohol": {
+      "alcohol": "Alcohol",
+      "beveragesWithUnknownAlcohol": "Number of beers with an unknown amount of alcohol: {value}",
+      "numberOfBeverages": "Ilość piw"
+    }
+  },
   "titles": {
     "about": "About the site",
     "beverageDetails": "🍻 {brand}, {name}",

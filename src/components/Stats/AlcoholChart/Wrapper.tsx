@@ -6,7 +6,6 @@ const Wrapper = styled.div`
 
 	svg {
 		width: 100%;
-		border: 1px dotted #ddd;
 		margin-top: 2rem;
 	}
 `;

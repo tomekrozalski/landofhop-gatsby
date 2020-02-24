@@ -1,32 +1,8 @@
 import get from 'lodash/get';
 
-import { AlcoholRelate, AlcoholUnit } from 'utils/enums/beverage';
-import { AlcoholData } from '../types';
+import { AlcoholData, RawData } from '../types';
 
-type Node = {
-	node: {
-		alcohol: {
-			label: {
-				relate: AlcoholRelate
-				unit: AlcoholUnit
-				value: number
-			} | null
-			producer: {
-				relate: AlcoholRelate
-				unit: AlcoholUnit
-				value: number
-			} | null
-		} | null
-	}
-}
-
-type Props = {
-	allBeverage: {
-		edges: Node[]
-	}
-}
-
-const getData = (values: Props): AlcoholData[] => {
+const getData = (values: RawData): AlcoholData[] => {
 	const alcoholValues = values.allBeverage.edges.map(({ node }) => (
 		get(node, 'alcohol.label.value') || get(node, 'alcohol.producer.value')
 	)).filter(val => val !== undefined);

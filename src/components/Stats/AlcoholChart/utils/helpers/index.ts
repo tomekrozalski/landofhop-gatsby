@@ -1,3 +1,4 @@
+import getUndefined from './getUndefined';
 import normalizeData from './normalizeData';
 
-export { normalizeData };
+export { getUndefined, normalizeData };

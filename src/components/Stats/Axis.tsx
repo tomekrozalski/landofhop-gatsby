@@ -23,7 +23,8 @@ const Axis: React.FC<Props> = ({ x, y, type, scale, label }) => {
 	const group = useRef<SVGGElement>(null!);
 
 	useEffect(() => {
-		d3.select(group.current).call(d3[`axis${type}`](scale));
+		const axis = d3[`axis${type}`](scale).tickValues([1, 2, 3, 5, 8, 13, 21]);;
+		d3.select(group.current).call(axis);
 	});
 
 	const labelPosition = () => {
