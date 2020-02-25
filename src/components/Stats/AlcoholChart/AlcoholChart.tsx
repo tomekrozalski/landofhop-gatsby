@@ -1,13 +1,16 @@
 import React from 'react';
 import * as d3 from 'd3';
 import { useStaticQuery, graphql } from 'gatsby';
-import { useIntl } from 'gatsby-plugin-intl';
 
-import { AxisType } from '../utils/enums';
-import { Axis } from '../';
 import { AlcoholData } from './utils/types';
 import { getUndefined, normalizeData } from './utils/helpers';
-import { DataPoint, Footer, Wrapper } from '.';
+import {
+	AlcoholAxis,
+	AmountAxis,
+	DataPoint,
+	Footer,
+	Wrapper,
+} from '.';
 
 type Props = {
 	size: [number, number]
@@ -17,8 +20,6 @@ type Props = {
 const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 	const [paddingTop, paddingRight, paddingBottom, paddingLeft] = padding;
 	const [width, height] = size;
-
-	const { formatMessage } = useIntl();
 
 	const rawData = useStaticQuery(graphql`
     query AlcoholStats {
@@ -60,6 +61,18 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 		<Wrapper>
 			<svg viewBox="0 0 1160 600">
 				<g transform={`translate(${paddingLeft}, ${paddingTop})`}>
+					<AmountAxis
+						x={0}
+						y={0}
+						scale={yScale}
+						width={width - paddingLeft - paddingRight}
+					/>
+					<AlcoholAxis
+						scale={xScale}
+						ticks={Math.max(...data.map(({ value }) => value)) + 1}
+						x={0}
+						y={height - paddingTop - paddingBottom}
+					/>
 					{data.map(({ value, beverages }) => (
 						<DataPoint
 							key={value}
@@ -68,19 +81,6 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 							y={yScale(beverages)}
 						/>
 					))}
-					<Axis
-						x={0}
-						y={0}
-						type={AxisType.Left}
-						scale={yScale}
-						label={formatMessage({ id: 'stats.alcohol.numberOfBeverages' })}
-					/>
-					<Axis
-						x={0}
-						y={height - paddingTop - paddingBottom} type={AxisType.Bottom}
-						scale={xScale}
-						label={formatMessage({ id: 'stats.alcohol.alcohol' })}
-					/>
 				</g>
 			</svg>
 			<Footer undefinedAlcohol={undefinedAlcohol} />

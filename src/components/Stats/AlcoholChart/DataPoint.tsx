@@ -15,7 +15,7 @@ type Props = {
 }
 
 const DataPoint: React.FC<Props> = ({ height, x, y }) => (
-	<Rectangle x={x} y={y} width="3" height={height - y} />
+	<Rectangle x={x - 1} y={y} width="3.5" height={height - y} />
 );
 
 export default DataPoint;
