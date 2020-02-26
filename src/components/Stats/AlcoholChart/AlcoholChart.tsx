@@ -76,7 +76,9 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 					{data.map(({ value, beverages }) => (
 						<DataPoint
 							key={value}
+							beverages={beverages}
 							height={height - paddingTop - paddingBottom}
+							value={value}
 							x={xScale(value)}
 							y={yScale(beverages)}
 						/>
