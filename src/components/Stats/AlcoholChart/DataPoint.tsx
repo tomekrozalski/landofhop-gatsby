@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const Rectangle = styled.rect`
+const Bar = styled.rect`
 	fill: steelblue;
 	fill-opacity: .8;
 	stroke: steelblue;
@@ -10,18 +10,20 @@ const Rectangle = styled.rect`
 `;
 
 const Text = styled.text`
-    fill: var(--color-black);
-    font-family: var(--font-primary);
-		font-size: 1.4rem;
-		text-transform: uppercase;
-		position: absolute;
-
-		transition: opacity .2s;
+	fill: var(--color-white);
+	font: 1.4rem / 1 var(--font-primary);
+	text-transform: uppercase;
+	pointer-events: none;
+	transition: opacity var(--transition-default);
 `;
 
-const Back = styled.rect`
-	transition: opacity .2s;
-`
+const BackgroundRect = styled.rect`
+	stroke: steelblue;
+	stroke-width: 1.5px;
+	fill: steelblue;
+	pointer-events: none;
+	transition: opacity var(--transition-default);
+`;
 
 type Props = {
 	beverages: number
@@ -32,33 +34,40 @@ type Props = {
 }
 
 const DataPoint: React.FC<Props> = ({ beverages, height, value, x, y }) => {
-	const [opacity, setOpacity] = useState(1);
+	const datapointText = useRef<SVGTextElement>(null!);
+	const [opacity, setOpacity] = useState(0);
 	const [textWidth, setTextWidth] = useState(0);
-	const thetext = useRef(null!);
 
 	useEffect(() => {
-		console.log('thetext.current.getBBox()', thetext.current.getBBox());
-
-		setTextWidth(thetext.current.getBBox().width)
+		setTextWidth(datapointText.current.getBBox().width);
 	}, []);
-
-	const abc = () => {
-		setOpacity(1);
-	}
-
-	const out = () => {
-		setOpacity(0);
-	}
-
-	console.log('render');
 
 	return (
 		<>
-			<Rectangle x={x - 1} y={y} width="3.5" height={height - y} onMouseOver={abc} onMouseLeave={out} />
-
-			<Back width={textWidth} height={20} fill="green" x={x + 5} y={y - 25} style={{ opacity }} />
-			<Text style={{ opacity }} ref={thetext} x={x + 10} y={y - 10}>{`${value}%: ${beverages}`}</Text>
-
+			<Bar
+				x={x - 1} y={y}
+				width="4.5"
+				height={height - y}
+				onMouseOver={() => setOpacity(1)}
+				onMouseLeave={() => setOpacity(0)}
+			/>
+			<BackgroundRect
+				className="datapoint-background"
+				width={textWidth + 20}
+				height={24}
+				style={{ opacity }}
+				x={x + 14}
+				y={y - 20}
+			/>
+			<Text
+				className="datapoint-text"
+				ref={datapointText}
+				style={{ opacity }}
+				x={x + 26}
+				y={y - 3}
+			>
+				{`${value}%: ${beverages}`}
+			</Text>
 		</>
 	);
 }

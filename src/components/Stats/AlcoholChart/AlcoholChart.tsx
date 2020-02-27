@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -9,7 +9,6 @@ import {
 	AmountAxis,
 	DataPoint,
 	Footer,
-	Wrapper,
 } from '.';
 
 type Props = {
@@ -57,8 +56,14 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 		.domain([Math.max(...data.map(({ beverages }) => beverages)) + 3, 0])
 		.range([0, height - paddingTop - paddingBottom]);
 
+
+	useEffect(() => {
+		d3.selectAll('.datapoint-background').raise();
+		d3.selectAll('.datapoint-text').raise();
+	}, []);
+
 	return (
-		<Wrapper>
+		<>
 			<svg viewBox="0 0 1160 600">
 				<g transform={`translate(${paddingLeft}, ${paddingTop})`}>
 					<AmountAxis
@@ -86,7 +91,7 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 				</g>
 			</svg>
 			<Footer undefinedAlcohol={undefinedAlcohol} />
-		</Wrapper>
+		</>
 	);
 }
 
