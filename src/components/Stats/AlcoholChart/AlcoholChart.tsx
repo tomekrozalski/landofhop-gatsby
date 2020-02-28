@@ -56,7 +56,6 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 		.domain([Math.max(...data.map(({ beverages }) => beverages)) + 3, 0])
 		.range([0, height - paddingTop - paddingBottom]);
 
-
 	useEffect(() => {
 		d3.selectAll('.datapoint-background').raise();
 		d3.selectAll('.datapoint-text').raise();

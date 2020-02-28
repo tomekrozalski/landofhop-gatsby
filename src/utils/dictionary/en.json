@@ -160,7 +160,11 @@
     "alcohol": {
       "alcohol": "Alcohol",
       "beveragesWithUnknownAlcohol": "Number of beers with an unknown amount of alcohol: {value}",
-      "numberOfBeverages": "Ilość piw"
+      "numberOfBeverages": "Number of beverages"
+    },
+    "addTimeline": {
+      "month": "Month",
+      "numberOfBeverages": "Number of beverages"
     }
   },
   "titles": {

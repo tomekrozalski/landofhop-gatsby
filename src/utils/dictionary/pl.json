@@ -161,6 +161,10 @@
       "alcohol": "Alkohol",
       "beveragesWithUnknownAlcohol": "Ilość piw z nieznaną ilością alkoholu: {value}",
       "numberOfBeverages": "Ilość piw"
+    },
+    "addTimeline": {
+      "month": "Miesiąc",
+      "numberOfBeverages": "Ilość piw"
     }
   },
   "titles": {
