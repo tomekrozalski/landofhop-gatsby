@@ -33,7 +33,7 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 
 	const xScale = d3
 		.scaleLinear()
-		.domain(data.map(({ month, year }) => new Date(year, month)))
+		.domain([new Date(2017, 6), new Date(2020, 1)])
 		.range([0, width - paddingLeft - paddingRight]);
 
 	const yScale = d3
