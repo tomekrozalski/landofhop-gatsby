@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as d3 from 'd3';
+import { differenceInMonths } from 'date-fns';
 
 import { MonthData } from './utils/types';
 import { normalizeData } from './utils/helpers';
@@ -28,12 +29,13 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 	`);
 
 	const data: MonthData[] = normalizeData(rawData);
-
-	console.log('data', data.map(({ month, year }) => new Date(year, month)));
+	const initialMonth = new Date(data[0].year, data[0].month);
+	const lastMonth = new Date(data[data.length - 1].year, data[data.length - 1].month);
+	const ticks = differenceInMonths(lastMonth, initialMonth);
 
 	const xScale = d3
 		.scaleLinear()
-		.domain([new Date(2017, 6), new Date(2020, 1)])
+		.domain([initialMonth, lastMonth])
 		.range([0, width - paddingLeft - paddingRight]);
 
 	const yScale = d3
@@ -52,14 +54,16 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 				/>
 				<MonthAxis
 					scale={xScale}
+					ticks={ticks}
 					x={0}
 					y={height - paddingTop - paddingBottom}
 				/>
 				{data.map(({ beverages, month, year }) => (
 					<circle
 						key={`${month}, ${year}`}
-						x={xScale(new Date(year, month))}
-						y={yScale(beverages)}
+						cx={xScale(new Date(year, month))}
+						cy={yScale(beverages)}
+						r="3"
 					/>
 				))}
 			</g>
