@@ -1,3 +1,4 @@
+import generateMonthArray from './generateMonthArray';
 import normalizeData from './normalizeData';
 
-export { normalizeData };
+export { generateMonthArray, normalizeData };

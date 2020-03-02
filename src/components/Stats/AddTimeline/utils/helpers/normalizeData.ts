@@ -1,6 +1,8 @@
 import { getMonth, getYear } from 'date-fns';
 
 import { MonthData, RawData } from '../types';
+import { generateMonthArray } from '.';
+
 
 const normalizeData = (values: RawData): MonthData[] => {
 	const valuesAsMonths = values.allBeverage.edges.map(({ node }) => ({
@@ -14,20 +16,10 @@ const normalizeData = (values: RawData): MonthData[] => {
 			obj.year === curr.year && obj.month === curr.month
 		);
 
-		if (index < 0) {
-			return [...acc, curr]
-		} else {
-			const newArr = [...acc];
-			newArr[index].beverages = newArr[index].beverages + curr.beverages;
-			return newArr;
-		}
-	}, []).sort((a: MonthData, b: MonthData) => {
-		if (a.year !== b.year) {
-			return a.year < b.year ? -1 : 1;
-		}
-
-		return a.month < b.month ? -1 : 1;
-	});
+		const newArr = [...acc];
+		newArr[index].beverages = newArr[index].beverages + curr.beverages;
+		return newArr;
+	}, generateMonthArray());
 
 	return formattedValues;
 };

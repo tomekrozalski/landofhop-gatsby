@@ -5,7 +5,7 @@ import { differenceInMonths } from 'date-fns';
 
 import { MonthData } from './utils/types';
 import { normalizeData } from './utils/helpers';
-import { AmountAxis, MonthAxis } from '.';
+import { AmountAxis, Datum, MonthAxis } from '.';
 
 type Props = {
 	size: [number, number]
@@ -31,7 +31,7 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 	const data: MonthData[] = normalizeData(rawData);
 	const initialMonth = new Date(data[0].year, data[0].month);
 	const lastMonth = new Date(data[data.length - 1].year, data[data.length - 1].month);
-	const ticks = differenceInMonths(lastMonth, initialMonth);
+	const monthCount = differenceInMonths(lastMonth, initialMonth);
 
 	const xScale = d3
 		.scaleLinear()
@@ -54,18 +54,11 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 				/>
 				<MonthAxis
 					scale={xScale}
-					ticks={ticks}
+					ticks={monthCount / 2}
 					x={0}
 					y={height - paddingTop - paddingBottom}
 				/>
-				{data.map(({ beverages, month, year }) => (
-					<circle
-						key={`${month}, ${year}`}
-						cx={xScale(new Date(year, month))}
-						cy={yScale(beverages)}
-						r="3"
-					/>
-				))}
+				<Datum data={data} ticks={monthCount} xScale={xScale} yScale={yScale} />
 			</g>
 		</svg>
 	);
