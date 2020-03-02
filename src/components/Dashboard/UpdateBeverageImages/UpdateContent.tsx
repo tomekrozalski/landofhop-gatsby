@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { serverCall } from 'utils/helpers';
+import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from './UpdateBeverageImages';
 import { withAdmin } from '../utils'
-import {
-	CoverPhoto,
-	Gallery,
-	Header,
-	Wrapper,
-} from '.';
+import { CoverPhoto, Gallery } from '.';
 
 type Props = {
 	next: BeverageBaseTypes
@@ -69,7 +66,9 @@ const UpdateContent: React.FC<Props> = ({ next, previous, setFetchedBeverage }) 
 
 	return (
 		<Wrapper>
-			<Header />
+			<Header>
+				<FormattedMessage id="dashboard.updateBeverageImages.title" />
+			</Header>
 			<CoverPhoto next={next} previous={previous} />
 			<Gallery />
 		</Wrapper>

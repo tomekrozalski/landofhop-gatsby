@@ -3,14 +3,9 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
-import { CoverImage } from 'elements';
+import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
-import {
-	DragableArea,
-	Frame,
-	SectionHeader,
-	SectionWrapper,
-} from '../elements';
+import { DragableArea, Frame, SectionWrapper } from '../elements';
 import { Navigation } from '.';
 
 type Props = {

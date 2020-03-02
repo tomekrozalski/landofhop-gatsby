@@ -7,6 +7,12 @@ const Bar = styled.rect`
 	stroke: steelblue;
 	stroke-width: 1.5px;
 	cursor: pointer;
+
+	:hover {
+		fill: var(--color-black);
+		fill-opacity: 1;
+		stroke: var(--color-black);
+	}
 `;
 
 const Text = styled.text`

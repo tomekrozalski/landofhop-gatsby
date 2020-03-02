@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageImageType } from 'utils/enums/beverage';
-import { CoverImage } from 'elements';
+import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
-import { Frame, SectionHeader, SectionWrapper } from '../elements';
+import { Frame, SectionWrapper } from '../elements';
 
 const Gallery: React.FC = () => {
 	const {

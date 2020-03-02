@@ -4,6 +4,7 @@ import CoverImage from './CoverImage';
 import ErrorHeader from './ErrorHeader';
 import ErrorWrapper from './ErrorWrapper';
 import FormattedList from './FormattedList';
+import SectionHeader from './SectionHeader';
 import Spinner from './Spinner';
 import TextInput from './TextInput';
 
@@ -15,6 +16,7 @@ export {
 	ErrorHeader,
 	ErrorWrapper,
 	FormattedList,
+	SectionHeader,
 	Spinner,
 	TextInput,
 };

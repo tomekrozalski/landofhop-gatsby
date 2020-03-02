@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import { useStaticQuery, graphql } from 'gatsby';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { SectionHeader } from 'elements';
 import { AlcoholData } from './utils/types';
 import { getUndefined, normalizeData } from './utils/helpers';
 import {
@@ -63,6 +65,9 @@ const AlcoholChart: React.FC<Props> = ({ padding, size }) => {
 
 	return (
 		<>
+			<SectionHeader>
+				<FormattedMessage id="stats.alcohol.name" />
+			</SectionHeader>
 			<svg viewBox="0 0 1160 600">
 				<g transform={`translate(${paddingLeft}, ${paddingTop})`}>
 					<AmountAxis

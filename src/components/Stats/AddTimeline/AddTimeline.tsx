@@ -2,10 +2,17 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as d3 from 'd3';
 import { differenceInMonths } from 'date-fns';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
+import { SectionHeader } from 'elements';
 import { MonthData } from './utils/types';
 import { normalizeData } from './utils/helpers';
-import { AmountAxis, Datum, MonthAxis } from '.';
+import {
+	AmountAxis,
+	DataPoint,
+	Datum,
+	MonthAxis,
+} from '.';
 
 type Props = {
 	size: [number, number]
@@ -44,23 +51,35 @@ const AddChart: React.FC<Props> = ({ padding, size }) => {
 		.range([0, height - paddingTop - paddingBottom]);
 
 	return (
-		<svg viewBox="0 0 1160 600">
-			<g transform={`translate(${paddingLeft}, ${paddingTop})`}>
-				<AmountAxis
-					x={0}
-					y={0}
-					scale={yScale}
-					width={width - paddingLeft - paddingRight}
-				/>
-				<MonthAxis
-					scale={xScale}
-					ticks={monthCount / 2}
-					x={0}
-					y={height - paddingTop - paddingBottom}
-				/>
-				<Datum data={data} ticks={monthCount} xScale={xScale} yScale={yScale} />
-			</g>
-		</svg>
+		<>
+			<SectionHeader>
+				<FormattedMessage id="stats.addTimeline.name" />
+			</SectionHeader>
+			<svg viewBox="0 0 1160 600">
+				<g transform={`translate(${paddingLeft}, ${paddingTop})`}>
+					<AmountAxis
+						x={0}
+						y={0}
+						scale={yScale}
+						width={width - paddingLeft - paddingRight}
+					/>
+					<MonthAxis
+						scale={xScale}
+						ticks={monthCount / 2}
+						x={0}
+						y={height - paddingTop - paddingBottom}
+					/>
+					<Datum data={data} xScale={xScale} yScale={yScale} />
+					{data.map(({ beverages, month, year }) => (
+						<DataPoint
+							key={`${year}${month}`}
+							x={xScale(new Date(year, month))}
+							y={yScale(beverages)}
+						/>
+					))}
+				</g>
+			</svg>
+		</>
 	);
 }
 

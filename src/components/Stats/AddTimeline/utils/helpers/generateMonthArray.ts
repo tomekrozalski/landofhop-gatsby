@@ -1,8 +1,8 @@
 import { getMonth, getYear } from 'date-fns';
 
-const generateMonthArray = () => {
+const generateMonthArray = (until: Date) => {
 	const from = { month: 5, year: 2017 };
-	const to = { month: getMonth(Date.now()), year: getYear(Date.now()) };
+	const to = { month: getMonth(until), year: getYear(until) };
 	const months = [];
 
 	for (let year = from.year; year <= to.year; year += 1) {

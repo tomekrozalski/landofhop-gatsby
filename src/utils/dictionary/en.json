@@ -160,12 +160,15 @@
     "alcohol": {
       "alcohol": "Alcohol",
       "beveragesWithUnknownAlcohol": "Number of beers with an unknown amount of alcohol: {value}",
+      "name": "Graph of alcohol quantity in beverages",
       "numberOfBeverages": "Number of beverages"
     },
     "addTimeline": {
       "month": "Month",
+      "name": "Amount of beers added to the database in the following months",
       "numberOfBeverages": "Number of beverages"
-    }
+    },
+    "name": "Statistics"
   },
   "titles": {
     "about": "About the site",

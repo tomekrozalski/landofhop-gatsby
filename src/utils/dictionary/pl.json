@@ -160,12 +160,15 @@
     "alcohol": {
       "alcohol": "Alkohol",
       "beveragesWithUnknownAlcohol": "Ilość piw z nieznaną ilością alkoholu: {value}",
+      "name": "Wykres ilości alkoholu w piwach",
       "numberOfBeverages": "Ilość piw"
     },
     "addTimeline": {
       "month": "Miesiąc",
+      "name": "Ilość dodawanych piw do bazy w kolejnych miesiącach",
       "numberOfBeverages": "Ilość piw"
-    }
+    },
+    "name": "Statystyki"
   },
   "titles": {
     "about": "O stronie",
