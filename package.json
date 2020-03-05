@@ -30,6 +30,7 @@
     "markdown-to-jsx": "^6.10.3",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-dropzone": "^10.2.1",
     "react-helmet": "^5.2.1",
     "react-intl": "^3.9.1",
     "react-three-fiber": "^4.0.17",

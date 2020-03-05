@@ -8,10 +8,8 @@ import { LeftIcon, RightIcon } from 'elements/icons';
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	margin-left: 2rem;
 	padding: 2rem 1rem 1rem 1rem;
 	border: 1px solid var(--color-bright);
-	flex-grow: 1;
 	position: relative;
 `;
 

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
-import { DragableArea, Frame, SectionWrapper } from '../elements';
-import { Navigation } from '.';
+import { Frame, SectionWrapper } from '../elements';
+import { Aside, DropZone, Navigation } from '.';
 
 type Props = {
 	next: BeverageBaseTypes
@@ -14,6 +14,8 @@ type Props = {
 };
 
 const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
+	const [errors, setErrors] = useState([]);
+
 	const {
 		badge,
 		brand,
@@ -48,13 +50,16 @@ const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
 				}}>
 				</Frame>
 				<Frame active>
-					<DragableArea />
+					<DropZone setErrors={setErrors} />
 				</Frame>
-				<Navigation
-					current={{ badge, brand, shortId }}
-					next={next}
-					previous={previous}
-				/>
+				<Aside>
+					<Navigation
+						current={{ badge, brand, shortId }}
+						next={next}
+						previous={previous}
+					/>
+					<div>Errors</div>
+				</Aside>
 			</SectionWrapper>
 		</>
 	);
