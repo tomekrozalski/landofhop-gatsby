@@ -7,7 +7,6 @@ import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame, SectionWrapper } from '../elements';
 import { Aside } from './elements';
-import { File } from './utils';
 import { DropZone, Error, Navigation } from '.';
 
 type Props = {
@@ -16,7 +15,7 @@ type Props = {
 };
 
 const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
-	const [errors, setErrors] = useState<File[]>([]);
+	const [errors, setErrors] = useState<Blob[]>([]);
 
 	const {
 		badge,

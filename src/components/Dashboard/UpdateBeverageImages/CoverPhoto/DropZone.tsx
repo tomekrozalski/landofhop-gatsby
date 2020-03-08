@@ -5,10 +5,10 @@ import { AuthenticationContext } from 'utils/contexts';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { DragAndDropIcon } from '../elements';
 import { DropZoneWrapper } from './elements';
-import { config, File } from './utils';
+import { config, saveBeverageCover } from './utils';
 
 type Props = {
-	setErrors: (value: File[]) => void
+	setErrors: (value: Blob[]) => void
 }
 
 const DropZone: React.FC<Props> = ({ setErrors }) => {
@@ -20,23 +20,20 @@ const DropZone: React.FC<Props> = ({ setErrors }) => {
 		shortId,
 	} = useContext(BeverageContext);
 
-	const onSaveImages = (file: {}) => {
-		console.log('saveBeverageCover', file, token, badge,
-			brand,
+	const onSaveImages = (file: Blob) => {
+		saveBeverageCover({
+			badge,
+			brand: brand.badge,
+			file,
 			id,
-			shortId);
+			shortId,
+			token,
+		})
+			.then(() => {
+				console.log('success');
 
-		// saveBeverageCover({
-		// 	file: fileToRequest,
-		// 	id,
-		// 	params,
-		// 	token,
-		// })
-		// 	.then(() => {
-		// 		setFileToPreview(null);
-		// 		setFileToRequest(null);
-		// 		getBeveragesList();
-		// 	});
+				// getBeveragesList();
+			});
 	};
 
 	const { getRootProps, getInputProps } = useDropzone({

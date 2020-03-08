@@ -1,6 +1,7 @@
 import config from './config';
+import saveBeverageCover from './saveBeverageCover';
 
-export * from './File.type';
 export {
 	config,
+	saveBeverageCover,
 };

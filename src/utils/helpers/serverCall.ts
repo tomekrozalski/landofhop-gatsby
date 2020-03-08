@@ -1,11 +1,13 @@
 type Props = {
+	formData?: boolean
 	method?: 'GET' | 'POST'
 	path: string
 	token?: string
-	body?: string
+	body?: any
 }
 
 const serverCall = ({
+	formData = false,
 	method = 'GET',
 	path,
 	token,
@@ -15,7 +17,7 @@ const serverCall = ({
 			method,
 			headers: {
 				Authorization: token ? `Bearer ${token}` : '',
-				'Content-Type': 'application/json',
+				'Content-Type': formData ? 'multipart/form-data' : 'application/json',
 			},
 			...rest,
 		})

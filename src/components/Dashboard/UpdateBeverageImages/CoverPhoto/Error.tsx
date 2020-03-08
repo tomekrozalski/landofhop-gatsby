@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { config, File } from './utils';
+import { config } from './utils';
 
-const Error: React.FC<File> = ({ size, type }) => {
+const Error: React.FC<Blob> = ({ size, type }) => {
 	if (!config.accept.includes(type)) {
 		return <FormattedMessage id="dashboard.updateBeverageImages.error.wrongFormat" />;
 	}
