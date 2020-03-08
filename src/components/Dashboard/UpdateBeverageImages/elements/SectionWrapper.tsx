@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const SectionWrapper = styled.div`
-	display: flex;
-	align-items: flex-start;
+	display: grid;
+	grid-template-columns: repeat(3, 228px) auto;
+	grid-gap: 2rem;
 	margin-bottom: 4rem;
 `;
 

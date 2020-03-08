@@ -102,6 +102,12 @@
     "notLoggedInError": "Not logged in. Access denied",
     "updateBeverageImages": {
       "coverPhoto": "Cover photo",
+      "error": {
+        "other": "File loading error",
+        "tooBig": "Error! The selected photo is too large. The maximum file size is {value} KB",
+        "tooSmall": "Error! The selected photo is too small. The minimum file size is {value} KB",
+        "wrongFormat": "Error! Invalid file format"
+      },
       "gallery": "Photo gallery",
       "navigation": "Navigation",
       "title": "Update beverage images"

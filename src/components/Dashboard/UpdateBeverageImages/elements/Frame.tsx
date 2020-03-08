@@ -6,10 +6,6 @@ const Frame = styled.div<{ active?: boolean }>`
 	min-height: 508px;
 	width: 228px;
 	border: 4px ${({ active }) => (active ? 'dashed' : 'solid')} var(--color-brighter);
-
-	& + & {
-		margin-left: 2rem;
-	}
 `;
 
 export default Frame;

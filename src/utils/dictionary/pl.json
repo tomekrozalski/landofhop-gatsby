@@ -102,6 +102,12 @@
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverageImages": {
       "coverPhoto": "Zdjęcie okładkowe",
+      "error": {
+        "other": "Błąd ładowania pliku",
+        "tooBig": "Błąd! Wybrane zdjęcie jest zbyt duże. Maksymalna wielkość pliku to {value} KB",
+        "tooSmall": "Błąd! Wybrane zdjęcie jest zbyt małe. Minimalna wielkość pliku to {value} KB",
+        "wrongFormat": "Błąd! Niewłaściwy format pliku"
+      },
       "gallery": "Galeria zdjęć",
       "navigation": "Nawigacja",
       "title": "Popraw grafiki dla napoju"

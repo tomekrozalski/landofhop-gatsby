@@ -1,14 +1,12 @@
-import Aside from './Aside';
 import CoverPhoto from './CoverPhoto';
 import DropZone from './DropZone';
-import Preview from './Preview';
+import Error from './Error';
 import Navigation from './Navigation';
 
 export {
-	Aside,
 	DropZone,
+	Error,
 	Navigation,
-	Preview,
 };
 
 export default CoverPhoto;

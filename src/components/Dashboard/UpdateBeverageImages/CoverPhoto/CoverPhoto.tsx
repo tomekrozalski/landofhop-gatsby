@@ -6,7 +6,9 @@ import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame, SectionWrapper } from '../elements';
-import { Aside, DropZone, Navigation } from '.';
+import { Aside } from './elements';
+import { File } from './utils';
+import { DropZone, Error, Navigation } from '.';
 
 type Props = {
 	next: BeverageBaseTypes
@@ -14,7 +16,7 @@ type Props = {
 };
 
 const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState<File[]>([]);
 
 	const {
 		badge,
@@ -58,7 +60,7 @@ const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
 						next={next}
 						previous={previous}
 					/>
-					<div>Errors</div>
+					{errors.length ? <Error {...errors[0]} /> : null}
 				</Aside>
 			</SectionWrapper>
 		</>
