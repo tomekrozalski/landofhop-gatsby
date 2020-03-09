@@ -42,6 +42,7 @@ type Props = {
 		badge: string
 		name: LanguageValue
 	}
+	hasTail?: boolean
 	height?: number
 	name: LanguageValue
 	outline?: string
@@ -53,6 +54,7 @@ type Props = {
 const CoverImage: React.FC<Props> = ({
 	badge,
 	brand,
+	hasTail = false,
 	height,
 	name,
 	outline,
@@ -71,9 +73,11 @@ const CoverImage: React.FC<Props> = ({
 	const getPath = (format: 'webp' | 'jpg', size: 1 | 2) => {
 		const basicPath = `${process.env.PHOTO_SERVER}/${brand.badge}/${badge}/${shortId}`;
 
+		const tail = hasTail ? `?${Date.now()}` : '';
+
 		return type === BeverageImageType.cover
-			? `${basicPath}/${type}/${format}/${size}x.${format}`
-			: `${basicPath}/${type}/${format}/${size}x/01.${format}`;
+			? `${basicPath}/${type}/${format}/${size}x.${format}${tail}`
+			: `${basicPath}/${type}/${format}/${size}x/01.${format}${tail}`;
 	}
 
 	const isBrowser = typeof window !== `undefined`;

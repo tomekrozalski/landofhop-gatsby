@@ -12,9 +12,10 @@ import { DropZone, Error, Navigation } from '.';
 type Props = {
 	next: BeverageBaseTypes
 	previous: BeverageBaseTypes
+	updateValues: () => void
 };
 
-const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
+const CoverPhoto: React.FC<Props> = ({ next, previous, updateValues }) => {
 	const [errors, setErrors] = useState<Blob[]>([]);
 
 	const {
@@ -36,6 +37,7 @@ const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
 							<CoverImage
 								badge={badge}
 								brand={{ badge: brand.badge, name: brand.name }}
+								hasTail
 								height={photos?.cover?.height}
 								name={name}
 								outline={photos?.outlines?.cover}
@@ -51,7 +53,7 @@ const CoverPhoto: React.FC<Props> = ({ next, previous }) => {
 				}}>
 				</Frame>
 				<Frame active>
-					<DropZone setErrors={setErrors} />
+					<DropZone setErrors={setErrors} updateValues={updateValues} />
 				</Frame>
 				<Aside>
 					<Navigation

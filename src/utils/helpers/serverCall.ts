@@ -17,7 +17,7 @@ const serverCall = ({
 			method,
 			headers: {
 				Authorization: token ? `Bearer ${token}` : '',
-				'Content-Type': formData ? 'multipart/form-data' : 'application/json',
+				...(!formData && { 'Content-Type': 'application/json' }),
 			},
 			...rest,
 		})

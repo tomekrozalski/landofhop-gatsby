@@ -5,13 +5,14 @@ import { AuthenticationContext } from 'utils/contexts';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { DragAndDropIcon } from '../elements';
 import { DropZoneWrapper } from './elements';
-import { config, saveBeverageCover } from './utils';
+import { config, saveBeverageCover, updateOutline } from './utils';
 
 type Props = {
 	setErrors: (value: Blob[]) => void
+	updateValues: () => void
 }
 
-const DropZone: React.FC<Props> = ({ setErrors }) => {
+const DropZone: React.FC<Props> = ({ setErrors, updateValues }) => {
 	const { token } = useContext(AuthenticationContext);
 	const {
 		badge,
@@ -30,9 +31,14 @@ const DropZone: React.FC<Props> = ({ setErrors }) => {
 			token,
 		})
 			.then(() => {
-				console.log('success');
-
-				// getBeveragesList();
+				updateOutline({
+					badge,
+					brand: brand.badge,
+					id,
+					shortId,
+					token,
+					updateValues,
+				});
 			});
 	};
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { AuthenticationContext } from 'utils/contexts';
@@ -17,59 +17,51 @@ type Props = {
 
 const UpdateContent: React.FC<Props> = ({ next, previous, setFetchedBeverage }) => {
 	const { token } = useContext(AuthenticationContext);
-	const {
-		badge,
-		brand,
-		id,
-		photos,
-		shortId,
-	} = useContext(BeverageContext);
-	const [loaded, setLoaded] = useState(false);
+	const { badge, brand, shortId } = useContext(BeverageContext);
 
 	const updateValues = () => {
 		serverCall({
 			path: `beverage/update-beverage-images/pl/${shortId}/${brand.badge}/${badge}`,
 			token
 		})
-			.then(setFetchedBeverage)
-			.then(() => setLoaded(true));
+			.then(setFetchedBeverage);
 	}
 
 	useEffect(updateValues, []);
 
-	useEffect(() => {
-		if (loaded) {
-			if (!photos?.outlines?.cover) {
-				serverCall({
-					path: `beverage/update-cover-outline/${id}/${shortId}/${brand.badge}/${badge}`,
-					token
-				})
-					.then(val => {
-						if (val) {
-							updateValues();
-						}
-					});
-			}
-			if (!photos?.outlines?.gallery) {
-				serverCall({
-					path: `beverage/update-container-outline/${id}/${shortId}/${brand.badge}/${badge}`,
-					token
-				})
-					.then(val => {
-						if (val) {
-							updateValues();
-						}
-					});
-			}
-		}
-	}, [loaded]);
+	// useEffect(() => {
+	// 	if (loaded) {
+	// 		if (!photos?.outlines?.cover) {
+	// 			serverCall({
+	// 				path: `beverage/update-cover-outline/${id}/${shortId}/${brand.badge}/${badge}`,
+	// 				token
+	// 			})
+	// 				.then(val => {
+	// 					if (val) {
+	// 						updateValues();
+	// 					}
+	// 				});
+	// 		}
+	// 		if (!photos?.outlines?.gallery) {
+	// 			serverCall({
+	// 				path: `beverage/update-container-outline/${id}/${shortId}/${brand.badge}/${badge}`,
+	// 				token
+	// 			})
+	// 				.then(val => {
+	// 					if (val) {
+	// 						updateValues();
+	// 					}
+	// 				});
+	// 		}
+	// 	}
+	// }, [loaded]);
 
 	return (
 		<Wrapper>
 			<Header>
 				<FormattedMessage id="dashboard.updateBeverageImages.title" />
 			</Header>
-			<CoverPhoto next={next} previous={previous} />
+			<CoverPhoto next={next} previous={previous} updateValues={updateValues} />
 			<Gallery />
 		</Wrapper>
 	);
