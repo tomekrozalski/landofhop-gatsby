@@ -62,7 +62,7 @@ const UpdateContent: React.FC<Props> = ({ next, previous, setFetchedBeverage }) 
 				<FormattedMessage id="dashboard.updateBeverageImages.title" />
 			</Header>
 			<CoverPhoto next={next} previous={previous} updateValues={updateValues} />
-			<Gallery />
+			<Gallery updateValues={updateValues} />
 		</Wrapper>
 	);
 }

@@ -5,8 +5,8 @@ import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
-import { Frame, SectionWrapper } from '../elements';
-import { Aside } from './elements';
+import { Frame } from '../elements';
+import { Aside, SectionWrapper } from './elements';
 import { DropZone, Error, Navigation } from '.';
 
 type Props = {

@@ -1,9 +1,9 @@
 import DragAndDropIcon from './DragAndDropIcon';
+import DropZoneWrapper from './DropZoneWrapper';
 import Frame from './Frame';
-import SectionWrapper from './SectionWrapper';
 
 export {
 	DragAndDropIcon,
+	DropZoneWrapper,
 	Frame,
-	SectionWrapper,
 };
