@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageImageType } from 'utils/enums/beverage';
-import { CoverImage, SectionHeader } from 'elements';
+import { AuthenticationContext } from 'utils/contexts';
+import { Button, CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
-import { SectionWrapper } from './elements';
+import { Footer, SectionWrapper } from './elements';
+
 import { DropZone } from '.';
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
 }
 
 const Gallery: React.FC<Props> = ({ updateValues }) => {
+	const { token } = useContext(AuthenticationContext);
 	const {
 		badge,
 		brand,
@@ -20,6 +23,28 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 		shortId,
 	} = useContext(BeverageContext);
 	const [errors, setErrors] = useState<Blob[]>([]);
+	const [files, setFiles] = useState<File[]>([]);
+
+	// const onSaveImages = (file: Blob) => {
+	// 	saveBeverageCover({
+	// 		badge,
+	// 		brand: brand.badge,
+	// 		file,
+	// 		id,
+	// 		shortId,
+	// 		token,
+	// 	})
+	// 		.then(() => {
+	// 			updateOutline({
+	// 				badge,
+	// 				brand: brand.badge,
+	// 				id,
+	// 				shortId,
+	// 				token,
+	// 				updateValues,
+	// 			});
+	// 		});
+	// };
 
 	return (
 		<>
@@ -47,9 +72,17 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 				}}>
 				</Frame>
 				<Frame active>
-					<DropZone setErrors={setErrors} updateValues={updateValues} />
+					<DropZone
+						files={files}
+						setErrors={setErrors}
+						setFiles={setFiles}
+					/>
 				</Frame>
 			</SectionWrapper>
+			<Footer>
+				<Button onClick={() => setFiles([])}>Usuń</Button>
+				<Button onClick={() => setFiles([])}>Dodaj</Button>
+			</Footer>
 		</>
 	);
 }
