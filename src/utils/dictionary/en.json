@@ -101,6 +101,7 @@
   "dashboard": {
     "notLoggedInError": "Not logged in. Access denied",
     "updateBeverageImages": {
+      "add": "Add",
       "coverPhoto": "Cover photo",
       "error": {
         "other": "File loading error",
@@ -110,6 +111,7 @@
       },
       "gallery": "Photo gallery",
       "navigation": "Navigation",
+      "remove": "Remove",
       "title": "Update beverage images"
     }
   },

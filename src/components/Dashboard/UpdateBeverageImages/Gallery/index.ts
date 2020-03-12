@@ -1,10 +1,14 @@
 import DropZone from './DropZone';
 import Gallery from './Gallery';
-import Thumbnails from './Thumbnails';
+import SavedFiles from './SavedFiles';
+import ThumbnailItem from './ThumbnailItem';
+import ThumbnailList from './ThumbnailList';
 
 export {
 	DropZone,
-	Thumbnails,
+	SavedFiles,
+	ThumbnailItem,
+	ThumbnailList,
 };
 
 export default Gallery;

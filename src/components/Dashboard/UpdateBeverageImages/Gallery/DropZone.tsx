@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 
 import { DragAndDropIcon, DropZoneWrapper } from '../elements';
 import { config } from './utils';
-import { Thumbnails } from '.';
+import { ThumbnailList } from '.';
 
 type Props = {
 	files: File[]
@@ -31,7 +31,7 @@ const DropZone: React.FC<Props> = ({ files, setErrors, setFiles }) => {
 		<DropZoneWrapper {...getRootProps()}>
 			<input {...getInputProps()} />
 			{files.length
-				? <Thumbnails files={files} />
+				? <ThumbnailList files={files} />
 				: <DragAndDropIcon />
 			}
 		</DropZoneWrapper>

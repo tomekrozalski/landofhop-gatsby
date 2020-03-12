@@ -40,8 +40,13 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
     color: var(--color-black);
   }
 
-  &[type='submit']:not(:disabled):not(.button-submitting):hover {
+  &[type="submit"]:not(:disabled):not(.button-submitting):hover {
     background-color: var(--color-success-strong);
+    color: var(--color-white);
+  }
+
+  &[type="reset"]:not(:disabled):not(.button-submitting):hover {
+    background-color: var(--color-danger-strong);
     color: var(--color-white);
   }
 `;
@@ -49,6 +54,7 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
 type Props = {
   disabled?: boolean
   isSubmitting?: boolean
+  onClick: (e: React.MouseEvent) => void
   type?: string
 }
 

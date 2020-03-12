@@ -101,6 +101,7 @@
   "dashboard": {
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverageImages": {
+      "add": "Dodaj",
       "coverPhoto": "Zdjęcie okładkowe",
       "error": {
         "other": "Błąd ładowania pliku",
@@ -110,6 +111,7 @@
       },
       "gallery": "Galeria zdjęć",
       "navigation": "Nawigacja",
+      "remove": "Usuń",
       "title": "Popraw grafiki dla napoju"
     }
   },
