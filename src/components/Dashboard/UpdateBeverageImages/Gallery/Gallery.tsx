@@ -7,8 +7,8 @@ import { Button, CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
 import { saveImagesBeverageGallery } from './utils';
-import { Footer, SectionWrapper } from './elements';
-import { DropZone, SavedFiles } from '.';
+import { ButtonsWrapper, Footer, SectionWrapper } from './elements';
+import { DropZone, Errors, SavedFiles } from '.';
 
 type Props = {
 	updateValues: () => void
@@ -24,7 +24,7 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 		shortId,
 	} = useContext(BeverageContext);
 
-	const [errors, setErrors] = useState<Blob[]>([]);
+	const [errors, setErrors] = useState<File[]>([]);
 	const [files, setFiles] = useState<File[]>([]);
 	const [savedFiles, setSavedFiles] = useState<string[]>([]);
 
@@ -119,13 +119,15 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 				</Frame>
 			</SectionWrapper>
 			<Footer>
-				{errors.length ? <div>error</div> : null}
-				<Button onClick={onRemove} type="reset" disabled={!files.length}>
-					<FormattedMessage id="dashboard.updateBeverageImages.remove" />
-				</Button>
-				<Button onClick={onAdd} type="submit" disabled={!files.length}>
-					<FormattedMessage id="dashboard.updateBeverageImages.add" />
-				</Button>
+				<Errors errors={errors} />
+				<ButtonsWrapper>
+					<Button onClick={onRemove} type="reset" disabled={!files.length}>
+						<FormattedMessage id="dashboard.updateBeverageImages.remove" />
+					</Button>
+					<Button onClick={onAdd} type="submit" disabled={!files.length}>
+						<FormattedMessage id="dashboard.updateBeverageImages.add" />
+					</Button>
+				</ButtonsWrapper>
 			</Footer>
 		</>
 	);

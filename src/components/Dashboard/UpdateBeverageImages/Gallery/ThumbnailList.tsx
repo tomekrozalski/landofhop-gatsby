@@ -11,6 +11,7 @@ const ThumbnailList: React.FC<Props> = ({ files }) => (
 	<ThumbnailListWrapper>
 		{files.map(file => (
 			<ThumbnailItem
+				key={file.name}
 				name={file.name.substr(0, file.name.lastIndexOf('.')) || file.name}
 				src={URL.createObjectURL(file)}
 			/>

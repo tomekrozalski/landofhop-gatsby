@@ -7,7 +7,7 @@ import { ThumbnailList } from '.';
 
 type Props = {
 	files: File[]
-	setErrors: (value: Blob[]) => void
+	setErrors: (value: File[]) => void
 	setFiles: (values: File[]) => void
 }
 
