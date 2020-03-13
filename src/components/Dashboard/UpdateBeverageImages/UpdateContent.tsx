@@ -29,33 +29,6 @@ const UpdateContent: React.FC<Props> = ({ next, previous, setFetchedBeverage }) 
 
 	useEffect(updateValues, []);
 
-	// useEffect(() => {
-	// 	if (loaded) {
-	// 		if (!photos?.outlines?.cover) {
-	// 			serverCall({
-	// 				path: `beverage/update-cover-outline/${id}/${shortId}/${brand.badge}/${badge}`,
-	// 				token
-	// 			})
-	// 				.then(val => {
-	// 					if (val) {
-	// 						updateValues();
-	// 					}
-	// 				});
-	// 		}
-	// 		if (!photos?.outlines?.gallery) {
-	// 			serverCall({
-	// 				path: `beverage/update-container-outline/${id}/${shortId}/${brand.badge}/${badge}`,
-	// 				token
-	// 			})
-	// 				.then(val => {
-	// 					if (val) {
-	// 						updateValues();
-	// 					}
-	// 				});
-	// 		}
-	// 	}
-	// }, [loaded]);
-
 	return (
 		<Wrapper>
 			<Header>

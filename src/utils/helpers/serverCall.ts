@@ -1,6 +1,6 @@
 type Props = {
 	formData?: boolean
-	method?: 'GET' | 'POST'
+	method?: 'GET' | 'POST' | 'DELETE'
 	path: string
 	token?: string
 	body?: any

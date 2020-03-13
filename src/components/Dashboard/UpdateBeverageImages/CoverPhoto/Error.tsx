@@ -3,7 +3,12 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { config } from './utils';
 
-const Error: React.FC<Blob> = ({ size, type }) => {
+type Props = {
+	size: number
+	type: string
+}
+
+const Error: React.FC<Props> = ({ size, type }) => {
 	if (!config.accept.includes(type)) {
 		return <FormattedMessage id="dashboard.updateBeverageImages.error.wrongFormat" />;
 	}

@@ -6,7 +6,7 @@ import { AuthenticationContext } from 'utils/contexts';
 import { Button, CoverImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
-import { saveImagesBeverageGallery } from './utils';
+import { removeBeverageGallery, saveImagesBeverageGallery, updateOutline } from './utils';
 import { ButtonsWrapper, Footer, SectionWrapper } from './elements';
 import { DropZone, Errors, SavedFiles } from '.';
 
@@ -24,6 +24,7 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 		shortId,
 	} = useContext(BeverageContext);
 
+	const [isSubmitting, setSubmitting] = useState(false);
 	const [errors, setErrors] = useState<File[]>([]);
 	const [files, setFiles] = useState<File[]>([]);
 	const [savedFiles, setSavedFiles] = useState<string[]>([]);
@@ -43,6 +44,7 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 
 	const onAdd = (e: React.MouseEvent) => {
 		e.preventDefault();
+		setSubmitting(true);
 
 		saveImagesBeverageGallery({
 			badge,
@@ -53,23 +55,36 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 			token,
 		})
 			.then(() => {
-				console.log('success');
-
-				// updateOutline({
-				// 	badge,
-				// 	brand: brand.badge,
-				// 	id,
-				// 	shortId,
-				// 	token,
-				// 	updateValues,
-				// });
-
-				// setFiles([]);
+				updateOutline({
+					badge,
+					brand: brand.badge,
+					id,
+					shortId,
+					token,
+				})
+					.then(updateValues)
+					.then(() => {
+						setFiles([]);
+						setSubmitting(false);
+					});
 			});
 	}
 
 	const onRemove = () => {
-		setFiles([]);
+		if (savedFiles.length) {
+			removeBeverageGallery({
+				badge,
+				brand: brand.badge,
+				files: savedFiles.length,
+				id,
+				shortId,
+				token,
+			})
+				.then(updateValues)
+				.then(() => {
+					setFiles([]);
+				});
+		}
 	}
 
 	return (
@@ -85,6 +100,7 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 								<CoverImage
 									badge={badge}
 									brand={{ badge: brand.badge, name: brand.name }}
+									hasTail
 									height={500}
 									name={name}
 									shortId={shortId}
@@ -121,10 +137,19 @@ const Gallery: React.FC<Props> = ({ updateValues }) => {
 			<Footer>
 				<Errors errors={errors} />
 				<ButtonsWrapper>
-					<Button onClick={onRemove} type="reset" disabled={!files.length}>
+					<Button
+						disabled={(!files.length && !savedFiles.length) || isSubmitting}
+						onClick={onRemove}
+						type="reset"
+					>
 						<FormattedMessage id="dashboard.updateBeverageImages.remove" />
 					</Button>
-					<Button onClick={onAdd} type="submit" disabled={!files.length}>
+					<Button
+						disabled={!files.length}
+						isSubmitting={isSubmitting}
+						onClick={onAdd}
+						type="submit"
+					>
 						<FormattedMessage id="dashboard.updateBeverageImages.add" />
 					</Button>
 				</ButtonsWrapper>

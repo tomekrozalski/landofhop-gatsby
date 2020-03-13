@@ -20,7 +20,7 @@ const SavedImages: React.FC<Props> = ({ files }) => {
 			{files.map(name => (
 				<ThumbnailItem
 					name={name.substr(0, name.lastIndexOf('.')) || name}
-					src={`${process.env.PHOTO_SERVER}/${brand.badge}/${badge}/${shortId}/container/jpg/2x/${name}`}
+					src={`${process.env.PHOTO_SERVER}/${brand.badge}/${badge}/${shortId}/container/jpg/2x/${name}?${Date.now()}`}
 				/>
 			))}
 		</ThumbnailListWrapper>

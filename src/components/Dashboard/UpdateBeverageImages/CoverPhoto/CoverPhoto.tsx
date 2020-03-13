@@ -61,7 +61,7 @@ const CoverPhoto: React.FC<Props> = ({ next, previous, updateValues }) => {
 						next={next}
 						previous={previous}
 					/>
-					{errors.length ? <Error {...errors[0]} /> : null}
+					{errors.length ? <Error size={errors[0].size} type={errors[0].type} /> : null}
 				</Aside>
 			</SectionWrapper>
 		</>

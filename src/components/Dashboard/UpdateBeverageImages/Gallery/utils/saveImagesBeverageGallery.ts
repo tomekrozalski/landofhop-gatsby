@@ -22,7 +22,7 @@ const saveImagesBeverageGallery = ({
 	formData.append('brand', brand);
 	formData.append('id', id);
 	files.forEach((image) => {
-		formData.append('image', image);
+		formData.append('images', image);
 	});
 	formData.append('shortId', shortId);
 
