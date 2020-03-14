@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
+import { Layout } from 'components';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { initialBeverageData, translateBeverage } from './utils/helpers';
 import {
@@ -22,14 +23,17 @@ type Props = {
 // @Info: I could use Partial generic, but it would complicate displaying some components
 export const BeverageContext = React.createContext<TranslatedBeverageTypes>(initialBeverageData);
 
-const BeverageDetails: React.FC<Props> = ({
-	data: { beverage },
-	pageContext
-}) => (
-		<BeverageContext.Provider value={translateBeverage(beverage)}>
-			<BeverageDetailsContent {...pageContext} />
-		</BeverageContext.Provider>
+const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
+	const [fetchedBeverage, setFetchedBeverage] = useState<TranslatedBeverageTypes | null>(null);
+
+	return (
+		<Layout>
+			<BeverageContext.Provider value={fetchedBeverage || translateBeverage(data.beverage)}>
+				<BeverageDetailsContent {...pageContext} setFetchedBeverage={setFetchedBeverage} />
+			</BeverageContext.Provider>
+		</Layout>
 	);
+}
 
 export const query = graphql`
 	query BeverageDetails($badge: String!, $brandBadge: String!, $shortId: String!) {

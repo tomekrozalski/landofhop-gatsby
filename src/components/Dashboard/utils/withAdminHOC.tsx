@@ -14,9 +14,8 @@ const withAdminHOC = (Component: any) => (props: any) => {
 		case AuthenticationStatusEnum.success:
 			return <Component {...props} />;
 		default:
-			return <NotLoggedIn />
+			return <NotLoggedIn />;
 	}
 }
-
 
 export default withAdminHOC;

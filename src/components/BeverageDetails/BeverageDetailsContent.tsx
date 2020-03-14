@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
+import { checkIsLoggedInHOC, serverCall } from 'utils/helpers';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import Layout from '../Layout';
 import { BeverageDetailsSeo, GridWrapper } from './elements';
+import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
 import {
 	AdminBar,
 	Aside,
+	BeverageContext,
 	FootNotes,
 	Gallery,
 	Header,
@@ -15,12 +17,25 @@ import {
 } from '.';
 
 type Props = {
+	loggedIn?: boolean
 	next: BeverageBaseTypes
 	previous: BeverageBaseTypes
+	setFetchedBeverage: ({ }: TranslatedBeverageTypes) => void
 }
 
-const BeverageDetailsContent: React.FC<Props> = ({ next, previous }) => (
-	<Layout>
+const BeverageDetailsContent: React.FC<Props> = ({ loggedIn, next, previous, setFetchedBeverage }) => {
+	const { badge, brand, shortId } = useContext(BeverageContext);
+
+	useEffect(() => {
+		if (loggedIn) {
+			serverCall({
+				path: `beverage/pl/${shortId}/${brand.badge}/${badge}`,
+			})
+				.then(setFetchedBeverage);
+		}
+	}, [loggedIn]);
+
+	return (
 		<GridWrapper>
 			<Gallery />
 			<Header />
@@ -30,9 +45,9 @@ const BeverageDetailsContent: React.FC<Props> = ({ next, previous }) => (
 			<FootNotes />
 			<AdminBar />
 			<Aside next={next} previous={previous} />
+			<BeverageDetailsSeo />
 		</GridWrapper>
-		<BeverageDetailsSeo />
-	</Layout>
-);
+	);
+}
 
-export default BeverageDetailsContent;
+export default checkIsLoggedInHOC(BeverageDetailsContent);
