@@ -47,7 +47,8 @@
           "brown": "brown",
           "green": "green",
           "black": "black",
-          "silver": "silver"
+          "silver": "silver",
+          "transparent": "transparent"
         },
         "material": {
           "glass": "glass",

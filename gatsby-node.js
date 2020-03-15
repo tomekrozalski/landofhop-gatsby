@@ -332,6 +332,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         green
         black
         silver
+        transparent
       }
       enum ContainerMaterial {
         glass

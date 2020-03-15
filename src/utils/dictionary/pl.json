@@ -47,7 +47,8 @@
           "brown": "brązowa",
           "green": "zielona",
           "black": "czarna",
-          "silver": "srebrna"
+          "silver": "srebrna",
+          "transparent": "przezroczysta"
         },
         "material": {
           "glass": "szklana",
