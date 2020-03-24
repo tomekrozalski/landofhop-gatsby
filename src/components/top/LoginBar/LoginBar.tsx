@@ -29,7 +29,7 @@ const LoginBar: React.FC = () => {
       default:
         return FormBody;
     }
-  }
+  };
 
   return (
     <Wrapper isActive={loginbar} isNavbar={navbar}>

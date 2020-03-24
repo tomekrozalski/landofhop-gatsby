@@ -5,50 +5,48 @@ import { FormattedList } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails';
 import { getLangAttr } from 'utils/helpers';
 import {
-	Label,
-	Producer,
-	SourceGroup,
-	SourceItem,
+  Label,
+  Producer,
+  SourceGroup,
+  SourceItem,
 } from 'components/BeverageDetails/elements';
 
 const Series: React.FC = () => {
-	const { series } = useContext(BeverageContext);
+  const { series } = useContext(BeverageContext);
 
-	return series ? (
-		<FormattedMessage
-			id="beverage.details.series"
-			values={{
-				series: <SourceGroup>
-					{series.label && (
-						<Label>
-							<FormattedList type="conjunction" style="short">
-								{
-									series.label.map(({ language, value }) => (
-										<SourceItem lang={getLangAttr(language)} key={value}>
-											{value}
-										</SourceItem>
-									))
-								}
-							</FormattedList>
-						</Label>
-					)}
-					{series.producer && (
-						<Producer>
-							<FormattedList type="conjunction" style="short">
-								{
-									series.producer.map(({ language, value }) => (
-										<SourceItem lang={getLangAttr(language)} key={value}>
-											{value}
-										</SourceItem>
-									))
-								}
-							</FormattedList>
-						</Producer>
-					)}
-				</SourceGroup>
-			}}
-		/>
-	) : null;
-}
+  return series ? (
+    <FormattedMessage
+      id="beverage.details.series"
+      values={{
+        series: (
+          <SourceGroup>
+            {series.label && (
+              <Label>
+                <FormattedList type="conjunction" style="short">
+                  {series.label.map(({ language, value }) => (
+                    <SourceItem lang={getLangAttr(language)} key={value}>
+                      {value}
+                    </SourceItem>
+                  ))}
+                </FormattedList>
+              </Label>
+            )}
+            {series.producer && (
+              <Producer>
+                <FormattedList type="conjunction" style="short">
+                  {series.producer.map(({ language, value }) => (
+                    <SourceItem lang={getLangAttr(language)} key={value}>
+                      {value}
+                    </SourceItem>
+                  ))}
+                </FormattedList>
+              </Producer>
+            )}
+          </SourceGroup>
+        ),
+      }}
+    />
+  ) : null;
+};
 
 export default Series;

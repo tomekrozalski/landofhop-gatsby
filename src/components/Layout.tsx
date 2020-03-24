@@ -15,9 +15,7 @@ const Layout: React.FC = ({ children }) => (
     <LoginBar />
     <Header />
     <Main>
-      <ContentWrapper>
-        {children}
-      </ContentWrapper>
+      <ContentWrapper>{children}</ContentWrapper>
     </Main>
   </GlobalStateProvider>
 );

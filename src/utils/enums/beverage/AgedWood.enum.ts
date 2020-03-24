@@ -1,6 +1,6 @@
 enum AgedWood {
-	beech = 'beech',
-	oak = 'oak'
+  beech = 'beech',
+  oak = 'oak',
 }
 
 export default AgedWood;

@@ -5,26 +5,23 @@ import { BeverageContext } from 'components/BeverageDetails';
 import { TaleItem } from '.';
 
 const TaleWrapper = styled.div`
-	grid-area: tale;
+  grid-area: tale;
 `;
 
 const Tale: React.FC = () => {
-	const { tale } = useContext(BeverageContext);
+  const { tale } = useContext(BeverageContext);
 
-	return (
-		<TaleWrapper>
-			{
-				tale && (
-					<>
-						{tale.label && (
-							tale.label.map(props => <TaleItem key={props.value} {...props} />)
-						)}
-						{tale.producer && <TaleItem {...tale.producer} producer />}
-					</>
-				)
-			}
-		</TaleWrapper>
-	);
+  return (
+    <TaleWrapper>
+      {tale && (
+        <>
+          {tale.label &&
+            tale.label.map(props => <TaleItem key={props.value} {...props} />)}
+          {tale.producer && <TaleItem {...tale.producer} producer />}
+        </>
+      )}
+    </TaleWrapper>
+  );
 };
 
 export default Tale;

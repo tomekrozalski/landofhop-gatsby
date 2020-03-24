@@ -6,38 +6,41 @@ import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { serverCall } from 'utils/helpers';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from './UpdateBeverageImages';
-import { withAdmin } from '../utils'
+import { withAdmin } from '../utils';
 import { CoverPhoto, Gallery } from '.';
 
 type Props = {
-	next: BeverageBaseTypes
-	previous: BeverageBaseTypes
-	setFetchedBeverage: ({ }) => void
+  next: BeverageBaseTypes;
+  previous: BeverageBaseTypes;
+  setFetchedBeverage: ({}) => void;
 };
 
-const UpdateContent: React.FC<Props> = ({ next, previous, setFetchedBeverage }) => {
-	const { token } = useContext(AuthenticationContext);
-	const { badge, brand, shortId } = useContext(BeverageContext);
+const UpdateContent: React.FC<Props> = ({
+  next,
+  previous,
+  setFetchedBeverage,
+}) => {
+  const { token } = useContext(AuthenticationContext);
+  const { badge, brand, shortId } = useContext(BeverageContext);
 
-	const updateValues = () => {
-		serverCall({
-			path: `beverage/update-beverage-images/pl/${shortId}/${brand.badge}/${badge}`,
-			token
-		})
-			.then(setFetchedBeverage);
-	}
+  const updateValues = () => {
+    serverCall({
+      path: `beverage/update-beverage-images/pl/${shortId}/${brand.badge}/${badge}`,
+      token,
+    }).then(setFetchedBeverage);
+  };
 
-	useEffect(updateValues, []);
+  useEffect(updateValues, []);
 
-	return (
-		<Wrapper>
-			<Header>
-				<FormattedMessage id="dashboard.updateBeverageImages.title" />
-			</Header>
-			<CoverPhoto next={next} previous={previous} updateValues={updateValues} />
-			<Gallery updateValues={updateValues} />
-		</Wrapper>
-	);
-}
+  return (
+    <Wrapper>
+      <Header>
+        <FormattedMessage id="dashboard.updateBeverageImages.title" />
+      </Header>
+      <CoverPhoto next={next} previous={previous} updateValues={updateValues} />
+      <Gallery updateValues={updateValues} />
+    </Wrapper>
+  );
+};
 
 export default withAdmin(UpdateContent);

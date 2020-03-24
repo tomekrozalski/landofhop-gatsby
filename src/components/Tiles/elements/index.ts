@@ -7,12 +7,12 @@ import PaginationList from './PaginationList';
 import StyledLink from './StyledLink';
 
 export {
-	BrokenContainer,
-	Grid,
-	ListItem,
-	ActiveButton,
-	InactiveButton,
-	PaginationItem,
-	PaginationList,
-	StyledLink,
+  BrokenContainer,
+  Grid,
+  ListItem,
+  ActiveButton,
+  InactiveButton,
+  PaginationItem,
+  PaginationList,
+  StyledLink,
 };

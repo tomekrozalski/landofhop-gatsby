@@ -5,12 +5,6 @@ import Header from './Header';
 import Name from './Name';
 import Series from './Series';
 
-export {
-	Brand,
-	Contract,
-	Cooperation,
-	Name,
-	Series,
-};
+export { Brand, Contract, Cooperation, Name, Series };
 
 export default Header;

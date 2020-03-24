@@ -1,6 +1,6 @@
 enum AlcoholRelate {
-	capacity = 'capacity',
-	abv = 'abv'
+  capacity = 'capacity',
+  abv = 'abv',
 }
 
-export default AlcoholRelate
+export default AlcoholRelate;

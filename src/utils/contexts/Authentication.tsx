@@ -9,16 +9,22 @@ import { NavigationContext } from './Navigation';
 
 export const AuthenticationContext = React.createContext({
   authenticationStatus: AuthenticationStatus.loading,
-  logIn: ({ }: { email: string, password: string }) => new Promise(() => { }),
-  logOut: () => { },
-  setAuthenticationStatus: (value: AuthenticationStatus) => { value },
+  logIn: ({}: { email: string; password: string }) => new Promise(() => {}),
+  logOut: () => {},
+  setAuthenticationStatus: (value: AuthenticationStatus) => {
+    value;
+  },
   token: '',
-  tokenExpirationDate: new Date()
+  tokenExpirationDate: new Date(),
 });
 
 const Authentication: React.FC = ({ children }) => {
-  const [authenticationStatus, setAuthenticationStatus] = useState(AuthenticationStatus.loading);
-  const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(new Date());
+  const [authenticationStatus, setAuthenticationStatus] = useState(
+    AuthenticationStatus.loading,
+  );
+  const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(
+    new Date(),
+  );
   const [token, setToken] = useState('');
 
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
@@ -43,7 +49,7 @@ const Authentication: React.FC = ({ children }) => {
       setNavbar(false);
       logOut();
     }, 5000);
-  }
+  };
 
   const checkTokenExpiration = (value: string) => {
     return new Promise((resolve, reject) => {
@@ -62,7 +68,7 @@ const Authentication: React.FC = ({ children }) => {
 
       reject();
     });
-  }
+  };
 
   useEffect(() => {
     const storageToken = window.localStorage.getItem('token');
@@ -74,13 +80,13 @@ const Authentication: React.FC = ({ children }) => {
     }
   }, []);
 
-  const logIn = (formValues: { email: string, password: string }) => {
+  const logIn = (formValues: { email: string; password: string }) => {
     return serverCall({
       body: JSON.stringify(formValues),
       method: 'POST',
       path: 'auth',
     })
-      .then((response) => {
+      .then(response => {
         if (!response.token) {
           throw Error(response.message);
         }

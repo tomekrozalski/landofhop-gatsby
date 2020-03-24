@@ -1,6 +1,6 @@
 enum BeverageImageType {
-	cover = 'cover',
-	container = 'container'
+  cover = 'cover',
+  container = 'container',
 }
 
 export default BeverageImageType;

@@ -1,6 +1,6 @@
 enum SiteLanguage {
-	pl = 'pl',
-	en = 'en'
+  pl = 'pl',
+  en = 'en',
 }
 
 export default SiteLanguage;

@@ -6,19 +6,25 @@ import { BeverageContext } from 'components/BeverageDetails';
 import { Progress } from '.';
 
 const Power: React.FC = () => {
-	const { power } = useContext(BeverageContext);
+  const { power } = useContext(BeverageContext);
 
-	return power ? (
-		<>
-			<dt><FormattedMessage id="beverage.details.power" /></dt>
-			<dd>
-				{isNumber(power.label) &&
-					<Progress value={power.label}>{power.label}%</Progress>}
-				{isNumber(power.producer) &&
-					<Progress value={power.producer} producer>{power.producer}%</Progress>}
-			</dd>
-		</>
-	) : null;
-}
+  return power ? (
+    <>
+      <dt>
+        <FormattedMessage id="beverage.details.power" />
+      </dt>
+      <dd>
+        {isNumber(power.label) && (
+          <Progress value={power.label}>{power.label}%</Progress>
+        )}
+        {isNumber(power.producer) && (
+          <Progress value={power.producer} producer>
+            {power.producer}%
+          </Progress>
+        )}
+      </dd>
+    </>
+  ) : null;
+};
 
 export default Power;

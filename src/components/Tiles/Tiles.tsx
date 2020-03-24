@@ -12,11 +12,11 @@ import { Pagination, TileMap } from '.';
 type Props = {
   data: {
     allBeverage: {
-      edges: { node: BeverageTypes }[],
-    }
-  }
-  pageContext: PageContextTypes
-}
+      edges: { node: BeverageTypes }[];
+    };
+  };
+  pageContext: PageContextTypes;
+};
 
 const Tiles: React.FC<Props> = ({ data, pageContext }) => (
   <Layout>

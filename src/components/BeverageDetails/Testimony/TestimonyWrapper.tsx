@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const TestimonyWrapper = styled.dl`
-	grid-area: testimony;
-	margin: 1rem 0;
+  grid-area: testimony;
+  margin: 1rem 0;
 
   ::first-letter {
     text-transform: uppercase;

@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { Added } from '.';
 
 const FootNotesWrapper = styled.div`
-	grid-area: footnotes;
-	margin: 1rem 0;
-	color: var(--color-darker);
+  grid-area: footnotes;
+  margin: 1rem 0;
+  color: var(--color-darker);
 
   ::first-letter {
     text-transform: uppercase;
@@ -32,9 +32,9 @@ const FootNotesWrapper = styled.div`
 `;
 
 const FootNotes: React.FC = () => (
-	<FootNotesWrapper>
-		<Added />
-	</FootNotesWrapper>
+  <FootNotesWrapper>
+    <Added />
+  </FootNotesWrapper>
 );
 
 export default FootNotes;

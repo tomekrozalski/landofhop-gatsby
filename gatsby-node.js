@@ -221,7 +221,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         day
         month
         year
-      } 
+      }
       type AgedTime {
         value: Int!
         unit: AgedTimeUnit!
@@ -317,7 +317,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         editorial: String
       }
       enum ClarityTypes {
-        crystalline 
+        crystalline
         clear
         opalescent
         misty
@@ -392,10 +392,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const Tiles = path.resolve(`src/components/Tiles/Tiles.tsx`);
   const BeverageDetails = path.resolve(
-    `src/components/BeverageDetails/BeverageDetails.tsx`
+    `src/components/BeverageDetails/BeverageDetails.tsx`,
   );
   const UpdateBeverageImages = path.resolve(
-    `src/components/Dashboard/UpdateBeverageImages/UpdateBeverageImages.tsx`
+    `src/components/Dashboard/UpdateBeverageImages/UpdateBeverageImages.tsx`,
   );
 
   const allbeverages = await graphql(`

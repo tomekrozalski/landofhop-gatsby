@@ -6,9 +6,9 @@ import { breakpoints } from 'utils/theme';
 import { Logo, NavigationSwitcher, Searchbar } from '.';
 
 type WrapperProps = {
-  isLoginbar: boolean
-  isNavbar: boolean
-}
+  isLoginbar: boolean;
+  isNavbar: boolean;
+};
 
 const Wrapper = styled.header`
   display: block;
@@ -20,16 +20,16 @@ const Wrapper = styled.header`
   z-index: var(--index-header);
   transform: translateY(
     ${({ isLoginbar, isNavbar }: WrapperProps) => {
-    if (isLoginbar) {
-      return 'calc(var(--size-navbar-height) + var(--size-loginbar-height))';
-    }
+      if (isLoginbar) {
+        return 'calc(var(--size-navbar-height) + var(--size-loginbar-height))';
+      }
 
-    if (isNavbar) {
-      return 'var(--size-navbar-height)';
-    }
+      if (isNavbar) {
+        return 'var(--size-navbar-height)';
+      }
 
-    return 0;
-  }}
+      return 0;
+    }}
   );
   transition: transform var(--transition-default);
 
@@ -55,7 +55,7 @@ const Grid = styled.div`
   position: relative;
 
   @media (min-width: ${breakpoints.md}) {
-		grid-template-columns: minmax(10rem, auto) 1fr minmax(10rem, auto);
+    grid-template-columns: minmax(10rem, auto) 1fr minmax(10rem, auto);
   }
 `;
 

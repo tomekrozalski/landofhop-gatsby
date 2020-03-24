@@ -7,12 +7,12 @@ import ThumbnailItem from './ThumbnailItem';
 import ThumbnailList from './ThumbnailList';
 
 export {
-	DropZone,
-	ErrorMessage,
-	Errors,
-	SavedFiles,
-	ThumbnailItem,
-	ThumbnailList,
+  DropZone,
+  ErrorMessage,
+  Errors,
+  SavedFiles,
+  ThumbnailItem,
+  ThumbnailList,
 };
 
 export default Gallery;

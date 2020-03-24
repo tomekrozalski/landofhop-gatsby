@@ -6,18 +6,22 @@ import { format } from 'date-fns';
 import { SiteLanguage } from 'utils/enums';
 
 const Added: React.FC = () => {
-	const { locale } = useIntl();
-	const { added } = useContext(BeverageContext);
+  const { locale } = useIntl();
+  const { added } = useContext(BeverageContext);
 
-	return (
-		<>
-			<dt><FormattedMessage id="beverage.details.added" /></dt>
-			<dd>{format(new Date(added), locale === SiteLanguage.pl
-				? 'dd.MM.yyyy'
-				: 'dd/MM/yyyy')
-			}</dd>
-		</>
-	);
-}
+  return (
+    <>
+      <dt>
+        <FormattedMessage id="beverage.details.added" />
+      </dt>
+      <dd>
+        {format(
+          new Date(added),
+          locale === SiteLanguage.pl ? 'dd.MM.yyyy' : 'dd/MM/yyyy',
+        )}
+      </dd>
+    </>
+  );
+};
 
 export default Added;

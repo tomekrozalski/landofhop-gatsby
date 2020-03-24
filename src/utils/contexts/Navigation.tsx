@@ -4,11 +4,17 @@ export const NavigationContext = React.createContext({
   loginbar: false,
   navbar: false,
   searchbarActive: false,
-  setLoginbar: (val: boolean) => { val },
-  setNavbar: (val: boolean) => { val },
-  setSearchbarActive: (val: boolean) => { val },
-  toggleLoginbar: () => { },
-  toggleNavbar: () => { },
+  setLoginbar: (val: boolean) => {
+    val;
+  },
+  setNavbar: (val: boolean) => {
+    val;
+  },
+  setSearchbarActive: (val: boolean) => {
+    val;
+  },
+  toggleLoginbar: () => {},
+  toggleNavbar: () => {},
 });
 
 const Navigation: React.FC = ({ children }) => {

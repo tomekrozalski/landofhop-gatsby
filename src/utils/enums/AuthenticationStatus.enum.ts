@@ -1,9 +1,9 @@
 enum AuthenticationStatus {
-	idle,
-	error,
-	expired,
-	loading,
-	success,
+  idle,
+  error,
+  expired,
+  loading,
+  success,
 }
 
 export default AuthenticationStatus;

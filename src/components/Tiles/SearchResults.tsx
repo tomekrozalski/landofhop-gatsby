@@ -7,27 +7,29 @@ import { Grid } from './elements';
 import { Tile } from '.';
 
 const SearchResults: React.FC = () => {
-	const { loading, nothingFound, searchResults } = useContext(SearchContext);
+  const { loading, nothingFound, searchResults } = useContext(SearchContext);
 
-	if (nothingFound) {
-		return (
-			<ErrorWrapper>
-				<ErrorHeader>
-					<FormattedMessage id="errors.nothingFound" />
-				</ErrorHeader>
-			</ErrorWrapper>
-		)
-	}
+  if (nothingFound) {
+    return (
+      <ErrorWrapper>
+        <ErrorHeader>
+          <FormattedMessage id="errors.nothingFound" />
+        </ErrorHeader>
+      </ErrorWrapper>
+    );
+  }
 
-	if (loading) {
-		return <Spinner />;
-	}
+  if (loading) {
+    return <Spinner />;
+  }
 
-	return (
-		<Grid>
-			{searchResults.map(props => <Tile key={props.id} {...props} />)}
-		</Grid>
-	);
+  return (
+    <Grid>
+      {searchResults.map(props => (
+        <Tile key={props.id} {...props} />
+      ))}
+    </Grid>
+  );
 };
 
 export default SearchResults;

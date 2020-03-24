@@ -3,8 +3,8 @@ import React from 'react';
 import { Authentication, Navigation, Search } from './index';
 
 type Props = {
-  contexts: any
-}
+  contexts: any;
+};
 
 const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   contexts.reduceRight(
@@ -12,7 +12,7 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
       React.cloneElement(parent, {
         children: kids,
       }),
-    children
+    children,
   );
 
 const GlobalStateProvider: React.FC = ({ children }) => (

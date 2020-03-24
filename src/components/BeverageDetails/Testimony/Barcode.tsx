@@ -5,18 +5,18 @@ import { BeverageContext } from 'components/BeverageDetails';
 import { SourceItem } from 'components/BeverageDetails/elements';
 
 const Barcode: React.FC = () => {
-	const { barcode } = useContext(BeverageContext);
+  const { barcode } = useContext(BeverageContext);
 
-	return barcode ? (
-		<>
-			<dt><FormattedMessage id="beverage.details.barcode" /></dt>
-			<dd>
-				<SourceItem>
-					{barcode}
-				</SourceItem>
-			</dd>
-		</>
-	) : null;
-}
+  return barcode ? (
+    <>
+      <dt>
+        <FormattedMessage id="beverage.details.barcode" />
+      </dt>
+      <dd>
+        <SourceItem>{barcode}</SourceItem>
+      </dd>
+    </>
+  ) : null;
+};
 
 export default Barcode;

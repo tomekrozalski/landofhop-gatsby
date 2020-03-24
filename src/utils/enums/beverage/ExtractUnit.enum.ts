@@ -1,6 +1,6 @@
 enum ExtractUnit {
-	percent = 'percent',
-	degree = 'degree'
+  percent = 'percent',
+  degree = 'degree',
 }
 
-export default ExtractUnit
+export default ExtractUnit;

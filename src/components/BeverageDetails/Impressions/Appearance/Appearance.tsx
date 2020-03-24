@@ -4,14 +4,14 @@ import { BeverageContext } from 'components/BeverageDetails';
 import { AppearanceWrapper, Clarity, Color } from '.';
 
 const Appearance = () => {
-	const { clarity, color } = useContext(BeverageContext);
+  const { clarity, color } = useContext(BeverageContext);
 
-	return (clarity || color) ? (
-		<AppearanceWrapper>
-			<Color />
-			<Clarity />
-		</AppearanceWrapper>
-	) : null;
-}
+  return clarity || color ? (
+    <AppearanceWrapper>
+      <Color />
+      <Clarity />
+    </AppearanceWrapper>
+  ) : null;
+};
 
 export default Appearance;

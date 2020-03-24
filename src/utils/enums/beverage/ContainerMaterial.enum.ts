@@ -1,6 +1,6 @@
 enum ContainerMaterial {
-	glass = 'glass',
-	aluminum = 'aluminum'
+  glass = 'glass',
+  aluminum = 'aluminum',
 }
 
 export default ContainerMaterial;

@@ -17,7 +17,10 @@ const Nav = styled.nav<{ isActive: boolean }>`
   z-index: var(--index-navbar);
 
   @media (max-width: ${breakpoints.md}) {
-    transform: translateY(${({ isActive }) => (isActive ? 0 : 'calc(var(--size-navbar-height) * -1)')});
+    transform: translateY(
+      ${({ isActive }) =>
+        isActive ? 0 : 'calc(var(--size-navbar-height) * -1)'}
+    );
     transition: transform var(--transition-default);
   }
 `;
@@ -48,6 +51,6 @@ const NavBar: React.FC = () => {
       </Container>
     </Nav>
   );
-}
+};
 
 export default NavBar;

@@ -5,9 +5,9 @@ import { useIntl, IntlContextConsumer } from 'gatsby-plugin-intl';
 import { SiteLanguage } from 'utils/enums';
 
 type Props = {
-  title: string
-  values?: {}
-}
+  title: string;
+  values?: {};
+};
 
 const SEO: React.FC<Props> = ({ title, values }) => {
   const intl = useIntl();

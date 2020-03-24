@@ -4,8 +4,8 @@ import saveImagesBeverageGallery from './saveImagesBeverageGallery';
 import updateOutline from './updateOutline';
 
 export {
-	config,
-	removeBeverageGallery,
-	saveImagesBeverageGallery,
-	updateOutline,
+  config,
+  removeBeverageGallery,
+  saveImagesBeverageGallery,
+  updateOutline,
 };

@@ -118,7 +118,8 @@ const globalStyles = css`
     cursor: pointer;
   }
 
-  strong, em {
+  strong,
+  em {
     font-weight: var(--font-weight-regular);
     font-style: normal;
   }

@@ -1,4 +1,4 @@
 export type AlcoholData = {
-	value: number
-	beverages: number
-}
+  value: number;
+  beverages: number;
+};

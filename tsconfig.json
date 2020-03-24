@@ -8,11 +8,8 @@
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
     "baseUrl": "./src"
   },
   "include": ["./src/**/*"]

@@ -4,10 +4,4 @@ import LeftIcon from './LeftIcon';
 import RightIcon from './RightIcon';
 import Warning from './Warning';
 
-export {
-	Checkmark,
-	Danger,
-	LeftIcon,
-	RightIcon,
-	Warning,
-};
+export { Checkmark, Danger, LeftIcon, RightIcon, Warning };

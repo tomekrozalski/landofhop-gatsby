@@ -8,7 +8,8 @@ export const ButtonBasicCSS = css`
   align-items: center;
   height: 3.4rem;
   padding: 0 2rem;
-  transition: background-color var(--transition-default), color var(--transition-default);
+  transition: background-color var(--transition-default),
+    color var(--transition-default);
   cursor: pointer;
 `;
 
@@ -52,11 +53,11 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
 `;
 
 type Props = {
-  disabled?: boolean
-  isSubmitting?: boolean
-  onClick: (e: React.MouseEvent) => void
-  type?: string
-}
+  disabled?: boolean;
+  isSubmitting?: boolean;
+  onClick: (e: React.MouseEvent) => void;
+  type?: string;
+};
 
 const Button: React.FC<Props> = ({ children, isSubmitting, ...props }) => (
   <Wrapper className={isSubmitting ? 'button-submitting' : ''} {...props}>

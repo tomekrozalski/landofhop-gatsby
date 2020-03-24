@@ -1,6 +1,6 @@
 enum AlcoholUnit {
-	percent = 'percent',
-	degree = 'degree'
+  percent = 'percent',
+  degree = 'degree',
 }
 
-export default AlcoholUnit
+export default AlcoholUnit;

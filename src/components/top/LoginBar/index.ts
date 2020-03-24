@@ -5,12 +5,6 @@ import LoginSuccess from './LoginSuccess';
 import TokenExpired from './TokenExpired';
 import validationSchema from './validationSchema';
 
-export {
-	FormBody,
-	LoginError,
-	LoginSuccess,
-	TokenExpired,
-	validationSchema,
-};
+export { FormBody, LoginError, LoginSuccess, TokenExpired, validationSchema };
 
 export default LoginBar;

@@ -1,7 +1,7 @@
 enum Fermentation {
-	top = 'top',
-	bottom = 'bottom',
-	spontaneous = 'spontaneous'
+  top = 'top',
+  bottom = 'bottom',
+  spontaneous = 'spontaneous',
 }
 
-export default Fermentation
+export default Fermentation;

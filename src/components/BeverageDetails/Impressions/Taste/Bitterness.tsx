@@ -6,19 +6,25 @@ import { BeverageContext } from 'components/BeverageDetails';
 import { Progress } from '.';
 
 const Bitterness: React.FC = () => {
-	const { bitterness } = useContext(BeverageContext);
+  const { bitterness } = useContext(BeverageContext);
 
-	return bitterness ? (
-		<>
-			<dt><FormattedMessage id="beverage.details.bitterness" /></dt>
-			<dd>
-				{isNumber(bitterness.label) &&
-					<Progress value={bitterness.label}>{bitterness.label}%</Progress>}
-				{isNumber(bitterness.producer) &&
-					<Progress value={bitterness.producer} producer>{bitterness.producer}%</Progress>}
-			</dd>
-		</>
-	) : null;
-}
+  return bitterness ? (
+    <>
+      <dt>
+        <FormattedMessage id="beverage.details.bitterness" />
+      </dt>
+      <dd>
+        {isNumber(bitterness.label) && (
+          <Progress value={bitterness.label}>{bitterness.label}%</Progress>
+        )}
+        {isNumber(bitterness.producer) && (
+          <Progress value={bitterness.producer} producer>
+            {bitterness.producer}%
+          </Progress>
+        )}
+      </dd>
+    </>
+  ) : null;
+};
 
 export default Bitterness;

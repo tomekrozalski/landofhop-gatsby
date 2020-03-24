@@ -7,12 +7,12 @@ import Spinner from './Spinner';
 import Wrapper from './Wrapper';
 
 export {
-	BrokenContainer,
-	CanvasWrapper,
-	GalleryContent,
-	Icon360,
-	Spinner,
-	Wrapper,
+  BrokenContainer,
+  CanvasWrapper,
+  GalleryContent,
+  Icon360,
+  Spinner,
+  Wrapper,
 };
 
 export default Gallery;

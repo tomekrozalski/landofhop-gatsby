@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import { breakpoints } from 'utils/theme';
 
 const IconWrapper = styled.div`
-	visibility: hidden;
-	position: absolute;
-	top: -25%;
-	left: 2rem;
-	opacity: .5;
+  visibility: hidden;
+  position: absolute;
+  top: -25%;
+  left: 2rem;
+  opacity: 0.5;
 
-	@media (min-width: ${breakpoints.md}) {
-		visibility: visible;
-	}
-
-	@media (min-width: ${breakpoints.lg}) {
-		left: 15%;
+  @media (min-width: ${breakpoints.md}) {
+    visibility: visible;
   }
 
-	svg {
-		height: var(--size-loginbar-height);
-	}
+  @media (min-width: ${breakpoints.lg}) {
+    left: 15%;
+  }
+
+  svg {
+    height: var(--size-loginbar-height);
+  }
 `;
 
 export default IconWrapper;

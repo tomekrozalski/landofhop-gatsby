@@ -1,7 +1,7 @@
 enum ExtractRelate {
-	weight = 'weight',
-	blg = 'blg',
-	plato = 'plato'
+  weight = 'weight',
+  blg = 'blg',
+  plato = 'plato',
 }
 
-export default ExtractRelate
+export default ExtractRelate;

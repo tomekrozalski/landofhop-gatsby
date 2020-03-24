@@ -7,4 +7,3 @@ export default (
   values: ExtendedLanguageValue[],
   language: DataLanguage | SiteLanguage = SiteLanguage.pl,
 ) => values.find(item => item.language === language) || values[0];
-

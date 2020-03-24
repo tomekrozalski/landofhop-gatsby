@@ -7,9 +7,11 @@ import { LanguageValue } from 'utils/types';
 import { getLangAttr } from 'utils/helpers';
 
 const TaleItemWrapper = styled.div<{ producer: boolean }>`
-	position: relative;
+  position: relative;
 
-	${({ producer }) => (producer && `
+  ${({ producer }) =>
+    producer &&
+    `
 		&::before {
 			display: block;
 			width: calc(100% + 2rem);
@@ -27,55 +29,62 @@ const TaleItemWrapper = styled.div<{ producer: boolean }>`
 			left: -1rem;
 			z-index: -1;
 		}
-	`)}
+	`}
 
-	& + & {
-		margin-top: 1rem;
-	}
+  & + & {
+    margin-top: 1rem;
+  }
 
-	button {
-		margin-left: 0.2rem;
-		padding: 0;
-		color: var(--color-success-strong);
-		border-bottom: 1px solid transparent;
-		transition: color var(--transition-default), border-color var(--transition-default);
+  button {
+    margin-left: 0.2rem;
+    padding: 0;
+    color: var(--color-success-strong);
+    border-bottom: 1px solid transparent;
+    transition: color var(--transition-default),
+      border-color var(--transition-default);
 
-		:hover {
-			color: var(--color-black);
-			border-color: var(--color-success-strong);
-		}
-	}
+    :hover {
+      color: var(--color-black);
+      border-color: var(--color-success-strong);
+    }
+  }
 `;
 
-type Props = LanguageValue & { producer?: boolean }
+type Props = LanguageValue & { producer?: boolean };
 
 const TaleItem: React.FC<Props> = ({ language, producer = false, value }) => {
-	const slicedText = value.split('.').slice(0, 3).join('.') + '.';
-	const sentences = value.split('.').length - 1;
+  const slicedText =
+    value
+      .split('.')
+      .slice(0, 3)
+      .join('.') + '.';
+  const sentences = value.split('.').length - 1;
 
-	const [expanded, setExpanded] = useState(false);
-	const [text, setText] = useState(sentences > 3 ? slicedText : value);
+  const [expanded, setExpanded] = useState(false);
+  const [text, setText] = useState(sentences > 3 ? slicedText : value);
 
-	useEffect(() => {
-		if (sentences > 3) {
-			setText(expanded ? value : slicedText);
-		}
-	}, [expanded]);
+  useEffect(() => {
+    if (sentences > 3) {
+      setText(expanded ? value : slicedText);
+    }
+  }, [expanded]);
 
-	const toggle = () => {
-		setExpanded(!expanded);
-	};
+  const toggle = () => {
+    setExpanded(!expanded);
+  };
 
-	return (
-		<TaleItemWrapper lang={getLangAttr(language)} producer={producer}>
-			<Markdown>{text}</Markdown>
-			{sentences > 3 && (
-				<button onClick={toggle}>
-					<FormattedMessage id={`beverage.details.tale.${expanded ? 'readLess' : 'readMore'}`} />
-				</button>
-			)}
-		</TaleItemWrapper>
-	);
+  return (
+    <TaleItemWrapper lang={getLangAttr(language)} producer={producer}>
+      <Markdown>{text}</Markdown>
+      {sentences > 3 && (
+        <button onClick={toggle}>
+          <FormattedMessage
+            id={`beverage.details.tale.${expanded ? 'readLess' : 'readMore'}`}
+          />
+        </button>
+      )}
+    </TaleItemWrapper>
+  );
 };
 
 export default TaleItem;

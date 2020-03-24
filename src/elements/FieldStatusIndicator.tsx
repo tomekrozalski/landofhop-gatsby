@@ -16,28 +16,36 @@ const IconWrapper = styled.span<{ type: 'warning' | 'success' }>`
     top: 50%;
     transform: translateY(-50%);
 
-    ${({ type }) => (type === 'warning' ? `
+    ${({ type }) =>
+      type === 'warning'
+        ? `
       width: 14px;
       height: 13px;
       right: 0.8rem;
-    ` : `
+    `
+        : `
       width: 14px;
       height: 11px;
       right: 0.6rem;
-    `)}
+    `}
   }
 `;
 
 type Props = {
-  error?: string
-}
+  error?: string;
+};
 
 const FieldStatusIndicator: React.FC<Props> = ({ children, error }) => (
   <Wrapper>
-    {error
-      ? <IconWrapper type="warning"><Warning /></IconWrapper>
-      : <IconWrapper type="success"><Checkmark /></IconWrapper>
-    }
+    {error ? (
+      <IconWrapper type="warning">
+        <Warning />
+      </IconWrapper>
+    ) : (
+      <IconWrapper type="success">
+        <Checkmark />
+      </IconWrapper>
+    )}
     {children}
   </Wrapper>
 );

@@ -7,17 +7,21 @@ import { Warning } from 'elements/icons';
 import { IconWrapper, LoginBarContainer, ResetButton } from './elements';
 
 const TokenExpired = () => {
-	const { setAuthenticationStatus } = useContext(AuthenticationContext);
+  const { setAuthenticationStatus } = useContext(AuthenticationContext);
 
-	return (
-		<LoginBarContainer as="div">
-			<IconWrapper><Warning /></IconWrapper>
-			<FormattedMessage id="loginbar.tokenExpired" />
-			<ResetButton onClick={() => setAuthenticationStatus(AuthenticationStatus.idle)}>
-				<FormattedMessage id="loginbar.loginAgain" />
-			</ResetButton>
-		</LoginBarContainer>
-	);
-}
+  return (
+    <LoginBarContainer as="div">
+      <IconWrapper>
+        <Warning />
+      </IconWrapper>
+      <FormattedMessage id="loginbar.tokenExpired" />
+      <ResetButton
+        onClick={() => setAuthenticationStatus(AuthenticationStatus.idle)}
+      >
+        <FormattedMessage id="loginbar.loginAgain" />
+      </ResetButton>
+    </LoginBarContainer>
+  );
+};
 
 export default TokenExpired;

@@ -1,5 +1,5 @@
 enum TemperatureUnit {
-	celcius = 'celcius',
+  celcius = 'celcius',
 }
 
 export default TemperatureUnit;

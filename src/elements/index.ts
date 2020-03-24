@@ -9,14 +9,14 @@ import Spinner from './Spinner';
 import TextInput from './TextInput';
 
 export {
-	Button,
-	ButtonBasicCSS,
-	ContentWrapper,
-	CoverImage,
-	ErrorHeader,
-	ErrorWrapper,
-	FormattedList,
-	SectionHeader,
-	Spinner,
-	TextInput,
+  Button,
+  ButtonBasicCSS,
+  ContentWrapper,
+  CoverImage,
+  ErrorHeader,
+  ErrorWrapper,
+  FormattedList,
+  SectionHeader,
+  Spinner,
+  TextInput,
 };

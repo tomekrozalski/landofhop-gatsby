@@ -5,11 +5,15 @@ import { translateBeverage } from './utils/helpers';
 import { Tile } from '.';
 
 type Props = {
-	edges: { node: BeverageTypes }[]
-}
+  edges: { node: BeverageTypes }[];
+};
 
-const TileMap: React.FC<Props> = ({ edges }) => (<>
-	{edges.map(({ node }) => <Tile key={node.id} {...translateBeverage(node)} />)}
-</>);
+const TileMap: React.FC<Props> = ({ edges }) => (
+  <>
+    {edges.map(({ node }) => (
+      <Tile key={node.id} {...translateBeverage(node)} />
+    ))}
+  </>
+);
 
 export default TileMap;

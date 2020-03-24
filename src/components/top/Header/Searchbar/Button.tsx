@@ -11,11 +11,11 @@ const StyledButton = styled.button`
   transition: opacity var(--transition-default);
 
   @media (min-width: ${breakpoints.md}) {
-		width: 10rem;
+    width: 10rem;
   }
 
   :hover {
-    opacity: .5;
+    opacity: 0.5;
   }
 `;
 
@@ -49,35 +49,44 @@ const Icon = styled.i<{ isActive: boolean }>`
   ::before {
     transition: all var(--transition-default);
 
-    ${({ isActive }) => (isActive ? `
+    ${({ isActive }) =>
+      isActive
+        ? `
       background-color: var(--color-white);
       transform: translateY(-0.2rem) rotate(-45deg) scale(4, 0.3);
-    ` : `
+    `
+        : `
       border-radius: 50%;
       border: 0.09rem solid var(--color-white);
       transform: translate(-50%, -50%) scale(3.6, 3.6);
-    `)}
+    `}
 
     @media (min-width: ${breakpoints.lg}) {
-    ${({ isActive }) => (isActive ? `
+    ${({ isActive }) =>
+      isActive
+        ? `
       background-color: var(--color-white);
       transform: translateY(-0.5rem) rotate(-45deg) scale(4, 0.3);
-    ` : `
+    `
+        : `
       border-radius: 50%;
       border: 0.09rem solid var(--color-white);
       transform: translate(-50%, -50%) scale(3, 3);
-    `)}
+    `}
     }
 
     @media (min-width: ${breakpoints.xl}) {
-    ${({ isActive }) => (isActive ? `
+    ${({ isActive }) =>
+      isActive
+        ? `
       background-color: var(--color-white);
       transform: translateY(-0.5rem) rotate(-45deg) scale(4, 0.3);
-    ` : `
+    `
+        : `
       border-radius: 50%;
       border: 0.1rem solid var(--color-white);
       transform: translate(-50%, -50%) scale(2.6, 2.6);
-    `)}
+    `}
     }
   }
 
@@ -85,37 +94,43 @@ const Icon = styled.i<{ isActive: boolean }>`
     background-color: var(--color-white);
     transition: transform var(--transition-default);
 
-    ${({ isActive }) => (isActive
-    ? 'transform: translateY(-0.2rem) rotate(45deg) scale(4, 0.3);'
-    : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.4, 0.4);')}
+    ${({ isActive }) =>
+      isActive
+        ? 'transform: translateY(-0.2rem) rotate(45deg) scale(4, 0.3);'
+        : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.4, 0.4);'}
 
     @media (min-width: ${breakpoints.lg}) {
-      ${({ isActive }) => (isActive
-    ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
-    : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.2, 0.3);')}
+      ${({ isActive }) =>
+        isActive
+          ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
+          : 'transform: translate(0.6rem, 0.7rem) rotate(45deg) scale(1.2, 0.3);'}
     }
 
     @media (min-width: ${breakpoints.xl}) {
-    ${({ isActive }) => (isActive
-    ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
-    : 'transform: translate(0.7rem, 0.8rem) rotate(45deg) scale(1, 0.3);')}
+    ${({ isActive }) =>
+      isActive
+        ? 'transform: translate(0, -0.5rem) rotate(45deg) scale(4, 0.3);'
+        : 'transform: translate(0.7rem, 0.8rem) rotate(45deg) scale(1, 0.3);'}
     }
   }
 `;
 
 type Props = {
-  isActive: boolean
-  setActive: (val: boolean) => void
-}
+  isActive: boolean;
+  setActive: (val: boolean) => void;
+};
 
 const Button: React.FC<Props> = ({ isActive, setActive }) => {
   const intl = useIntl();
 
   return (
     <StyledButton type="button" onClick={() => setActive(!isActive)}>
-      <Icon isActive={isActive} aria-label={intl.formatMessage({ id: 'header.search' })} />
+      <Icon
+        isActive={isActive}
+        aria-label={intl.formatMessage({ id: 'header.search' })}
+      />
     </StyledButton>
   );
-}
+};
 
 export default Button;

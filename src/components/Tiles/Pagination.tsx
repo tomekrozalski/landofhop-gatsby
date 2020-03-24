@@ -32,14 +32,20 @@ const Pagination: React.FC<PageContextTypes> = ({
   return (
     <PaginationList>
       <PaginationItem>
-        {humanPageNumber === 1
-          ? <InactiveButton as="span">←</InactiveButton>
-          : <ActiveButton as={Link} to={previousPagePath}>←</ActiveButton>}
+        {humanPageNumber === 1 ? (
+          <InactiveButton as="span">←</InactiveButton>
+        ) : (
+          <ActiveButton as={Link} to={previousPagePath}>
+            ←
+          </ActiveButton>
+        )}
       </PaginationItem>
       {humanPageNumber > 4 && (
         <>
           <PaginationItem>
-            <ActiveButton as={Link} to="/">1</ActiveButton>
+            <ActiveButton as={Link} to="/">
+              1
+            </ActiveButton>
           </PaginationItem>
           <PaginationItem>
             <InactiveButton as="span">…</InactiveButton>
@@ -70,9 +76,13 @@ const Pagination: React.FC<PageContextTypes> = ({
         </>
       )}
       <PaginationItem>
-        {numberOfPages === humanPageNumber
-          ? <InactiveButton as="span">→</InactiveButton>
-          : <ActiveButton as={Link} to={nextPagePath}>→</ActiveButton>}
+        {numberOfPages === humanPageNumber ? (
+          <InactiveButton as="span">→</InactiveButton>
+        ) : (
+          <ActiveButton as={Link} to={nextPagePath}>
+            →
+          </ActiveButton>
+        )}
       </PaginationItem>
     </PaginationList>
   );

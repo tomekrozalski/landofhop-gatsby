@@ -12,17 +12,17 @@ const AboutWrapper = styled(Wrapper)`
 `;
 
 const About: React.FC<{ intl: IntlShape }> = ({ intl }) => (
-	<Layout>
-		<SEO title="about" />
-		<AboutWrapper>
-			<Header>
-				<FormattedMessage id="about.header" />
-			</Header>
-			<p>
-				<Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
-			</p>
-		</AboutWrapper>
-	</Layout>
+  <Layout>
+    <SEO title="about" />
+    <AboutWrapper>
+      <Header>
+        <FormattedMessage id="about.header" />
+      </Header>
+      <p>
+        <Markdown>{intl.formatMessage({ id: 'about.body' })}</Markdown>
+      </p>
+    </AboutWrapper>
+  </Layout>
 );
 
 export default injectIntl(About);

@@ -4,14 +4,20 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { BeverageContext } from 'components/BeverageDetails';
 
 const Clarity: React.FC = () => {
-	const { clarity } = useContext(BeverageContext);
+  const { clarity } = useContext(BeverageContext);
 
-	return (clarity && clarity.editorial) ? (
-		<>
-			<dt><FormattedMessage id="beverage.details.clarity.name" /></dt>
-			<dd><FormattedMessage id={`beverage.details.clarity.${clarity.editorial}`} /></dd>
-		</>
-	) : null;
-}
+  return clarity && clarity.editorial ? (
+    <>
+      <dt>
+        <FormattedMessage id="beverage.details.clarity.name" />
+      </dt>
+      <dd>
+        <FormattedMessage
+          id={`beverage.details.clarity.${clarity.editorial}`}
+        />
+      </dd>
+    </>
+  ) : null;
+};
 
 export default Clarity;

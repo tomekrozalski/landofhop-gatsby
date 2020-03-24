@@ -8,13 +8,13 @@ import Taste from './Taste';
 import TasteWrapper from './TasteWrapper';
 
 export {
-	Bitterness,
-	Fullness,
-	Hoppyness,
-	Power,
-	Progress,
-	Sweetness,
-	TasteWrapper,
+  Bitterness,
+  Fullness,
+  Hoppyness,
+  Power,
+  Progress,
+  Sweetness,
+  TasteWrapper,
 };
 
 export default Taste;

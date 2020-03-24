@@ -1,7 +1,7 @@
 export type BeverageBase = {
-	badge: string
-	brand: {
-		badge: string
-	}
-	shortId: string
-}
+  badge: string;
+  brand: {
+    badge: string;
+  };
+  shortId: string;
+};

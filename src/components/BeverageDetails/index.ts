@@ -10,16 +10,16 @@ import Tale from './Tale';
 import Testimony from './Testimony';
 
 export {
-	AdminBar,
-	Aside,
-	BeverageContext,
-	BeverageDetailsContent,
-	FootNotes,
-	Gallery,
-	Header,
-	Impressions,
-	Tale,
-	Testimony,
+  AdminBar,
+  Aside,
+  BeverageContext,
+  BeverageDetailsContent,
+  FootNotes,
+  Gallery,
+  Header,
+  Impressions,
+  Tale,
+  Testimony,
 };
 
 export default BeverageDetails;
