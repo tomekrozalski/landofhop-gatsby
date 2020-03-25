@@ -100,7 +100,6 @@ const GalleryContent: React.FC<Props> = ({ badge, brand, shortId, photos }) => {
       scale={[viewport.width, viewport.height, 1]}
       onPointerUp={() => setRotatable(false)}
       onPointerDown={() => setRotatable(true)}
-      onPointerLeave={() => setRotatable(false)}
       onPointerMove={onMove}
       onWheel={onWheelMove}
     >

@@ -6,7 +6,7 @@ const getLangAttr = (language: DataLanguage | null) => {
   const { locale } = useIntl();
 
   if (language && language !== locale) {
-    return language;
+    return language as DataLanguage;
   }
 
   return null;

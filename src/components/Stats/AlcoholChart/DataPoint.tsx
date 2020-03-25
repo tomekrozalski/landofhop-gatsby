@@ -56,6 +56,7 @@ const DataPoint: React.FC<Props> = ({ beverages, height, value, x, y }) => {
         width="4.5"
         height={height - y}
         onMouseOver={() => setOpacity(1)}
+        onFocus={() => setOpacity(1)}
         onMouseLeave={() => setOpacity(0)}
       />
       <BackgroundRect

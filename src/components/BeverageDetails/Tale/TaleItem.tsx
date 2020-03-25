@@ -6,7 +6,10 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { LanguageValue } from 'utils/types';
 import { getLangAttr } from 'utils/helpers';
 
-const TaleItemWrapper = styled.div<{ producer: boolean }>`
+const TaleItemWrapper = styled.div<{
+  lang: any;
+  producer: boolean;
+}>`
   position: relative;
 
   ${({ producer }) =>

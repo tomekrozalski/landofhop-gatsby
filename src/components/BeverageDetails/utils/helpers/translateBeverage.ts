@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { useIntl } from 'gatsby-plugin-intl';
 
 import {

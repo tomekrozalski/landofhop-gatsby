@@ -61,7 +61,7 @@ export const Editorial: React.FC<{ noSeparator?: boolean }> = ({
   </span>
 );
 
-export const SourceItem: React.FC<{ lang: DataLanguage | null }> = ({
+export const SourceItem: React.FC<{ lang?: DataLanguage | null }> = ({
   children,
   lang,
 }) => (lang ? <em lang={lang}>{children}</em> : <em>{children}</em>);

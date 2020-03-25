@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
+import { AuthenticationStatus } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { styledLinkCSS } from './elements';
 
@@ -19,7 +20,7 @@ const StyledLink = styled(Link)`
 `;
 
 const ListOfLinks: React.FC = () => {
-  const { isLoggedIn } = useContext(AuthenticationContext);
+  const { authenticationStatus } = useContext(AuthenticationContext);
 
   return (
     <List>
@@ -33,7 +34,7 @@ const ListOfLinks: React.FC = () => {
           <FormattedMessage id="navbar.stats" />
         </StyledLink>
       </ListItem>
-      {isLoggedIn && (
+      {authenticationStatus === AuthenticationStatus.success && (
         <ListItem>
           <StyledLink>
             <FormattedMessage id="navbar.addBeverage" />

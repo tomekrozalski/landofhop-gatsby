@@ -55,7 +55,7 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
 type Props = {
   disabled?: boolean;
   isSubmitting?: boolean;
-  onClick: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
   type?: string;
 };
 
