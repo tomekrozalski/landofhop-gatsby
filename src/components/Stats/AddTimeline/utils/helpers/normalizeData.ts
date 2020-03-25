@@ -22,6 +22,7 @@ const normalizeData = (values: RawData): MonthData[] => {
       );
 
       const newArr = [...acc];
+      // eslint-disable-next-line operator-assignment
       newArr[index].beverages = newArr[index].beverages + curr.beverages;
       return newArr;
     },

@@ -5,6 +5,7 @@ const generateMonthArray = (until: Date) => {
   const to = { month: getMonth(until), year: getYear(until) };
   const months = [];
 
+  // eslint-disable-next-line prefer-destructuring
   for (let year = from.year; year <= to.year; year += 1) {
     const fromMonth = year === from.year ? from.month : 0;
     const toMonth = year === to.year ? to.month : 11;

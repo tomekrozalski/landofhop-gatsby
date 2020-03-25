@@ -1,9 +1,10 @@
 import { useIntl } from 'gatsby-plugin-intl';
+
+import { getValueByLanguage } from 'utils/helpers';
 import {
   Beverage as BeverageTypes,
   TranslatedBeverage as TranslatedBeverageTypes,
 } from '../types';
-import { getValueByLanguage } from 'utils/helpers';
 
 const translateBeverage = ({
   name,

@@ -22,6 +22,7 @@ const initialBeverageData = {
   container: {
     type: ContainerType.bottle,
   },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setFetchedBeverage: ({}) => {},
 };
 

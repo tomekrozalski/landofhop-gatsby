@@ -53,11 +53,10 @@ const TaleItemWrapper = styled.div<{ producer: boolean }>`
 type Props = LanguageValue & { producer?: boolean };
 
 const TaleItem: React.FC<Props> = ({ language, producer = false, value }) => {
-  const slicedText =
-    value
-      .split('.')
-      .slice(0, 3)
-      .join('.') + '.';
+  const slicedText = `${value
+    .split('.')
+    .slice(0, 3)
+    .join('.')}.`;
   const sentences = value.split('.').length - 1;
 
   const [expanded, setExpanded] = useState(false);
@@ -77,7 +76,7 @@ const TaleItem: React.FC<Props> = ({ language, producer = false, value }) => {
     <TaleItemWrapper lang={getLangAttr(language)} producer={producer}>
       <Markdown>{text}</Markdown>
       {sentences > 3 && (
-        <button onClick={toggle}>
+        <button type="button" onClick={toggle}>
           <FormattedMessage
             id={`beverage.details.tale.${expanded ? 'readLess' : 'readMore'}`}
           />

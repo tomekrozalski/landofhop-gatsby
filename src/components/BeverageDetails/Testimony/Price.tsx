@@ -24,7 +24,7 @@ const Price: React.FC = () => {
         <SourceGroup>
           {price.label && (
             <Label>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {price.label.map(({ currency, date, value }) => (
                   <SourceItem key={date.toString()}>
                     {new Intl.NumberFormat(locale, {
@@ -38,7 +38,7 @@ const Price: React.FC = () => {
           )}
           {price.producer && (
             <Producer>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {price.producer.map(({ currency, date, value }) => (
                   <SourceItem key={date.toString()}>
                     {new Intl.NumberFormat(locale, {
@@ -52,7 +52,7 @@ const Price: React.FC = () => {
           )}
           {price.editorial && (
             <Editorial>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {price.editorial.map(({ currency, date, value }) => (
                   <SourceItem key={date.toString()}>
                     {new Intl.NumberFormat(locale, {

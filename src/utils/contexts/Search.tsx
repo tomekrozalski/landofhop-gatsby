@@ -31,9 +31,11 @@ export const SearchContext = React.createContext({
   nothingFound: false,
   searchResults: initialSearchResultsData,
   setLoading: (val: boolean) => {
+    // eslint-disable-next-line no-unused-expressions
     val;
   },
   setNothingFound: (val: boolean) => {
+    // eslint-disable-next-line no-unused-expressions
     val;
   },
   setSearchResults: (val: TranslatedBeverageTypes[]) => val,

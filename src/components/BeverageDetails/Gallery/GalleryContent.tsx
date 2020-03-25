@@ -35,6 +35,7 @@ const GalleryContent: React.FC<Props> = ({ badge, brand, shortId, photos }) => {
   const textures = useMemo(
     () =>
       rawTextures.map(
+        // eslint-disable-next-line no-return-assign, no-param-reassign, no-sequences
         (texture: any) => ((texture.minFilter = LinearFilter), texture),
       ),
     [rawTextures],

@@ -22,7 +22,7 @@ const Series: React.FC = () => {
           <SourceGroup>
             {series.label && (
               <Label>
-                <FormattedList type="conjunction" style="short">
+                <FormattedList type="conjunction" mode="short">
                   {series.label.map(({ language, value }) => (
                     <SourceItem lang={getLangAttr(language)} key={value}>
                       {value}
@@ -33,7 +33,7 @@ const Series: React.FC = () => {
             )}
             {series.producer && (
               <Producer>
-                <FormattedList type="conjunction" style="short">
+                <FormattedList type="conjunction" mode="short">
                   {series.producer.map(({ language, value }) => (
                     <SourceItem lang={getLangAttr(language)} key={value}>
                       {value}

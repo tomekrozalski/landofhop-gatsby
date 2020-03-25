@@ -24,7 +24,7 @@ const Style: React.FC = () => {
         <SourceGroup>
           {style.label && (
             <Label>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {style.label.map(({ language, value }) => (
                   <SourceItem lang={getLangAttr(language)} key={value}>
                     {value}
@@ -35,7 +35,7 @@ const Style: React.FC = () => {
           )}
           {style.producer && (
             <Producer>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {style.producer.map(({ language, value }) => (
                   <SourceItem lang={getLangAttr(language)} key={value}>
                     {value}
@@ -46,7 +46,7 @@ const Style: React.FC = () => {
           )}
           {style.editorial && (
             <Editorial>
-              <FormattedList type="conjunction" style="narrow">
+              <FormattedList type="conjunction" mode="narrow">
                 {style.editorial.map(({ language, value }) => (
                   <SourceItem lang={getLangAttr(language)} key={value}>
                     {value}

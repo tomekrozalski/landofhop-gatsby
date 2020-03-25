@@ -5,7 +5,7 @@ import {
   Beverage as BeverageTypes,
   PageContext as PageContextTypes,
 } from './utils/types';
-import { Layout, SEO } from '../';
+import { Layout, SEO } from '..';
 import { Grid } from './elements';
 import { Pagination, TileMap } from '.';
 

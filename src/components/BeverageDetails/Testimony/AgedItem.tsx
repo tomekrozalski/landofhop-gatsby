@@ -27,7 +27,7 @@ const AgedItem: React.FC<AgedTypes> = ({
     {previousContent && (
       <>
         <FormattedMessage id="beverage.details.aged.previousContent.name" />{' '}
-        <FormattedList type="conjunction" style="short">
+        <FormattedList type="conjunction" mode="short">
           {previousContent.map(content => (
             <FormattedMessage
               id="beverage.details.aged.previousContent.content"

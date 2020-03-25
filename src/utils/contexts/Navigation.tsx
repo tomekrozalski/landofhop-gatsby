@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
 import React, { useState } from 'react';
 
 export const NavigationContext = React.createContext({

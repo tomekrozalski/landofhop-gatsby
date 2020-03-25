@@ -23,7 +23,7 @@ const Fermentation: React.FC = () => {
         <SourceGroup>
           {fermentation.label && (
             <Label>
-              <FormattedList type="conjunction" style="short">
+              <FormattedList type="conjunction" mode="short">
                 {fermentation.label.map(type => (
                   <SourceItem key={type}>
                     <FormattedMessage
@@ -36,7 +36,7 @@ const Fermentation: React.FC = () => {
           )}
           {fermentation.producer && (
             <Producer>
-              <FormattedList type="conjunction" style="short">
+              <FormattedList type="conjunction" mode="short">
                 {fermentation.producer.map(type => (
                   <SourceItem key={type}>
                     <FormattedMessage
@@ -49,7 +49,7 @@ const Fermentation: React.FC = () => {
           )}
           {fermentation.editorial && (
             <Editorial>
-              <FormattedList type="conjunction" style="short">
+              <FormattedList type="conjunction" mode="short">
                 {fermentation.editorial.map(type => (
                   <SourceItem key={type}>
                     <FormattedMessage

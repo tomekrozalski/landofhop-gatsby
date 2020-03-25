@@ -9,7 +9,7 @@ const getLangAttr = (language: DataLanguage | null) => {
     return language;
   }
 
-  return;
+  return null;
 };
 
 export default getLangAttr;

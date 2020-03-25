@@ -3,17 +3,17 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import isArray from 'lodash/isArray';
 
 type Props = {
-  style: 'long' | 'short' | 'narrow';
+  mode: 'long' | 'short' | 'narrow';
   type: 'conjunction';
 };
 
-const FormattedList: React.FC<Props> = ({ children, style }) => {
+const FormattedList: React.FC<Props> = ({ children, mode }) => {
   if (children && isArray(children)) {
-    if (style === 'narrow') {
+    if (mode === 'narrow') {
       return <>{children.flatMap(item => [item, ', ']).slice(0, -1)}</>;
     }
 
-    if (style === 'short') {
+    if (mode === 'short') {
       return (
         <>
           {children

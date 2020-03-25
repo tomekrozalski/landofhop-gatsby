@@ -32,7 +32,7 @@ const Img = styled.img<{ isLoaded: boolean }>`
 `;
 
 const inImageCache = (src: string) => {
-  var image = new Image();
+  const image = new Image();
   image.src = src;
 
   return image.complete;
@@ -88,10 +88,10 @@ const CoverImage: React.FC<Props> = ({
     return isBrowser ? inImageCache(getPath('webp', 1)) : null;
   };
 
-  const enhanceOutlineWithStyles = (outline: string) => {
+  const enhanceOutlineWithStyles = (value: string) => {
     const styles =
       'position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 1; transition: var(--transition-default);';
-    return outline.replace('<svg', `<svg style="${styles}"`);
+    return value.replace('<svg', `<svg style="${styles}"`);
   };
 
   useEffect(() => {
@@ -114,6 +114,7 @@ const CoverImage: React.FC<Props> = ({
     <Wrapper loaded={loaded} ref={container}>
       <Stretcher height={height} type={type} width={width} />
       <div
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: outline ? enhanceOutlineWithStyles(outline) : '',
         }}
@@ -137,6 +138,7 @@ const CoverImage: React.FC<Props> = ({
       ) : null}
       {!isBrowser ? (
         <noscript
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `<picture><img src="${getPath(
               'jpg',

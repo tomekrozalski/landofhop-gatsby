@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
@@ -24,7 +25,7 @@ const Aged: React.FC = () => {
           {isAged && isAged.label && (
             <Label>
               {aged && aged.label ? (
-                <FormattedList type="conjunction" style="long">
+                <FormattedList type="conjunction" mode="long">
                   {aged.label.map((props, i) => (
                     <AgedItem {...props} key={i} />
                   ))}
@@ -37,7 +38,7 @@ const Aged: React.FC = () => {
           {isAged && isAged.producer && (
             <Producer>
               {aged && aged.producer ? (
-                <FormattedList type="conjunction" style="long">
+                <FormattedList type="conjunction" mode="long">
                   {aged.producer.map((props, i) => (
                     <AgedItem {...props} key={i} />
                   ))}
@@ -50,7 +51,7 @@ const Aged: React.FC = () => {
           {isAged && isAged.editorial && (
             <Editorial>
               {aged && aged.editorial ? (
-                <FormattedList type="conjunction" style="long">
+                <FormattedList type="conjunction" mode="long">
                   {aged.editorial.map((props, i) => (
                     <AgedItem {...props} key={i} />
                   ))}

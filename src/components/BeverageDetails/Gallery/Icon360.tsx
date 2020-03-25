@@ -6,6 +6,7 @@ import spinner from 'images/icon360.png';
 
 const Icon360: React.FC = () => {
   const texture = useLoader(TextureLoader, spinner);
+  // eslint-disable-next-line no-return-assign
   useMemo(() => (texture.minFilter = LinearFilter), []);
 
   return (

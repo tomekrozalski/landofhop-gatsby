@@ -25,7 +25,7 @@ const DryHopped: React.FC = () => {
           {isDryHopped && isDryHopped.label && (
             <Label>
               {dryHopped && dryHopped.label ? (
-                <FormattedList type="conjunction" style="short">
+                <FormattedList type="conjunction" mode="short">
                   {dryHopped.label.map(({ language, value }) => (
                     <SourceItem lang={getLangAttr(language)} key={value}>
                       {value}
@@ -40,7 +40,7 @@ const DryHopped: React.FC = () => {
           {isDryHopped && isDryHopped.producer && (
             <Producer>
               {dryHopped && dryHopped.producer ? (
-                <FormattedList type="conjunction" style="short">
+                <FormattedList type="conjunction" mode="short">
                   {dryHopped.producer.map(({ language, value }) => (
                     <SourceItem lang={getLangAttr(language)} key={value}>
                       {value}
@@ -55,13 +55,12 @@ const DryHopped: React.FC = () => {
           {isDryHopped && isDryHopped.editorial && (
             <Editorial>
               {dryHopped && dryHopped.editorial ? (
-                <FormattedList type="conjunction" style="short">
+                <FormattedList type="conjunction" mode="short">
                   {dryHopped.editorial.map(({ language, value }) => (
                     <SourceItem lang={getLangAttr(language)} key={value}>
                       {value}
                     </SourceItem>
                   ))}
-                  }
                 </FormattedList>
               ) : (
                 <FormattedMessage id="yes" />

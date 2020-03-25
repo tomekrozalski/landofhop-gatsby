@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
 import React, { useContext, useEffect, useState } from 'react';
 import { differenceInSeconds, fromUnixTime } from 'date-fns';
 import jwt from 'jsonwebtoken';
@@ -11,8 +12,8 @@ export const AuthenticationContext = React.createContext({
   authenticationStatus: AuthenticationStatus.loading,
   logIn: ({}: { email: string; password: string }) => new Promise(() => {}),
   logOut: () => {},
-  setAuthenticationStatus: (value: AuthenticationStatus) => {
-    value;
+  setAuthenticationStatus: (val: AuthenticationStatus) => {
+    val;
   },
   token: '',
   tokenExpirationDate: new Date(),

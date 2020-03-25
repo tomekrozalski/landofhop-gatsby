@@ -1,4 +1,4 @@
-import { LanguageValue } from '../';
+import { LanguageValue } from '..';
 
 export type InstitutionTranslated = {
   badge: string;

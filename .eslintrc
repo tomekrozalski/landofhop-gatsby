@@ -11,13 +11,13 @@
   "plugins": ["@typescript-eslint/eslint-plugin", "jest"],
   "extends": [
     "airbnb",
-
     "plugin:import/typescript",
     "plugin:jest/recommended",
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier/@typescript-eslint",
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
   "env": {
     "browser": true,
@@ -35,6 +35,7 @@
   },
   "overrides": [
     {
+      "parser": "babel-eslint",
       "files": ["*.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
@@ -44,9 +45,11 @@
   "rules": {
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/jsx-props-no-spreading": 0,
     "react/prop-types": 0,
+    "no-empty-pattern": 0,
     "import/no-cycle": 0
   }
 }

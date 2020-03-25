@@ -34,11 +34,12 @@ const normalizeData = (values: RawData): AlcoholData[] => {
 
       if (index < 0) {
         return [...acc, curr];
-      } else {
-        const newArr = [...acc];
-        newArr[index].beverages = newArr[index].beverages + curr.beverages;
-        return newArr;
       }
+
+      const newArr = [...acc];
+      // eslint-disable-next-line operator-assignment
+      newArr[index].beverages = newArr[index].beverages + curr.beverages;
+      return newArr;
     }, [])
     .sort((a: AlcoholData, b: AlcoholData) => (a.value < b.value ? -1 : 1));
 
