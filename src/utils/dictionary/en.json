@@ -103,6 +103,7 @@
     "notLoggedInError": "Not logged in. Access denied",
     "updateBeverageImages": {
       "add": "Add",
+      "cap": "Cap",
       "coverPhoto": "Cover photo",
       "error": {
         "other": "File loading error",

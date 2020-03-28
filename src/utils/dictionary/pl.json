@@ -103,6 +103,7 @@
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverageImages": {
       "add": "Dodaj",
+      "cap": "Kapsel",
       "coverPhoto": "Zdjęcie okładkowe",
       "error": {
         "other": "Błąd ładowania pliku",

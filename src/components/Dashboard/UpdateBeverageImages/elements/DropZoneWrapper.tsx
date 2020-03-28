@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const DropZoneWrapper = styled.div`
   width: 100%;
   height: 100%;
-  min-height: 500px;
   position: relative;
   cursor: pointer;
 

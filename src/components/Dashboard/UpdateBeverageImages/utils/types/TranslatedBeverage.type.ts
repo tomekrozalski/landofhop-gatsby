@@ -8,6 +8,7 @@ export type TranslatedBeverage = {
   name: LanguageValue;
   brand: InstitutionTranslated;
   photos: {
+    cap: boolean | null;
     cover: {
       height: number;
       width: number;

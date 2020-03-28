@@ -7,7 +7,7 @@ import { serverCall } from 'utils/helpers';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from './UpdateBeverageImages';
 import { withAdmin } from '../utils';
-import { CoverPhoto, Gallery } from '.';
+import { Cap, CoverPhoto, Gallery } from '.';
 
 type Props = {
   next: BeverageBaseTypes;
@@ -39,6 +39,7 @@ const UpdateContent: React.FC<Props> = ({
       </Header>
       <CoverPhoto next={next} previous={previous} updateValues={updateValues} />
       <Gallery updateValues={updateValues} />
+      <Cap />
     </Wrapper>
   );
 };

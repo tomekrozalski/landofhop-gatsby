@@ -73,6 +73,7 @@ export const query = graphql`
         language
       }
       photos {
+        cap
         cover {
           height
           width
