@@ -27,8 +27,15 @@ const Authentication: React.FC = ({ children }) => {
     new Date(),
   );
   const [token, setToken] = useState('');
+  const [timeout, saveTimeout] = useState<number | null>(null);
 
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
+
+  useEffect(() => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+  }, [authenticationStatus]);
 
   const logOut = () => {
     if (window.localStorage.getItem('token')) {
@@ -45,11 +52,13 @@ const Authentication: React.FC = ({ children }) => {
     setLoginbar(true);
     setNavbar(true);
 
-    setTimeout(() => {
-      setLoginbar(false);
-      setNavbar(false);
-      logOut();
-    }, 5000);
+    saveTimeout(
+      setTimeout(() => {
+        setLoginbar(false);
+        setNavbar(false);
+        logOut();
+      }, 5000),
+    );
   };
 
   const checkTokenExpiration = (value: string) => {
