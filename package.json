@@ -46,7 +46,10 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest",
+    "test": "is-ci 'test:coverage' 'test:watch'",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx",
     "check-types": "tsc",
     "prettier": "prettier --ignore-path .gitignore '**/*.+(ts|tsx|js|jsx|json)'",
@@ -67,6 +70,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.3.0",
     "@testing-library/react": "^10.0.1",
     "@types/jest": "^25.1.4",
     "@types/jsonwebtoken": "^8.3.5",
@@ -92,6 +96,7 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
+    "is-ci-cli": "^2.0.0",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.9",
     "npm-run-all": "^4.1.5",

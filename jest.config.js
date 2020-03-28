@@ -2,6 +2,7 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   roots: ['<rootDir>/src/'],
   modulePaths: ['<rootDir>/src/'],
+  // moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   transform: {
     '^.+\\.tsx?$': `ts-jest`,
     '^.+\\.jsx?$': `<rootDir>/jest-preprocess.js`,
@@ -18,4 +19,14 @@ module.exports = {
     __PATH_PREFIX__: ``,
   },
   setupFiles: [`<rootDir>/loadershim.js`],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],
+  // coverageThreshold: {
+  //   global: {
+  //     statements: 100,
+  //     branches: 100,
+  //     functions: 100,
+  //     lines: 100
+  //   }
+  // }
 };
