@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { AuthenticationContext } from 'utils/contexts';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { DragAndDropIcon, DropZoneWrapper } from '../elements';
-import { config } from './utils';
+import { config, saveBeverageCap } from './utils';
 
 type Props = {
   setErrors: (value: Blob[]) => void;
@@ -16,24 +16,14 @@ const DropZone: React.FC<Props> = ({ setErrors, updateValues }) => {
   const { badge, brand, id, shortId } = useContext(BeverageContext);
 
   const onSaveImages = (file: Blob) => {
-    console.log('onSaveImages');
-    // saveBeverageCover({
-    //   badge,
-    //   brand: brand.badge,
-    //   file,
-    //   id,
-    //   shortId,
-    //   token,
-    // }).then(() => {
-    //   updateOutline({
-    //     badge,
-    //     brand: brand.badge,
-    //     id,
-    //     shortId,
-    //     token,
-    //     updateValues,
-    //   });
-    // });
+    saveBeverageCap({
+      badge,
+      brand: brand.badge,
+      file,
+      id,
+      shortId,
+      token,
+    }).then(updateValues);
   };
 
   const { getRootProps, getInputProps } = useDropzone({

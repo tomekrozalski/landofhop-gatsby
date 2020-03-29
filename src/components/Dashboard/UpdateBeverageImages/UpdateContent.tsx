@@ -39,7 +39,7 @@ const UpdateContent: React.FC<Props> = ({
       </Header>
       <CoverPhoto next={next} previous={previous} updateValues={updateValues} />
       <Gallery updateValues={updateValues} />
-      <Cap />
+      <Cap updateValues={updateValues} />
     </Wrapper>
   );
 };

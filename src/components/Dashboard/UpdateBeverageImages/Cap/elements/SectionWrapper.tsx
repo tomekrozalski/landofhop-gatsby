@@ -5,7 +5,7 @@ const SectionWrapper = styled.div`
   grid-template-columns: repeat(3, 228px) auto;
   grid-template-rows: 228px;
   grid-gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
 `;
 
 export default SectionWrapper;

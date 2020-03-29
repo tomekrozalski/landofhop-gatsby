@@ -5,15 +5,15 @@ import { CapImage, SectionHeader } from 'elements';
 import { BeverageContext } from '../UpdateBeverageImages';
 
 import { CapFrame, SectionWrapper } from './elements';
-import { DropZone } from '.';
+import { DropZone, Error, RemoveCap } from '.';
 
-const Cap: React.FC = () => {
+type Props = {
+  updateValues: () => void;
+};
+
+const Cap: React.FC<Props> = ({ updateValues }) => {
   const [errors, setErrors] = useState<Blob[]>([]);
   const { badge, brand, photos, shortId } = useContext(BeverageContext);
-
-  const updateValues = () => {};
-
-  console.log('errors', errors);
 
   return (
     <>
@@ -23,12 +23,18 @@ const Cap: React.FC = () => {
       <SectionWrapper>
         <CapFrame>
           {photos?.cap && (
-            <CapImage badge={badge} brand={brand} shortId={shortId} hasTail />
+            <>
+              <CapImage badge={badge} brand={brand} shortId={shortId} hasTail />
+              <RemoveCap updateValues={updateValues} />
+            </>
           )}
         </CapFrame>
         <CapFrame active>
           <DropZone setErrors={setErrors} updateValues={updateValues} />
         </CapFrame>
+        {errors.length ? (
+          <Error size={errors[0].size} type={errors[0].type} />
+        ) : null}
       </SectionWrapper>
     </>
   );
