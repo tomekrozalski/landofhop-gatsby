@@ -7,6 +7,7 @@
     "details": {
       "added": "added",
       "adminBar": {
+        "update": "Update data",
         "updatePhotos": "Update photos"
       },
       "aged": {
@@ -101,6 +102,9 @@
   },
   "dashboard": {
     "notLoggedInError": "Not logged in. Access denied",
+    "updateBeverage": {
+      "title": "Update data"
+    },
     "updateBeverageImages": {
       "add": "Add",
       "cap": "Cap",
@@ -187,6 +191,7 @@
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Not Found",
     "stats": "📈 Statistics",
+    "updateBeverage": "🔒 Update beverage data",
     "updateBeverageImages": "🔒 Update beverage images"
   },
   "yes": "yes"

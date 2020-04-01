@@ -21,6 +21,10 @@ const StyledLink = styled(Link)`
   &:hover {
     background-color: var(--color-success-strong);
   }
+
+  & + & {
+    margin-left: 1rem;
+  }
 `;
 
 const AdminBar = () => {
@@ -29,6 +33,9 @@ const AdminBar = () => {
 
   return authenticationStatus === AuthenticationStatusEnum.success ? (
     <AdminBarWrapper>
+      <StyledLink to="/update-beverage" state={{ badge, brand, shortId }}>
+        <FormattedMessage id="beverage.details.adminBar.update" />
+      </StyledLink>
       <StyledLink
         to={`/update-beverage-images/${shortId}/${brand.badge}/${badge}`}
       >

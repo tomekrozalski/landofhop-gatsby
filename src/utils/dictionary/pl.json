@@ -7,6 +7,7 @@
     "details": {
       "added": "dodano",
       "adminBar": {
+        "update": "Popraw informacje",
         "updatePhotos": "Popraw zdjęcia"
       },
       "aged": {
@@ -101,6 +102,9 @@
   },
   "dashboard": {
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
+    "updateBeverage": {
+      "title": "Popraw informacje"
+    },
     "updateBeverageImages": {
       "add": "Dodaj",
       "cap": "Kapsel",
@@ -187,6 +191,7 @@
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
     "notFound": "404 Nie znaleziono",
     "stats": "📈 Statystyki",
+    "updateBeverage": "🔒 Popraw informacje dla napoju",
     "updateBeverageImages": "🔒 Popraw grafiki dla napoju"
   },
   "yes": "tak"

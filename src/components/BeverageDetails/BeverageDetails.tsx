@@ -10,6 +10,11 @@ import {
 } from './utils/types';
 import { BeverageDetailsContent } from '.';
 
+// @Info: I could use Partial generic, but it would complicate displaying some components
+export const BeverageContext = React.createContext<TranslatedBeverageTypes>(
+  initialBeverageData,
+);
+
 type Props = {
   data: {
     beverage: BeverageTypes;
@@ -19,11 +24,6 @@ type Props = {
     previous: BeverageBaseTypes;
   };
 };
-
-// @Info: I could use Partial generic, but it would complicate displaying some components
-export const BeverageContext = React.createContext<TranslatedBeverageTypes>(
-  initialBeverageData,
-);
 
 const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
   const [
