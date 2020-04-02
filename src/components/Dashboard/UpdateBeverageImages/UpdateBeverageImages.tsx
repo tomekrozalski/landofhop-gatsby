@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { graphql } from 'gatsby';
+import React, { useContext, useEffect, useState } from 'react';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
+import { Header, Wrapper } from 'elements/textPage';
+import { serverCall } from 'utils/helpers';
+import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import {
   Beverage as BeverageTypes,
   TranslatedBeverage as TranslatedBeverageTypes,
 } from './utils/types';
 import { initialBeverageData, translateBeverage } from './utils/helpers';
-import { UpdateContent } from '.';
+import { Cap, CoverPhoto, Gallery } from '.';
 
 // @Info: I could use Partial generic, but it would complicate displaying some components
 export const BeverageContext = React.createContext<TranslatedBeverageTypes>(
@@ -29,7 +32,23 @@ type Props = {
 };
 
 const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => {
-  const [fetchedBeverage, setFetchedBeverage] = useState(null);
+  const { token } = useContext(AuthenticationContext);
+
+  const [
+    fetchedBeverage,
+    setFetchedBeverage,
+  ] = useState<TranslatedBeverageTypes | null>(null);
+
+  const updateValues = () => {
+    const { badge, brand, shortId } = data.beverage;
+
+    serverCall({
+      path: `beverage/update-beverage-images/pl/${shortId}/${brand.badge}/${badge}`,
+      token,
+    }).then(setFetchedBeverage);
+  };
+
+  useEffect(updateValues, []);
 
   return (
     <Layout>
@@ -37,58 +56,21 @@ const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => {
       <BeverageContext.Provider
         value={fetchedBeverage || translateBeverage(data.beverage)}
       >
-        <UpdateContent
-          next={pageContext.next}
-          previous={pageContext.previous}
-          setFetchedBeverage={setFetchedBeverage}
-        />
+        <Wrapper>
+          <Header>
+            <FormattedMessage id="dashboard.updateBeverageImages.title" />
+          </Header>
+          <CoverPhoto
+            next={pageContext.next}
+            previous={pageContext.previous}
+            updateValues={updateValues}
+          />
+          <Gallery updateValues={updateValues} />
+          <Cap updateValues={updateValues} />
+        </Wrapper>
       </BeverageContext.Provider>
     </Layout>
   );
 };
-
-export const query = graphql`
-  query UpdateBeverageImages(
-    $badge: String!
-    $brandBadge: String!
-    $shortId: String!
-  ) {
-    beverage(
-      badge: { eq: $badge }
-      brand: { badge: { eq: $brandBadge } }
-      shortId: { eq: $shortId }
-    ) {
-      id
-      shortId
-      badge
-      brand {
-        badge
-        name {
-          value
-          language
-        }
-      }
-      name {
-        value
-        language
-      }
-      photos {
-        cap
-        cover {
-          height
-          width
-        }
-        gallery
-        outlines {
-          cover
-          gallery
-        }
-      }
-      container {
-        type
-      }
-    }
-  }
-`;
 
 export default UpdateBeverageImages;
