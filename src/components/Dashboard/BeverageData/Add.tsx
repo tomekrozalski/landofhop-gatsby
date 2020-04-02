@@ -5,6 +5,7 @@ import { Layout, SEO } from 'components';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from 'utils/contexts';
 import { initialBeverageData } from 'utils/helpers';
+import { withAdmin } from '../utils';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -23,4 +24,4 @@ const Add: React.FC = () => (
   </Layout>
 );
 
-export default Add;
+export default withAdmin(Add);

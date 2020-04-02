@@ -104,6 +104,12 @@
     "addBeverage": {
       "title": "Add new beverage"
     },
+    "beverage": {
+      "labelInfo": {
+        "description": "Data which could be taken just from the container",
+        "title": "Label"
+      }
+    },
     "notLoggedInError": "Not logged in. Access denied",
     "updateBeverage": {
       "title": "Update data"
@@ -189,6 +195,7 @@
   },
   "titles": {
     "about": "About the site",
+    "accessDenied": "Access denied",
     "addBeverage": "🔒 Add new beverage",
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Login failed",

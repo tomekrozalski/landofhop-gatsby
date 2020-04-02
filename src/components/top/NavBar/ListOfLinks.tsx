@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
 import { AuthenticationStatus } from 'utils/enums';
-import { AuthenticationContext } from 'utils/contexts';
+import { AuthenticationContext, NavigationContext } from 'utils/contexts';
 import { styledLinkCSS } from './elements';
 
 const List = styled.ul`
@@ -21,6 +21,12 @@ const StyledLink = styled(Link)`
 
 const ListOfLinks: React.FC = () => {
   const { authenticationStatus } = useContext(AuthenticationContext);
+  const { setLoginbar, setNavbar } = useContext(NavigationContext);
+
+  useEffect(() => {
+    setLoginbar(false);
+    setNavbar(false);
+  }, []);
 
   return (
     <List>

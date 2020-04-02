@@ -1,3 +1,4 @@
+import FormSection from './FormSection';
 import ProgressBar from './ProgressBar';
 
-export { ProgressBar };
+export { FormSection, ProgressBar };

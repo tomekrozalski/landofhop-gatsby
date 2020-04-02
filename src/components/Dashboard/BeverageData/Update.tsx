@@ -6,6 +6,7 @@ import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from 'utils/contexts';
+import { withAdmin } from '../utils';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -46,4 +47,4 @@ const Update: React.FC<Props> = ({ location }) => {
   );
 };
 
-export default Update;
+export default withAdmin(Update);

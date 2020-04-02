@@ -5,22 +5,16 @@ import { FormattedMessage } from 'react-intl';
 const Wrapper = styled.form``;
 
 const SectionHeader = styled.h2`
-  grid-column: 1 / -1;
   margin-top: 1rem;
   border-top: 1px solid var(--color-black);
   padding-top: 2rem;
-  font: 400 2.2rem / 1 'font.primary';
-
-  &:first-letter {
-    text-transform: uppercase;
-  }
+  font: var(--font-weight-regular) 2.2rem / 1 var(--font-primary);
 `;
 
 const SectionDescription = styled.p`
-  grid-column: 3 / -1;
-  margin: 0 0 2rem 0;
+  margin-bottom: 2rem;
   text-align: right;
-  color: var(--color-black);
+  color: var(--color-darker);
 `;
 
 type Props = {

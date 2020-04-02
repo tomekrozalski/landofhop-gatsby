@@ -104,6 +104,12 @@
     "addBeverage": {
       "title": "Dodaj nowe piwo"
     },
+    "beverage": {
+      "labelInfo": {
+        "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
+        "title": "Etykieta"
+      }
+    },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverage": {
       "title": "Popraw informacje"
@@ -189,6 +195,7 @@
   },
   "titles": {
     "about": "O stronie",
+    "accessDenied": "Dostęp wstrzymano",
     "addBeverage": "🔒 Dodaj nowe piwo",
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Błąd logowania",
