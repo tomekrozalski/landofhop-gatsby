@@ -392,7 +392,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const Tiles = path.resolve(`src/components/Tiles/Tiles.tsx`);
   const BeverageDetails = path.resolve(
-    `src/components/BeverageDetails/BeverageDetails.tsx`,
+    `src/components/BeverageDetails/GatsbyAPI.tsx`,
   );
   const UpdateBeverageImages = path.resolve(
     `src/components/Dashboard/UpdateBeverageImages/UpdateBeverageImages.tsx`,

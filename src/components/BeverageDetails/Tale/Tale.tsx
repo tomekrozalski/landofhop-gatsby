@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { BeverageContext } from 'components/BeverageDetails';
+import { BeverageContext } from 'utils/contexts';
 import { TaleItem } from '.';
 
 const TaleWrapper = styled.div`

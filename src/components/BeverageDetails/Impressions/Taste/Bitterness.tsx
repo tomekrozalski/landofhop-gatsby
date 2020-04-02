@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 import isNumber from 'lodash/isNumber';
 
-import { BeverageContext } from 'components/BeverageDetails';
+import { BeverageContext } from 'utils/contexts';
 import { Progress } from '.';
 
 const Bitterness: React.FC = () => {

@@ -15,8 +15,7 @@ import {
   IngredientType,
   TemperatureUnit,
 } from 'utils/enums/beverage';
-
-import { Aged, BeveragePrice, Institution, LanguageValue } from 'utils/types';
+import { Aged, BeveragePrice, Institution, LanguageValue } from '.';
 
 export type Beverage = {
   id: string;

@@ -1,3 +1,3 @@
-import BeverageData from 'components/Dashboard/BeverageData';
+import { Update } from 'components/Dashboard/BeverageData';
 
-export default BeverageData;
+export default Update;

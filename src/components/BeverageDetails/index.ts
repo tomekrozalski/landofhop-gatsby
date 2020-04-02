@@ -1,19 +1,18 @@
 import AdminBar from './AdminBar';
 import Aside from './Aside';
-import BeverageDetails, { BeverageContext } from './BeverageDetails';
-import BeverageDetailsContent from './BeverageDetailsContent';
+import BeverageDetails from './BeverageDetails';
 import FootNotes from './FootNotes';
 import Gallery from './Gallery';
 import Header from './Header';
 import Impressions from './Impressions';
 import Tale from './Tale';
 import Testimony from './Testimony';
+import GatsbyAPI from './GatsbyAPI';
 
 export {
   AdminBar,
   Aside,
-  BeverageContext,
-  BeverageDetailsContent,
+  BeverageDetails,
   FootNotes,
   Gallery,
   Header,
@@ -22,4 +21,4 @@ export {
   Testimony,
 };
 
-export default BeverageDetails;
+export default GatsbyAPI;

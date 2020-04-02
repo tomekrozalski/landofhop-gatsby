@@ -10,13 +10,13 @@ const Main = styled.main`
 `;
 
 const Layout: React.FC = ({ children }) => (
-  <GlobalStateProvider>
+  <>
     <NavBar />
     <LoginBar />
     <Header />
     <Main>
       <ContentWrapper>{children}</ContentWrapper>
     </Main>
-  </GlobalStateProvider>
+  </>
 );
 export default Layout;

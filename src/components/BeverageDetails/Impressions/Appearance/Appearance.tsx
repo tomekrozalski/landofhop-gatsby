@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { BeverageContext } from 'components/BeverageDetails';
+import { BeverageContext } from 'utils/contexts';
 import { AppearanceWrapper, Clarity, Color } from '.';
 
 const Appearance = () => {

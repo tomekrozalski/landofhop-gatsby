@@ -2,8 +2,8 @@ import React, { Suspense, useContext } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { Canvas } from 'react-three-fiber';
 
+import { BeverageContext } from 'utils/contexts';
 import { BeverageImageType } from 'utils/enums/beverage';
-import { BeverageContext } from 'components/BeverageDetails';
 import { CoverImage } from 'elements';
 
 import {

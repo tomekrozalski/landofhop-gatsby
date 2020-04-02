@@ -101,6 +101,9 @@
     }
   },
   "dashboard": {
+    "addBeverage": {
+      "title": "Add new beverage"
+    },
     "notLoggedInError": "Not logged in. Access denied",
     "updateBeverage": {
       "title": "Update data"
@@ -186,6 +189,7 @@
   },
   "titles": {
     "about": "About the site",
+    "addBeverage": "🔒 Add new beverage",
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",

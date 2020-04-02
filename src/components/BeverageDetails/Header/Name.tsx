@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { BeverageContext } from 'components/BeverageDetails';
+import { BeverageContext } from 'utils/contexts';
 import { getLangAttr } from 'utils/helpers';
 
 const Wrapper = styled.h1<{ lang: any }>`

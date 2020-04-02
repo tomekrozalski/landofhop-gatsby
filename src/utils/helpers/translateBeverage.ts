@@ -2,16 +2,14 @@
 import { useIntl } from 'gatsby-plugin-intl';
 
 import {
+  Beverage as BeverageTypes,
   Institution as InstitutionTypes,
   InstitutionTranslated as InstitutionTranslatedTypes,
   LanguageValue,
+  TranslatedBeverage as TranslatedBeverageTypes,
 } from 'utils/types';
 import { DataLanguage } from 'utils/enums';
 import { getValueByLanguage } from 'utils/helpers';
-import {
-  Beverage as BeverageTypes,
-  TranslatedBeverage as TranslatedBeverageTypes,
-} from '../types';
 
 type IngredientsDescriptionType = {
   complete: boolean;

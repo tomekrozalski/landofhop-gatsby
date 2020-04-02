@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
-import { BeverageContext } from 'components/BeverageDetails';
-import { getLangAttr } from 'utils/helpers';
 
+import { BeverageContext } from 'utils/contexts';
+import { getLangAttr } from 'utils/helpers';
 import {
   Editorial,
   Label,

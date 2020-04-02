@@ -101,6 +101,9 @@
     }
   },
   "dashboard": {
+    "addBeverage": {
+      "title": "Dodaj nowe piwo"
+    },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "updateBeverage": {
       "title": "Popraw informacje"
@@ -186,6 +189,7 @@
   },
   "titles": {
     "about": "O stronie",
+    "addBeverage": "🔒 Dodaj nowe piwo",
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Błąd logowania",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",

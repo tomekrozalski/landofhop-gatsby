@@ -1,6 +1,5 @@
-import Content from './Content';
-import BeverageData, { BeverageContext } from './BeverageData';
+import Add from './Add';
+import Label from './Label';
+import Update from './Update';
 
-export { BeverageContext, Content };
-
-export default BeverageData;
+export { Add, Label, Update };

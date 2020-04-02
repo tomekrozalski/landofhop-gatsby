@@ -36,7 +36,7 @@ const ListOfLinks: React.FC = () => {
       </ListItem>
       {authenticationStatus === AuthenticationStatus.success && (
         <ListItem>
-          <StyledLink>
+          <StyledLink to="/add-new-beverage">
             <FormattedMessage id="navbar.addBeverage" />
           </StyledLink>
         </ListItem>

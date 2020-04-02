@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
-import { AuthenticationContext } from 'utils/contexts';
-import { BeverageContext } from 'components/BeverageDetails';
+import { AuthenticationContext, BeverageContext } from 'utils/contexts';
 import { ButtonBasicCSS } from 'elements';
 
 const AdminBarWrapper = styled.div`
@@ -33,7 +32,10 @@ const AdminBar = () => {
 
   return authenticationStatus === AuthenticationStatusEnum.success ? (
     <AdminBarWrapper>
-      <StyledLink to="/update-beverage" state={{ badge, brand, shortId }}>
+      <StyledLink
+        to="/update-beverage"
+        state={{ badge, brand: brand.badge, shortId }}
+      >
         <FormattedMessage id="beverage.details.adminBar.update" />
       </StyledLink>
       <StyledLink
