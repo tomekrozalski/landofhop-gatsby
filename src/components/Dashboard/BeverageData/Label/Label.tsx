@@ -1,18 +1,42 @@
 import React, { useContext } from 'react';
+import { Formik } from 'formik';
 
+import { FormName } from 'utils/enums';
 import { BeverageContext } from 'utils/contexts';
+import { Button } from 'elements';
 import { FormSection } from '../elements';
+import { Badge } from '../fields';
+
+import validationSchema from './validationSchema';
 
 const Label: React.FC = () => {
   const { badge } = useContext(BeverageContext);
 
   return (
-    <FormSection
-      description="dashboard.beverage.labelInfo.description"
-      title="dashboard.beverage.labelInfo.title"
+    <Formik
+      initialErrors={{
+        badge: 'required',
+        name: 'required',
+      }}
+      initialValues={{
+        badge: '',
+        name: '',
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        console.log('values', values);
+        setSubmitting(false);
+      }}
+      validationSchema={validationSchema}
     >
-      <div>Label, badge: {badge}</div>
-    </FormSection>
+      <FormSection
+        description="dashboard.beverage.labelInfo.description"
+        title="dashboard.beverage.labelInfo.title"
+      >
+        <Badge fieldName="loginbar.email" formName={FormName.beverageLabel} />
+        <Badge fieldName="loginbar.email" formName={FormName.beverageLabel} />
+        <Button type="submit">submit</Button>
+      </FormSection>
+    </Formik>
   );
 };
 

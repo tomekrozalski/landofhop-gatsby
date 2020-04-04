@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 import { Checkmark, Warning } from 'elements/icons';
 
-const Wrapper = styled.span`
+const Wrapper = styled.span<{ span?: string }>`
   display: block;
   width: 100%;
   position: relative;
+  ${({ span }) => span && `grid-column: ${span};`}
 `;
 
 const IconWrapper = styled.span<{ type: 'warning' | 'success' }>`
@@ -33,10 +34,11 @@ const IconWrapper = styled.span<{ type: 'warning' | 'success' }>`
 
 type Props = {
   error?: string;
+  span?: string;
 };
 
-const FieldStatusIndicator: React.FC<Props> = ({ children, error }) => (
-  <Wrapper>
+const FieldStatusIndicator: React.FC<Props> = ({ children, error, span }) => (
+  <Wrapper span={span}>
     {error ? (
       <IconWrapper type="warning">
         <Warning />
