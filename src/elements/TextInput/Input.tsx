@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledInput: any = styled.input<{ invert: boolean; span?: string }>`
+const StyledInput: any = styled.input<{ invert: boolean }>`
   display: block;
   width: 100%;
   height: var(--size-input-height);
@@ -13,7 +13,6 @@ const StyledInput: any = styled.input<{ invert: boolean; span?: string }>`
   );
   font: var(--font-weight-light) 1.6rem / 1 var(--font-primary);
   color: var(--color-black);
-  ${({ span }) => span && `grid-column: ${span};`}
 
   &:focus {
     outline: none;
@@ -31,7 +30,6 @@ const StyledInput: any = styled.input<{ invert: boolean; span?: string }>`
 type Props = {
   id: string;
   invert: boolean;
-  span?: string;
 };
 
 const Input: React.FC<Props> = props => <StyledInput {...props} />;

@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { FormName } from 'utils/enums';
-import { getAnchor } from 'utils/helpers';
+import { FieldName, FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
+import { Basic as Grid } from '../elements/grids';
 
 type Props = {
-  fieldName: string;
   formName: FormName;
+  required?: boolean;
 };
 
-const Badge: React.FC<Props> = props => (
-  <>
-    <Label {...props} span="1 / 3" />
-    <TextInput name={getAnchor(props)} span="3 / 5" />
-  </>
+const Badge: React.FC<Props> = ({ formName, required = false }) => (
+  <Grid>
+    <Label name={FieldName.badge} form={formName} required={required} />
+    <TextInput name={FieldName.badge} form={formName} />
+  </Grid>
 );
 
 export default Badge;

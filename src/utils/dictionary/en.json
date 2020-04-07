@@ -141,6 +141,12 @@
       "long": " and "
     }
   },
+  "global": {
+    "badge": "Badge",
+    "email": "Email",
+    "name": "Name",
+    "password": "Password"
+  },
   "header": {
     "name": "Land of Hop, beer catalogue",
     "navigationSwitcher": {
@@ -150,11 +156,9 @@
     "search": "Search"
   },
   "loginbar": {
-    "email": "Email",
     "loginAgain": "Login again",
     "loginFailed": "Log in failed",
     "loginSuccess": "Successfully logged in. Access token expires {expiresIn}.",
-    "password": "Password",
     "submit": "Submit",
     "tokenExpired": "Access token expired",
     "tryAgain": "Try again"

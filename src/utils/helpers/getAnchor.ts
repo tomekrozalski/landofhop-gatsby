@@ -1,11 +1,11 @@
-import { FormName } from 'utils/enums';
+import { FieldName, FormName } from 'utils/enums';
 
 type Props = {
-  formName: FormName;
-  name: string;
+  form: FormName;
+  name: FieldName;
 };
 
-const getAnchor = ({ formName, name }: Props) =>
-  `${formName}-${name}`.toLowerCase().replace('.', '-');
+const getAnchor = ({ form, name }: Props) =>
+  `${form}-${name}`.toLowerCase().replace('.', '-');
 
 export default getAnchor;

@@ -141,6 +141,12 @@
       "long": " oraz "
     }
   },
+  "global": {
+    "badge": "Identyfikator",
+    "email": "Email",
+    "name": "Nazwa",
+    "password": "Hasło"
+  },
   "header": {
     "name": "Land of Hop, katalog piw",
     "navigationSwitcher": {
@@ -150,11 +156,9 @@
     "search": "Szukaj"
   },
   "loginbar": {
-    "email": "Email",
     "loginSuccess": "Zalogowano poprawnie. Token dostępowy wygasa {expiresIn}.",
     "loginAgain": "Zaloguj się ponownie",
     "loginFailed": "Logowanie zakończyło się niepowowdzeniem",
-    "password": "Hasło",
     "submit": "Wyślij",
     "tokenExpired": "Wygasł token dostępowy",
     "tryAgain": "Spróbuj ponownie"

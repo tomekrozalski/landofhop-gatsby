@@ -7,7 +7,7 @@ import { Button } from 'elements';
 import { FormSection } from '../elements';
 import { Badge } from '../fields';
 
-import validationSchema from './validationSchema';
+import { validationSchema } from './utils';
 
 const Label: React.FC = () => {
   const { badge } = useContext(BeverageContext);
@@ -32,8 +32,8 @@ const Label: React.FC = () => {
         description="dashboard.beverage.labelInfo.description"
         title="dashboard.beverage.labelInfo.title"
       >
-        <Badge fieldName="loginbar.email" formName={FormName.beverageLabel} />
-        <Badge fieldName="loginbar.email" formName={FormName.beverageLabel} />
+        <Badge formName={FormName.beverageLabel} required />
+        <Badge formName={FormName.beverageLabel} />
         <Button type="submit">submit</Button>
       </FormSection>
     </Formik>

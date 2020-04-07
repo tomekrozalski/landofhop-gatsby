@@ -1,21 +1,19 @@
 import React from 'react';
 import { FieldAttributes, useField } from 'formik';
 
-import { FormName } from 'utils/enums';
+import { FieldName, FormName } from 'utils/enums';
 import { getAnchor } from 'utils/helpers';
 import { FieldStatusIndicator, Input } from '.';
 
 type Props = {
-  formName: FormName;
+  form: FormName;
   invert?: boolean;
-  name: string;
-  span?: string;
+  name: FieldName;
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
-  formName,
+  form,
   invert = false,
-  span,
   ...props
 }) => {
   const [field, { error, touched }] = useField<{}>(props);
@@ -23,12 +21,12 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
   const inputProps = {
     ...field,
     ...props,
-    id: getAnchor({ formName, name }),
+    id: getAnchor({ form, name }),
     invert,
   };
 
   return touched ? (
-    <FieldStatusIndicator error={error} span={span}>
+    <FieldStatusIndicator error={error}>
       <Input {...inputProps} />
     </FieldStatusIndicator>
   ) : (

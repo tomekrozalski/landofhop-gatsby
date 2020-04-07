@@ -1,9 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { FormName } from 'utils/enums';
+import { FieldName, FormName } from 'utils/enums';
 import { Button, Label, TextInput } from 'elements';
-import { fields } from './utils';
 import { LoginBarContainer, TextInputWrapper } from './elements';
 
 type Props = {
@@ -14,19 +13,19 @@ type Props = {
 const FormBody: React.FC<Props> = ({ isSubmitting, isValid }) => (
   <LoginBarContainer action="/admin" noValidate>
     <TextInputWrapper>
-      <Label {...fields.email} formName={FormName.logIn} />
+      <Label name={FieldName.email} form={FormName.logIn} />
       <TextInput
-        {...fields.email}
-        formName={FormName.logIn}
+        form={FormName.logIn}
+        name={FieldName.email}
         type="email"
         invert
       />
     </TextInputWrapper>
     <TextInputWrapper>
-      <Label {...fields.password} formName={FormName.logIn} />
+      <Label name={FieldName.password} form={FormName.logIn} />
       <TextInput
-        {...fields.password}
-        formName={FormName.logIn}
+        form={FormName.logIn}
+        name={FieldName.password}
         type="password"
         invert
       />

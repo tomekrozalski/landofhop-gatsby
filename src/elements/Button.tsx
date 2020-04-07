@@ -5,6 +5,7 @@ import ButtonSpinner from './ButtonSpinner';
 
 export const ButtonBasicCSS = css`
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 3.4rem;
   padding: 0 2rem;
@@ -56,6 +57,7 @@ type Props = {
   disabled?: boolean;
   isSubmitting?: boolean;
   onClick?: (e: React.MouseEvent) => void;
+
   type?: string;
 };
 

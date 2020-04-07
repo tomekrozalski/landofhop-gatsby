@@ -4,13 +4,8 @@ import { Formik } from 'formik';
 import { AuthenticationStatus } from 'utils/enums';
 import { AuthenticationContext, NavigationContext } from 'utils/contexts';
 import { Wrapper } from './elements';
-import {
-  FormBody,
-  LoginError,
-  LoginSuccess,
-  TokenExpired,
-  validationSchema,
-} from '.';
+import { validationSchema } from './utils';
+import { FormBody, LoginError, LoginSuccess, TokenExpired } from '.';
 
 const LoginBar: React.FC = () => {
   const { authenticationStatus, logIn } = useContext(AuthenticationContext);
