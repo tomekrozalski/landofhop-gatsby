@@ -1,14 +1,14 @@
 import React from 'react';
 import { FieldAttributes, useField } from 'formik';
 
-import { FieldName, FormName } from 'utils/enums';
+import { FormName } from 'utils/enums';
 import { getAnchor } from 'utils/helpers';
 import { FieldStatusIndicator, Input } from '.';
 
 type Props = {
   form: FormName;
   invert?: boolean;
-  name: FieldName;
+  name: string;
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({

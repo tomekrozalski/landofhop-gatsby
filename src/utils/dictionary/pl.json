@@ -105,6 +105,7 @@
       "title": "Dodaj nowe piwo"
     },
     "beverage": {
+      "brandInfo": "Informacje dotyczące marki",
       "labelInfo": {
         "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
         "title": "Etykieta"

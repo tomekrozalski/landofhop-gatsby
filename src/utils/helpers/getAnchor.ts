@@ -1,8 +1,8 @@
-import { FieldName, FormName } from 'utils/enums';
+import { FormName } from 'utils/enums';
 
 type Props = {
   form: FormName;
-  name: FieldName;
+  name: string;
 };
 
 const getAnchor = ({ form, name }: Props) =>

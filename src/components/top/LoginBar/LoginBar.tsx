@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { AuthenticationStatus } from 'utils/enums';
 import { AuthenticationContext, NavigationContext } from 'utils/contexts';
 import { Wrapper } from './elements';
-import { validationSchema } from './utils';
+import { initialFormValues, validationSchema } from './utils';
 import { FormBody, LoginError, LoginSuccess, TokenExpired } from '.';
 
 const LoginBar: React.FC = () => {
@@ -29,14 +29,7 @@ const LoginBar: React.FC = () => {
   return (
     <Wrapper isActive={loginbar} isNavbar={navbar}>
       <Formik
-        initialErrors={{
-          email: 'required',
-          password: 'required',
-        }}
-        initialValues={{
-          email: '',
-          password: '',
-        }}
+        initialValues={initialFormValues}
         onSubmit={(values, { setSubmitting }) => {
           logIn(values).then(() => {
             setSubmitting(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { FieldName, FormName } from 'utils/enums';
+import { FormName } from 'utils/enums';
 import { getAnchor } from 'utils/helpers';
 
 const Wrapper = styled.label`
@@ -23,7 +23,7 @@ const Required = styled.em`
 
 type Props = {
   form: FormName;
-  name: FieldName;
+  name: string;
   required?: boolean;
 };
 

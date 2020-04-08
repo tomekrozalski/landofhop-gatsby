@@ -1,27 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 
 import { FormName } from 'utils/enums';
-import { BeverageContext } from 'utils/contexts';
 import { Button } from 'elements';
-import { FormSection } from '../elements';
-import { Badge } from '../fields';
-
-import { validationSchema } from './utils';
+import { FormSection, SubSection } from '../elements';
+import { Badge, Name } from '../fields';
+import { FieldName, initialFormValues, validationSchema } from './utils';
 
 const Label: React.FC = () => {
-  const { badge } = useContext(BeverageContext);
+  const common = {
+    formName: FormName.beverageLabel,
+  };
 
   return (
     <Formik
-      initialErrors={{
-        badge: 'required',
-        name: 'required',
-      }}
-      initialValues={{
-        badge: '',
-        name: '',
-      }}
+      initialValues={initialFormValues}
       onSubmit={(values, { setSubmitting }) => {
         console.log('values', values);
         setSubmitting(false);
@@ -32,8 +25,10 @@ const Label: React.FC = () => {
         description="dashboard.beverage.labelInfo.description"
         title="dashboard.beverage.labelInfo.title"
       >
-        <Badge formName={FormName.beverageLabel} required />
-        <Badge formName={FormName.beverageLabel} />
+        <Badge {...common} fieldName={FieldName.badge} required />
+        {/* -------------------------------- */}
+        <SubSection title="dashboard.beverage.brandInfo" />
+        <Name {...common} fieldName={FieldName.name} required />
         <Button type="submit">submit</Button>
       </FormSection>
     </Formik>

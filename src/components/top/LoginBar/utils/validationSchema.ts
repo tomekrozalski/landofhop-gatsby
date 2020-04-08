@@ -1,10 +1,12 @@
 import * as Yup from 'yup';
 
+import FieldName from './FieldName.enum';
+
 export default Yup.object().shape({
-  email: Yup.string()
+  [FieldName.email]: Yup.string()
     .email()
     .required(),
-  password: Yup.string()
+  [FieldName.password]: Yup.string()
     .min(5)
     .required(),
 });
