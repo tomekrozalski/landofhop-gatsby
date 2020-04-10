@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import { Checkmark, Warning } from 'elements/icons';
 
-const Wrapper = styled.span`
+const Wrapper = styled.span<{ area?: string }>`
+  ${({ area }) => area && `grid-column: ${area};`}
   display: block;
   width: 100%;
   position: relative;
@@ -32,16 +33,24 @@ const IconWrapper = styled.span<{ type: 'warning' | 'success' }>`
 `;
 
 type Props = {
+  area?: string;
   error?: string;
+  touched: boolean;
 };
 
-const FieldStatusIndicator: React.FC<Props> = ({ children, error }) => (
-  <Wrapper>
-    {error ? (
+const FieldStatusIndicator: React.FC<Props> = ({
+  area,
+  children,
+  error,
+  touched,
+}) => (
+  <Wrapper area={area}>
+    {touched && error && (
       <IconWrapper type="warning">
         <Warning />
       </IconWrapper>
-    ) : (
+    )}
+    {touched && !error && (
       <IconWrapper type="success">
         <Checkmark />
       </IconWrapper>

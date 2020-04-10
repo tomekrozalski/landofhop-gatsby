@@ -4,6 +4,7 @@ import ContentWrapper from './ContentWrapper';
 import CoverImage from './CoverImage';
 import ErrorHeader from './ErrorHeader';
 import ErrorWrapper from './ErrorWrapper';
+import FieldStatusIndicator from './FieldStatusIndicator';
 import FormattedList from './FormattedList';
 import Label from './Label';
 import SectionHeader from './SectionHeader';
@@ -18,6 +19,7 @@ export {
   CoverImage,
   ErrorHeader,
   ErrorWrapper,
+  FieldStatusIndicator,
   FormattedList,
   Label,
   SectionHeader,

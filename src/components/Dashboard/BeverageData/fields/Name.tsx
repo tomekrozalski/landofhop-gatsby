@@ -3,8 +3,9 @@ import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import { AddFieldGroup, RemoveFieldGroup } from '../elements';
-import { Basic as Grid } from '../elements/grids';
+import { emptyNameValue } from 'components/Dashboard/BeverageData/utils/helpers';
+import { AddFieldGroup, RemoveFieldGroup, Select } from '../elements';
+import { Double as Grid } from '../elements/grids';
 
 type Props = {
   fieldName: string;
@@ -14,33 +15,47 @@ type Props = {
 
 const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
   <Grid>
-    <Label name={fieldName} form={formName} required={required} />
+    <Label
+      forArray="value"
+      form={formName}
+      name={fieldName}
+      required={required}
+    />
     <FieldArray
       name={fieldName}
       render={({ form, push, remove }) => {
-        console.log('!', form, form.values[fieldName]);
+        //console.log('!', form, form.values[fieldName]);
 
-        return form.values[fieldName].map((_, index) => {
+        return form.values[fieldName].map((_: any, index: number) => {
           const loopLength = form.values[fieldName].length;
           const isLastInput = loopLength === index + 1;
 
           return (
-            <React.Fragment key={index}>
-              <TextInput name={`${fieldName}.${index}.value`} form={formName} />
+            // eslint-disable-next-line react/no-array-index-key
+            <React.Fragment key={`${fieldName}-${index}`}>
+              <TextInput
+                area="2 / 3"
+                name={`${fieldName}.${index}.value`}
+                form={formName}
+              />
+              <Select
+                area="3 / 4"
+                isMulti
+                name={`${fieldName}.${index}.lang`}
+                options={[
+                  { label: 'polski', value: 'pl' },
+                  { label: 'angielski', value: 'en' },
+                  { label: 'niemiecki', value: 'de' },
+                ]}
+                placeholder="selectLanguage"
+              />
               {isLastInput && (
-                <div>
+                <>
                   {loopLength > 1 && (
                     <RemoveFieldGroup onClick={() => remove(index)} />
                   )}
-                  <AddFieldGroup
-                    onClick={() =>
-                      push({
-                        lang: '',
-                        value: '',
-                      })
-                    }
-                  />
-                </div>
+                  <AddFieldGroup onClick={() => push(emptyNameValue)} />
+                </>
               )}
             </React.Fragment>
           );

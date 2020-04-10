@@ -3,34 +3,34 @@ import { FieldAttributes, useField } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { getAnchor } from 'utils/helpers';
-import { FieldStatusIndicator, Input } from '.';
+import { FieldStatusIndicator } from 'elements';
+import { Input } from '.';
 
 type Props = {
+  area?: string;
   form: FormName;
   invert?: boolean;
   name: string;
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
+  area,
   form,
   invert = false,
   ...props
 }) => {
   const [field, { error, touched }] = useField<{}>(props);
   const { name } = props;
-  const inputProps = {
-    ...field,
-    ...props,
-    id: getAnchor({ form, name }),
-    invert,
-  };
 
-  return touched ? (
-    <FieldStatusIndicator error={error}>
-      <Input {...inputProps} />
+  return (
+    <FieldStatusIndicator area={area} error={error} touched={touched}>
+      <Input
+        {...field}
+        {...props}
+        id={getAnchor({ form, name })}
+        invert={invert}
+      />
     </FieldStatusIndicator>
-  ) : (
-    <Input {...inputProps} />
   );
 };
 

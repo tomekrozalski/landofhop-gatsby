@@ -112,6 +112,10 @@
       }
     },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
+    "selectPlaceholder": {
+      "default": "Wybierz…",
+      "selectLanguage": "Wybierz język…"
+    },
     "updateBeverage": {
       "title": "Popraw informacje"
     },

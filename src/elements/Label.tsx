@@ -22,13 +22,14 @@ const Required = styled.em`
 `;
 
 type Props = {
+  forArray?: string;
   form: FormName;
   name: string;
   required?: boolean;
 };
 
-const Label: React.FC<Props> = ({ form, name, required = false }) => (
-  <Wrapper htmlFor={getAnchor({ form, name })}>
+const Label: React.FC<Props> = ({ forArray, form, name, required = false }) => (
+  <Wrapper htmlFor={getAnchor({ forArray, form, name })}>
     <FormattedMessage id={`global.${name}`} />
     {required && <Required>*</Required>}
   </Wrapper>

@@ -112,6 +112,10 @@
       }
     },
     "notLoggedInError": "Not logged in. Access denied",
+    "selectPlaceholder": {
+      "default": "Select…",
+      "selectLanguage": "Select language…"
+    },
     "updateBeverage": {
       "title": "Update data"
     },
