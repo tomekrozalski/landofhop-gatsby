@@ -145,6 +145,10 @@ export default {
     color: isDisabled ? 'var(--color-dark)' : 'var(--color-darker)',
     font: 'var(--font-weight-light) 1.6rem / 1 var(--font-primary)',
   }),
+  singleValue: (base: any) => ({
+    ...base,
+    lineHeight: 'var(--size-input-height)',
+  }),
   valueContainer: (base: any, { isMulti }: EnhancedOptions) => ({
     ...base,
     height: isMulti ? 'auto' : 'var(--size-input-height)',

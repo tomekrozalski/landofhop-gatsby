@@ -112,9 +112,12 @@
       }
     },
     "notLoggedInError": "Not logged in. Access denied",
-    "selectPlaceholder": {
-      "default": "Select…",
-      "selectLanguage": "Select language…"
+    "select": {
+      "noOptions": "No options",
+      "placeholder": {
+        "default": "Select…",
+        "selectLanguage": "Select language…"
+      }
     },
     "updateBeverage": {
       "title": "Update data"
@@ -159,6 +162,26 @@
       "open": "Open"
     },
     "search": "Search"
+  },
+  "language": {
+    "cs": "Czech",
+    "da": "Danish",
+    "de": "German",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "group": {
+      "defaults": "Defaults",
+      "others": "Others"
+    },
+    "it": "Italian",
+    "la": "Latin",
+    "nl": "Dutch",
+    "none": "Not applicable",
+    "pl": "Polish",
+    "pt": "Portuguese",
+    "se": "Swedish",
+    "ua": "Ukrainian"
   },
   "loginbar": {
     "loginAgain": "Login again",

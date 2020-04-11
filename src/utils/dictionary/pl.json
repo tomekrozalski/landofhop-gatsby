@@ -112,9 +112,12 @@
       }
     },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
-    "selectPlaceholder": {
-      "default": "Wybierz…",
-      "selectLanguage": "Wybierz język…"
+    "select": {
+      "noOptions": "Brak wyników",
+      "placeholder": {
+        "default": "Wybierz…",
+        "selectLanguage": "Wybierz język…"
+      }
     },
     "updateBeverage": {
       "title": "Popraw informacje"
@@ -159,6 +162,26 @@
       "open": "Otwórz"
     },
     "search": "Szukaj"
+  },
+  "language": {
+    "cs": "czeski",
+    "da": "duński",
+    "de": "niemiecki",
+    "en": "angielski",
+    "es": "hiszpański",
+    "fr": "francuski",
+    "group": {
+      "defaults": "Najczęstsze",
+      "others": "Pozostałe"
+    },
+    "it": "włoski",
+    "la": "łacina",
+    "nl": "niderlandzki",
+    "none": "nie dotyczy",
+    "pl": "polski",
+    "pt": "portugalski",
+    "se": "szwedzki",
+    "ua": "ukraiński"
   },
   "loginbar": {
     "loginSuccess": "Zalogowano poprawnie. Token dostępowy wygasa {expiresIn}.",

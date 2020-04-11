@@ -1,56 +1,50 @@
 import React from 'react';
-import { FieldAttributes, useField } from 'formik';
-import ReactSelect, { components } from 'react-select';
+import { useField } from 'formik';
+import ReactSelect from 'react-select';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FieldStatusIndicator } from 'elements';
-
-import styles from './styles';
+import { SelectType } from 'components/Dashboard/utils/enums';
+import { getOptions, Option, styles } from '.';
 
 type Props = {
   area?: string;
+  isDisabled?: boolean;
   isMulti?: boolean;
   name: string;
-  options: { label: string; value: string }[];
   placeholder?: string;
+  type: SelectType;
 };
 
-const Select: React.FC<Props & FieldAttributes<{}>> = ({
+const Select: React.FC<Props> = ({
   area,
+  isDisabled = false,
   isMulti = false,
   name,
-  options,
   placeholder,
+  type,
 }) => {
   const { formatMessage } = useIntl();
   const [field, { error, touched }, { setValue }] = useField(name);
 
-  // const input = props => <components.Input {...props} id={`${formName}-${fieldName}`} />;
-
-  // const option = props => (
-  // 	<MarkType type={get(props, 'data.type')}>
-  // 		<components.Option {...props} />
-  // 	</MarkType>
-  // );
-
   return (
     <FieldStatusIndicator area={area} error={error} touched={touched}>
       <ReactSelect
-        // components={{
-        // 	Input: input,
-        // 	Option: option,
-        // }}
-        // isDisabled={value === null || disabled}
+        components={{ Option }}
+        isDisabled={isDisabled}
         isMulti={isMulti}
-        // isClearable={false}
+        isClearable={false}
+        noOptionsMessage={() =>
+          formatMessage({ id: 'dashboard.select.noOptions' })
+        }
         onChange={setValue}
-        options={options}
+        options={getOptions({ formatMessage, type })}
         placeholder={
           placeholder
             ? formatMessage({
-                id: `dashboard.selectPlaceholder.${placeholder}`,
+                id: `dashboard.select.placeholder.${placeholder}`,
               })
-            : formatMessage({ id: 'dashboard.selectPlaceholder.default' })
+            : formatMessage({ id: 'dashboard.select.placeholder.default' })
         }
         styles={styles}
         value={field.value}

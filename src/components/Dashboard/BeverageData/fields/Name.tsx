@@ -3,6 +3,7 @@ import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
+import { SelectType } from 'components/Dashboard/utils/enums';
 import { emptyNameValue } from 'components/Dashboard/BeverageData/utils/helpers';
 import { AddFieldGroup, RemoveFieldGroup, Select } from '../elements';
 import { Double as Grid } from '../elements/grids';
@@ -40,14 +41,9 @@ const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
               />
               <Select
                 area="3 / 4"
-                isMulti
                 name={`${fieldName}.${index}.lang`}
-                options={[
-                  { label: 'polski', value: 'pl' },
-                  { label: 'angielski', value: 'en' },
-                  { label: 'niemiecki', value: 'de' },
-                ]}
                 placeholder="selectLanguage"
+                type={SelectType.language}
               />
               {isLastInput && (
                 <>

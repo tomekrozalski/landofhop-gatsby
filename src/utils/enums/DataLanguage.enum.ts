@@ -1,7 +1,7 @@
 enum DataLanguage {
-  de = 'de',
   cs = 'cs',
   da = 'da',
+  de = 'de',
   en = 'en',
   es = 'es',
   fr = 'fr',
