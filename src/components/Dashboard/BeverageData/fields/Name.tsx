@@ -4,8 +4,7 @@ import { FieldArray } from 'formik';
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { SelectType } from 'components/Dashboard/utils/enums';
-import { emptyNameValue } from 'components/Dashboard/BeverageData/utils/helpers';
-import { AddFieldGroup, RemoveFieldGroup, Select } from '../elements';
+import { ActionButtons, Select } from '../elements';
 import { Double as Grid } from '../elements/grids';
 
 type Props = {
@@ -24,10 +23,8 @@ const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
     />
     <FieldArray
       name={fieldName}
-      render={({ form, push, remove }) => {
-        //console.log('!', form, form.values[fieldName]);
-
-        return form.values[fieldName].map((_: any, index: number) => {
+      render={({ form, push, remove }) =>
+        form.values[fieldName].map((_: any, index: number) => {
           const loopLength = form.values[fieldName].length;
           const isLastInput = loopLength === index + 1;
 
@@ -46,17 +43,16 @@ const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
                 type={SelectType.language}
               />
               {isLastInput && (
-                <>
-                  {loopLength > 1 && (
-                    <RemoveFieldGroup onClick={() => remove(index)} />
-                  )}
-                  <AddFieldGroup onClick={() => push(emptyNameValue)} />
-                </>
+                <ActionButtons
+                  loopLength={loopLength}
+                  push={push}
+                  remove={remove}
+                />
               )}
             </React.Fragment>
           );
-        });
-      }}
+        })
+      }
     />
   </Grid>
 );

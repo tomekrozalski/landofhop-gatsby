@@ -30,6 +30,7 @@ const StyledInput: any = styled.input<{ invert: boolean }>`
 type Props = {
   id: string;
   invert: boolean;
+  name: string;
 };
 
 const Input: React.FC<Props> = props => <StyledInput {...props} />;

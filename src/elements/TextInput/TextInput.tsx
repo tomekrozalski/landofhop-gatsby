@@ -17,18 +17,17 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
   area,
   form,
   invert = false,
-  ...props
+  name,
 }) => {
-  const [field, { error, touched }] = useField<{}>(props);
-  const { name } = props;
+  const [field, { error, touched }] = useField<{}>(name);
 
   return (
     <FieldStatusIndicator area={area} error={error} touched={touched}>
       <Input
         {...field}
-        {...props}
         id={getAnchor({ form, name })}
         invert={invert}
+        name={name}
       />
     </FieldStatusIndicator>
   );

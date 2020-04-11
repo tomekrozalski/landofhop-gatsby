@@ -1,14 +1,7 @@
-import { AddFieldGroup, RemoveFieldGroup } from './actionButtons';
+import ActionButtons from './ActionButtons';
 import FormSection from './FormSection';
 import ProgressBar from './ProgressBar';
 import Select from './Select';
 import SubSection from './SubSection';
 
-export {
-  AddFieldGroup,
-  FormSection,
-  ProgressBar,
-  RemoveFieldGroup,
-  Select,
-  SubSection,
-};
+export { ActionButtons, FormSection, ProgressBar, Select, SubSection };
