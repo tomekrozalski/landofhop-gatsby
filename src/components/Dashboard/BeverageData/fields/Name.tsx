@@ -23,36 +23,34 @@ const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
     />
     <FieldArray
       name={fieldName}
-      render={({ form, push, remove }) =>
-        form.values[fieldName].map((_: any, index: number) => {
-          const loopLength = form.values[fieldName].length;
-          const isLastInput = loopLength === index + 1;
+      render={({ form, push, remove }) => {
+        const values = form.values[fieldName];
+        const loopLength = values.length;
 
-          return (
-            // eslint-disable-next-line react/no-array-index-key
-            <React.Fragment key={`${fieldName}-${index}`}>
-              <TextInput
-                area="2 / 3"
-                name={`${fieldName}.${index}.value`}
-                form={formName}
+        return values.map((_: any, index: number) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <React.Fragment key={`${fieldName}-${index}`}>
+            <TextInput
+              area="2 / 3"
+              name={`${fieldName}.${index}.value`}
+              form={formName}
+            />
+            <Select
+              area="3 / 4"
+              name={`${fieldName}.${index}.lang`}
+              placeholder="selectLanguage"
+              type={SelectType.language}
+            />
+            {loopLength === index + 1 && (
+              <ActionButtons
+                push={push}
+                remove={() => remove(loopLength - 1)}
+                withRemove={loopLength > 1}
               />
-              <Select
-                area="3 / 4"
-                name={`${fieldName}.${index}.lang`}
-                placeholder="selectLanguage"
-                type={SelectType.language}
-              />
-              {isLastInput && (
-                <ActionButtons
-                  loopLength={loopLength}
-                  push={push}
-                  remove={remove}
-                />
-              )}
-            </React.Fragment>
-          );
-        })
-      }
+            )}
+          </React.Fragment>
+        ));
+      }}
     />
   </Grid>
 );

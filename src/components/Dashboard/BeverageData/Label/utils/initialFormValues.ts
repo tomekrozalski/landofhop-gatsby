@@ -1,10 +1,10 @@
-import { emptyNameValue } from 'components/Dashboard/BeverageData/utils/helpers';
+import { emptyLangValue } from 'components/Dashboard/BeverageData/utils/helpers';
 import FieldName from './FieldName.enum';
 
 export default {
   [FieldName.badge]: '',
   // -----------
-  [FieldName.name]: [emptyNameValue],
+  [FieldName.name]: [emptyLangValue],
   [FieldName.series]: [],
   [FieldName.brand]: '',
   [FieldName.cooperation]: null,

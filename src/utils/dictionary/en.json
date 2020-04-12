@@ -111,7 +111,10 @@
         "title": "Label"
       }
     },
+    "continue": "Continue",
     "notLoggedInError": "Not logged in. Access denied",
+    "reset": "Reset",
+    "reveal": "Reveal",
     "select": {
       "noOptions": "No options",
       "placeholder": {
@@ -153,7 +156,8 @@
     "badge": "Badge",
     "email": "Email",
     "name": "Name",
-    "password": "Password"
+    "password": "Password",
+    "series": "Series"
   },
   "header": {
     "name": "Land of Hop, beer catalogue",

@@ -47,9 +47,13 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
     color: var(--color-white);
   }
 
-  &[type="reset"]:not(:disabled):not(.button-submitting):hover {
-    background-color: var(--color-danger-strong);
-    color: var(--color-white);
+  &[type="reset"]:not(:disabled):not(.button-submitting) {
+    background-color: var(--color-danger-light);
+
+    &:hover {
+      background-color: var(--color-danger-strong);
+      color: var(--color-white);
+    }
   }
 `;
 
@@ -57,8 +61,7 @@ type Props = {
   disabled?: boolean;
   isSubmitting?: boolean;
   onClick?: (e: React.MouseEvent) => void;
-
-  type?: string;
+  type?: 'button' | 'reset' | 'submit';
 };
 
 const Button: React.FC<Props> = ({ children, isSubmitting, ...props }) => (

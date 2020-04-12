@@ -1,3 +1,3 @@
-import emptyNameValue from './emptyNameValue';
+import emptyLangValue from './emptyLangValue';
 
-export { emptyNameValue };
+export { emptyLangValue };

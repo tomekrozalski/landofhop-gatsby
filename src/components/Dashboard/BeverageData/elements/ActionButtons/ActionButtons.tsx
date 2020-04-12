@@ -1,20 +1,18 @@
 import React from 'react';
 
-import { emptyNameValue } from 'components/Dashboard/BeverageData/utils/helpers';
+import { emptyLangValue } from 'components/Dashboard/BeverageData/utils/helpers';
 import { AddFieldGroup, RemoveFieldGroup } from '.';
 
 type Props = {
-  loopLength: number;
   push: (emptyNameValue: { lang: string; value: string }) => void;
-  remove: (index: number) => void;
+  remove: () => void;
+  withRemove: boolean;
 };
 
-const ActionButtons: React.FC<Props> = ({ loopLength, push, remove }) => (
+const ActionButtons: React.FC<Props> = ({ push, remove, withRemove }) => (
   <>
-    {loopLength > 1 && (
-      <RemoveFieldGroup onClick={() => remove(loopLength - 1)} />
-    )}
-    <AddFieldGroup onClick={() => push(emptyNameValue)} />
+    {withRemove && <RemoveFieldGroup onClick={remove} />}
+    <AddFieldGroup onClick={() => push(emptyLangValue)} />
   </>
 );
 

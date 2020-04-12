@@ -11,6 +11,7 @@ type Props = {
   form: FormName;
   invert?: boolean;
   name: string;
+  type?: string;
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
@@ -18,6 +19,7 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
   form,
   invert = false,
   name,
+  type = 'text',
 }) => {
   const [field, { error, touched }] = useField<{}>(name);
 
@@ -28,6 +30,7 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
         id={getAnchor({ form, name })}
         invert={invert}
         name={name}
+        type={type}
       />
     </FieldStatusIndicator>
   );

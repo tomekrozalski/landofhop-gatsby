@@ -111,7 +111,10 @@
         "title": "Etykieta"
       }
     },
+    "continue": "Dalej",
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
+    "reset": "Zresetuj",
+    "reveal": "Dodaj",
     "select": {
       "noOptions": "Brak wyników",
       "placeholder": {
@@ -153,7 +156,8 @@
     "badge": "Identyfikator",
     "email": "Email",
     "name": "Nazwa",
-    "password": "Hasło"
+    "password": "Hasło",
+    "series": "Seria"
   },
   "header": {
     "name": "Land of Hop, katalog piw",
