@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'utils/contexts';
-import { getLangAttr } from 'utils/helpers';
+import { getLangAttr, getValueByLanguage } from 'utils/helpers';
 
 const Wrapper = styled.h1<{ lang: any }>`
   margin-bottom: 1rem;
@@ -10,9 +11,11 @@ const Wrapper = styled.h1<{ lang: any }>`
 `;
 
 const Name: React.FC = () => {
+  const { locale } = useIntl();
   const { name } = useContext(BeverageContext);
+  const { language, value } = getValueByLanguage(name, locale);
 
-  return <Wrapper lang={getLangAttr(name.language)}>{name.value}</Wrapper>;
+  return <Wrapper lang={getLangAttr(language)}>{value}</Wrapper>;
 };
 
 export default Name;

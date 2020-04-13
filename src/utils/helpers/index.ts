@@ -3,7 +3,6 @@ import getLangAttr from './getLangAttr';
 import getValueByLanguage from './getValueByLanguage';
 import initialBeverageData from './initialBeverageData';
 import serverCall from './serverCall';
-import translateBeverage from './translateBeverage';
 
 export {
   getAnchor,
@@ -11,5 +10,4 @@ export {
   getValueByLanguage,
   initialBeverageData,
   serverCall,
-  translateBeverage,
 };

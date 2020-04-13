@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
-import { TranslatedBeverage as TranslatedBeverageTypes } from 'utils/types';
+import { Beverage as BeverageTypes } from 'utils/types';
 
 type Props = {
   badge?: string;
@@ -20,10 +20,9 @@ const useBeverageDetails = ({
 }: Props) => {
   const { authenticationStatus } = useContext(AuthenticationContext);
 
-  const [
-    fetchedBeverage,
-    setFetchedBeverage,
-  ] = useState<TranslatedBeverageTypes | null>(null);
+  const [fetchedBeverage, setFetchedBeverage] = useState<BeverageTypes | null>(
+    null,
+  );
 
   useEffect(() => {
     if (
@@ -35,7 +34,7 @@ const useBeverageDetails = ({
           authenticationStatus === AuthenticationStatusEnum.success))
     ) {
       serverCall({
-        path: `beverage/pl/${shortId}/${brand}/${badge}`,
+        path: `beverage/${shortId}/${brand}/${badge}`,
       }).then(setFetchedBeverage);
     }
   }, [authenticationStatus]);

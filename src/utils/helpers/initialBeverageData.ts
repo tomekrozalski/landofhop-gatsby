@@ -9,17 +9,21 @@ const initialBeverageData = {
   id: 'test-id',
   shortId: 'test-shortId',
   badge: 'test-badge',
-  name: {
-    language: null,
-    value: 'test-name',
-  },
+  name: [
+    {
+      language: null,
+      value: 'test-name',
+    },
+  ],
   series: null,
   brand: {
     badge: 'test-brand-badge',
-    name: {
-      language: null,
-      value: 'test-brand-name',
-    },
+    name: [
+      {
+        language: null,
+        value: 'test-brand-name',
+      },
+    ],
     shortId: 'test-brand-shortId',
     website: null,
     consortium: null,

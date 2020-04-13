@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedMessage } from 'gatsby-plugin-intl';
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'utils/contexts';
-import { getLangAttr } from 'utils/helpers';
+import { getLangAttr, getValueByLanguage } from 'utils/helpers';
 
 import {
   Label,
@@ -11,7 +11,9 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const Brand: React.FC = () => {
+  const { locale } = useIntl();
   const { brand, contract, cooperation } = useContext(BeverageContext);
+  const { language, value } = getValueByLanguage(brand.name, locale);
 
   const setPrefix = () => {
     if (cooperation) {
@@ -33,9 +35,7 @@ const Brand: React.FC = () => {
         brand: (
           <SourceGroup>
             <Label>
-              <SourceItem lang={getLangAttr(brand.name.language)}>
-                {brand.name.value}
-              </SourceItem>
+              <SourceItem lang={getLangAttr(language)}>{value}</SourceItem>
             </Label>
           </SourceGroup>
         ),
