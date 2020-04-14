@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'utils/contexts';
-import { getLangAttr, getValueByLanguage } from 'utils/helpers';
-import { LanguageValue } from 'utils/types';
+import { getLangAttr } from 'utils/helpers';
 import {
   Editorial,
   Label,
@@ -13,13 +12,7 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const City: React.FC = () => {
-  const { locale } = useIntl();
   const { place } = useContext(BeverageContext);
-
-  const translateItem = (city: LanguageValue[]) => {
-    const { language, value } = getValueByLanguage(city, locale);
-    return <SourceItem lang={getLangAttr(language)}>{value}</SourceItem>;
-  };
 
   return place ? (
     <>
@@ -28,12 +21,26 @@ const City: React.FC = () => {
       </dt>
       <dd>
         <SourceGroup>
-          {place.label && <Label>{translateItem(place.label.city)}</Label>}
+          {place.label && (
+            <Label>
+              <SourceItem lang={getLangAttr(place.label.city.language)}>
+                {place.label.city.value}
+              </SourceItem>
+            </Label>
+          )}
           {place.producer && (
-            <Producer>{translateItem(place.producer.city)}</Producer>
+            <Producer>
+              <SourceItem lang={getLangAttr(place.producer.city.language)}>
+                {place.producer.city.value}
+              </SourceItem>
+            </Producer>
           )}
           {place.editorial && (
-            <Editorial>{translateItem(place.editorial.city)}</Editorial>
+            <Editorial>
+              <SourceItem lang={getLangAttr(place.editorial.city.language)}>
+                {place.editorial.city.value}
+              </SourceItem>
+            </Editorial>
           )}
         </SourceGroup>
       </dd>

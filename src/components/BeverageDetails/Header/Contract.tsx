@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'utils/contexts';
-import { Institution as InstitutionType } from 'utils/types';
-import { getLangAttr, getValueByLanguage } from 'utils/helpers';
+import { getLangAttr } from 'utils/helpers';
 
 import {
   Editorial,
@@ -14,13 +13,7 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const Contact: React.FC = () => {
-  const { locale } = useIntl();
   const { contract } = useContext(BeverageContext);
-
-  const translateItem = (brand: InstitutionType) => {
-    const { language, value } = getValueByLanguage(brand.name, locale);
-    return <SourceItem lang={getLangAttr(language)}>{value}</SourceItem>;
-  };
 
   return contract ? (
     <FormattedMessage
@@ -28,12 +21,28 @@ const Contact: React.FC = () => {
       values={{
         brands: (
           <SourceGroup>
-            {contract.label && <Label>{translateItem(contract.label)}</Label>}
+            {contract.label && (
+              <Label>
+                <SourceItem lang={getLangAttr(contract.label.name.language)}>
+                  {contract.label.name.value}
+                </SourceItem>
+              </Label>
+            )}
             {contract.producer && (
-              <Producer>{translateItem(contract.producer)}</Producer>
+              <Producer>
+                <SourceItem lang={getLangAttr(contract.producer.name.language)}>
+                  {contract.producer.name.value}
+                </SourceItem>
+              </Producer>
             )}
             {contract.editorial && (
-              <Editorial>{translateItem(contract.editorial)}</Editorial>
+              <Editorial>
+                <SourceItem
+                  lang={getLangAttr(contract.editorial.name.language)}
+                >
+                  {contract.editorial.name.value}
+                </SourceItem>
+              </Editorial>
             )}
           </SourceGroup>
         ),

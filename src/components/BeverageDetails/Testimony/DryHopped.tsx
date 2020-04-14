@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from 'utils/contexts';
-import { getLangAttr, getValueByLanguage } from 'utils/helpers';
-import { LanguageValue } from 'utils/types';
+import { getLangAttr } from 'utils/helpers';
 import { FormattedList } from 'elements';
 import {
   Editorial,
@@ -14,18 +13,7 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const DryHopped: React.FC = () => {
-  const { locale } = useIntl();
   const { dryHopped, isDryHopped } = useContext(BeverageContext);
-
-  const translateItem = (hop: LanguageValue[]) => {
-    const { language, value } = getValueByLanguage(hop, locale);
-
-    return (
-      <SourceItem lang={getLangAttr(language)} key={value}>
-        {value}
-      </SourceItem>
-    );
-  };
 
   return isDryHopped ? (
     <>
@@ -38,7 +26,11 @@ const DryHopped: React.FC = () => {
             <Label>
               {dryHopped && dryHopped.label ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.label.map(translateItem)}
+                  {dryHopped.label.map(({ language, value }) => (
+                    <SourceItem lang={getLangAttr(language)} key={value}>
+                      {value}
+                    </SourceItem>
+                  ))}
                 </FormattedList>
               ) : (
                 <FormattedMessage id="yes" />
@@ -49,7 +41,11 @@ const DryHopped: React.FC = () => {
             <Producer>
               {dryHopped && dryHopped.producer ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.producer.map(translateItem)}
+                  {dryHopped.producer.map(({ language, value }) => (
+                    <SourceItem lang={getLangAttr(language)} key={value}>
+                      {value}
+                    </SourceItem>
+                  ))}
                 </FormattedList>
               ) : (
                 <FormattedMessage id="yes" />
@@ -60,7 +56,11 @@ const DryHopped: React.FC = () => {
             <Editorial>
               {dryHopped && dryHopped.editorial ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.editorial.map(translateItem)}
+                  {dryHopped.editorial.map(({ language, value }) => (
+                    <SourceItem lang={getLangAttr(language)} key={value}>
+                      {value}
+                    </SourceItem>
+                  ))}
                 </FormattedList>
               ) : (
                 <FormattedMessage id="yes" />

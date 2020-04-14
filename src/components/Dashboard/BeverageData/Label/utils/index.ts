@@ -1,6 +1,6 @@
 import FieldName from './FieldName.enum';
-import getInitialFormValues from './getInitialFormValues';
+import initialFormValues from './initialFormValues';
 import validationSchema from './validationSchema';
 
 export * from './FormValues.type';
-export { FieldName, getInitialFormValues, validationSchema };
+export { FieldName, initialFormValues, validationSchema };

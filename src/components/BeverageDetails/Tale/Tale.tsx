@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { BeverageContext } from 'utils/contexts';
-import { getValueByLanguage } from 'utils/helpers';
 import { TaleItem } from '.';
 
 const TaleWrapper = styled.div`
@@ -18,9 +17,7 @@ const Tale: React.FC = () => {
         <>
           {tale.label &&
             tale.label.map(props => <TaleItem key={props.value} {...props} />)}
-          {tale.producer && (
-            <TaleItem {...getValueByLanguage(tale.producer)} producer />
-          )}
+          {tale.producer && <TaleItem {...tale.producer} producer />}
         </>
       )}
     </TaleWrapper>

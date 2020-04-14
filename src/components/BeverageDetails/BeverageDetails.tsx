@@ -7,6 +7,7 @@ import {
 import { Layout } from 'components';
 import { useBeverageDetails } from 'utils/hooks';
 import { BeverageContext } from 'utils/contexts';
+import { translateBeverage } from 'utils/helpers';
 import { BeverageDetailsSeo, GridWrapper } from './elements';
 import {
   AdminBar,
@@ -29,20 +30,19 @@ type Props = {
   };
 };
 
-const BeverageDetails: React.FC<Props> = ({
-  data: { beverage },
-  pageContext,
-}) => {
+const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
   const fetchedBeverage = useBeverageDetails({
-    badge: beverage.badge,
-    brand: beverage.brand.badge,
+    badge: data.beverage.badge,
+    brand: data.beverage.brand.badge,
     needsAuth: true,
-    shortId: beverage.shortId,
+    shortId: data.beverage.shortId,
   });
 
   return (
     <Layout>
-      <BeverageContext.Provider value={fetchedBeverage || beverage}>
+      <BeverageContext.Provider
+        value={fetchedBeverage || translateBeverage(data.beverage)}
+      >
         <GridWrapper>
           <Gallery />
           <Header />
