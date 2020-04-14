@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { FormattedList } from 'elements';
-import { Aged as AgedTypes } from 'utils/types';
+import { Aged as AgedTypes } from 'components/BeverageDetails/utils/types';
 import { SourceItem } from 'components/BeverageDetails/elements';
 
 const AgedItem: React.FC<AgedTypes> = ({

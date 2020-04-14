@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
@@ -34,6 +35,7 @@ type Props = {
 };
 
 const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
+  const { locale } = useIntl();
   const { authenticationStatus } = useContext(AuthenticationContext);
   const [
     fetchedBeverage,
@@ -42,8 +44,10 @@ const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
 
   useEffect(() => {
     if (authenticationStatus === AuthenticationStatusEnum.success) {
+      const { badge, brand, shortId } = data.beverage;
+
       serverCall({
-        path: `beverage/pl/${data.beverage.shortId}/${data.beverage.brand.badge}/${data.beverage.badge}`,
+        path: `beverage/${locale}/${shortId}/${brand.badge}/${badge}`,
       }).then(setFetchedBeverage);
     }
   }, [authenticationStatus]);

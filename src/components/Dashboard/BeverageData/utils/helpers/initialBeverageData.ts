@@ -6,25 +6,25 @@ import {
 } from 'components/BeverageDetails/utils/enums';
 
 const initialBeverageData = {
-  id: 'test-id',
-  shortId: 'test-shortId',
-  badge: 'test-badge',
+  id: '',
+  shortId: '',
+  badge: '',
   name: [
     {
       language: null,
-      value: 'test-name',
+      value: '',
     },
   ],
   series: null,
   brand: {
-    badge: 'test-brand-badge',
+    badge: '',
     name: [
       {
         language: null,
-        value: 'test-brand-name',
+        value: '',
       },
     ],
-    shortId: 'test-brand-shortId',
+    shortId: '',
     website: null,
     consortium: null,
   },

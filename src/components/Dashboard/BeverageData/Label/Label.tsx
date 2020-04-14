@@ -1,20 +1,19 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { BeverageContext } from '../utils/contexts';
-import { initialFormValues, validationSchema } from './utils';
+import { getInitialFormValues, validationSchema } from './utils';
 import FormBody from './FormBody';
 
 const Label: React.FC = () => {
-  const props = useContext(BeverageContext);
-
-  console.log('props', props);
+  const { formatMessage } = useIntl();
+  const beverage = useContext(BeverageContext);
 
   return (
     <Formik
       component={FormBody}
-      initialValues={initialFormValues}
-      isInitialValid={false}
+      initialValues={getInitialFormValues(beverage, formatMessage)}
       onSubmit={(values, { setSubmitting }) => {
         console.log('values', values);
         setSubmitting(false);
