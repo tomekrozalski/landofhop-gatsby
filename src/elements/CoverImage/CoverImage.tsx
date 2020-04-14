@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { LanguageValue } from 'utils/types';
-import { BeverageImageType } from 'utils/enums/beverage';
+import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { Stretcher } from '.';
 
 const Wrapper = styled.div<{ loaded: boolean }>`

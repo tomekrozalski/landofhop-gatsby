@@ -1,3 +1,4 @@
 import emptyLangValue from './emptyLangValue';
+import initialBeverageData from './initialBeverageData';
 
-export { emptyLangValue };
+export { emptyLangValue, initialBeverageData };

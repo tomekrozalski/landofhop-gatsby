@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { BeverageImageType } from 'utils/enums/beverage';
+import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 
 const Wrapper = styled.div<{ ratio: number; type: BeverageImageType }>`
   width: 100%;

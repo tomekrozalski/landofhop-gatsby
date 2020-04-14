@@ -1,4 +1,5 @@
 import { DataLanguage } from 'utils/enums';
+import { LanguageValue } from 'utils/types';
 import {
   AlcoholRelate,
   AlcoholScope,
@@ -14,46 +15,46 @@ import {
   Fermentation,
   IngredientType,
   TemperatureUnit,
-} from 'utils/enums/beverage';
-import { Aged, BeveragePrice, Institution, LanguageValue } from '.';
+} from '../../enums';
+import { Aged, BeveragePrice, InstitutionTranslated } from '..';
 
-export type Beverage = {
+export type TranslatedBeverage = {
   id: string;
   shortId: string;
   badge: string;
-  name: LanguageValue[];
+  name: LanguageValue;
   series: {
     label: LanguageValue[] | null;
     producer: LanguageValue[] | null;
   } | null;
-  brand: Institution;
+  brand: InstitutionTranslated;
   cooperation: {
-    label: Institution[] | null;
-    producer: Institution[] | null;
-    editorial: Institution[] | null;
+    label: InstitutionTranslated[] | null;
+    producer: InstitutionTranslated[] | null;
+    editorial: InstitutionTranslated[] | null;
   } | null;
   contract: {
-    label: Institution | null;
-    producer: Institution | null;
-    editorial: Institution | null;
+    label: InstitutionTranslated | null;
+    producer: InstitutionTranslated | null;
+    editorial: InstitutionTranslated | null;
   } | null;
   place: {
     label: {
-      city: LanguageValue[];
-      country: LanguageValue[];
+      city: LanguageValue;
+      country: LanguageValue;
     } | null;
     producer: {
-      city: LanguageValue[];
-      country: LanguageValue[];
+      city: LanguageValue;
+      country: LanguageValue;
     } | null;
     editorial: {
-      city: LanguageValue[];
-      country: LanguageValue[];
+      city: LanguageValue;
+      country: LanguageValue;
     } | null;
   } | null;
   tale: {
     label: LanguageValue[] | null;
-    producer: LanguageValue[] | null;
+    producer: LanguageValue | null;
   } | null;
   barcode: string | null;
   fermentation: {
@@ -121,9 +122,9 @@ export type Beverage = {
     editorial: true | null;
   } | null;
   dryHopped: {
-    label: Array<LanguageValue[]> | null;
-    producer: Array<LanguageValue[]> | null;
-    editorial: Array<LanguageValue[]> | null;
+    label: Array<LanguageValue> | null;
+    producer: Array<LanguageValue> | null;
+    editorial: Array<LanguageValue> | null;
   } | null;
   expirationDate: {
     label: {
@@ -136,31 +137,27 @@ export type Beverage = {
     } | null;
   } | null;
   ingredientsDescription: {
-    label:
-      | {
-          complete: boolean;
-          language: DataLanguage;
-          value: string;
-        }[]
-      | null;
-    producer:
-      | {
-          complete: boolean;
-          language: DataLanguage;
-          value: string;
-        }[]
-      | null;
+    label: {
+      complete: boolean;
+      language: DataLanguage;
+      value: string;
+    } | null;
+    producer: {
+      complete: boolean;
+      language: DataLanguage;
+      value: string;
+    } | null;
   } | null;
   ingredientsList: {
     label:
       | {
-          name: LanguageValue[];
+          name: LanguageValue;
           type: IngredientType;
         }[]
       | null;
     producer:
       | {
-          name: LanguageValue[];
+          name: LanguageValue;
           type: IngredientType;
         }[]
       | null;

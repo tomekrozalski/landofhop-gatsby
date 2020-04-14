@@ -1,4 +1,4 @@
-import { Currency } from '../enums/beverage';
+import { Currency } from '../enums';
 
 export type BeveragePrice = {
   date: Date;

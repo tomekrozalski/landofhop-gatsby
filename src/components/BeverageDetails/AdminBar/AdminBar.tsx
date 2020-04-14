@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
-import { AuthenticationContext, BeverageContext } from 'utils/contexts';
+import { AuthenticationContext } from 'utils/contexts';
 import { ButtonBasicCSS } from 'elements';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const AdminBarWrapper = styled.div`
   grid-area: admin;

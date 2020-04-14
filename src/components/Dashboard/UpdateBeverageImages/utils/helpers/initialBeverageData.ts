@@ -1,4 +1,4 @@
-import { ContainerType } from 'utils/enums/beverage';
+import { ContainerType } from 'components/BeverageDetails/utils/enums';
 
 const initialBeverageData = {
   id: 'test-id',

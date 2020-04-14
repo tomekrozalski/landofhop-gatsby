@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { BeverageContext } from 'utils/contexts';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const DisplayColor = styled.span<{ color: string }>`
   display: inline-block;

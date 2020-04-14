@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { BeverageImageType } from 'utils/enums/beverage';
 import { AuthenticationContext } from 'utils/contexts';
 import { Button, CoverImage, SectionHeader } from 'elements';
+import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
 import {

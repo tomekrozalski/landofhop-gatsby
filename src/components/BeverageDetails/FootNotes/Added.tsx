@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { format } from 'date-fns';
 
-import { BeverageContext } from 'utils/contexts';
-
 import { SiteLanguage } from 'utils/enums';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const Added: React.FC = () => {
   const { locale } = useIntl();

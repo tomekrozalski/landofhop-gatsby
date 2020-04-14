@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 import isBoolean from 'lodash/isBoolean';
 
-import { BeverageContext } from 'utils/contexts';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 import {
   Editorial,
   Label,

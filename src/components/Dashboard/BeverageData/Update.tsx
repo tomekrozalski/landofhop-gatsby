@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { useBeverageDetails } from 'utils/hooks';
+import { serverCall } from 'utils/helpers';
+import { AuthenticationContext } from 'utils/contexts';
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { BeverageContext } from 'utils/contexts';
+import { Beverage as BeverageTypes } from 'components/BeverageDetails/utils/types';
 import { withAdmin } from '../utils';
+import { BeverageContext } from './utils/contexts';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -21,11 +23,22 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const fetchedBeverage = useBeverageDetails({
-    badge: location.state?.badge,
-    brand: location.state?.brand,
-    shortId: location.state?.shortId,
-  });
+  const { authenticationStatus } = useContext(AuthenticationContext);
+  const [fetchedBeverage, setFetchedBeverage] = useState<BeverageTypes | null>(
+    null,
+  );
+
+  useEffect(() => {
+    const badge = location.state?.badge;
+    const brand = location.state?.brand;
+    const shortId = location.state?.shortId;
+
+    if (badge && brand && shortId) {
+      serverCall({
+        path: `beverage/${shortId}/${brand}/${badge}`,
+      }).then(setFetchedBeverage);
+    }
+  }, [authenticationStatus]);
 
   return (
     <Layout>

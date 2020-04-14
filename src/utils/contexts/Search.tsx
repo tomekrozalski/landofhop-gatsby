@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ContainerType } from 'utils/enums/beverage';
+import { ContainerType } from 'components/BeverageDetails/utils/enums';
 import { TranslatedBeverage as TranslatedBeverageTypes } from 'components/Tiles/utils/types';
 
 const initialSearchResultsData = [

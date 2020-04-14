@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { BeverageContext } from 'utils/contexts';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 import {
   Bitterness,
   Fullness,

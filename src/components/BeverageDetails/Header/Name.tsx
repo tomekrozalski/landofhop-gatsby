@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { BeverageContext } from 'utils/contexts';
 import { getLangAttr } from 'utils/helpers';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const Wrapper = styled.h1<{ lang: any }>`
   margin-bottom: 1rem;

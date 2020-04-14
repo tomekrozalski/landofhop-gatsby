@@ -3,7 +3,7 @@ import {
   AgedTimeUnit,
   AgedType,
   AgedWood,
-} from '../enums/beverage';
+} from '../enums';
 
 export type Aged = {
   type: AgedType | null;

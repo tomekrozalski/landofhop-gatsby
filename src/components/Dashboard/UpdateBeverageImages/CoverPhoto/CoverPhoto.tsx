@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage, SectionHeader } from 'elements';
+import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
 import { Aside, SectionWrapper } from './elements';

@@ -3,7 +3,7 @@ import {
   ContainerMaterial,
   ContainerUnit,
   ContainerType,
-} from 'utils/enums/beverage';
+} from '../enums';
 
 const initialBeverageData = {
   id: 'test-id',

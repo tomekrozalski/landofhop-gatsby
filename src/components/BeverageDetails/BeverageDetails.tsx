@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import { serverCall } from 'utils/helpers';
+import { AuthenticationContext } from 'utils/contexts';
+import { BeverageBase as BeverageBaseTypes } from 'utils/types';
+import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
+import { Layout } from 'components';
+import { BeverageContext } from './utils/contexts';
 import {
   Beverage as BeverageTypes,
-  BeverageBase as BeverageBaseTypes,
-} from 'utils/types';
-import { Layout } from 'components';
-import { useBeverageDetails } from 'utils/hooks';
-import { BeverageContext } from 'utils/contexts';
-import { translateBeverage } from 'utils/helpers';
+  TranslatedBeverage as TranslatedBeverageTypes,
+} from './utils/types';
+import { translateBeverage } from './utils/helpers';
 import { BeverageDetailsSeo, GridWrapper } from './elements';
 import {
   AdminBar,
@@ -31,12 +34,19 @@ type Props = {
 };
 
 const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
-  const fetchedBeverage = useBeverageDetails({
-    badge: data.beverage.badge,
-    brand: data.beverage.brand.badge,
-    needsAuth: true,
-    shortId: data.beverage.shortId,
-  });
+  const { authenticationStatus } = useContext(AuthenticationContext);
+  const [
+    fetchedBeverage,
+    setFetchedBeverage,
+  ] = useState<TranslatedBeverageTypes | null>(null);
+
+  useEffect(() => {
+    if (authenticationStatus === AuthenticationStatusEnum.success) {
+      serverCall({
+        path: `beverage/pl/${data.beverage.shortId}/${data.beverage.brand.badge}/${data.beverage.badge}`,
+      }).then(setFetchedBeverage);
+    }
+  }, [authenticationStatus]);
 
   return (
     <Layout>

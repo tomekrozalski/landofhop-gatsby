@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { BeverageImageType } from 'utils/enums/beverage';
 import { CoverImage } from 'elements';
+import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
 import { BrokenContainer } from './elements';
 

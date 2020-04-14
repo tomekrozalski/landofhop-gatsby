@@ -1,4 +1,4 @@
-import { LanguageValue } from '..';
+import { LanguageValue } from 'utils/types';
 
 export type InstitutionTranslated = {
   badge: string;

@@ -1,10 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import {
-  Beverage as BeverageTypes,
-  BeverageBase as BeverageBaseTypes,
-} from 'utils/types';
+import { BeverageBase as BeverageBaseTypes } from 'utils/types';
+import { Beverage as BeverageTypes } from './utils/types';
 import { BeverageDetails } from '.';
 
 type Props = {

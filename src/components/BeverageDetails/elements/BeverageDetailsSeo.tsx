@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import { BeverageContext } from 'utils/contexts';
 import SEO from 'components/Seo';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const BeverageDetailsSeo: React.FC = () => {
   const { brand, name } = useContext(BeverageContext);

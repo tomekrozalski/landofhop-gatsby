@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { BeverageContext } from 'utils/contexts';
+import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
 
 const Clarity: React.FC = () => {
   const { clarity } = useContext(BeverageContext);
