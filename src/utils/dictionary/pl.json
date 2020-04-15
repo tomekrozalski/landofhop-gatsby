@@ -154,6 +154,7 @@
   },
   "global": {
     "badge": "Identyfikator",
+    "brand": "Marka",
     "email": "Email",
     "name": "Nazwa",
     "password": "Hasło",

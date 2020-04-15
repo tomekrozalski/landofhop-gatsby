@@ -1,4 +1,5 @@
 enum SelectType {
+  institution,
   language,
 }
 

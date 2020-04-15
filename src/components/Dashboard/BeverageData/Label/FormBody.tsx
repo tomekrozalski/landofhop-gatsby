@@ -5,7 +5,7 @@ import { FormikProps } from 'formik';
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
 import { FormSection, SubSection } from '../elements';
-import { Badge, Name, Series } from '../fields';
+import { Badge, Brand, Name, Series } from '../fields';
 import { Footer } from '../elements/grids';
 // eslint-disable-next-line import/named
 import { FormValues } from './utils';
@@ -20,6 +20,7 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
     <SubSection title="dashboard.beverage.brandInfo" />
     <Name formName={FormName.beverageLabel} required />
     <Series formName={FormName.beverageLabel} />
+    <Brand formName={FormName.beverageLabel} required />
     <Footer>
       <Button type="reset">
         <FormattedMessage id="dashboard.reset" />

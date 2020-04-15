@@ -36,6 +36,10 @@ const getOptions = ({ formatMessage, type }: Props) => {
     ];
   }
 
+  if (type === SelectType.institution) {
+    return [{ label: 'Bum', value: 'bum' }];
+  }
+
   return [];
 };
 

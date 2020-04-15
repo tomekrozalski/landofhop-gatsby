@@ -154,6 +154,7 @@
   },
   "global": {
     "badge": "Badge",
+    "brand": "Brand",
     "email": "Email",
     "name": "Name",
     "password": "Password",

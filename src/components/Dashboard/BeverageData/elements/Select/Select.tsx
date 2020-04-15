@@ -4,11 +4,14 @@ import ReactSelect from 'react-select';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FieldStatusIndicator } from 'elements';
+import { getAnchor } from 'utils/helpers';
+import { FormName } from 'utils/enums';
 import { SelectType } from 'components/Dashboard/utils/enums';
 import { getOptions, Option, styles } from '.';
 
 type Props = {
   area?: string;
+  form?: FormName;
   isDisabled?: boolean;
   isMulti?: boolean;
   name: string;
@@ -18,6 +21,7 @@ type Props = {
 
 const Select: React.FC<Props> = ({
   area,
+  form,
   isDisabled = false,
   isMulti = false,
   name,
@@ -31,6 +35,7 @@ const Select: React.FC<Props> = ({
     <FieldStatusIndicator area={area} error={error} touched={touched}>
       <ReactSelect
         components={{ Option }}
+        inputId={form ? getAnchor({ form, name }) : ''}
         isDisabled={isDisabled}
         isMulti={isMulti}
         isClearable={false}
