@@ -8,33 +8,27 @@ import { FormSection, SubSection } from '../elements';
 import { Badge, Name, Series } from '../fields';
 import { Footer } from '../elements/grids';
 // eslint-disable-next-line import/named
-import { FormValues, FieldName } from './utils';
+import { FormValues } from './utils';
 
-const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
-  const common = {
-    formName: FormName.beverageLabel,
-  };
-
-  return (
-    <FormSection
-      description="dashboard.beverage.labelInfo.description"
-      title="dashboard.beverage.labelInfo.title"
-    >
-      <Badge {...common} fieldName={FieldName.badge} required />
-      {/* -------------------------------- */}
-      <SubSection title="dashboard.beverage.brandInfo" />
-      <Name {...common} fieldName={FieldName.name} required />
-      <Series {...common} fieldName={FieldName.series} />
-      <Footer>
-        <Button type="reset">
-          <FormattedMessage id="dashboard.reset" />
-        </Button>
-        <Button type="submit" disabled={!isValid}>
-          <FormattedMessage id="dashboard.continue" />
-        </Button>
-      </Footer>
-    </FormSection>
-  );
-};
+const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
+  <FormSection
+    description="dashboard.beverage.labelInfo.description"
+    title="dashboard.beverage.labelInfo.title"
+  >
+    <Badge formName={FormName.beverageLabel} required />
+    {/* -------------------------------- */}
+    <SubSection title="dashboard.beverage.brandInfo" />
+    <Name formName={FormName.beverageLabel} required />
+    <Series formName={FormName.beverageLabel} />
+    <Footer>
+      <Button type="reset">
+        <FormattedMessage id="dashboard.reset" />
+      </Button>
+      <Button type="submit" disabled={!isValid}>
+        <FormattedMessage id="dashboard.continue" />
+      </Button>
+    </Footer>
+  </FormSection>
+);
 
 export default FormBody;

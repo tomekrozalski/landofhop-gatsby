@@ -6,9 +6,10 @@ import { AuthenticationContext } from 'utils/contexts';
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { Beverage as BeverageTypes } from 'components/BeverageDetails/utils/types';
 import { withAdmin } from '../utils';
+import { Beverage as BeverageTypes } from './utils/types';
 import { BeverageContext } from './utils/contexts';
+import { FormType } from './utils/enums';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -36,7 +37,12 @@ const Update: React.FC<Props> = ({ location }) => {
     if (badge && brand && shortId) {
       serverCall({
         path: `beverage/${shortId}/${brand}/${badge}`,
-      }).then(setFetchedBeverage);
+      }).then(values => {
+        setFetchedBeverage({
+          ...values,
+          formType: FormType.update,
+        });
+      });
     }
   }, [authenticationStatus]);
 

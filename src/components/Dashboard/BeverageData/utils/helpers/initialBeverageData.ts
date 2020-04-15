@@ -4,6 +4,7 @@ import {
   ContainerUnit,
   ContainerType,
 } from 'components/BeverageDetails/utils/enums';
+import { FormType } from '../enums';
 
 const initialBeverageData = {
   id: '',
@@ -11,7 +12,7 @@ const initialBeverageData = {
   badge: '',
   name: [
     {
-      language: null,
+      language: '',
       value: '',
     },
   ],
@@ -20,7 +21,7 @@ const initialBeverageData = {
     badge: '',
     name: [
       {
-        language: null,
+        language: '',
         value: '',
       },
     ],
@@ -68,6 +69,7 @@ const initialBeverageData = {
   notes: null,
   added: new Date(),
   updated: null,
+  formType: FormType.add,
 };
 
 export default initialBeverageData;

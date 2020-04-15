@@ -5,39 +5,39 @@ import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { SelectType } from 'components/Dashboard/utils/enums';
 import { ActionButtons, Select } from '../elements';
+import { FieldName } from '../utils/enums';
 import { Double as Grid } from '../elements/grids';
 
 type Props = {
-  fieldName: string;
   formName: FormName;
   required?: boolean;
 };
 
-const Name: React.FC<Props> = ({ fieldName, formName, required = false }) => (
+const Name: React.FC<Props> = ({ formName, required = false }) => (
   <Grid>
     <Label
       forArray="value"
       form={formName}
-      name={fieldName}
+      name={FieldName.name}
       required={required}
     />
     <FieldArray
-      name={fieldName}
+      name={FieldName.name}
       render={({ form, push, remove }) => {
-        const values = form.values[fieldName];
+        const values = form.values[FieldName.name];
         const loopLength = values.length;
 
         return values.map((_: any, index: number) => (
           // eslint-disable-next-line react/no-array-index-key
-          <React.Fragment key={`${fieldName}-${index}`}>
+          <React.Fragment key={`${FieldName.name}-${index}`}>
             <TextInput
               area="2 / 3"
-              name={`${fieldName}.${index}.value`}
+              name={`${FieldName.name}.${index}.value`}
               form={formName}
             />
             <Select
               area="3 / 4"
-              name={`${fieldName}.${index}.lang`}
+              name={`${FieldName.name}.${index}.lang`}
               placeholder="selectLanguage"
               type={SelectType.language}
             />

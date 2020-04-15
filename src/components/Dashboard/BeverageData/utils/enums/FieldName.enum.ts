@@ -33,6 +33,8 @@ enum FieldName {
   // -----------
   container = 'container',
   price = 'price',
+  // -----------
+  formType = 'formType',
 }
 
 export default FieldName;

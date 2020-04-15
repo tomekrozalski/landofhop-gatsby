@@ -8,6 +8,7 @@ import { Input } from '.';
 
 type Props = {
   area?: string;
+  disabled?: boolean;
   form: FormName;
   invert?: boolean;
   name: string;
@@ -16,6 +17,7 @@ type Props = {
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
   area,
+  disabled = false,
   form,
   invert = false,
   name,
@@ -27,9 +29,11 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
     <FieldStatusIndicator area={area} error={error} touched={touched}>
       <Input
         {...field}
+        disabled={disabled}
         id={getAnchor({ form, name })}
         invert={invert}
         name={name}
+        touched={touched}
         type={type}
       />
     </FieldStatusIndicator>

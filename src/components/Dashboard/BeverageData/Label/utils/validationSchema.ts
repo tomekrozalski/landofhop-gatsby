@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 // import { constants } from 'utils';
 // import { isValidDate } from 'dashboard/beverage/utils';
-import FieldName from './FieldName.enum';
+import { FieldName } from '../../utils/enums';
 
 export default Yup.object().shape({
   [FieldName.badge]: Yup.string()

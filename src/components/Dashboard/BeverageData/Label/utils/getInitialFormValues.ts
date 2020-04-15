@@ -1,6 +1,6 @@
-import { Beverage as BeverageTypes } from 'components/BeverageDetails/utils/types';
+import { Beverage as BeverageTypes } from '../../utils/types';
 import { LangValue as LangValueNormalizer } from '../../utils/normalizers';
-import FieldName from './FieldName.enum';
+import { FieldName } from '../../utils/enums';
 
 const getInitialFormValues = (
   props: BeverageTypes,
@@ -8,7 +8,7 @@ const getInitialFormValues = (
 ) => {
   console.log('getInitialFormValues', props);
 
-  const { badge, name, series } = props;
+  const { badge, name, series, formType } = props;
 
   return {
     [FieldName.badge]: badge,
@@ -53,6 +53,7 @@ const getInitialFormValues = (
     // 	hasCapWireFlip: false,
     // },
     [FieldName.price]: [],
+    [FieldName.formType]: formType,
   };
 };
 

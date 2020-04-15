@@ -1,16 +1,20 @@
-import FieldName from './FieldName.enum';
+import { DataLanguage } from 'utils/enums';
+import { FieldName, FormType } from '../../utils/enums';
 
-type Lang = {
-  label: string;
-  value: string;
-};
+type LangType =
+  | {
+      label: DataLanguage | null | string;
+      value: string;
+    }
+  | string;
 
 export type FormValues = {
   [FieldName.badge]: string;
   // -----------
-  [FieldName.name]: { lang: Lang; value: string }[];
+  [FieldName.name]: { lang: LangType; value: string }[];
   [FieldName.series]: {
-    lang: Lang;
+    lang: LangType;
     value: string;
   }[];
+  [FieldName.formType]: FormType;
 };

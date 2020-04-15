@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledInput: any = styled.input<{ invert: boolean }>`
+const StyledInput: any = styled.input<{ invert: boolean; touched?: boolean }>`
   display: block;
   width: 100%;
   height: var(--size-input-height);
   border: 0;
   border-bottom: 1px solid var(--color-dark);
-  padding: 0 25px 0 1rem;
+  padding: ${({ touched }) => (touched ? '0 25px 0 1rem' : '0 1rem')};
   background-color: var(
     ${({ invert }) => (invert ? '--color-white' : '--color-brighter')}
   );
@@ -28,9 +28,11 @@ const StyledInput: any = styled.input<{ invert: boolean }>`
 `;
 
 type Props = {
+  disabled: boolean;
   id: string;
   invert: boolean;
   name: string;
+  touched?: boolean;
   type: string;
 };
 
