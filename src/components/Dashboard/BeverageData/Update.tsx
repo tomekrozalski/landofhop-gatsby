@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { serverCall } from 'utils/helpers';
@@ -7,6 +8,7 @@ import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { withAdmin } from '../utils';
+import store from '../utils/store';
 import { Beverage as BeverageTypes } from './utils/types';
 import { BeverageContext } from './utils/contexts';
 import { FormType } from './utils/enums';
@@ -50,15 +52,17 @@ const Update: React.FC<Props> = ({ location }) => {
     <Layout>
       <SEO title="updateBeverage" />
       {fetchedBeverage ? (
-        <BeverageContext.Provider value={fetchedBeverage}>
-          <Wrapper>
-            <Header>
-              <FormattedMessage id="dashboard.updateBeverage.title" />
-            </Header>
-            <ProgressBar />
-            <Label />
-          </Wrapper>
-        </BeverageContext.Provider>
+        <Provider store={store}>
+          <BeverageContext.Provider value={fetchedBeverage}>
+            <Wrapper>
+              <Header>
+                <FormattedMessage id="dashboard.updateBeverage.title" />
+              </Header>
+              <ProgressBar />
+              <Label />
+            </Wrapper>
+          </BeverageContext.Provider>
+        </Provider>
       ) : (
         <Spinner />
       )}
