@@ -1,3 +1,4 @@
-import { Add } from 'components/Dashboard/BeverageData';
+import { DashboardWrapper } from 'dashboard/elements';
+import { Add } from 'dashboard/BeverageData';
 
-export default Add;
+export default DashboardWrapper(Add);

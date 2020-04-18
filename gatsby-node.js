@@ -395,7 +395,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `src/components/BeverageDetails/GatsbyAPI.tsx`,
   );
   const UpdateBeverageImages = path.resolve(
-    `src/components/Dashboard/UpdateBeverageImages/GatsbyAPI.tsx`,
+    `src/dashboard/UpdateBeverageImages/GatsbyAPI.tsx`,
   );
 
   const allbeverages = await graphql(`
