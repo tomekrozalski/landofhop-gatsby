@@ -3,10 +3,9 @@ import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import { emptyLangValue } from 'components/Dashboard/BeverageData/utils/helpers';
-import { SelectType } from 'components/Dashboard/utils/enums';
-import { ActionButtons, Plug, Select } from '../elements';
-import { FieldName } from '../utils/enums';
+import { emptyLangValue } from 'dashboard/utils/helpers';
+import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import { ActionButtons, LanguageSelect, Plug } from '../elements';
 import { Double as Grid } from '../elements/grids';
 
 type Props = {
@@ -37,11 +36,10 @@ const Series: React.FC<Props> = ({ formName, required = false }) => (
                 name={`${FieldName.series}.${index}.value`}
                 form={formName}
               />
-              <Select
+              <LanguageSelect
                 area="3 / 4"
                 name={`${FieldName.series}.${index}.lang`}
                 placeholder="selectLanguage"
-                type={SelectType.language}
               />
               {loopLength === index + 1 && (
                 <ActionButtons

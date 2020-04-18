@@ -1,9 +1,9 @@
 import { DataLanguage } from 'utils/enums';
-import { FieldName, FormType } from '../../utils/enums';
+import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
 type LangType =
   | {
-      label: DataLanguage | null | string;
+      label?: DataLanguage | string;
       value: string;
     }
   | string;
@@ -16,5 +16,4 @@ export type FormValues = {
     lang: LangType;
     value: string;
   }[];
-  [FieldName.formType]: FormType;
 };

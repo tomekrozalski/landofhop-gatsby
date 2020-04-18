@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'gatsby-plugin-intl';
 
+import { selectInstitutions } from 'dashboard/utils/store/selectors';
+import { getAllInstitutions } from 'dashboard/utils/store/actions';
 import { DataLanguage as DataLanguageEnum, FormName } from 'utils/enums';
-import { Select } from '.';
+import { Loading, Select } from '.';
 
 type Props = {
   area?: string;
@@ -13,8 +16,20 @@ type Props = {
   placeholder?: string;
 };
 
-const LanguageSelect: React.FC<Props> = props => {
+const InstitutionSelect: React.FC<Props> = props => {
   const { formatMessage } = useIntl();
+  const data = useSelector(selectInstitutions);
+  const dispatch = useDispatch();
+
+  console.log('data', data);
+
+  useEffect(() => {
+    dispatch(getAllInstitutions());
+  }, []);
+
+  if (true) {
+    return <Loading />;
+  }
 
   return (
     <Select
@@ -50,4 +65,4 @@ const LanguageSelect: React.FC<Props> = props => {
   );
 };
 
-export default LanguageSelect;
+export default InstitutionSelect;

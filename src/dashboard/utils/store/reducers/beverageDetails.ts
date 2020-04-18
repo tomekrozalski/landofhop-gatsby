@@ -12,7 +12,10 @@ import {
   ContainerType,
 } from 'components/BeverageDetails/utils/enums';
 import { FormType } from '../../enums';
-import { Beverage as BeverageType } from '../types';
+import {
+  Beverage as BeverageType,
+  BeverageDetailsActions as BeverageDetailsActionsType,
+} from '../types';
 import actionsName from '../actionsName';
 
 type Model = {
@@ -23,14 +26,17 @@ type Model = {
   isLoading: boolean;
 };
 
-const initialState = {
-  isError: false,
-  isLoaded: false,
-  isLoading: false,
-  formType: FormType.add,
-  data: {
-    id: '',
-    shortId: '',
+const initialData = {
+  id: '',
+  shortId: '',
+  badge: '',
+  name: [
+    {
+      language: '',
+      value: '',
+    },
+  ],
+  brand: {
     badge: '',
     name: [
       {
@@ -38,28 +44,30 @@ const initialState = {
         value: '',
       },
     ],
-    brand: {
-      badge: '',
-      name: [
-        {
-          language: '',
-          value: '',
-        },
-      ],
-      shortId: '',
-    },
-    container: {
-      color: ContainerColor.black,
-      material: ContainerMaterial.aluminum,
-      unit: ContainerUnit.ml,
-      type: ContainerType.bottle,
-      value: 10,
-    },
-    added: new Date(),
+    shortId: '',
   },
+  container: {
+    color: ContainerColor.black,
+    material: ContainerMaterial.aluminum,
+    unit: ContainerUnit.ml,
+    type: ContainerType.bottle,
+    value: 10,
+  },
+  added: new Date(),
 };
 
-export default (state = initialState as Model, action: any) =>
+const initialState: Model = {
+  data: initialData,
+  formType: FormType.add,
+  isError: false,
+  isLoaded: false,
+  isLoading: false,
+};
+
+export default (
+  state = initialState,
+  action: BeverageDetailsActionsType,
+): Model =>
   produce(state, draft => {
     switch (action.type) {
       case actionsName.GET_BEVERAGE_DETAILS_PENDING:
@@ -75,8 +83,15 @@ export default (state = initialState as Model, action: any) =>
         return;
 
       case actionsName.GET_BEVERAGE_DETAILS_REJECTED:
-        draft = initialState;
+        draft.data = initialData;
+        draft.formType = FormType.add;
         draft.isError = true;
+        draft.isLoaded = false;
+        draft.isLoading = false;
         return;
+
+      case actionsName.RESET_BEVERAGE_DETAILS:
+        // eslint-disable-next-line consistent-return
+        return initialState;
     }
   });

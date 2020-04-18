@@ -1,4 +1,4 @@
-enum FieldName {
+enum Beverage {
   badge = 'badge',
   // -----------
   name = 'name',
@@ -33,8 +33,6 @@ enum FieldName {
   // -----------
   container = 'container',
   price = 'price',
-  // -----------
-  formType = 'formType',
 }
 
-export default FieldName;
+export default Beverage;

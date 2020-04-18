@@ -3,9 +3,9 @@ import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import { SelectType } from 'components/Dashboard/utils/enums';
+// import { SelectType } from 'components/Dashboard/utils/enums';
+import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { ActionButtons, LanguageSelect } from '../elements';
-import { FieldName } from '../utils/enums';
 import { Double as Grid } from '../elements/grids';
 
 type Props = {
@@ -39,7 +39,6 @@ const Name: React.FC<Props> = ({ formName, required = false }) => (
               area="3 / 4"
               name={`${FieldName.name}.${index}.lang`}
               placeholder="selectLanguage"
-              type={SelectType.language}
             />
             {loopLength === index + 1 && (
               <ActionButtons

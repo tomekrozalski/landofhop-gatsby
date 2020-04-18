@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useField } from 'formik';
 import slugify from 'slugify';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import { FieldName, FormType } from '../utils/enums';
+import {
+  BeverageFieldNames as FieldName,
+  FormType,
+} from 'dashboard/utils/enums';
+import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
 import { Basic as Grid } from '../elements/grids';
 
 type Props = {
@@ -13,12 +18,11 @@ type Props = {
 };
 
 const Badge: React.FC<Props> = ({ formName, required = false }) => {
+  const { formType } = useSelector(selectBeverageDetails);
   const [nameField] = useField(FieldName.name);
-  const [formType] = useField(FieldName.formType);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [field, meta, { setTouched, setValue }] = useField(FieldName.badge);
-
-  const isAddForm = formType.value === FormType.add;
+  const isAddForm = formType === FormType.add;
 
   useEffect(() => {
     if (isAddForm) {

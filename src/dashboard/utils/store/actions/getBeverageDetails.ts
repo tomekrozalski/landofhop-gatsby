@@ -1,14 +1,30 @@
+import { Dispatch } from 'redux';
 import { serverCall } from 'utils/helpers';
 import { FormType } from 'dashboard/utils/enums';
+import {
+  AppActions as AppActionsType,
+  Beverage as BeverageType,
+} from '../types';
 import actionsName from '../actionsName';
 
-type DispatchType = ({
-  type,
-  payload,
+const setBeverageDetailsPending = (): AppActionsType => ({
+  type: actionsName.GET_BEVERAGE_DETAILS_PENDING,
+});
+
+const setBeverageDetailsFullfilled = ({
+  beverageDetails,
+  formType,
 }: {
-  type: string;
-  payload?: any;
-}) => void;
+  beverageDetails: BeverageType;
+  formType: FormType;
+}): AppActionsType => ({
+  type: actionsName.GET_BEVERAGE_DETAILS_FULFILLED,
+  payload: { beverageDetails, formType },
+});
+
+const setBeverageDetailsRejected = (): AppActionsType => ({
+  type: actionsName.GET_BEVERAGE_DETAILS_REJECTED,
+});
 
 const getBeverageDetails = ({
   badge,
@@ -20,24 +36,17 @@ const getBeverageDetails = ({
   brand: string;
   formType: FormType;
   shortId: string;
-}) => (dispatch: DispatchType) => {
-  dispatch({
-    type: actionsName.GET_BEVERAGE_DETAILS_PENDING,
-  });
+}) => (dispatch: Dispatch<AppActionsType>) => {
+  dispatch(setBeverageDetailsPending());
 
   serverCall({
     path: `beverage/${shortId}/${brand}/${badge}`,
   })
     .then(beverageDetails => {
-      dispatch({
-        type: actionsName.GET_BEVERAGE_DETAILS_FULFILLED,
-        payload: { beverageDetails, formType },
-      });
+      dispatch(setBeverageDetailsFullfilled({ beverageDetails, formType }));
     })
     .catch(() => {
-      dispatch({
-        type: actionsName.GET_BEVERAGE_DETAILS_REJECTED,
-      });
+      dispatch(setBeverageDetailsRejected());
     });
 };
 

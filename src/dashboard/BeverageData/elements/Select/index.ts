@@ -1,9 +1,8 @@
-import getOptions from './getOptions';
+import InstitutionSelect from './InstitutionSelect';
 import LanguageSelect from './LanguageSelect';
+import Loading from './Loading';
 import Option from './Option';
 import Select from './Select';
 import styles from './styles';
 
-export { getOptions, LanguageSelect, Option, styles };
-
-export default Select;
+export { InstitutionSelect, LanguageSelect, Loading, Option, Select, styles };

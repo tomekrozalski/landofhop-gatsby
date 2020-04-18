@@ -7,7 +7,6 @@ import { Button } from 'elements';
 import { FormSection, SubSection } from '../elements';
 import { Badge, Brand, Name, Series } from '../fields';
 import { Footer } from '../elements/grids';
-// eslint-disable-next-line import/named
 import { FormValues } from './utils';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (

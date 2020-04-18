@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
+import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
+import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
+import {
+  getBeverageDetails,
+  resetBeverageDetails,
+} from 'dashboard/utils/store/actions';
 import { FormType } from 'dashboard/utils/enums';
-import { getBeverageDetails } from 'dashboard/utils/store/actions';
 import { ProgressBar } from './elements';
+import { Label } from '.';
 
 type Props = {
   location: {
@@ -19,6 +25,7 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
+  const { isLoaded } = useSelector(selectBeverageDetails);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +43,11 @@ const Update: React.FC<Props> = ({ location }) => {
         }),
       );
     }
-  }, [dispatch]);
+
+    return () => {
+      dispatch(resetBeverageDetails());
+    };
+  }, []);
 
   return (
     <Layout>
@@ -46,8 +57,7 @@ const Update: React.FC<Props> = ({ location }) => {
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
         <ProgressBar />
-        {/* <Label /> */}
-        <div>Label</div>
+        {isLoaded ? <Label /> : <Spinner />}
       </Wrapper>
     </Layout>
   );

@@ -6,8 +6,7 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { FieldStatusIndicator } from 'elements';
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
-import { SelectType } from 'dashboard/utils/enums';
-import { getOptions, Option, styles } from '.';
+import { Option, styles } from '.';
 
 type Props = {
   area?: string;
@@ -15,8 +14,12 @@ type Props = {
   isDisabled?: boolean;
   isMulti?: boolean;
   name: string;
+  options: {
+    label: string;
+    value?: string;
+    options?: { label: string; value: string }[];
+  }[];
   placeholder?: string;
-  type: SelectType;
 };
 
 const Select: React.FC<Props> = ({
@@ -25,8 +28,8 @@ const Select: React.FC<Props> = ({
   isDisabled = false,
   isMulti = false,
   name,
+  options,
   placeholder,
-  type,
 }) => {
   const { formatMessage } = useIntl();
   const [field, { error, touched }, { setValue }] = useField(name);
@@ -43,7 +46,7 @@ const Select: React.FC<Props> = ({
           formatMessage({ id: 'dashboard.select.noOptions' })
         }
         onChange={setValue}
-        options={getOptions({ formatMessage, type })}
+        options={options}
         placeholder={
           placeholder
             ? formatMessage({

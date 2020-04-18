@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { Spinner } from 'elements';
-import store from 'dashboard/utils/store';
+import { store } from 'dashboard/utils/store';
 import { NotLoggedIn } from '.';
 
 const DashboardWrapper = (Component: any) => (props: any) => {

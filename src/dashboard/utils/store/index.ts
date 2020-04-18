@@ -1,6 +1,4 @@
 import actionsName from './actionsName';
-import store from './store';
 
+export * from './store';
 export { actionsName };
-
-export default store;

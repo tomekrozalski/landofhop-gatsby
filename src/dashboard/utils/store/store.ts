@@ -1,18 +1,22 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
 
 import beverageDetails from './reducers/beverageDetails';
 import institutions from './reducers/institutions';
+import { AppActions } from './types';
 
 const rootReducer = combineReducers({
   beverageDetails,
   institutions,
 });
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk)),
-);
+export type AppState = ReturnType<typeof rootReducer>;
 
-export default store;
+// eslint-disable-next-line import/prefer-default-export
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>),
+  ),
+);

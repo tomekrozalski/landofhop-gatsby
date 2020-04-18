@@ -5,24 +5,27 @@
 */
 import produce from 'immer';
 
-import { Institution as InstitutionType } from '../types';
+import {
+  Institution as InstitutionType,
+  InstitutionsActions as InstitutionsActionsType,
+} from '../types';
 import actionsName from '../actionsName';
 
 type Model = {
-  values: InstitutionType[];
   isError: boolean;
   isLoaded: boolean;
   isLoading: boolean;
+  values: InstitutionType[];
 };
 
-export const initialState = {
-  values: [],
+const initialState: Model = {
   isError: false,
   isLoaded: false,
   isLoading: false,
+  values: [],
 };
 
-export default (state = initialState as Model, action: any) =>
+export default (state = initialState, action: InstitutionsActionsType): Model =>
   produce(state, draft => {
     switch (action.type) {
       case actionsName.GET_INSTITUTIONS_PENDING:
@@ -30,17 +33,15 @@ export default (state = initialState as Model, action: any) =>
         return;
 
       case actionsName.GET_INSTITUTIONS_FULFILLED:
-        draft.values = action.payload.institutions;
+        draft.values = action.institutions;
         draft.isError = false;
         draft.isLoaded = true;
         draft.isLoading = false;
         return;
 
       case actionsName.GET_INSTITUTIONS_REJECTED:
-        draft.values = [];
+        draft = initialState;
         draft.isError = true;
-        draft.isLoaded = false;
-        draft.isLoading = false;
         return;
     }
   });
