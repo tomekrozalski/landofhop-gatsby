@@ -8,13 +8,13 @@ import { getInitialFormValues, validationSchema } from './utils';
 import FormBody from './FormBody';
 
 const Label: React.FC = () => {
-  const { formatMessage } = useIntl();
+  const intl = useIntl();
   const data = useSelector(selectRawBeverageDetails);
 
   return (
     <Formik
       component={FormBody}
-      initialValues={getInitialFormValues(data, formatMessage)}
+      initialValues={getInitialFormValues(data, intl)}
       onSubmit={(values, { setSubmitting }) => {
         console.log('values', values);
         setSubmitting(false);

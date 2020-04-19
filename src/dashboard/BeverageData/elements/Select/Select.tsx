@@ -2,11 +2,18 @@ import React from 'react';
 import { useField } from 'formik';
 import ReactSelect from 'react-select';
 import { useIntl } from 'gatsby-plugin-intl';
+import styled from 'styled-components';
 
-import { FieldStatusIndicator } from 'elements';
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
 import { Option, styles } from '.';
+
+const Wrapper = styled.span<{ area?: string }>`
+  ${({ area }) => area && `grid-column: ${area};`}
+  display: block;
+  width: 100%;
+  position: relative;
+`;
 
 type Props = {
   area?: string;
@@ -32,10 +39,11 @@ const Select: React.FC<Props> = ({
   placeholder,
 }) => {
   const { formatMessage } = useIntl();
-  const [field, { error, touched }, { setValue }] = useField(name);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [field, _, { setValue }] = useField(name);
 
   return (
-    <FieldStatusIndicator area={area} error={error} touched={touched}>
+    <Wrapper area={area}>
       <ReactSelect
         components={{ Option }}
         inputId={form ? getAnchor({ form, name }) : ''}
@@ -57,7 +65,7 @@ const Select: React.FC<Props> = ({
         styles={styles}
         value={field.value}
       />
-    </FieldStatusIndicator>
+    </Wrapper>
   );
 };
 

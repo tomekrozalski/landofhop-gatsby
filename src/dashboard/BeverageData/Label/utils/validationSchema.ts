@@ -35,13 +35,12 @@ export default Yup.object().shape({
         .required(),
     }),
   ),
-  // [FieldName.brand]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		label: Yup.string().required('danger'),
-  // 		value: Yup.string().required('danger'),
-  // 	})
-  // 	.required('danger'),
+  [FieldName.brand]: Yup.object()
+    .shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    })
+    .required(),
   // [FieldName.cooperation]: Yup
   // 	.array()
   // 	.min(1, 'danger')

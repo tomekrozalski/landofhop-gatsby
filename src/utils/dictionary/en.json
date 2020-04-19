@@ -156,6 +156,7 @@
     "badge": "Badge",
     "brand": "Brand",
     "email": "Email",
+    "loading": "Loading…",
     "name": "Name",
     "password": "Password",
     "series": "Series"

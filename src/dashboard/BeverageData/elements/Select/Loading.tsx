@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   height: 100%;
   position: relative;
 
-  &::after {
+  ::after {
     content: '';
     background-image: linear-gradient(
       -45deg,
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
 
 const Loading = () => (
   <Wrapper>
-    <FormattedMessage id="dashboard.loading" />
+    <FormattedMessage id="global.loading" />
   </Wrapper>
 );
 

@@ -1,14 +1,16 @@
-import { Beverage as BeverageType } from 'dashboard/utils/store/types';
-import { LangValue as LangValueNormalizer } from 'dashboard/utils/normalizers';
-import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import { IntlShape } from 'react-intl';
 
-const getInitialFormValues = (
-  props: BeverageType,
-  formatMessage: ({ id }: { id: string }) => string,
-) => {
+import { SiteLanguage } from 'utils/enums';
+import { Beverage as BeverageType } from 'dashboard/utils/store/types';
+import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import { LangValue as LangValueNormalizer } from 'dashboard/utils/normalizers';
+import { getValueByLanguage } from 'dashboard/utils/helpers';
+
+const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
   console.log('getInitialFormValues', props);
 
-  const { badge, name, series } = props;
+  const { badge, brand, name, series } = props;
+  const { formatMessage, locale } = intl;
 
   return {
     [FieldName.badge]: badge,
@@ -16,7 +18,10 @@ const getInitialFormValues = (
     [FieldName.name]: name.map(LangValueNormalizer(formatMessage)),
     [FieldName.series]:
       series?.label?.map(LangValueNormalizer(formatMessage)) || [],
-    [FieldName.brand]: '',
+    [FieldName.brand]: {
+      label: getValueByLanguage(brand.name, locale as SiteLanguage).value,
+      value: brand.id,
+    },
     [FieldName.cooperation]: null,
     [FieldName.contract]: null,
     [FieldName.place]: null,
