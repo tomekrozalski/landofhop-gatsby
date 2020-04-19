@@ -104,6 +104,9 @@
     "addBeverage": {
       "title": "Dodaj nowe piwo"
     },
+    "addNewInstitution": {
+      "openButton": "Dodaj nową instytucję"
+    },
     "beverage": {
       "brandInfo": "Informacje dotyczące marki",
       "labelInfo": {

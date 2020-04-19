@@ -15,6 +15,7 @@ const AdminBarWrapper = styled.div`
 
 const StyledLink = styled(Link)`
   ${ButtonBasicCSS}
+  padding: 0 2rem;
   background-color: var(--color-black);
   color: var(--color-white);
 

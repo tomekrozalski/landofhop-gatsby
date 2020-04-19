@@ -8,15 +8,14 @@ export const ButtonBasicCSS = css`
   justify-content: center;
   align-items: center;
   height: 3.4rem;
-  padding: 0 2rem;
   transition: background-color var(--transition-default),
     color var(--transition-default);
   cursor: pointer;
 `;
 
-const Wrapper: any = styled.button<{ wide?: boolean }>`
+const Wrapper = styled.button`
   ${ButtonBasicCSS}
-  width: ${({ wide }) => (wide ? '100%' : 'auto')};
+  padding: 0 2rem;
   background-color: var(--color-black);
   color: var(--color-white);
 
@@ -42,12 +41,12 @@ const Wrapper: any = styled.button<{ wide?: boolean }>`
     color: var(--color-black);
   }
 
-  &[type="submit"]:not(:disabled):not(.button-submitting):hover {
+  &[type='submit']:not(:disabled):not(.button-submitting):hover {
     background-color: var(--color-success-strong);
     color: var(--color-white);
   }
 
-  &[type="reset"]:not(:disabled):not(.button-submitting) {
+  &[type='reset']:not(:disabled):not(.button-submitting) {
     background-color: var(--color-danger-light);
 
     &:hover {

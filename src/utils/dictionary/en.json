@@ -104,6 +104,9 @@
     "addBeverage": {
       "title": "Add new beverage"
     },
+    "addNewInstitution": {
+      "openButton": "Add new institution"
+    },
     "beverage": {
       "brandInfo": "Informations connected with branding",
       "labelInfo": {
