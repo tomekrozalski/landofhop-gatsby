@@ -11,7 +11,7 @@ import {
   ContainerUnit,
   ContainerType,
 } from 'components/BeverageDetails/utils/enums';
-import { FormType } from '../../enums';
+import { FormType, Status as StatusEnum } from 'dashboard/utils/enums';
 import {
   Beverage as BeverageType,
   BeverageDetailsActions as BeverageDetailsActionsType,
@@ -21,9 +21,7 @@ import actionsName from '../actionsName';
 type Model = {
   data: BeverageType;
   formType: FormType;
-  isError: boolean;
-  isLoaded: boolean;
-  isLoading: boolean;
+  status: StatusEnum;
 };
 
 const initialData = {
@@ -38,6 +36,7 @@ const initialData = {
   ],
   brand: {
     badge: '',
+    id: '',
     name: [
       {
         language: '',
@@ -59,9 +58,7 @@ const initialData = {
 const initialState: Model = {
   data: initialData,
   formType: FormType.add,
-  isError: false,
-  isLoaded: false,
-  isLoading: false,
+  status: StatusEnum.idle,
 };
 
 export default (
@@ -71,23 +68,20 @@ export default (
   produce(state, draft => {
     switch (action.type) {
       case actionsName.GET_BEVERAGE_DETAILS_PENDING:
-        draft.isLoading = true;
+        draft.status = StatusEnum.pending;
         return;
 
       case actionsName.GET_BEVERAGE_DETAILS_FULFILLED:
         draft.data = action.payload.beverageDetails;
         draft.formType = action.payload.formType;
-        draft.isError = false;
-        draft.isLoaded = true;
-        draft.isLoading = false;
+        draft.status = StatusEnum.fulfilled;
+
         return;
 
       case actionsName.GET_BEVERAGE_DETAILS_REJECTED:
         draft.data = initialData;
         draft.formType = FormType.add;
-        draft.isError = true;
-        draft.isLoaded = false;
-        draft.isLoading = false;
+        draft.status = StatusEnum.rejected;
         return;
 
       case actionsName.RESET_BEVERAGE_DETAILS:

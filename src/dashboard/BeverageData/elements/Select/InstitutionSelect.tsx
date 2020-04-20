@@ -6,7 +6,8 @@ import { FormName } from 'utils/enums';
 import { selectInstitutions } from 'dashboard/utils/store/selectors';
 import { getAllInstitutions } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
-import { Loading, Select } from '.';
+import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { Error, Loading, Select } from '.';
 
 type Props = {
   area?: string;
@@ -19,16 +20,24 @@ type Props = {
 
 const InstitutionSelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { isLoaded, values } = useSelector(selectInstitutions);
+  const { status, values } = useSelector(selectInstitutions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isLoaded) {
+    if (status !== StatusEnum.fulfilled) {
       dispatch(getAllInstitutions());
     }
   }, []);
 
-  return isLoaded ? (
+  if (status === StatusEnum.rejected) {
+    return <Error />;
+  }
+
+  if (status === StatusEnum.pending) {
+    return <Loading />;
+  }
+
+  return (
     <Select
       {...props}
       options={values.map(({ id, name }) => ({
@@ -36,8 +45,6 @@ const InstitutionSelect: React.FC<Props> = props => {
         value: id,
       }))}
     />
-  ) : (
-    <Loading />
   );
 };
 

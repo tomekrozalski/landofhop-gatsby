@@ -115,6 +115,7 @@
       }
     },
     "continue": "Continue",
+    "loadError": "Load error",
     "notLoggedInError": "Not logged in. Access denied",
     "reset": "Reset",
     "reveal": "Reveal",

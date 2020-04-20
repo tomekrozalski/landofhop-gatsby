@@ -10,7 +10,7 @@ import {
   getBeverageDetails,
   resetBeverageDetails,
 } from 'dashboard/utils/store/actions';
-import { FormType } from 'dashboard/utils/enums';
+import { FormType, Status as StatusEnum } from 'dashboard/utils/enums';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -25,7 +25,7 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const { isLoaded } = useSelector(selectBeverageDetails);
+  const { status } = useSelector(selectBeverageDetails);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Update: React.FC<Props> = ({ location }) => {
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
         <ProgressBar />
-        {isLoaded ? <Label /> : <Spinner />}
+        {status === StatusEnum.fulfilled ? <Label /> : <Spinner />}
       </Wrapper>
     </Layout>
   );

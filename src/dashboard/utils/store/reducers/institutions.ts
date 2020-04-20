@@ -5,6 +5,7 @@
 */
 import produce from 'immer';
 
+import { Status as StatusEnum } from 'dashboard/utils/enums';
 import {
   Institution as InstitutionType,
   InstitutionsActions as InstitutionsActionsType,
@@ -12,16 +13,12 @@ import {
 import actionsName from '../actionsName';
 
 type Model = {
-  isError: boolean;
-  isLoaded: boolean;
-  isLoading: boolean;
+  status: StatusEnum;
   values: InstitutionType[];
 };
 
 const initialState: Model = {
-  isError: false,
-  isLoaded: false,
-  isLoading: false,
+  status: StatusEnum.idle,
   values: [],
 };
 
@@ -29,19 +26,17 @@ export default (state = initialState, action: InstitutionsActionsType): Model =>
   produce(state, draft => {
     switch (action.type) {
       case actionsName.GET_INSTITUTIONS_PENDING:
-        draft.isLoading = true;
+        draft.status = StatusEnum.pending;
         return;
 
       case actionsName.GET_INSTITUTIONS_FULFILLED:
         draft.values = action.institutions;
-        draft.isError = false;
-        draft.isLoaded = true;
-        draft.isLoading = false;
+        draft.status = StatusEnum.fulfilled;
         return;
 
       case actionsName.GET_INSTITUTIONS_REJECTED:
         draft = initialState;
-        draft.isError = true;
+        draft.status = StatusEnum.rejected;
         return;
     }
   });
