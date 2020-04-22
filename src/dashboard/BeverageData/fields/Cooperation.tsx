@@ -1,9 +1,10 @@
 import React from 'react';
+import { useField } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label } from 'elements';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
-import { InstitutionSelect } from '../elements';
+import { Condition, InstitutionSelect } from '../elements';
 import { Optional as Grid } from '../elements/grids';
 
 type Props = {
@@ -11,13 +12,18 @@ type Props = {
 };
 
 const Cooperation: React.FC<Props> = ({ formName }) => {
-  console.log('Cooperation');
+  const [field] = useField(FieldName.cooperation);
 
   return (
     <Grid>
       <Label name={FieldName.cooperation} form={formName} />
-      <div>x</div>
-      <InstitutionSelect name={FieldName.cooperation} form={formName} />
+      <Condition name={FieldName.cooperation} empty={[]} />
+      <InstitutionSelect
+        form={formName}
+        isDisabled={field.value === null}
+        isMulti
+        name={FieldName.cooperation}
+      />
     </Grid>
   );
 };

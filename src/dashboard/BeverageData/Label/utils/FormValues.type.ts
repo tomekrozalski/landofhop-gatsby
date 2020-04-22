@@ -16,4 +16,14 @@ export type FormValues = {
     lang: LangType;
     value: string;
   }[];
+  [FieldName.brand]: {
+    label: string;
+    value: string;
+  } | null;
+  [FieldName.cooperation]:
+    | {
+        label: string;
+        value: string;
+      }[]
+    | null;
 };

@@ -18,10 +18,12 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
     [FieldName.name]: name.map(LangValueNormalizer(formatMessage)),
     [FieldName.series]:
       series?.label?.map(LangValueNormalizer(formatMessage)) || [],
-    [FieldName.brand]: {
-      label: getValueByLanguage(brand.name, locale as SiteLanguage).value,
-      value: brand.id,
-    },
+    [FieldName.brand]: brand.id
+      ? {
+          label: getValueByLanguage(brand.name, locale as SiteLanguage).value,
+          value: brand.id,
+        }
+      : null,
     [FieldName.cooperation]: null,
     [FieldName.contract]: null,
     [FieldName.place]: null,

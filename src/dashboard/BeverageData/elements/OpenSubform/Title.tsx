@@ -6,6 +6,7 @@ const Title = styled.div`
   height: var(--size-input-height);
   padding: 0 1rem;
   color: var(--color-white);
+  font-weight: var(--font-weight-light);
   position: absolute;
   top: 0;
   left: var(--size-input-height);

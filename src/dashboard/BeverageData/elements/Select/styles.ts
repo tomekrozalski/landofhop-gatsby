@@ -41,6 +41,10 @@ export default {
     padding: '0 8px',
     color: isFocused ? 'var(--color-darker)' : 'var(--color-dark)',
   }),
+  indicatorsContainer: (base: any, { isDisabled }: EnhancedOptions) => ({
+    ...base,
+    pointerEvents: isDisabled ? 'none' : 'auto',
+  }),
   indicatorSeparator: (base: any) => ({
     ...base,
     background: 'var(--color-bright)',
