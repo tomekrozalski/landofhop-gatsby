@@ -10,12 +10,12 @@ type Props = {
   formName: FormName;
 };
 
-const Cooperation: React.FC<Props> = ({ formName }) => (
+const Contract: React.FC<Props> = ({ formName }) => (
   <Grid>
-    <Label name={FieldName.cooperation} form={formName} />
-    <Condition name={FieldName.cooperation} empty={[]} />
-    <InstitutionSelect form={formName} isMulti name={FieldName.cooperation} />
+    <Label name={FieldName.contract} form={formName} />
+    <Condition name={FieldName.contract} empty="" />
+    <InstitutionSelect form={formName} name={FieldName.contract} />
   </Grid>
 );
 
-export default Cooperation;
+export default Contract;

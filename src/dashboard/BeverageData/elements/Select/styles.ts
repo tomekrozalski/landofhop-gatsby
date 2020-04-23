@@ -82,7 +82,14 @@ export default {
 
     return {
       ...base,
+      label: 'multi-value',
+      display: 'flex',
+      alignItems: 'center',
+      height: 'calc(var(--size-input-height) - 8px)',
+      margin: '4px',
+      padding: '0.2rem 2.2rem 0.2rem 0.2rem',
       backgroundColor: getBgColor(),
+      position: 'relative',
     };
   },
   multiValueLabel: (base: any, { data }: EnhancedOptions) => {
@@ -99,9 +106,13 @@ export default {
 
     return {
       ...base,
-      borderRadius: 0,
+      label: 'multi-value-label',
       padding: '0 3px 0 6px',
+      font: 'var(--font-weight-light) 1.4rem / 1 var(--font-primary)',
       color: getColor(),
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
     };
   },
   multiValueRemove: (base: any, { data }: EnhancedOptions) => {
@@ -127,12 +138,21 @@ export default {
       }
     };
 
+    console.log('base', base);
+
     return {
       ...base,
-      paddingTop: '1px',
+      borderRadius: 0,
+      paddingRight: 0,
+      paddingLeft: 0,
+      label: 'multi-value-remove',
       color: getColor(),
       transition: 'color .1s',
       cursor: 'pointer',
+      position: 'absolute',
+      top: '50%',
+      right: 4,
+      transform: 'translateY(-50%)',
       ':hover': {
         color: getHoverColor(),
       },

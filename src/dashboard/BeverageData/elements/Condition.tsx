@@ -28,7 +28,7 @@ const Wrapper = styled.div<{ on: 1 | 0 }>`
 `;
 
 type Props = {
-  empty: [];
+  empty: [] | '';
   name: string;
 };
 

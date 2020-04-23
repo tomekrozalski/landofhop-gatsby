@@ -5,7 +5,7 @@ import { FormikProps } from 'formik';
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
 import { FormSection, SubSection } from '../elements';
-import { Badge, Brand, Cooperation, Name, Series } from '../fields';
+import { Badge, Brand, Contract, Cooperation, Name, Series } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -21,6 +21,7 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
     <Series formName={FormName.beverageLabel} />
     <Brand formName={FormName.beverageLabel} required />
     <Cooperation formName={FormName.beverageLabel} />
+    <Contract formName={FormName.beverageLabel} />
     <Footer>
       <Button type="reset">
         <FormattedMessage id="dashboard.reset" />

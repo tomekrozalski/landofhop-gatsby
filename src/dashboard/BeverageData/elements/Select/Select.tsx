@@ -18,7 +18,6 @@ const Wrapper = styled.span<{ area?: string }>`
 type Props = {
   area?: string;
   form?: FormName;
-  isDisabled?: boolean;
   isMulti?: boolean;
   name: string;
   options: {
@@ -32,7 +31,6 @@ type Props = {
 const Select: React.FC<Props> = ({
   area,
   form,
-  isDisabled = false,
   isMulti = false,
   name,
   options,
@@ -45,9 +43,9 @@ const Select: React.FC<Props> = ({
   return (
     <Wrapper area={area}>
       <ReactSelect
-        components={{ Option }}
+        components={{ MultiValueRemove: () => 'o', Option }}
         inputId={form ? getAnchor({ form, name }) : ''}
-        isDisabled={isDisabled}
+        isDisabled={field.value === null}
         isMulti={isMulti}
         isClearable={false}
         noOptionsMessage={() =>

@@ -12,7 +12,6 @@ import { Error, Loading, Select } from '.';
 type Props = {
   area?: string;
   form?: FormName;
-  isDisabled?: boolean;
   isMulti?: boolean;
   name: string;
   placeholder?: string;
