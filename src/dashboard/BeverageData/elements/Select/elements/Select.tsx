@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
-import { Option, styles } from '.';
+import { MultiValueRemove, Option, styles } from '.';
 
 const Wrapper = styled.span<{ area?: string }>`
   ${({ area }) => area && `grid-column: ${area};`}
@@ -43,7 +43,7 @@ const Select: React.FC<Props> = ({
   return (
     <Wrapper area={area}>
       <ReactSelect
-        components={{ MultiValueRemove: () => 'o', Option }}
+        components={{ MultiValueRemove, Option }}
         inputId={form ? getAnchor({ form, name }) : ''}
         isDisabled={field.value === null}
         isMulti={isMulti}

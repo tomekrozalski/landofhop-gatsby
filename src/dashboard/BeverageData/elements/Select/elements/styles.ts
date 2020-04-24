@@ -1,6 +1,6 @@
 import { OptionProps } from 'react-select/src/types';
 
-type EnhancedOptions = OptionProps & { isMulti: boolean };
+export type EnhancedOptions = OptionProps & { isMulti: boolean };
 
 export default {
   container: (_: any, { isDisabled }: EnhancedOptions) => ({
@@ -86,8 +86,8 @@ export default {
       display: 'flex',
       alignItems: 'center',
       height: 'calc(var(--size-input-height) - 8px)',
-      margin: '4px',
-      padding: '0.2rem 2.2rem 0.2rem 0.2rem',
+      margin: '3px',
+      padding: '0.2rem 2.0rem 0.2rem 0.2rem',
       backgroundColor: getBgColor(),
       position: 'relative',
     };
@@ -107,57 +107,16 @@ export default {
     return {
       ...base,
       label: 'multi-value-label',
-      padding: '0 3px 0 6px',
-      font: 'var(--font-weight-light) 1.4rem / 1 var(--font-primary)',
+      padding: '0 3px',
+      font:
+        'var(--font-weight-light) 1.4rem / calc(var(--size-input-height) - 8px) var(--font-primary)',
       color: getColor(),
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
     };
   },
-  multiValueRemove: (base: any, { data }: EnhancedOptions) => {
-    const getColor = () => {
-      switch (data.type) {
-        case 'hop':
-        case 'malt':
-        case 'appendix':
-          return 'var(--color-white)';
-        default:
-          return 'var(--color-black)';
-      }
-    };
-
-    const getHoverColor = () => {
-      switch (data.type) {
-        case 'hop':
-        case 'malt':
-        case 'appendix':
-          return 'var(--color-black)';
-        default:
-          return 'var(--color-white)';
-      }
-    };
-
-    console.log('base', base);
-
-    return {
-      ...base,
-      borderRadius: 0,
-      paddingRight: 0,
-      paddingLeft: 0,
-      label: 'multi-value-remove',
-      color: getColor(),
-      transition: 'color .1s',
-      cursor: 'pointer',
-      position: 'absolute',
-      top: '50%',
-      right: 4,
-      transform: 'translateY(-50%)',
-      ':hover': {
-        color: getHoverColor(),
-      },
-    };
-  },
+  multiValueRemove: () => ({}),
   option: (base: any, { isFocused, isSelected }: EnhancedOptions) => ({
     ...base,
     backgroundColor: `${isFocused ? 'var(--color-brightest)' : 'transparent'}`,

@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { DataLanguage as DataLanguageEnum, FormName } from 'utils/enums';
-import { Select } from '.';
+import { Select } from './elements';
 
 type Props = {
   area?: string;

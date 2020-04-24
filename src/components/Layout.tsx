@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import GlobalStateProvider from 'utils/contexts';
 import { ContentWrapper } from 'elements';
 import { Header, LoginBar, NavBar } from './top';
 

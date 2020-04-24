@@ -7,7 +7,7 @@ import { selectInstitutions } from 'dashboard/utils/store/selectors';
 import { getAllInstitutions } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
-import { Error, Loading, Select } from '.';
+import { Error, Loading, Select } from './elements';
 
 type Props = {
   area?: string;
