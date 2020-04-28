@@ -107,6 +107,9 @@
     "addNewInstitution": {
       "openButton": "Dodaj nową instytucję"
     },
+    "addNewPlace": {
+      "openButton": "Dodaj nowe miejsce"
+    },
     "beverage": {
       "brandInfo": "Informacje dotyczące marki",
       "labelInfo": {
@@ -165,6 +168,7 @@
     "loading": "Ładuję…",
     "name": "Nazwa",
     "password": "Hasło",
+    "place": "Miejsce",
     "series": "Seria"
   },
   "header": {

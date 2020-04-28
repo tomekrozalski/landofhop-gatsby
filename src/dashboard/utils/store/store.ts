@@ -4,11 +4,13 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 
 import beverageDetails from './reducers/beverageDetails';
 import institutions from './reducers/institutions';
+import places from './reducers/places';
 import { AppActions } from './types';
 
 const rootReducer = combineReducers({
   beverageDetails,
   institutions,
+  places,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

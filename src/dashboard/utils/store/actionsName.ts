@@ -9,4 +9,8 @@ export default {
   GET_INSTITUTIONS_PENDING: '[Institutions] Get all (pending)',
   GET_INSTITUTIONS_FULFILLED: '[Institutions] Get all (fulfilled)',
   GET_INSTITUTIONS_REJECTED: '[Institutions] Get all (rejected)',
+  // Places
+  GET_PLACES_PENDING: '[Places] Get all (pending)',
+  GET_PLACES_FULFILLED: '[Places] Get all (fulfilled)',
+  GET_PLACES_REJECTED: '[Places] Get all (rejected)',
 };

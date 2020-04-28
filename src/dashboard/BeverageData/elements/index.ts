@@ -4,7 +4,7 @@ import FormSection from './FormSection';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
 import ProgressBar from './ProgressBar';
-import { InstitutionSelect, LanguageSelect } from './Select';
+import { InstitutionSelect, LanguageSelect, PlaceSelect } from './Select';
 import SubSection from './SubSection';
 
 export {
@@ -14,6 +14,7 @@ export {
   InstitutionSelect,
   LanguageSelect,
   OpenSubform,
+  PlaceSelect,
   Plug,
   ProgressBar,
   SubSection,

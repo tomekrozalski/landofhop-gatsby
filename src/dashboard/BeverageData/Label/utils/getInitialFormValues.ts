@@ -25,8 +25,9 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
         }
       : '',
     [FieldName.cooperation]: cooperation?.label
-      ? cooperation?.label.map(({ id, name }) => ({
-          label: getValueByLanguage(name, locale as SiteLanguage).value,
+      ? cooperation?.label.map(({ id, name: cooperationName }) => ({
+          label: getValueByLanguage(cooperationName, locale as SiteLanguage)
+            .value,
           value: id,
         }))
       : null,
