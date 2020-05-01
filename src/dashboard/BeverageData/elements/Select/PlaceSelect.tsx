@@ -37,14 +37,15 @@ const PlaceSelect: React.FC<Props> = props => {
   }
 
   return (
-    <div>Select</div>
-    // <Select
-    //   {...props}
-    //   options={values.map(({ id, name }) => ({
-    //     label: getValueByLanguage(name, locale).value,
-    //     value: id,
-    //   }))}
-    // />
+    <Select
+      {...props}
+      options={values.map(({ city, id, institution }) => ({
+        label: `${getValueByLanguage(city, locale).value} (${
+          getValueByLanguage(institution, locale).value
+        })`,
+        value: id,
+      }))}
+    />
   );
 };
 

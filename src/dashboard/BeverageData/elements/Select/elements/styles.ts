@@ -4,6 +4,7 @@ export type EnhancedOptions = OptionProps & { isMulti: boolean };
 
 export default {
   container: (_: any, { isDisabled }: EnhancedOptions) => ({
+    label: 'container',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
   }),
   control: (_: any, { isDisabled, isFocused, isMulti }: EnhancedOptions) => {
@@ -19,6 +20,7 @@ export default {
     };
 
     return {
+      label: 'control',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'stretch',
@@ -50,6 +52,7 @@ export default {
     background: 'var(--color-bright)',
   }),
   input: () => ({
+    label: 'input',
     margin: '0 2px',
     paddingTop: '1px',
     paddingBottom: '1px',
