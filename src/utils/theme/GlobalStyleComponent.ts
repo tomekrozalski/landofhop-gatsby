@@ -33,6 +33,8 @@ const GlobalStyleComponent = createGlobalStyle`
     --index-loginbar: 10;
     --index-navbar: 11;
     --index-header: 12;
+    --index-backdrop: 20;
+    --index-modal: 21;
 
     --size-container-max-width: 100%;
     --size-header-height: 6rem;

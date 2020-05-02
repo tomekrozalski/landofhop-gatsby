@@ -1,7 +1,7 @@
 import { LanguageValue } from 'dashboard/utils/types';
 
 export type Place = {
-  city?: LanguageValue[];
+  city: LanguageValue[];
   coordinates?: number[];
   country: LanguageValue[];
   id: string;
