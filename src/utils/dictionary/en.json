@@ -108,7 +108,8 @@
       "openButton": "Add new institution"
     },
     "addNewPlace": {
-      "openButton": "Add new place"
+      "openButton": "Add new place",
+      "title": "Add new place"
     },
     "beverage": {
       "brandInfo": "Informations connected with branding",
@@ -162,6 +163,7 @@
   "global": {
     "badge": "Badge",
     "brand": "Brand",
+    "city": "City",
     "contract": "Contract",
     "cooperation": "Cooperation",
     "email": "Email",

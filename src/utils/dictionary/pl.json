@@ -108,7 +108,8 @@
       "openButton": "Dodaj nową instytucję"
     },
     "addNewPlace": {
-      "openButton": "Dodaj nowe miejsce"
+      "openButton": "Dodaj nowe miejsce",
+      "title": "Dodaj nowe miejsce"
     },
     "beverage": {
       "brandInfo": "Informacje dotyczące marki",
@@ -162,6 +163,7 @@
   "global": {
     "badge": "Identyfikator",
     "brand": "Marka",
+    "city": "Miejscowość",
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
     "email": "Email",
