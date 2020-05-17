@@ -4,18 +4,13 @@ import { FormikProps } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
-import { Header } from 'elements/textPage';
-
-import { City } from '..';
-import { Footer } from '../../elements/grids';
+import { SubformWrapper } from 'dashboard/BeverageData/elements';
+import { Footer } from 'dashboard/BeverageData/elements/grids';
 import { FormValues } from './utils';
+import { City } from '..';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
-  <>
-    <Header>
-      <FormattedMessage id="dashboard.addNewPlace.title" />
-    </Header>
-
+  <SubformWrapper title="dashboard.addNewPlace.title">
     <City formName={FormName.place} required />
 
     <Footer>
@@ -26,7 +21,7 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
         <FormattedMessage id="dashboard.continue" />
       </Button>
     </Footer>
-  </>
+  </SubformWrapper>
 );
 
 export default FormBody;

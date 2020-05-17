@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 import { Danger } from 'elements/icons';
@@ -57,15 +58,17 @@ type Props = {
   close: () => void;
 };
 
-const Modal: React.FC<Props> = ({ children, close }) => (
-  <Backdrop>
-    <Wrapper>
-      <CloseButton onClick={close}>
-        <Danger />
-      </CloseButton>
-      {children}
-    </Wrapper>
-  </Backdrop>
-);
+const Modal: React.FC<Props> = ({ children, close }) =>
+  ReactDOM.createPortal(
+    <Backdrop>
+      <Wrapper>
+        <CloseButton onClick={close}>
+          <Danger />
+        </CloseButton>
+        {children}
+      </Wrapper>
+    </Backdrop>,
+    document.getElementById('modal-root')!,
+  );
 
 export default Modal;

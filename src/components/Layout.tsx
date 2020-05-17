@@ -16,6 +16,7 @@ const Layout: React.FC = ({ children }) => (
     <Main>
       <ContentWrapper>{children}</ContentWrapper>
     </Main>
+    <div id="modal-root" />
   </>
 );
 export default Layout;
