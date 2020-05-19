@@ -7,4 +7,5 @@ export default {
       value: '',
     },
   ],
+  [FieldName.country]: '',
 };

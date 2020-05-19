@@ -7,11 +7,12 @@ import { Button } from 'elements';
 import { SubformWrapper } from 'dashboard/BeverageData/elements';
 import { Footer } from 'dashboard/BeverageData/elements/grids';
 import { FormValues } from './utils';
-import { City } from '..';
+import { City, Country } from '..';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
   <SubformWrapper title="dashboard.addNewPlace.title">
     <City formName={FormName.place} required />
+    <Country formName={FormName.place} required />
 
     <Footer>
       <Button type="reset">

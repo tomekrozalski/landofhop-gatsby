@@ -2,6 +2,7 @@ import { FormType } from '../../enums';
 import actionsName from '../actionsName';
 import {
   Beverage as BeverageType,
+  Country as CountryType,
   Institution as InstitutionType,
   Place as PlaceType,
 } from '.';
@@ -74,7 +75,28 @@ export type PlacesActions =
   | SetPlacesFulfilledAction
   | SetPlacesRejected;
 
+// Countries
+
+type SetCountriesPendingAction = {
+  type: typeof actionsName.GET_COUNTRIES_PENDING;
+};
+
+type SetCountriesFulfilledAction = {
+  type: typeof actionsName.GET_COUNTRIES_FULFILLED;
+  countries: CountryType[];
+};
+
+type SetCountriesRejected = {
+  type: typeof actionsName.GET_COUNTRIES_REJECTED;
+};
+
+export type CountriesActions =
+  | SetCountriesPendingAction
+  | SetCountriesFulfilledAction
+  | SetCountriesRejected;
+
 export type AppActions =
   | BeverageDetailsActions
   | InstitutionsActions
-  | PlacesActions;
+  | PlacesActions
+  | CountriesActions;

@@ -13,4 +13,8 @@ export default {
   GET_PLACES_PENDING: '[Places] Get all (pending)',
   GET_PLACES_FULFILLED: '[Places] Get all (fulfilled)',
   GET_PLACES_REJECTED: '[Places] Get all (rejected)',
+  // Countries
+  GET_COUNTRIES_PENDING: '[Countries] Get all (pending)',
+  GET_COUNTRIES_FULFILLED: '[Countries] Get all (fulfilled)',
+  GET_COUNTRIES_REJECTED: '[Countries] Get all (rejected)',
 };

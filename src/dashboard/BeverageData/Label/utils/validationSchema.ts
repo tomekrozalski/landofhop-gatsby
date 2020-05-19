@@ -41,24 +41,21 @@ export default Yup.object().shape({
       value: Yup.string().required(),
     })
     .required(),
-  // [FieldName.cooperation]: Yup
-  // 	.array()
-  // 	.min(1, 'danger')
-  // 	.nullable(true),
-  // [FieldName.contract]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		label: Yup.string().required('danger'),
-  // 		value: Yup.string().required('danger'),
-  // 	})
-  // 	.nullable(true),
-  // [FieldName.place]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		label: Yup.string().required('danger'),
-  // 		value: Yup.string().required('danger'),
-  // 	})
-  // 	.nullable(true),
+  [FieldName.cooperation]: Yup.array()
+    .min(1)
+    .nullable(true),
+  [FieldName.contract]: Yup.object()
+    .shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    })
+    .nullable(true),
+  [FieldName.place]: Yup.object()
+    .shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    })
+    .nullable(true),
   // [FieldName.tale]: Yup
   // 	.array()
   // 	.of(

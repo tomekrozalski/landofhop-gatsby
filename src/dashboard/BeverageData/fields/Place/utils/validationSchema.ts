@@ -17,4 +17,8 @@ export default Yup.object().shape({
     )
     .required()
     .min(1),
+  [FieldName.country]: Yup.object().shape({
+    label: Yup.string().required(),
+    value: Yup.string().required(),
+  }),
 });

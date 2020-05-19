@@ -127,6 +127,7 @@
       "noOptions": "Brak wyników",
       "placeholder": {
         "default": "Wybierz…",
+        "selectCountry": "Wybierz kraj…",
         "selectLanguage": "Wybierz język…"
       }
     },
@@ -166,6 +167,7 @@
     "city": "Miejscowość",
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
+    "country": "Kraj",
     "email": "Email",
     "loading": "Ładuję…",
     "name": "Nazwa",
