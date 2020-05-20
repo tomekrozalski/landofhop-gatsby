@@ -13,6 +13,7 @@ const Subform = () => (
       setSubmitting(false);
     }}
     validationSchema={validationSchema}
+    validateOnMount
   />
 );
 

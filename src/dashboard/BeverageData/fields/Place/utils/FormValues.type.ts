@@ -10,4 +10,10 @@ type LangType =
 
 export type FormValues = {
   [FieldName.city]: { lang: LangType; value: string }[];
+  [FieldName.country]:
+    | {
+        label: string;
+        value: string;
+      }
+    | string;
 };

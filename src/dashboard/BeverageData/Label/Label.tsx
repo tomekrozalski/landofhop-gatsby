@@ -20,6 +20,7 @@ const Label: React.FC = () => {
         setSubmitting(false);
       }}
       validationSchema={validationSchema}
+      validateOnMount
     />
   );
 };

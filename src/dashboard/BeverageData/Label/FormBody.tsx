@@ -32,9 +32,6 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
     <Contract formName={FormName.beverageLabel} />
     <Place formName={FormName.beverageLabel} />
     <Footer>
-      <Button type="reset">
-        <FormattedMessage id="dashboard.reset" />
-      </Button>
       <Button type="submit" disabled={!isValid}>
         <FormattedMessage id="dashboard.continue" />
       </Button>
