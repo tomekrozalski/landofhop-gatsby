@@ -5,23 +5,27 @@ import slugify from 'slugify';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import {
-  BeverageFieldNames as FieldName,
-  FormType,
-} from 'dashboard/utils/enums';
+import { FieldName, FormType } from 'dashboard/utils/enums';
 import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
 import { Basic as Grid } from '../elements/grids';
 
 type Props = {
+  connectedFieldName: FieldName;
+  fieldName: FieldName;
   formName: FormName;
   required?: boolean;
 };
 
-const Badge: React.FC<Props> = ({ formName, required = false }) => {
+const Badge: React.FC<Props> = ({
+  connectedFieldName,
+  fieldName,
+  formName,
+  required = false,
+}) => {
   const { formType } = useSelector(selectBeverageDetails);
-  const [nameField] = useField(FieldName.name);
+  const [nameField] = useField(connectedFieldName);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta, { setTouched, setValue }] = useField(FieldName.badge);
+  const [field, meta, { setTouched, setValue }] = useField(fieldName);
   const isAddForm = formType === FormType.add;
 
   useEffect(() => {
@@ -35,8 +39,8 @@ const Badge: React.FC<Props> = ({ formName, required = false }) => {
 
   return (
     <Grid>
-      <Label name={FieldName.badge} form={formName} required={required} />
-      <TextInput name={FieldName.badge} form={formName} disabled={!isAddForm} />
+      <Label name={fieldName} form={formName} required={required} />
+      <TextInput name={fieldName} form={formName} disabled={!isAddForm} />
     </Grid>
   );
 };

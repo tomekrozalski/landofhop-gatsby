@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
+import { FieldName } from 'dashboard/utils/enums';
 import { MultiValueRemove, Option, styles } from '.';
 
 const Wrapper = styled.span<{ area?: string }>`
@@ -19,7 +20,7 @@ type Props = {
   area?: string;
   form?: FormName;
   isMulti?: boolean;
-  name: string;
+  name: FieldName;
   options: {
     label: string;
     value?: string;

@@ -4,6 +4,7 @@ import { FormikProps } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
+import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { FormSection, SubSection } from '../elements';
 import {
   Badge,
@@ -22,15 +23,40 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
     description="dashboard.beverage.labelInfo.description"
     title="dashboard.beverage.labelInfo.title"
   >
-    <Badge formName={FormName.beverageLabel} required />
+    <Badge
+      connectedFieldName={BeverageFieldNames.name}
+      fieldName={BeverageFieldNames.badge}
+      formName={FormName.beverageLabel}
+      required
+    />
     {/* -------------------------------- */}
     <SubSection title="dashboard.beverage.brandInfo" />
-    <Name formName={FormName.beverageLabel} required />
-    <Series formName={FormName.beverageLabel} />
-    <Brand formName={FormName.beverageLabel} required />
-    <Cooperation formName={FormName.beverageLabel} />
-    <Contract formName={FormName.beverageLabel} />
-    <Place formName={FormName.beverageLabel} />
+    <Name
+      fieldName={BeverageFieldNames.name}
+      formName={FormName.beverageLabel}
+      required
+    />
+    <Series
+      fieldName={BeverageFieldNames.series}
+      formName={FormName.beverageLabel}
+    />
+    <Brand
+      fieldName={BeverageFieldNames.brand}
+      formName={FormName.beverageLabel}
+      required
+    />
+    <Cooperation
+      fieldName={BeverageFieldNames.cooperation}
+      formName={FormName.beverageLabel}
+    />
+    <Contract
+      fieldName={BeverageFieldNames.contract}
+      formName={FormName.beverageLabel}
+    />
+    <Place
+      fieldName={BeverageFieldNames.place}
+      formName={FormName.beverageLabel}
+    />
     <Footer>
       <Button type="submit" disabled={!isValid}>
         <FormattedMessage id="dashboard.continue" />

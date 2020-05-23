@@ -6,14 +6,14 @@ import { FormName } from 'utils/enums';
 import { selectInstitutions } from 'dashboard/utils/store/selectors';
 import { getAllInstitutions } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
 import { Error, Loading, Select } from './elements';
 
 type Props = {
   area?: string;
   form?: FormName;
   isMulti?: boolean;
-  name: string;
+  name: FieldName;
   placeholder?: string;
 };
 

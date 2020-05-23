@@ -3,41 +3,41 @@ import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-// import { SelectType } from 'components/Dashboard/utils/enums';
-import { PlaceFieldNames as FieldName } from 'dashboard/utils/enums';
+import { FieldName } from 'dashboard/utils/enums';
 import { ActionButtons, LanguageSelect } from '../elements';
 import { Double as Grid } from '../elements/grids';
 
 type Props = {
+  fieldName: FieldName;
   formName: FormName;
   required?: boolean;
 };
 
-const City: React.FC<Props> = ({ formName, required = false }) => (
+const City: React.FC<Props> = ({ fieldName, formName, required = false }) => (
   <Grid>
     <Label
       forArray="value"
       form={formName}
-      name={FieldName.city}
+      name={fieldName}
       required={required}
     />
     <FieldArray
-      name={FieldName.city}
+      name={fieldName}
       render={({ form, push, remove }) => {
-        const values = form.values[FieldName.city];
+        const values = form.values[fieldName];
         const loopLength = values.length;
 
         return values.map((_: any, index: number) => (
           // eslint-disable-next-line react/no-array-index-key
-          <React.Fragment key={`${FieldName.city}-${index}`}>
+          <React.Fragment key={`${fieldName}-${index}`}>
             <TextInput
               area="2 / 3"
-              name={`${FieldName.city}.${index}.value`}
+              name={`${fieldName}.${index}.value`}
               form={formName}
             />
             <LanguageSelect
               area="3 / 4"
-              name={`${FieldName.city}.${index}.lang`}
+              name={`${fieldName}.${index}.lang`}
               placeholder="selectLanguage"
             />
             {loopLength === index + 1 && (

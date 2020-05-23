@@ -6,12 +6,12 @@ import { FormName } from 'utils/enums';
 import { selectCountries } from 'dashboard/utils/store/selectors';
 import { getAllCountries } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
 import { Error, Loading, Select } from './elements';
 
 type Props = {
   form?: FormName;
-  name: string;
+  name: FieldName;
 };
 
 const CountrySelect: React.FC<Props> = props => {
