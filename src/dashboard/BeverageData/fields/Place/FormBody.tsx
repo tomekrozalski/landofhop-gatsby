@@ -8,7 +8,7 @@ import { PlaceFieldNames } from 'dashboard/utils/enums';
 import { SubformWrapper } from 'dashboard/BeverageData/elements';
 import { Footer } from 'dashboard/BeverageData/elements/grids';
 import { FormValues } from './utils';
-import { Brand, City, Country } from '..';
+import { Brand, City, Country, Latitude, Longitude } from '..';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
   <SubformWrapper title="dashboard.addNewPlace.title">
@@ -23,6 +23,11 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => (
       formName={FormName.place}
       required
     />
+    <Longitude
+      fieldName={PlaceFieldNames.longitude}
+      formName={FormName.place}
+    />
+    <Latitude fieldName={PlaceFieldNames.latitude} formName={FormName.place} />
     <Footer>
       <Button type="submit" disabled={!isValid}>
         <FormattedMessage id="dashboard.continue" />

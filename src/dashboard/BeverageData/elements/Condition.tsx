@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useField } from 'formik';
 
 import { Checkmark as CheckmarkIcon } from 'elements/icons';
+import { FieldName } from 'dashboard/utils/enums';
 
 const Wrapper = styled.div<{ on: 1 | 0 }>`
   display: inline-block;
@@ -28,19 +29,25 @@ const Wrapper = styled.div<{ on: 1 | 0 }>`
 `;
 
 type Props = {
-  empty: [] | '';
-  name: string;
+  empty: [] | '' | 0;
+  name: FieldName;
 };
 
 const Condition: React.FC<Props> = ({ empty, name }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta, { setValue }] = useField(name);
+  const [field, meta, { setTouched, setValue }] = useField(name);
+
+  const onClick = () => {
+    if (field.value === null) {
+      setValue(empty);
+    } else {
+      setTouched(false);
+      setValue(null);
+    }
+  };
 
   return (
-    <Wrapper
-      on={field.value !== null ? 1 : 0}
-      onClick={() => setValue(field.value === null ? empty : null)}
-    >
+    <Wrapper on={field.value !== null ? 1 : 0} onClick={onClick}>
       {field.value !== null && <CheckmarkIcon />}
     </Wrapper>
   );

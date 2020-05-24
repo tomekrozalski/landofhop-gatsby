@@ -8,4 +8,7 @@ export default {
     },
   ],
   [FieldName.country]: '',
+  [FieldName.institution]: '',
+  [FieldName.longitude]: null,
+  [FieldName.latitude]: null,
 };

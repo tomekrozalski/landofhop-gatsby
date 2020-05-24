@@ -12,7 +12,7 @@ type Props = {
   form: FormName;
   invert?: boolean;
   name: string;
-  type?: string;
+  type?: 'text' | 'number';
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({

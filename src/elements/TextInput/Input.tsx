@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import isNull from 'lodash/isNull';
 
 const StyledInput: any = styled.input<{ invert: boolean; touched?: boolean }>`
   display: block;
@@ -7,6 +8,7 @@ const StyledInput: any = styled.input<{ invert: boolean; touched?: boolean }>`
   height: var(--size-input-height);
   border: 0;
   border-bottom: 1px solid var(--color-dark);
+  box-shadow: none;
   padding: ${({ touched }) => (touched ? '0 25px 0 1rem' : '0 1rem')};
   background-color: var(
     ${({ invert }) => (invert ? '--color-white' : '--color-brighter')}
@@ -33,9 +35,13 @@ type Props = {
   invert: boolean;
   name: string;
   touched?: boolean;
-  type: string;
+  type: 'text' | 'number';
+  value?: any;
 };
 
-const Input: React.FC<Props> = props => <StyledInput {...props} />;
+const Input: React.FC<Props> = props => (
+  // eslint-disable-next-line react/destructuring-assignment
+  <StyledInput {...props} value={isNull(props.value) ? '' : props.value} />
+);
 
 export default Input;
