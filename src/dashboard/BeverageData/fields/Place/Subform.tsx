@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 
 import { initialValues, validationSchema } from './utils';
+import formatData, { Input as InputType } from './utils/formatData';
 import { FormBody } from '.';
 
 const Subform = () => (
@@ -9,7 +10,9 @@ const Subform = () => (
     component={FormBody}
     initialValues={initialValues}
     onSubmit={(values, { setSubmitting }) => {
-      console.log('values', values);
+      const formattedValues = formatData(values as InputType);
+
+      console.log('formattedValues', formattedValues);
       setSubmitting(false);
     }}
     validationSchema={validationSchema}
