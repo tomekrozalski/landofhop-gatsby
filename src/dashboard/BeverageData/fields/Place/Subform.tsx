@@ -1,20 +1,15 @@
 import React from 'react';
 import { Formik } from 'formik';
 
-import { initialValues, validationSchema } from './utils';
-import formatData, { Input as InputType } from './utils/formatData';
+import { addNewPlace } from 'dashboard/utils/store/actions';
+import { initialValues, onSubmit, validationSchema } from './utils';
 import { FormBody } from '.';
 
 const Subform = () => (
   <Formik
     component={FormBody}
     initialValues={initialValues}
-    onSubmit={(values, { setSubmitting }) => {
-      const formattedValues = formatData(values as InputType);
-
-      console.log('formattedValues', formattedValues);
-      setSubmitting(false);
-    }}
+    onSubmit={onSubmit({ addNewPlace })}
     validationSchema={validationSchema}
     validateOnMount
   />

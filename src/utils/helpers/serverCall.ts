@@ -3,7 +3,7 @@ type Props = {
   method?: 'GET' | 'POST' | 'DELETE';
   path: string;
   token?: string;
-  body?: any;
+  body?: string;
 };
 
 const serverCall = ({

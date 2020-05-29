@@ -20,7 +20,7 @@ export type Input = {
   longitude: number | null;
 };
 
-type Output = {
+export type Output = {
   city: {
     lang: string;
     value: string;
