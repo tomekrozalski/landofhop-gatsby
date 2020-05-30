@@ -15,6 +15,7 @@ type Props = {
 
 const Place: React.FC<Props> = ({ fieldName, formName }) => {
   const [subform, setSubform] = useState(false);
+  const close = () => setSubform(false);
 
   return (
     <>
@@ -28,8 +29,8 @@ const Place: React.FC<Props> = ({ fieldName, formName }) => {
         />
       </Grid>
       {subform && (
-        <Modal close={() => setSubform(false)}>
-          <Subform />
+        <Modal close={close}>
+          <Subform close={close} />
         </Modal>
       )}
     </>

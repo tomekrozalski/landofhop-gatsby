@@ -13,6 +13,9 @@ export default {
   GET_PLACES_PENDING: '[Places] Get all (pending)',
   GET_PLACES_FULFILLED: '[Places] Get all (fulfilled)',
   GET_PLACES_REJECTED: '[Places] Get all (rejected)',
+  ADD_NEW_PLACE_PENDING: '[Places] Add new (pending)',
+  ADD_NEW_PLACE_FULFILLED: '[Places] Add new (fulfilled)',
+  ADD_NEW_PLACE_REJECTED: '[Places] Add new (rejected)',
   // Countries
   GET_COUNTRIES_PENDING: '[Countries] Get all (pending)',
   GET_COUNTRIES_FULFILLED: '[Countries] Get all (fulfilled)',

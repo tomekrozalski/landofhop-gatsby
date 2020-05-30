@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 
+import { AuthenticationContext } from 'utils/contexts';
 import { addNewPlace } from 'dashboard/utils/store/actions';
 import { initialValues, onSubmit, validationSchema } from './utils';
 import { FormBody } from '.';
 
-const Subform = () => (
-  <Formik
-    component={FormBody}
-    initialValues={initialValues}
-    onSubmit={onSubmit({ addNewPlace })}
-    validationSchema={validationSchema}
-    validateOnMount
-  />
-);
+type Props = {
+  close: () => void;
+};
+const Subform = ({ close }: Props) => {
+  const dispatch = useDispatch();
+  const { token } = useContext(AuthenticationContext);
+
+  return (
+    <Formik
+      component={FormBody}
+      initialValues={initialValues}
+      onSubmit={onSubmit({ addNewPlace, close, dispatch, token })}
+      validationSchema={validationSchema}
+      validateOnMount
+    />
+  );
+};
 
 export default Subform;

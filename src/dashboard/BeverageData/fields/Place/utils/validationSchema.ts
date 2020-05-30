@@ -30,13 +30,21 @@ export default Yup.object().shape({
   [FieldName.longitude]: Yup.mixed().test(
     'is-longitude',
     'is not correct longitude',
-    value =>
-      isNull(value) || (isNumber(value) && value >= -180 && value <= 180),
+    function test(value) {
+      return (
+        (isNull(value) && !isNumber(this.parent.latitude)) ||
+        (isNumber(value) && value >= -180 && value <= 180)
+      );
+    },
   ),
   [FieldName.latitude]: Yup.mixed().test(
     'is-latitude',
     'is not correct latitude',
-    value =>
-      isNull(value) || (isNumber(value) && value >= -180 && value <= 180),
+    function test(value) {
+      return (
+        (isNull(value) && !isNumber(this.parent.longitude)) ||
+        (isNumber(value) && value >= -180 && value <= 180)
+      );
+    },
   ),
 });

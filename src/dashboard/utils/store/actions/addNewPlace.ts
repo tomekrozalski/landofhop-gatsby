@@ -2,39 +2,48 @@ import { Dispatch } from 'redux';
 
 import { serverCall } from 'utils/helpers';
 import { Output as ValuesType } from 'dashboard/BeverageData/fields/Place/utils/formatData';
-import { AppActions as AppActionsType, Place as PlaceType } from '../types';
+import { AppActions as AppActionsType } from '../types';
 import actionsName from '../actionsName';
+import getAllPlaces from './getAllPlaces';
 
-const setPlacesPending = (): AppActionsType => ({
-  type: actionsName.GET_PLACES_PENDING,
+const addNewPlacePending = (): AppActionsType => ({
+  type: actionsName.ADD_NEW_PLACE_PENDING,
 });
 
-const setPlacesFulfilled = (places: PlaceType[]): AppActionsType => ({
-  type: actionsName.GET_PLACES_FULFILLED,
-  places,
+const addNewPlaceFulfilled = (): AppActionsType => ({
+  type: actionsName.ADD_NEW_PLACE_FULFILLED,
 });
 
-const setPlacesRejected = (): AppActionsType => ({
-  type: actionsName.GET_PLACES_REJECTED,
+const addNewPlaceRejected = (): AppActionsType => ({
+  type: actionsName.ADD_NEW_PLACE_REJECTED,
 });
 
-const addNewPlace = (values: ValuesType) => (
-  dispatch: Dispatch<AppActionsType>,
-) => {
-  dispatch(setPlacesPending());
-
-  serverCall({
-    body: JSON.stringify(values),
-    method: 'POST',
-    path: 'place',
-  })
-    .then(result => {
-      console.log('result', result);
-      //dispatch(setPlacesFulfilled(places));
-    })
-    .catch(() => {
-      //dispatch(setPlacesRejected());
-    });
+type Props = {
+  token: string;
+  values: ValuesType;
 };
+
+const addNewPlace = ({ token, values }: Props) => (
+  dispatch: Dispatch<AppActionsType>,
+) =>
+  new Promise((resolve, reject) => {
+    dispatch(addNewPlacePending());
+
+    serverCall({
+      body: JSON.stringify(values),
+      method: 'POST',
+      path: 'place',
+      token,
+    })
+      .then(() => {
+        dispatch(getAllPlaces());
+        dispatch(addNewPlaceFulfilled());
+        resolve();
+      })
+      .catch(() => {
+        dispatch(addNewPlaceRejected());
+        reject();
+      });
+  });
 
 export default addNewPlace;

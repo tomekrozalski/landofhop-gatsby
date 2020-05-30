@@ -1,4 +1,5 @@
 import { FormikHelpers } from 'formik';
+import { Dispatch } from 'redux';
 
 import formatData, {
   Input as InputType,
@@ -7,17 +8,27 @@ import formatData, {
 import { FormValues } from './FormValues.type';
 
 type Props = {
-  addNewPlace: (data: OutputType) => Promise<any>;
+  addNewPlace: ({
+    token,
+    values,
+  }: {
+    token: string;
+    values: OutputType;
+  }) => Promise<any>;
+  close: () => void;
+  dispatch: Dispatch<any>;
+  token: string;
 };
 
-const onSubmit = ({ addNewPlace }: Props) => (
+const onSubmit = ({ addNewPlace, close, dispatch, token }: Props) => (
   values: FormValues,
   { setSubmitting }: FormikHelpers<FormValues>,
 ) => {
   const formattedValues = formatData(values as InputType);
 
-  addNewPlace(formattedValues).finally(() => {
+  dispatch(addNewPlace({ token, values: formattedValues })).finally(() => {
     setSubmitting(false);
+    close();
   });
 };
 

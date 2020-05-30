@@ -13,11 +13,13 @@ import {
 import actionsName from '../actionsName';
 
 type Model = {
+  addNewStatus: StatusEnum;
   status: StatusEnum;
   values: PlaceType[];
 };
 
 const initialState: Model = {
+  addNewStatus: StatusEnum.idle,
   status: StatusEnum.idle,
   values: [],
 };
@@ -37,6 +39,18 @@ export default (state = initialState, action: InstitutionsActionsType): Model =>
       case actionsName.GET_PLACES_REJECTED:
         draft = initialState;
         draft.status = StatusEnum.rejected;
+        return;
+
+      case actionsName.ADD_NEW_PLACE_PENDING:
+        draft.addNewStatus = StatusEnum.pending;
+        return;
+
+      case actionsName.ADD_NEW_PLACE_FULFILLED:
+        draft.addNewStatus = StatusEnum.fulfilled;
+        return;
+
+      case actionsName.ADD_NEW_PLACE_REJECTED:
+        draft.addNewStatus = StatusEnum.rejected;
         return;
     }
   });

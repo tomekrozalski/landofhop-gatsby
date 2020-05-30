@@ -70,10 +70,26 @@ type SetPlacesRejected = {
   type: typeof actionsName.GET_PLACES_REJECTED;
 };
 
+type AddNewPlacePendingAction = {
+  type: typeof actionsName.ADD_NEW_PLACE_PENDING;
+};
+
+type AddNewPlaceFulfilledAction = {
+  type: typeof actionsName.ADD_NEW_PLACE_FULFILLED;
+  places: PlaceType[];
+};
+
+type AddNewPlaceRejected = {
+  type: typeof actionsName.ADD_NEW_PLACE_REJECTED;
+};
+
 export type PlacesActions =
   | SetPlacesPendingAction
   | SetPlacesFulfilledAction
-  | SetPlacesRejected;
+  | SetPlacesRejected
+  | AddNewPlacePendingAction
+  | AddNewPlaceFulfilledAction
+  | AddNewPlaceRejected;
 
 // Countries
 
