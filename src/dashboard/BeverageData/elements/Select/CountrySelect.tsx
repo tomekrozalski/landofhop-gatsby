@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
-import { selectCountries } from 'dashboard/utils/store/selectors';
-import { getAllCountries } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
+import { CountryContext } from 'dashboard/utils/contexts';
 import { Error, Loading, Select } from './elements';
 
 type Props = {
@@ -16,12 +14,11 @@ type Props = {
 
 const CountrySelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { status, values } = useSelector(selectCountries);
-  const dispatch = useDispatch();
+  const { status, values } = useContext(CountryContext);
 
   useEffect(() => {
     if (status !== StatusEnum.fulfilled) {
-      dispatch(getAllCountries());
+      console.log('getAllCountries');
     }
   }, []);
 

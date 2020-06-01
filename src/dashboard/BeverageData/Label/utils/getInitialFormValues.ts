@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 
 import { SiteLanguage } from 'utils/enums';
-import { Beverage as BeverageType } from 'dashboard/utils/store/types';
+import { Beverage as BeverageType } from 'dashboard/utils/store/types/Beverage.type';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { LangValue as LangValueNormalizer } from 'dashboard/utils/normalizers';
 import { getValueByLanguage } from 'dashboard/utils/helpers';

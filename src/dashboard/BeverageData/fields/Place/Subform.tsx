@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
 
-import { AuthenticationContext } from 'utils/contexts';
-import { addNewPlace } from 'dashboard/utils/api';
+import { PlaceContext } from 'dashboard/utils/contexts';
+import { PlaceInput, PlaceOutput } from 'dashboard/utils/types/form';
 import { initialValues, validationSchema } from './utils';
-import formatData, { Input as InputType } from './utils/formatData';
+import formatData from './utils/formatData';
 import { FormBody } from '.';
 
 type Props = {
@@ -13,22 +12,19 @@ type Props = {
 };
 
 const Subform = ({ close }: Props) => {
-  const dispatch = useDispatch();
-  const { token } = useContext(AuthenticationContext);
+  const { addNewPlace } = useContext(PlaceContext);
 
   return (
     <Formik
       component={FormBody}
       initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
-        const formattedValues = formatData(values as InputType);
+        const formattedValues = formatData(values as PlaceInput) as PlaceOutput;
 
-        addNewPlace({ dispatch, token, values: formattedValues }).finally(
-          () => {
-            setSubmitting(false);
-            close();
-          },
-        );
+        addNewPlace(formattedValues).finally(() => {
+          setSubmitting(false);
+          close();
+        });
       }}
       validationSchema={validationSchema}
       validateOnMount

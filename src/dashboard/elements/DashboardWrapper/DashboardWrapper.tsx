@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { Provider } from 'react-redux';
 
 import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { Spinner } from 'elements';
-import { store } from 'dashboard/utils/store';
+import DashboardStateProvider from 'dashboard/utils/contexts';
 import { NotLoggedIn } from '.';
 
 const DashboardWrapper = (Component: any) => (props: any) => {
@@ -15,9 +14,9 @@ const DashboardWrapper = (Component: any) => (props: any) => {
       return <Spinner />;
     case AuthenticationStatusEnum.success:
       return (
-        <Provider store={store}>
+        <DashboardStateProvider>
           <Component {...props} />
-        </Provider>
+        </DashboardStateProvider>
       );
     default:
       return <NotLoggedIn />;

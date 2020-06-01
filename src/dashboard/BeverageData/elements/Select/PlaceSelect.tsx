@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
-import { selectPlaces } from 'dashboard/utils/store/selectors';
-import { getAllPlaces } from 'dashboard/utils/store/actions';
+import { PlaceContext } from 'dashboard/utils/contexts';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
 import { Error, Loading, Select } from './elements';
@@ -19,12 +17,11 @@ type Props = {
 
 const PlaceSelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { status, values } = useSelector(selectPlaces);
-  const dispatch = useDispatch();
+  const { status, values, getPlaces } = useContext(PlaceContext);
 
   useEffect(() => {
     if (status !== StatusEnum.fulfilled) {
-      dispatch(getAllPlaces());
+      getPlaces();
     }
   }, []);
 

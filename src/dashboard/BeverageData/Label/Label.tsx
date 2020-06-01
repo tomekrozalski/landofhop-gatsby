@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
-import { useSelector } from 'react-redux';
 
-import { selectRawBeverageDetails } from 'dashboard/utils/store/selectors';
+import { BeverageContext } from 'dashboard/utils/contexts';
 import { getInitialFormValues, validationSchema } from './utils';
 import FormBody from './FormBody';
 
 const Label: React.FC = () => {
   const intl = useIntl();
-  const data = useSelector(selectRawBeverageDetails);
+  const { data } = useContext(BeverageContext);
 
   return (
     <Formik

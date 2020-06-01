@@ -1,17 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
-import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
+import { BeverageContext } from 'dashboard/utils/contexts';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
 const Add: React.FC = () => {
-  const { status } = useSelector(selectBeverageDetails);
+  const { status } = useContext(BeverageContext);
 
   return (
     <Layout>

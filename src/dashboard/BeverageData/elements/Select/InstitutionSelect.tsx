@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
-import { selectInstitutions } from 'dashboard/utils/store/selectors';
-import { getAllInstitutions } from 'dashboard/utils/store/actions';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
+import { InstitutionContext } from 'dashboard/utils/contexts';
 import { Error, Loading, Select } from './elements';
 
 type Props = {
@@ -19,12 +17,11 @@ type Props = {
 
 const InstitutionSelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { status, values } = useSelector(selectInstitutions);
-  const dispatch = useDispatch();
+  const { status, values } = useContext(InstitutionContext);
 
   useEffect(() => {
     if (status !== StatusEnum.fulfilled) {
-      dispatch(getAllInstitutions());
+      console.log('getAllInstitutions');
     }
   }, []);
 

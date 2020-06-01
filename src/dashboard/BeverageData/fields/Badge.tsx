@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { useField } from 'formik';
 import slugify from 'slugify';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { FieldName, FormType } from 'dashboard/utils/enums';
-import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
+import { BeverageContext } from 'dashboard/utils/contexts';
 import { Basic as Grid } from '../elements/grids';
 
 type Props = {
@@ -22,7 +21,7 @@ const Badge: React.FC<Props> = ({
   formName,
   required = false,
 }) => {
-  const { formType } = useSelector(selectBeverageDetails);
+  const { formType } = useContext(BeverageContext);
   const [nameField] = useField(connectedFieldName);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [field, meta, { setTouched, setValue }] = useField(fieldName);

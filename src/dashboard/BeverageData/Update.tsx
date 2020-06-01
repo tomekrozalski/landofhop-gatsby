@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { selectBeverageDetails } from 'dashboard/utils/store/selectors';
-import {
-  getBeverageDetails,
-  resetBeverageDetails,
-} from 'dashboard/utils/store/actions';
+import { BeverageContext } from 'dashboard/utils/contexts';
 import { FormType, Status as StatusEnum } from 'dashboard/utils/enums';
 import { ProgressBar } from './elements';
 import { Label } from '.';
@@ -25,8 +20,7 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const { status } = useSelector(selectBeverageDetails);
-  const dispatch = useDispatch();
+  const { status } = useContext(BeverageContext);
 
   useEffect(() => {
     const badge = location.state?.badge;
@@ -34,18 +28,16 @@ const Update: React.FC<Props> = ({ location }) => {
     const shortId = location.state?.shortId;
 
     if (badge && brand && shortId) {
-      dispatch(
-        getBeverageDetails({
-          badge,
-          brand,
-          formType: FormType.update,
-          shortId,
-        }),
-      );
+      // getBeverageDetails({
+      //   badge,
+      //   brand,
+      //   formType: FormType.update,
+      //   shortId,
+      // }),
     }
 
     return () => {
-      dispatch(resetBeverageDetails());
+      console.log('resetBeverageDetails');
     };
   }, []);
 
