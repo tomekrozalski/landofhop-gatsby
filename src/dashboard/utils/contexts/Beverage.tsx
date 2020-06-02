@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
+/* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars */
 import React, { useContext, useState } from 'react';
 
 import { serverCall } from 'utils/helpers';
@@ -44,6 +44,12 @@ export const BeverageContext = React.createContext({
     },
     added: new Date(),
   },
+  getBeverageDetails: ({}: {
+    badge: string;
+    brand: string;
+    shortId: string;
+  }) => {},
+  formType: FormType.add,
   status: StatusEnum.idle,
 });
 
@@ -53,10 +59,39 @@ const Beverage: React.FC = ({ children }) => {
   const [formType, setFormType] = useState(FormType.add);
   const [data, setData] = useState([]);
 
+  const getBeverageDetails = ({
+    badge,
+    brand,
+    shortId,
+  }: {
+    badge: string;
+    brand: string;
+    shortId: string;
+  }) => {
+    console.log('2');
+    setStatus(StatusEnum.pending);
+    setFormType(FormType.update);
+
+    console.log('bum!');
+
+    serverCall({
+      path: `beverage/${shortId}/${brand}/${badge}`,
+    })
+      .then(beverageDetails => {
+        console.log('beverageDetails', beverageDetails);
+        setData(beverageDetails);
+        setStatus(StatusEnum.fulfilled);
+      })
+      .catch(() => {
+        setStatus(StatusEnum.rejected);
+      });
+  };
+
   return (
     <BeverageContext.Provider
       value={{
         data,
+        getBeverageDetails,
         formType,
         status,
       }}

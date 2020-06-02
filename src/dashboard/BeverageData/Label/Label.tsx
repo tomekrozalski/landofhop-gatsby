@@ -10,6 +10,8 @@ const Label: React.FC = () => {
   const intl = useIntl();
   const { data } = useContext(BeverageContext);
 
+  console.log('data', data);
+
   return (
     <Formik
       component={FormBody}

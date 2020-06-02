@@ -17,11 +17,11 @@ type Props = {
 
 const InstitutionSelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { status, values } = useContext(InstitutionContext);
+  const { getInstitutions, status, values } = useContext(InstitutionContext);
 
   useEffect(() => {
     if (status !== StatusEnum.fulfilled) {
-      console.log('getAllInstitutions');
+      getInstitutions();
     }
   }, []);
 

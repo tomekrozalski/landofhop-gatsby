@@ -26,7 +26,7 @@ const Place: React.FC = ({ children }) => {
     })
       .then(places => {
         setValues(places);
-        setStatus(StatusEnum.idle);
+        setStatus(StatusEnum.fulfilled);
       })
       .catch(() => {
         setStatus(StatusEnum.rejected);

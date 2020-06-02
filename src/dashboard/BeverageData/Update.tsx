@@ -5,7 +5,7 @@ import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from 'dashboard/utils/contexts';
-import { FormType, Status as StatusEnum } from 'dashboard/utils/enums';
+import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -20,7 +20,7 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const { status } = useContext(BeverageContext);
+  const { getBeverageDetails, status } = useContext(BeverageContext);
 
   useEffect(() => {
     const badge = location.state?.badge;
@@ -28,12 +28,11 @@ const Update: React.FC<Props> = ({ location }) => {
     const shortId = location.state?.shortId;
 
     if (badge && brand && shortId) {
-      // getBeverageDetails({
-      //   badge,
-      //   brand,
-      //   formType: FormType.update,
-      //   shortId,
-      // }),
+      getBeverageDetails({
+        badge,
+        brand,
+        shortId,
+      });
     }
 
     return () => {

@@ -14,11 +14,11 @@ type Props = {
 
 const CountrySelect: React.FC<Props> = props => {
   const { locale } = useIntl();
-  const { status, values } = useContext(CountryContext);
+  const { getCountries, status, values } = useContext(CountryContext);
 
   useEffect(() => {
     if (status !== StatusEnum.fulfilled) {
-      console.log('getAllCountries');
+      getCountries();
     }
   }, []);
 

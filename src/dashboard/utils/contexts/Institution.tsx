@@ -6,6 +6,7 @@ import { AuthenticationContext } from 'utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 
 export const InstitutionContext = React.createContext({
+  getInstitutions: () => {},
   status: StatusEnum.idle,
   values: [],
 });
@@ -15,9 +16,25 @@ const Institution: React.FC = ({ children }) => {
   const [status, setStatus] = useState(StatusEnum.idle);
   const [values, setValues] = useState([]);
 
+  const getInstitutions = () => {
+    setStatus(StatusEnum.pending);
+
+    serverCall({
+      path: 'institution',
+    })
+      .then(institutions => {
+        setValues(institutions);
+        setStatus(StatusEnum.fulfilled);
+      })
+      .catch(() => {
+        setStatus(StatusEnum.rejected);
+      });
+  };
+
   return (
     <InstitutionContext.Provider
       value={{
+        getInstitutions,
         status,
         values,
       }}
