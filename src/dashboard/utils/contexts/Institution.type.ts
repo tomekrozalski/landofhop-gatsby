@@ -1,6 +1,6 @@
 import { LanguageValue } from 'dashboard/utils/types';
 
-export type Institution = {
+export type InstitutionType = {
   badge: string;
   id: string;
   name: LanguageValue[];

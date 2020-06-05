@@ -16,10 +16,10 @@ import {
   TemperatureUnit,
 } from 'components/BeverageDetails/utils/enums';
 import { Aged, BeveragePrice } from 'components/BeverageDetails/utils/types';
-import { LanguageValue } from '../../types';
-import { Institution } from '.';
+import { LanguageValue } from 'dashboard/utils/types';
+import { InstitutionType as Institution } from '.';
 
-export type Beverage = {
+export type BeverageType = {
   id: string;
   shortId: string;
   badge: string;

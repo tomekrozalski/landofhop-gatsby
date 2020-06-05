@@ -17,7 +17,7 @@ const CountrySelect: React.FC<Props> = props => {
   const { getCountries, status, values } = useContext(CountryContext);
 
   useEffect(() => {
-    if (status !== StatusEnum.fulfilled) {
+    if (status === StatusEnum.idle) {
       getCountries();
     }
   }, []);

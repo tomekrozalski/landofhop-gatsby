@@ -1,30 +1,29 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { PlaceOutput } from 'dashboard/utils/types/form';
+import { PlaceType } from '.';
 
 export const PlaceContext = React.createContext({
   addNewPlace: ({}: PlaceOutput) => new Promise(resolve => resolve()),
   getPlaces: () => {},
   status: StatusEnum.idle,
-  values: [],
+  values: [] as PlaceType[],
 });
 
 const Place: React.FC = ({ children }) => {
   const { token } = useContext(AuthenticationContext);
   const [status, setStatus] = useState(StatusEnum.idle);
-  const [values, setValues] = useState([]);
+  const [values, setValues] = useState<PlaceType[]>([]);
 
-  const getPlaces = () => {
-    setStatus(StatusEnum.pending);
-
+  const callForPlaces = () => {
     serverCall({
       path: 'place',
     })
-      .then(places => {
+      .then((places: PlaceType[]) => {
         setValues(places);
         setStatus(StatusEnum.fulfilled);
       })
@@ -32,6 +31,16 @@ const Place: React.FC = ({ children }) => {
         setStatus(StatusEnum.rejected);
       });
   };
+
+  const getPlaces = () => {
+    setStatus(StatusEnum.pending);
+  };
+
+  useEffect(() => {
+    if (status === StatusEnum.pending) {
+      callForPlaces();
+    }
+  }, [status]);
 
   const addNewPlace = (request: PlaceOutput) =>
     new Promise((resolve, reject) => {
@@ -44,7 +53,7 @@ const Place: React.FC = ({ children }) => {
         token,
       })
         .then(() => {
-          getPlaces();
+          callForPlaces();
           setStatus(StatusEnum.idle);
           resolve();
         })

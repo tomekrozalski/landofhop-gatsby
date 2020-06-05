@@ -4,6 +4,11 @@ import Institution, { InstitutionContext } from './Institution';
 import Place, { PlaceContext } from './Place';
 import DashboardStateProvider from './DashboardStateProvider';
 
+export * from './Beverage.type';
+export * from './Country.type';
+export * from './Institution.type';
+export * from './Place.type';
+
 export {
   Beverage,
   BeverageContext,

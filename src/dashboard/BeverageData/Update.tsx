@@ -20,7 +20,9 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const { getBeverageDetails, status } = useContext(BeverageContext);
+  const { getBeverageDetails, resetBeverageDetails, status } = useContext(
+    BeverageContext,
+  );
 
   useEffect(() => {
     const badge = location.state?.badge;
@@ -35,9 +37,7 @@ const Update: React.FC<Props> = ({ location }) => {
       });
     }
 
-    return () => {
-      console.log('resetBeverageDetails');
-    };
+    return resetBeverageDetails;
   }, []);
 
   return (

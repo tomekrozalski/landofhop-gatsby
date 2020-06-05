@@ -1,55 +1,47 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import { serverCall } from 'utils/helpers';
-import { AuthenticationContext } from 'utils/contexts';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
-
+//import { AuthenticationContext } from 'utils/contexts';
+import { FormType, Status as StatusEnum } from 'dashboard/utils/enums';
 import {
   ContainerColor,
   ContainerMaterial,
   ContainerUnit,
   ContainerType,
 } from 'components/BeverageDetails/utils/enums';
-import { FormType } from 'dashboard/utils/enums';
+import { BeverageType } from '.';
+
+const initialData = {
+  id: '',
+  shortId: '',
+  badge: '',
+  name: [{ value: '' }],
+  brand: {
+    badge: '',
+    id: '',
+    name: [{ value: '' }],
+    shortId: '',
+  },
+  container: {
+    color: ContainerColor.black,
+    material: ContainerMaterial.aluminum,
+    unit: ContainerUnit.ml,
+    type: ContainerType.bottle,
+    value: 10,
+  },
+  added: new Date(),
+};
 
 export const BeverageContext = React.createContext({
-  data: {
-    id: '',
-    shortId: '',
-    badge: '',
-    name: [
-      {
-        language: '',
-        value: '',
-      },
-    ],
-    brand: {
-      badge: '',
-      id: '',
-      name: [
-        {
-          language: '',
-          value: '',
-        },
-      ],
-      shortId: '',
-    },
-    container: {
-      color: ContainerColor.black,
-      material: ContainerMaterial.aluminum,
-      unit: ContainerUnit.ml,
-      type: ContainerType.bottle,
-      value: 10,
-    },
-    added: new Date(),
-  },
+  data: initialData,
   getBeverageDetails: ({}: {
     badge: string;
     brand: string;
     shortId: string;
   }) => {},
   formType: FormType.add,
+  resetBeverageDetails: () => {},
   status: StatusEnum.idle,
 });
 
@@ -57,7 +49,7 @@ const Beverage: React.FC = ({ children }) => {
   // const { token } = useContext(AuthenticationContext);
   const [status, setStatus] = useState(StatusEnum.idle);
   const [formType, setFormType] = useState(FormType.add);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<BeverageType>(initialData);
 
   const getBeverageDetails = ({
     badge,
@@ -68,17 +60,13 @@ const Beverage: React.FC = ({ children }) => {
     brand: string;
     shortId: string;
   }) => {
-    console.log('2');
     setStatus(StatusEnum.pending);
     setFormType(FormType.update);
-
-    console.log('bum!');
 
     serverCall({
       path: `beverage/${shortId}/${brand}/${badge}`,
     })
-      .then(beverageDetails => {
-        console.log('beverageDetails', beverageDetails);
+      .then((beverageDetails: BeverageType) => {
         setData(beverageDetails);
         setStatus(StatusEnum.fulfilled);
       })
@@ -87,12 +75,17 @@ const Beverage: React.FC = ({ children }) => {
       });
   };
 
+  const resetBeverageDetails = () => {
+    setData(initialData);
+  };
+
   return (
     <BeverageContext.Provider
       value={{
         data,
         getBeverageDetails,
         formType,
+        resetBeverageDetails,
         status,
       }}
     >

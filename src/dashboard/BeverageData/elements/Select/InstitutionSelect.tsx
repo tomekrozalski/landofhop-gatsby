@@ -20,7 +20,7 @@ const InstitutionSelect: React.FC<Props> = props => {
   const { getInstitutions, status, values } = useContext(InstitutionContext);
 
   useEffect(() => {
-    if (status !== StatusEnum.fulfilled) {
+    if (status === StatusEnum.idle) {
       getInstitutions();
     }
   }, []);

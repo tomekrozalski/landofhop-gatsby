@@ -20,7 +20,7 @@ const PlaceSelect: React.FC<Props> = props => {
   const { status, values, getPlaces } = useContext(PlaceContext);
 
   useEffect(() => {
-    if (status !== StatusEnum.fulfilled) {
+    if (status === StatusEnum.idle) {
       getPlaces();
     }
   }, []);
