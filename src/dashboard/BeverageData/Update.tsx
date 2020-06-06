@@ -6,6 +6,7 @@ import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from 'dashboard/utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { Modal } from 'dashboard/elements';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -49,6 +50,7 @@ const Update: React.FC<Props> = ({ location }) => {
         </Header>
         <ProgressBar />
         {status === StatusEnum.fulfilled ? <Label /> : <Spinner />}
+        <Modal />
       </Wrapper>
     </Layout>
   );

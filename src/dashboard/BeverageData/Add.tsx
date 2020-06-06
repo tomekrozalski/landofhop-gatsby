@@ -6,6 +6,7 @@ import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { BeverageContext } from 'dashboard/utils/contexts';
+import { Modal } from 'dashboard/elements';
 import { ProgressBar } from './elements';
 import { Label } from '.';
 
@@ -21,6 +22,7 @@ const Add: React.FC = () => {
         </Header>
         <ProgressBar />
         {status !== StatusEnum.idle ? <Spinner /> : <Label />}
+        <Modal />
       </Wrapper>
     </Layout>
   );

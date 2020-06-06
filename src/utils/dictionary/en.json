@@ -104,6 +104,10 @@
     "addBeverage": {
       "title": "Add new beverage"
     },
+    "addNewCountry": {
+      "openButton": "Add new country",
+      "title": "Add new country"
+    },
     "addNewInstitution": {
       "openButton": "Add new institution"
     },

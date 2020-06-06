@@ -104,6 +104,10 @@
     "addBeverage": {
       "title": "Dodaj nowe piwo"
     },
+    "addNewCountry": {
+      "openButton": "Dodaj nowy kraj",
+      "title": "Dodaj nowy kraj"
+    },
     "addNewInstitution": {
       "openButton": "Dodaj nową instytucję"
     },
