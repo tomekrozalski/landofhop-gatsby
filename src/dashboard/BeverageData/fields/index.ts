@@ -1,6 +1,7 @@
 import Badge from './Badge';
 import Brand from './Brand';
 import City from './City';
+import Code from './Code';
 import Contract from './Contract';
 import Cooperation from './Cooperation';
 import Country from './Country';
@@ -14,6 +15,7 @@ export {
   Badge,
   Brand,
   City,
+  Code,
   Contract,
   Cooperation,
   Country,

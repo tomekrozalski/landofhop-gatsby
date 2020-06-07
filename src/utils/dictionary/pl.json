@@ -101,6 +101,7 @@
     }
   },
   "dashboard": {
+    "add": "Dodaj",
     "addBeverage": {
       "title": "Dodaj nowe piwo"
     },
@@ -169,6 +170,7 @@
     "badge": "Identyfikator",
     "brand": "Marka",
     "city": "Miejscowość",
+    "code": "Kod",
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
     "country": "Kraj",

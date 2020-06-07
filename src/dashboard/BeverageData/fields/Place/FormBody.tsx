@@ -33,7 +33,7 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
     <Latitude fieldName={PlaceFieldNames.latitude} formName={FormName.place} />
     <Footer>
       <Button type="submit" disabled={!isValid} isSubmitting={isSubmitting}>
-        <FormattedMessage id="dashboard.continue" />
+        <FormattedMessage id="dashboard.add" />
       </Button>
     </Footer>
   </SubformWrapper>

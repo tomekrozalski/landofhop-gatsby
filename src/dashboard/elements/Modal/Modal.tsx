@@ -15,11 +15,11 @@ const Modal: React.FC = () => {
   const getContent = () => {
     switch (subform) {
       case SubformEnum.country:
-        return <CountrySubform close={close} />;
+        return <CountrySubform close={() => setSubform(SubformEnum.place)} />;
       case SubformEnum.place:
         return <PlaceSubform close={close} />;
       default:
-        return <div>Nothing</div>;
+        return null;
     }
   };
 

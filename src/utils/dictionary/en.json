@@ -101,6 +101,7 @@
     }
   },
   "dashboard": {
+    "add": "Add",
     "addBeverage": {
       "title": "Add new beverage"
     },
@@ -169,6 +170,7 @@
     "badge": "Badge",
     "brand": "Brand",
     "city": "City",
+    "code": "Code",
     "contract": "Contract",
     "cooperation": "Cooperation",
     "country": "Country",
