@@ -19,26 +19,22 @@ const Place: React.FC = ({ children }) => {
   const [status, setStatus] = useState(StatusEnum.idle);
   const [values, setValues] = useState<PlaceType[]>([]);
 
-  const callForPlaces = () => {
-    serverCall({
-      path: 'place',
-    })
-      .then((places: PlaceType[]) => {
-        setValues(places);
-        setStatus(StatusEnum.fulfilled);
-      })
-      .catch(() => {
-        setStatus(StatusEnum.rejected);
-      });
-  };
-
   const getPlaces = () => {
     setStatus(StatusEnum.pending);
   };
 
   useEffect(() => {
     if (status === StatusEnum.pending) {
-      callForPlaces();
+      serverCall({
+        path: 'place',
+      })
+        .then((places: PlaceType[]) => {
+          setValues(places);
+          setStatus(StatusEnum.fulfilled);
+        })
+        .catch(() => {
+          setStatus(StatusEnum.rejected);
+        });
     }
   }, [status]);
 
@@ -53,14 +49,10 @@ const Place: React.FC = ({ children }) => {
         token,
       })
         .then(() => {
-          callForPlaces();
-          setStatus(StatusEnum.idle);
+          getPlaces();
           resolve();
         })
-        .catch(() => {
-          setStatus(StatusEnum.rejected);
-          reject();
-        });
+        .catch(reject);
     });
 
   return (

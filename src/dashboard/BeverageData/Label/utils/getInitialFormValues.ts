@@ -9,7 +9,7 @@ import { getValueByLanguage } from 'dashboard/utils/helpers';
 const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
   console.log('getInitialFormValues', props);
 
-  const { badge, brand, contract, cooperation, name, series } = props;
+  const { badge, brand, contract, cooperation, name, place, series } = props;
   const { formatMessage, locale } = intl;
 
   return {
@@ -25,11 +25,13 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
         }
       : '',
     [FieldName.cooperation]: cooperation?.label
-      ? cooperation?.label.map(({ id, name: cooperationName }) => ({
-          label: getValueByLanguage(cooperationName, locale as SiteLanguage)
-            .value,
-          value: id,
-        }))
+      ? cooperation?.label.map(
+          ({ id, name: cooperationName }: { id: string; name: any }) => ({
+            label: getValueByLanguage(cooperationName, locale as SiteLanguage)
+              .value,
+            value: id,
+          }),
+        )
       : null,
     [FieldName.contract]: contract?.label
       ? {
@@ -38,7 +40,17 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
           value: contract.label.id,
         }
       : null,
-    [FieldName.place]: null,
+    [FieldName.place]: place?.label
+      ? {
+          label: `${
+            getValueByLanguage(place.label.city, locale as SiteLanguage).value
+          } (${
+            getValueByLanguage(place.label.institution, locale as SiteLanguage)
+              .value
+          })`,
+          value: place.label.id,
+        }
+      : null,
     [FieldName.tale]: [],
     [FieldName.barcode]: null,
     // -----------

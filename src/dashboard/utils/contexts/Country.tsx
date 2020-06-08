@@ -42,8 +42,6 @@ const Country: React.FC = ({ children }) => {
     new Promise((resolve, reject) => {
       setStatus(StatusEnum.pending);
 
-      console.log('request', request);
-
       serverCall({
         body: JSON.stringify(request),
         method: 'POST',
@@ -52,13 +50,9 @@ const Country: React.FC = ({ children }) => {
       })
         .then(() => {
           getCountries();
-          setStatus(StatusEnum.idle);
           resolve();
         })
-        .catch(() => {
-          setStatus(StatusEnum.rejected);
-          reject();
-        });
+        .catch(reject);
     });
 
   return (
