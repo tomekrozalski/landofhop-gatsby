@@ -4,8 +4,8 @@ import { FormName } from 'utils/enums';
 import { Label } from 'elements';
 import { FieldName, Subform as SubformEnum } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
-import { InstitutionSelect, OpenSubform } from '../elements';
-import { Basic as Grid } from '../elements/grids';
+import { InstitutionSelect, OpenSubform } from '../../elements';
+import { Basic as Grid } from '../../elements/grids';
 
 type Props = {
   fieldName: FieldName;

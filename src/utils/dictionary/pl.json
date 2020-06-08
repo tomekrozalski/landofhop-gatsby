@@ -110,7 +110,8 @@
       "title": "Dodaj nowy kraj"
     },
     "addNewInstitution": {
-      "openButton": "Dodaj nową instytucję"
+      "openButton": "Dodaj nową instytucję",
+      "title": "Dodaj nową instytucję"
     },
     "addNewPlace": {
       "openButton": "Dodaj nowe miejsce",

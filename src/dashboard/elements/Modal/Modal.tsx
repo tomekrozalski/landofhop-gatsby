@@ -5,6 +5,7 @@ import { Danger } from 'elements/icons';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { Subform as SubformEnum } from 'dashboard/utils/enums';
 import { Subform as CountrySubform } from 'dashboard/BeverageData/fields/Country';
+import { Subform as InstitutionSubform } from 'dashboard/BeverageData/fields/Brand';
 import { Subform as PlaceSubform } from 'dashboard/BeverageData/fields/Place';
 import { Backdrop, CloseButton, Wrapper } from '.';
 
@@ -16,6 +17,8 @@ const Modal: React.FC = () => {
     switch (subform) {
       case SubformEnum.country:
         return <CountrySubform close={() => setSubform(SubformEnum.place)} />;
+      case SubformEnum.institution:
+        return <InstitutionSubform close={close} />;
       case SubformEnum.place:
         return <PlaceSubform close={close} />;
       default:
