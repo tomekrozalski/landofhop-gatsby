@@ -29,7 +29,7 @@ const Wrapper = styled.div<{ on: 1 | 0 }>`
 `;
 
 type Props = {
-  empty: [] | '' | 0;
+  empty: [] | string | number;
   name: FieldName;
 };
 

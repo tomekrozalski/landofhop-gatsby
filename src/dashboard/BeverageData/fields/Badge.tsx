@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import slugify from 'slugify';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
-import { FieldName, FormType } from 'dashboard/utils/enums';
-import { BeverageContext } from 'dashboard/utils/contexts';
+import { FieldName } from 'dashboard/utils/enums';
 import { Basic as Grid } from '../elements/grids';
 
 type Props = {
   connectedFieldName: FieldName;
+  disabled?: boolean;
   fieldName: FieldName;
   formName: FormName;
   required?: boolean;
@@ -17,18 +17,17 @@ type Props = {
 
 const Badge: React.FC<Props> = ({
   connectedFieldName,
+  disabled,
   fieldName,
   formName,
   required = false,
 }) => {
-  const { formType } = useContext(BeverageContext);
   const [nameField] = useField(connectedFieldName);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [field, meta, { setTouched, setValue }] = useField(fieldName);
-  const isAddForm = formType === FormType.add;
 
   useEffect(() => {
-    if (isAddForm) {
+    if (!disabled) {
       setValue(slugify(nameField.value[0].value, { lower: true }));
       if (field.value) {
         setTouched(true);
@@ -39,7 +38,7 @@ const Badge: React.FC<Props> = ({
   return (
     <Grid>
       <Label name={fieldName} form={formName} required={required} />
-      <TextInput name={fieldName} form={formName} disabled={!isAddForm} />
+      <TextInput name={fieldName} form={formName} disabled={disabled} />
     </Grid>
   );
 };

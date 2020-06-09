@@ -181,9 +181,11 @@
     "loading": "Ładuję…",
     "longitude": "Długość geograficzna",
     "name": "Nazwa",
+    "ownedBy": "Należący/a do",
     "password": "Hasło",
     "place": "Miejsce",
-    "series": "Seria"
+    "series": "Seria",
+    "website": "Strona internetowa"
   },
   "header": {
     "name": "Land of Hop, katalog piw",

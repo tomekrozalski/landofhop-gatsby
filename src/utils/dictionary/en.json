@@ -181,9 +181,11 @@
     "loading": "Loading…",
     "longitude": "Longitude",
     "name": "Name",
+    "ownedBy": "Owned by",
     "password": "Password",
     "place": "Place",
-    "series": "Series"
+    "series": "Series",
+    "website": "Website"
   },
   "header": {
     "name": "Land of Hop, beer catalogue",

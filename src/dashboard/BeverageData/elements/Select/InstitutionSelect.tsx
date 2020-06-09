@@ -9,6 +9,7 @@ import { Error, Loading, Select } from './elements';
 
 type Props = {
   area?: string;
+  disabled?: boolean;
   form?: FormName;
   isMulti?: boolean;
   name: FieldName;

@@ -1,16 +1,9 @@
-import { DataLanguage } from 'utils/enums';
+import { Lang } from 'dashboard/utils/types/form';
 import { InstitutionFieldNames as FieldName } from 'dashboard/utils/enums';
-
-type LangType =
-  | {
-      label?: DataLanguage | string;
-      value: string;
-    }
-  | string;
 
 export type FormValues = {
   [FieldName.badge]: string;
-  [FieldName.name]: { lang: LangType; value: string }[];
+  [FieldName.name]: { lang: Lang; value: string }[];
   [FieldName.ownedBy]:
     | {
         label: string;
@@ -18,5 +11,5 @@ export type FormValues = {
       }
     | string
     | null;
-  [FieldName.website]: string;
+  [FieldName.website]: string | null;
 };

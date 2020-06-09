@@ -8,8 +8,10 @@ import Country from './Country';
 import Latitude from './Latitude';
 import Longitude from './Longitude';
 import Name from './Name';
+import OwnedBy from './OwnedBy';
 import Place from './Place';
 import Series from './Series';
+import Website from './Website';
 
 export {
   Badge,
@@ -22,6 +24,8 @@ export {
   Latitude,
   Longitude,
   Name,
+  OwnedBy,
   Place,
   Series,
+  Website,
 };

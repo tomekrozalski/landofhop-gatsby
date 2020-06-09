@@ -8,7 +8,7 @@ import { InstitutionFieldNames } from 'dashboard/utils/enums';
 import { SubformWrapper } from 'dashboard/BeverageData/elements';
 import { Footer } from 'dashboard/BeverageData/elements/grids';
 import { FormValues } from './utils';
-import { Badge, Name } from '..';
+import { Badge, Name, OwnedBy, Website } from '..';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({
   isSubmitting,
@@ -25,6 +25,14 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       fieldName={InstitutionFieldNames.name}
       formName={FormName.institution}
       required
+    />
+    <OwnedBy
+      fieldName={InstitutionFieldNames.ownedBy}
+      formName={FormName.institution}
+    />
+    <Website
+      fieldName={InstitutionFieldNames.website}
+      formName={FormName.institution}
     />
     <Footer>
       <Button type="submit" disabled={!isValid} isSubmitting={isSubmitting}>

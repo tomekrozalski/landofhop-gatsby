@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
 
-import { CountryContext } from 'dashboard/utils/contexts';
-import { CountryInput, CountryOutput } from 'dashboard/utils/types/form';
+import { InstitutionContext } from 'dashboard/utils/contexts';
+import {
+  InstitutionInput,
+  InstitutionOutput,
+} from 'dashboard/utils/types/form';
 import { formatData, initialValues, validationSchema } from './utils';
 import { FormBody } from '.';
 
@@ -11,7 +14,7 @@ type Props = {
 };
 
 const Subform = ({ close }: Props) => {
-  const { addNewCountry } = useContext(CountryContext);
+  const { addNewInstitution } = useContext(InstitutionContext);
 
   return (
     <Formik
@@ -19,10 +22,10 @@ const Subform = ({ close }: Props) => {
       initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
         const formattedValues = formatData(
-          values as CountryInput,
-        ) as CountryOutput;
+          values as InstitutionInput,
+        ) as InstitutionOutput;
 
-        addNewCountry(formattedValues).finally(() => {
+        addNewInstitution(formattedValues).finally(() => {
           setSubmitting(false);
           close();
         });
