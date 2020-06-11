@@ -1,6 +1,7 @@
 enum Subform {
   country = 'country',
   institution = 'institution',
+  language = 'language',
   place = 'place',
 }
 

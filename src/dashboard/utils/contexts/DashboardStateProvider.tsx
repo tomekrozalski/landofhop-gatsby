@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Beverage, Country, Institution, Navigation, Place } from '.';
+import { Beverage, Country, Institution, Language, Navigation, Place } from '.';
 
 type Props = {
   contexts: any;
@@ -19,6 +19,7 @@ const DashboardStateProvider: React.FC = ({ children }) => (
   <ProviderComposer
     contexts={[
       <Navigation />,
+      <Language />,
       <Place />,
       <Country />,
       <Institution />,

@@ -17,7 +17,7 @@ import {
 } from 'components/BeverageDetails/utils/enums';
 import { Aged, BeveragePrice } from 'components/BeverageDetails/utils/types';
 import { LanguageValue } from 'dashboard/utils/types';
-import { InstitutionType as Institution } from '.';
+import { InstitutionType as Institution, PlaceType as Place } from '.';
 
 export type BeverageType = {
   id: string;
@@ -40,18 +40,9 @@ export type BeverageType = {
     editorial?: Institution;
   };
   place?: {
-    label?: {
-      city: LanguageValue[];
-      country: LanguageValue[];
-    };
-    producer?: {
-      city: LanguageValue[];
-      country: LanguageValue[];
-    };
-    editorial?: {
-      city: LanguageValue[];
-      country: LanguageValue[];
-    };
+    label?: Place;
+    producer?: Place;
+    editorial?: Place;
   };
   tale?: {
     label?: LanguageValue[];

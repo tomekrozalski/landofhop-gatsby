@@ -114,7 +114,8 @@
       "title": "Add new institution"
     },
     "addNewLanguage": {
-      "openButton": "Add new language"
+      "openButton": "Add new language",
+      "title": "Add new language of data"
     },
     "addNewPlace": {
       "openButton": "Add new place",

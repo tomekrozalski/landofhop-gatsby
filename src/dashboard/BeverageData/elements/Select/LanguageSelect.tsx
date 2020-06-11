@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { DataLanguage as DataLanguageEnum, FormName } from 'utils/enums';
-import { FieldName } from 'dashboard/utils/enums';
-import { Select } from './elements';
+import { getValueByLanguage } from 'dashboard/utils/helpers';
+import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
+import { LanguageContext } from 'dashboard/utils/contexts';
+import { Error, Loading, Select } from './elements';
 
 type Props = {
-  area?: string;
   form?: FormName;
-  isMulti?: boolean;
   name: FieldName | string;
-  placeholder?: string;
 };
 
 const LanguageSelect: React.FC<Props> = props => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
+  const { getLanguages, status, values } = useContext(LanguageContext);
+
+  useEffect(() => {
+    if (status === StatusEnum.idle) {
+      getLanguages();
+    }
+  }, []);
+
+  if (status === StatusEnum.rejected) {
+    return <Error />;
+  }
+
+  if (status === StatusEnum.pending) {
+    return <Loading />;
+  }
+
+  return (
+    <Select
+      {...props}
+      options={values.map(({ code, name }) => ({
+        label: getValueByLanguage(name, locale).value,
+        value: code,
+      }))}
+      placeholder="selectCountry"
+    />
+  );
 
   return (
     <Select

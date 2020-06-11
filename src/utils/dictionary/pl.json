@@ -114,7 +114,8 @@
       "title": "Dodaj nową instytucję"
     },
     "addNewLanguage": {
-      "openButton": "Dodaj nowy język"
+      "openButton": "Dodaj nowy język",
+      "title": "Dodaj nowy język wprowadzanych danych"
     },
     "addNewPlace": {
       "openButton": "Dodaj nowe miejsce",

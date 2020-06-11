@@ -28,7 +28,7 @@ const Aside = () => {
           direction="right"
           icon="language"
           label="dashboard.addNewLanguage.openButton"
-          onClick={() => setSubform(SubformEnum.institution)}
+          onClick={() => setSubform(SubformEnum.language)}
         />
       </LanguageWrapper>
     </Wrapper>

@@ -16,7 +16,7 @@ const initialData = {
   id: '',
   shortId: '',
   badge: '',
-  name: [{ value: '' }],
+  name: [{ language: '', value: '' }],
   brand: {
     badge: '',
     id: '',
