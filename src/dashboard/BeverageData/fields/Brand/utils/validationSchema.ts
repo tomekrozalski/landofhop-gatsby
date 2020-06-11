@@ -22,8 +22,8 @@ export default Yup.object().shape({
     .min(1),
   [FieldName.ownedBy]: Yup.object()
     .shape({
-      label: Yup.string().required('danger'),
-      value: Yup.string().required('danger'),
+      label: Yup.string().required(),
+      value: Yup.string().required(),
     })
     .nullable(true),
   [FieldName.website]: Yup.string()

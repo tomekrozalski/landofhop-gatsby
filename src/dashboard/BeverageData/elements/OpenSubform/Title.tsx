@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Title = styled.div`
+const Title = styled.div<{ direction: 'left' | 'right' }>`
   display: flex;
   align-items: center;
   height: var(--size-input-height);
@@ -9,7 +9,7 @@ const Title = styled.div`
   font-weight: var(--font-weight-light);
   position: absolute;
   top: 0;
-  left: var(--size-input-height);
+  ${({ direction }) => direction}: var(--size-input-height);
   white-space: nowrap;
   pointer-events: none;
 
@@ -20,7 +20,7 @@ const Title = styled.div`
     content: '';
     background-color: var(--color-black);
     transform: scaleX(0);
-    transform-origin: top left;
+    transform-origin: top ${({ direction }) => direction};
     transition: transform var(--transition-default);
     position: absolute;
     top: 0;

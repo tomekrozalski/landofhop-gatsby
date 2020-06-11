@@ -5,6 +5,7 @@ import Title from './Title';
 
 const Button = styled.button`
   ${ButtonBasicCSS}
+  width: 3.4rem;
   background-color: var(--color-success-light);
   position: relative;
 

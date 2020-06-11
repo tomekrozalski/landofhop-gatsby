@@ -7,7 +7,7 @@ import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { BeverageContext } from 'dashboard/utils/contexts';
 import { Modal } from 'dashboard/elements';
-import { ProgressBar } from './elements';
+import { Navigation } from './elements';
 import { Label } from '.';
 
 const Add: React.FC = () => {
@@ -20,7 +20,7 @@ const Add: React.FC = () => {
         <Header>
           <FormattedMessage id="dashboard.addBeverage.title" />
         </Header>
-        <ProgressBar />
+        <Navigation />
         {status !== StatusEnum.idle ? <Spinner /> : <Label />}
         <Modal />
       </Wrapper>

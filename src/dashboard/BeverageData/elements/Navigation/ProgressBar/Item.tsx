@@ -9,7 +9,7 @@ const Wrapper = styled.li`
 
 const Button = styled.button.attrs({
   type: 'button',
-})`
+})<{ active?: boolean }>`
   display: block;
   width: 100%;
   height: 8rem;
@@ -20,12 +20,18 @@ const Button = styled.button.attrs({
 
   svg {
     width: 8rem;
+    fill: var(${({ active }) => (active ? '--color-black' : '--color-dark')});
   }
 `;
 
-const Item: React.FC<{ order: number }> = ({ order }) => (
+type Props = {
+  active?: boolean;
+  order: number;
+};
+
+const Item: React.FC<Props> = ({ active = false, order }) => (
   <Wrapper>
-    <Button>
+    <Button active={active}>
       <Icon order={order} />
     </Button>
   </Wrapper>

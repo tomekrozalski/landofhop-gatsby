@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddToDB: React.FC = () => (
+const Database: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 32">
     <path d="M13 19c7.1 0 13-2.7 13-6V8.7C24 11.2 19 13 13 13 7 13 2.1 11.2 0 8.7V13C0 16.3 6 19 13 19z" />
     <path d="M13 12c7.1 0 13-2.7 13-6s-5.9-6-13-6C6 0 0 2.8 0 6S6 12 13 12z" />
@@ -10,4 +10,4 @@ const AddToDB: React.FC = () => (
   </svg>
 );
 
-export default AddToDB;
+export default Database;

@@ -1,9 +1,9 @@
 import ActionButtons from './ActionButtons';
 import Condition from './Condition';
 import FormSection from './FormSection';
+import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
-import ProgressBar from './ProgressBar';
 import {
   CountrySelect,
   InstitutionSelect,
@@ -20,10 +20,10 @@ export {
   FormSection,
   InstitutionSelect,
   LanguageSelect,
+  Navigation,
   OpenSubform,
   PlaceSelect,
   Plug,
-  ProgressBar,
   SubformWrapper,
   SubSection,
 };

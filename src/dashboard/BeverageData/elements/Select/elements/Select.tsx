@@ -21,7 +21,7 @@ type Props = {
   disabled?: boolean;
   form?: FormName;
   isMulti?: boolean;
-  name: FieldName;
+  name: FieldName | string;
   options: {
     label: string;
     value?: string;

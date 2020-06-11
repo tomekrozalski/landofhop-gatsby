@@ -113,6 +113,9 @@
       "openButton": "Add new institution",
       "title": "Add new institution"
     },
+    "addNewLanguage": {
+      "openButton": "Add new language"
+    },
     "addNewPlace": {
       "openButton": "Add new place",
       "title": "Add new place"

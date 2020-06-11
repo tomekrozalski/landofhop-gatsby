@@ -1,3 +1,4 @@
-import AddToDB from './AddToDB';
+import Database from './Database';
+import Language from './Language';
 
-export { AddToDB };
+export { Database, Language };

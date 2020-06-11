@@ -7,7 +7,7 @@ import { Header, Wrapper } from 'elements/textPage';
 import { BeverageContext } from 'dashboard/utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { Modal } from 'dashboard/elements';
-import { ProgressBar } from './elements';
+import { Navigation } from './elements';
 import { Label } from '.';
 
 type Props = {
@@ -48,7 +48,7 @@ const Update: React.FC<Props> = ({ location }) => {
         <Header>
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
-        <ProgressBar />
+        <Navigation />
         {status === StatusEnum.fulfilled ? <Label /> : <Spinner />}
         <Modal />
       </Wrapper>
