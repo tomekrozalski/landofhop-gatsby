@@ -203,7 +203,8 @@
     "group": {
       "defaults": "Defaults",
       "others": "Others"
-    }
+    },
+    "none": "Not applicable"
   },
   "loginbar": {
     "loginAgain": "Login again",

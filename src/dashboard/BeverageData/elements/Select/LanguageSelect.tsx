@@ -45,15 +45,21 @@ const LanguageSelect: React.FC<Props> = props => {
         },
         {
           label: formatMessage({ id: 'language.group.others' }),
-          options: values
-            .filter(({ code }) => code !== 'en' && code !== 'pl')
-            .map(({ id, name }) => ({
-              label: getValueByLanguage(name, locale).value,
-              value: id,
-            })),
+          options: [
+            ...values
+              .filter(({ code }) => code !== 'en' && code !== 'pl')
+              .map(({ id, name }) => ({
+                label: getValueByLanguage(name, locale).value,
+                value: id,
+              })),
+            {
+              label: formatMessage({ id: 'language.none' }),
+              value: 'none',
+            },
+          ],
         },
       ]}
-      placeholder="selectCountry"
+      placeholder="selectLanguage"
     />
   );
 };
