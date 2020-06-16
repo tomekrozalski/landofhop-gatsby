@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { DataLanguage as DataLanguageEnum, FormName } from 'utils/enums';
+import { FormName } from 'utils/enums';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
 import { LanguageContext } from 'dashboard/utils/contexts';
@@ -33,44 +33,27 @@ const LanguageSelect: React.FC<Props> = props => {
   return (
     <Select
       {...props}
-      options={values.map(({ code, name }) => ({
-        label: getValueByLanguage(name, locale).value,
-        value: code,
-      }))}
-      placeholder="selectCountry"
-    />
-  );
-
-  return (
-    <Select
-      {...props}
       options={[
         {
           label: formatMessage({ id: 'language.group.defaults' }),
-          options: [
-            {
-              label: formatMessage({ id: 'language.pl' }),
-              value: DataLanguageEnum.pl,
-            },
-            {
-              label: formatMessage({ id: 'language.en' }),
-              value: DataLanguageEnum.en,
-            },
-          ],
+          options: values
+            .filter(({ code }) => code === 'en' || code === 'pl')
+            .map(({ id, name }) => ({
+              label: getValueByLanguage(name, locale).value,
+              value: id,
+            })),
         },
         {
           label: formatMessage({ id: 'language.group.others' }),
-          options: Object.keys(DataLanguageEnum)
-            .filter(
-              value =>
-                value !== DataLanguageEnum.pl && value !== DataLanguageEnum.en,
-            )
-            .map(value => ({
-              label: formatMessage({ id: `language.${value}` }),
-              value,
+          options: values
+            .filter(({ code }) => code !== 'en' && code !== 'pl')
+            .map(({ id, name }) => ({
+              label: getValueByLanguage(name, locale).value,
+              value: id,
             })),
         },
       ]}
+      placeholder="selectCountry"
     />
   );
 };

@@ -1,6 +1,4 @@
-import { DataLanguage } from '../enums';
-
 export type LanguageValue = {
-  language: DataLanguage | null;
+  language: string | null;
   value: string;
 };

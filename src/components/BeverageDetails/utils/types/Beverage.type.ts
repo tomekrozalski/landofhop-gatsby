@@ -1,4 +1,3 @@
-import { DataLanguage } from 'utils/enums';
 import { LanguageValue } from 'utils/types';
 import {
   AlcoholRelate,
@@ -140,14 +139,14 @@ export type Beverage = {
     label:
       | {
           complete: boolean;
-          language: DataLanguage;
+          language: string;
           value: string;
         }[]
       | null;
     producer:
       | {
           complete: boolean;
-          language: DataLanguage;
+          language: string;
           value: string;
         }[]
       | null;

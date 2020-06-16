@@ -200,24 +200,10 @@
     "search": "Search"
   },
   "language": {
-    "cs": "Czech",
-    "da": "Danish",
-    "de": "German",
-    "en": "English",
-    "es": "Spanish",
-    "fr": "French",
     "group": {
       "defaults": "Defaults",
       "others": "Others"
-    },
-    "it": "Italian",
-    "la": "Latin",
-    "nl": "Dutch",
-    "none": "Not applicable",
-    "pl": "Polish",
-    "pt": "Portuguese",
-    "se": "Swedish",
-    "ua": "Ukrainian"
+    }
   },
   "loginbar": {
     "loginAgain": "Login again",

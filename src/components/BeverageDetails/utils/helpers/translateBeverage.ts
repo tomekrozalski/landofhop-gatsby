@@ -2,7 +2,6 @@
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { LanguageValue } from 'utils/types';
-import { DataLanguage } from 'utils/enums';
 import { getValueByLanguage } from 'utils/helpers';
 import {
   Beverage as BeverageTypes,
@@ -13,7 +12,7 @@ import {
 
 type IngredientsDescriptionType = {
   complete: boolean;
-  language: DataLanguage;
+  language: string;
   value: string;
 };
 

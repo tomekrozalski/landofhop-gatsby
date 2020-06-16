@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { DataLanguage } from 'utils/enums';
-
 export const SourceGroup = styled.span`
   font: var(--font-weight-light) 1.6rem / 2.2rem var(--font-primary);
 
@@ -61,7 +59,7 @@ export const Editorial: React.FC<{ noSeparator?: boolean }> = ({
   </span>
 );
 
-export const SourceItem: React.FC<{ lang?: DataLanguage | null }> = ({
+export const SourceItem: React.FC<{ lang?: string | null }> = ({
   children,
   lang,
 }) => (lang ? <em lang={lang}>{children}</em> : <em>{children}</em>);

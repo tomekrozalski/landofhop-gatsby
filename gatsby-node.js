@@ -71,24 +71,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       interfaces: ['Node'],
     }),
     `
-      enum DataLanguages {
-        de
-        cs
-        da
-        en
-        es
-        fr
-        it
-        la
-        nl
-        pl
-        pt
-        se
-        ua
-        none
-      }
       type LanguageValue {
-        language: DataLanguages
+        language: String
         value: String!
       }
       type Series {
@@ -260,7 +244,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       }
       type IngredientsDescriptionValues {
         complete: Boolean!
-        language: DataLanguages!
+        language: String!
         value: String!
       }
       type IngredientsList {

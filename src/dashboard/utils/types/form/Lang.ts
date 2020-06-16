@@ -1,8 +1,6 @@
-import { DataLanguage } from 'utils/enums';
-
 export type Lang =
   | {
-      label?: DataLanguage | string;
+      label?: string;
       value: string;
     }
   | string;

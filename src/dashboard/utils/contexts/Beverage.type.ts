@@ -1,4 +1,3 @@
-import { DataLanguage } from 'utils/enums';
 import {
   AlcoholRelate,
   AlcoholScope,
@@ -131,12 +130,12 @@ export type BeverageType = {
   ingredientsDescription?: {
     label?: {
       complete: boolean;
-      language: DataLanguage;
+      language: string;
       value: string;
     }[];
     producer?: {
       complete: boolean;
-      language: DataLanguage;
+      language: string;
       value: string;
     }[];
   };

@@ -200,24 +200,10 @@
     "search": "Szukaj"
   },
   "language": {
-    "cs": "czeski",
-    "da": "duński",
-    "de": "niemiecki",
-    "en": "angielski",
-    "es": "hiszpański",
-    "fr": "francuski",
     "group": {
       "defaults": "Najczęstsze",
       "others": "Pozostałe"
-    },
-    "it": "włoski",
-    "la": "łacina",
-    "nl": "niderlandzki",
-    "none": "nie dotyczy",
-    "pl": "polski",
-    "pt": "portugalski",
-    "se": "szwedzki",
-    "ua": "ukraiński"
+    }
   },
   "loginbar": {
     "loginSuccess": "Zalogowano poprawnie. Token dostępowy wygasa {expiresIn}.",

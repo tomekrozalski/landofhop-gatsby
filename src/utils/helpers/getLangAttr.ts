@@ -1,12 +1,10 @@
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { DataLanguage } from 'utils/enums';
-
-const getLangAttr = (language: DataLanguage | null) => {
+const getLangAttr = (language: string | null) => {
   const { locale } = useIntl();
 
   if (language && language !== locale) {
-    return language as DataLanguage;
+    return language;
   }
 
   return null;

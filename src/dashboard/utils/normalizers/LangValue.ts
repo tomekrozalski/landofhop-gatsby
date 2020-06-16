@@ -1,4 +1,3 @@
-import { DataLanguage as DataLanguageEnum } from 'utils/enums';
 import { LanguageValue as LanguageValueTypes } from '../types';
 
 const LangValue = (formatMessage: ({ id }: { id: string }) => string) => ({
@@ -11,7 +10,7 @@ const LangValue = (formatMessage: ({ id }: { id: string }) => string) => ({
           label: formatMessage({
             id: language ? `language.${language}` : 'language.none',
           }),
-          value: language as DataLanguageEnum,
+          value: language as string,
         }
       : '',
   value,
