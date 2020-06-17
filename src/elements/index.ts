@@ -9,6 +9,7 @@ import FormattedList from './FormattedList';
 import Label from './Label';
 import SectionHeader from './SectionHeader';
 import Spinner from './Spinner';
+import TextArea from './TextArea';
 import TextInput from './TextInput';
 
 export {
@@ -24,5 +25,6 @@ export {
   Label,
   SectionHeader,
   Spinner,
+  TextArea,
   TextInput,
 };

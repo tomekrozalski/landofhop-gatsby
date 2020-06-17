@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-const StyledButton = styled.button`
-  grid-column: span 2;
+const StyledButton = styled.button<{ wide: boolean }>`
+  grid-column: span ${({ wide }) => (wide ? 2 : 1)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,10 +16,11 @@ const StyledButton = styled.button`
 
 type Props = {
   onClick: () => void;
+  wide?: boolean;
 };
 
-const Plug: React.FC<Props> = ({ onClick }) => (
-  <StyledButton type="button" onClick={onClick}>
+const Plug: React.FC<Props> = ({ onClick, wide = false }) => (
+  <StyledButton type="button" onClick={onClick} wide={wide}>
     <FormattedMessage id="dashboard.reveal" />
   </StyledButton>
 );

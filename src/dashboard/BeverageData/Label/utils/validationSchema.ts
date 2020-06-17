@@ -56,19 +56,17 @@ export default Yup.object().shape({
       value: Yup.string().required(),
     })
     .nullable(true),
-  // [FieldName.tale]: Yup
-  // 	.array()
-  // 	.of(
-  // 		Yup.object().shape({
-  // 			lang: Yup.object().shape({
-  // 				label: Yup.string().required('danger'),
-  // 				value: Yup.string().required('danger'),
-  // 			}),
-  // 			value: Yup.string()
-  // 				.min(12, 'danger')
-  // 				.required('danger'),
-  // 		}),
-  // 	),
+  [FieldName.tale]: Yup.array().of(
+    Yup.object().shape({
+      lang: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      value: Yup.string()
+        .min(12)
+        .required(),
+    }),
+  ),
   // [FieldName.barcode]: Yup
   // 	.string()
   // 	.transform(v => (v === null ? 'abdef' : v))

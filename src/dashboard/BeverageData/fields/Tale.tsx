@@ -2,11 +2,11 @@ import React from 'react';
 import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
-import { Label, TextInput } from 'elements';
+import { Label, TextArea } from 'elements';
 import { emptyLangValue } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
 import { ActionButtons, LanguageSelect, Plug } from '../elements';
-import { Double as Grid } from '../elements/grids';
+import { TextArea as Grid } from '../elements/grids';
 
 type Props = {
   fieldName: FieldName;
@@ -14,7 +14,7 @@ type Props = {
   required?: boolean;
 };
 
-const Series: React.FC<Props> = ({ fieldName, formName, required = false }) => (
+const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
   <Grid>
     <Label
       forArray="value"
@@ -32,16 +32,16 @@ const Series: React.FC<Props> = ({ fieldName, formName, required = false }) => (
           return values.map((_: any, index: number) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={`${fieldName}-${index}`}>
-              <TextInput
-                area="2 / 3"
-                name={`${fieldName}.${index}.value`}
-                form={formName}
-              />
-              <LanguageSelect
-                area="3 / 4"
-                name={`${fieldName}.${index}.lang`}
-                placeholder="selectLanguage"
-              />
+              <div style={{ gridColumn: '2 / 3', gridRow: 'span 2' }}>
+                <TextArea
+                  name={`${fieldName}.${index}.value`}
+                  form={formName}
+                />
+                <LanguageSelect
+                  name={`${fieldName}.${index}.lang`}
+                  placeholder="selectLanguage"
+                />
+              </div>
               {loopLength === index + 1 && (
                 <ActionButtons
                   push={push}
@@ -53,10 +53,10 @@ const Series: React.FC<Props> = ({ fieldName, formName, required = false }) => (
           ));
         }
 
-        return <Plug onClick={() => push(emptyLangValue)} wide />;
+        return <Plug onClick={() => push(emptyLangValue)} />;
       }}
     />
   </Grid>
 );
 
-export default Series;
+export default Tale;

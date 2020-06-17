@@ -15,6 +15,7 @@ import {
   Name,
   Place,
   Series,
+  Tale,
 } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
@@ -62,6 +63,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       <Place
         fieldName={BeverageFieldNames.place}
+        formName={FormName.beverageLabel}
+      />
+      <Tale
+        fieldName={BeverageFieldNames.tale}
         formName={FormName.beverageLabel}
       />
       <Footer>

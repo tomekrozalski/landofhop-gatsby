@@ -9,7 +9,16 @@ import { getValueByLanguage } from 'dashboard/utils/helpers';
 const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
   console.log('getInitialFormValues', props);
 
-  const { badge, brand, contract, cooperation, name, place, series } = props;
+  const {
+    badge,
+    brand,
+    contract,
+    cooperation,
+    name,
+    place,
+    series,
+    tale,
+  } = props;
   const { formatMessage, locale } = intl;
 
   return {
@@ -51,7 +60,14 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
           value: place.label.id,
         }
       : null,
-    [FieldName.tale]: [],
+    [FieldName.tale]: tale?.label
+      ? tale?.label.map(
+          ({ language, value }: { language: string; value: string }) => ({
+            lang: language,
+            value,
+          }),
+        )
+      : null,
     [FieldName.barcode]: null,
     // -----------
     [FieldName.fermentation]: null,

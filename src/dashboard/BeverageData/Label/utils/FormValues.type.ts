@@ -28,4 +28,17 @@ export type FormValues = {
       }
     | string
     | null;
+  [FieldName.place]:
+    | {
+        label: string;
+        value: string;
+      }
+    | string
+    | null;
+  [FieldName.tale]:
+    | {
+        label: string;
+        value: string;
+      }[]
+    | null;
 };

@@ -12,7 +12,7 @@ const Wrapper = styled.span<{ area?: string }>`
   svg {
     display: inline-block;
     position: absolute;
-    top: 50%;
+    top: calc(var(--size-input-height) / 2);
     transform: translateY(-50%);
   }
 `;

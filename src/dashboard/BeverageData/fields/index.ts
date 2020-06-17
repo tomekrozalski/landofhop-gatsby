@@ -11,6 +11,7 @@ import Name from './Name';
 import OwnedBy from './OwnedBy';
 import Place from './Place';
 import Series from './Series';
+import Tale from './Tale';
 import Website from './Website';
 
 export {
@@ -27,5 +28,6 @@ export {
   OwnedBy,
   Place,
   Series,
+  Tale,
   Website,
 };

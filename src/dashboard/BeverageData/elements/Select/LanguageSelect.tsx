@@ -8,8 +8,10 @@ import { LanguageContext } from 'dashboard/utils/contexts';
 import { Error, Loading, Select } from './elements';
 
 type Props = {
+  area?: string;
   form?: FormName;
   name: FieldName | string;
+  placeholder?: string;
 };
 
 const LanguageSelect: React.FC<Props> = props => {
