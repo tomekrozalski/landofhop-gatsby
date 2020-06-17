@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Subform = ({ close }: Props) => {
-  const { addNewCountry } = useContext(CountryContext);
+  const { addNewCountry, values: countries } = useContext(CountryContext);
 
   return (
     <Formik
@@ -27,7 +27,7 @@ const Subform = ({ close }: Props) => {
           close();
         });
       }}
-      validationSchema={validationSchema}
+      validationSchema={validationSchema(countries.map(({ code }) => code))}
       validateOnMount
     />
   );

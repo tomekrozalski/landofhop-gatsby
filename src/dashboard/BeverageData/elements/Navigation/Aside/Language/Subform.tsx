@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Subform = ({ close }: Props) => {
-  const { addNewLanguage } = useContext(LanguageContext);
+  const { addNewLanguage, values: languages } = useContext(LanguageContext);
 
   return (
     <Formik
@@ -27,7 +27,7 @@ const Subform = ({ close }: Props) => {
           close();
         });
       }}
-      validationSchema={validationSchema}
+      validationSchema={validationSchema(languages.map(({ code }) => code))}
       validateOnMount
     />
   );
