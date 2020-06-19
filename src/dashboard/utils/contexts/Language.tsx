@@ -23,6 +23,8 @@ const Language: React.FC = ({ children }) => {
     setStatus(StatusEnum.pending);
   };
 
+  useEffect(getLanguages, []);
+
   useEffect(() => {
     if (status === StatusEnum.pending) {
       serverCall({

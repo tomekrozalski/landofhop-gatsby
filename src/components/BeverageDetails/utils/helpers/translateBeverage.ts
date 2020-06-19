@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { LanguageValue } from 'utils/types';
+import { ExtendedLanguageValue } from 'utils/types';
 import { getValueByLanguage } from 'utils/helpers';
 import {
   Beverage as BeverageTypes,
@@ -30,7 +30,7 @@ const translateBeverage = ({
 }: BeverageTypes): TranslatedBeverageTypes => {
   const { locale } = useIntl();
 
-  const translate = (values: LanguageValue[]) =>
+  const translate = (values: ExtendedLanguageValue[]) =>
     getValueByLanguage(values, locale);
 
   const normalizeBrand = ({

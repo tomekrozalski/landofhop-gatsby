@@ -1,7 +1,5 @@
-import { LanguageValue } from '../types';
+import { ExtendedLanguageValue } from '../types';
 import { SiteLanguage } from '../enums';
-
-type ExtendedLanguageValue = LanguageValue & { complete?: boolean };
 
 export default (
   values: ExtendedLanguageValue[],

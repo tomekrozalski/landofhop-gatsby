@@ -6,9 +6,13 @@ import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { LangValue as LangValueNormalizer } from 'dashboard/utils/normalizers';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 
-const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
-  console.log('getInitialFormValues', props);
+type Props = {
+  data: BeverageType;
+  intl: IntlShape;
+  languages: any[];
+};
 
+const getInitialFormValues = ({ data, intl, languages }: Props) => {
   const {
     badge,
     brand,
@@ -18,13 +22,28 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
     place,
     series,
     tale,
-  } = props;
+  } = data;
   const { formatMessage, locale } = intl;
+
+  console.log('name', name);
+
+  const getLanguageLabelById = (value: string | undefined) => {
+    console.log('value', value);
+    const languageObject = languages.find(({ id }) => id === value);
+    return getValueByLanguage(languageObject.name, locale as SiteLanguage)
+      .value;
+  };
 
   return {
     [FieldName.badge]: badge,
     // -----------
-    [FieldName.name]: name.map(LangValueNormalizer(formatMessage)),
+    [FieldName.name]: name.map(({ language, value }) => ({
+      lang: {
+        label: getLanguageLabelById(language),
+        value: language,
+      }, // @ToDo: we don't know does language exists, if not it should render "not applies"
+      value,
+    })),
     [FieldName.series]:
       series?.label?.map(LangValueNormalizer(formatMessage)) || [],
     [FieldName.brand]: brand.id
@@ -63,7 +82,10 @@ const getInitialFormValues = (props: BeverageType, intl: IntlShape) => {
     [FieldName.tale]: tale?.label
       ? tale?.label.map(
           ({ language, value }: { language: string; value: string }) => ({
-            lang: language,
+            lang: {
+              label: getLanguageLabelById(language),
+              value: language,
+            },
             value,
           }),
         )

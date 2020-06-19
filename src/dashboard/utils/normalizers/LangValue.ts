@@ -7,9 +7,7 @@ const LangValue = (formatMessage: ({ id }: { id: string }) => string) => ({
   lang:
     language !== ''
       ? {
-          label: formatMessage({
-            id: language ? `language.${language}` : 'language.none',
-          }),
+          label: value,
           value: language as string,
         }
       : '',

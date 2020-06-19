@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
@@ -16,13 +16,7 @@ type Props = {
 
 const LanguageSelect: React.FC<Props> = props => {
   const { formatMessage, locale } = useIntl();
-  const { getLanguages, status, values } = useContext(LanguageContext);
-
-  useEffect(() => {
-    if (status === StatusEnum.idle) {
-      getLanguages();
-    }
-  }, []);
+  const { status, values } = useContext(LanguageContext);
 
   if (status === StatusEnum.rejected) {
     return <Error />;

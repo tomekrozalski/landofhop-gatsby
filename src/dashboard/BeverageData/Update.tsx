@@ -4,7 +4,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { BeverageContext } from 'dashboard/utils/contexts';
+import { BeverageContext, LanguageContext } from 'dashboard/utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';
@@ -21,9 +21,12 @@ type Props = {
 };
 
 const Update: React.FC<Props> = ({ location }) => {
-  const { getBeverageDetails, resetBeverageDetails, status } = useContext(
-    BeverageContext,
-  );
+  const {
+    getBeverageDetails,
+    resetBeverageDetails,
+    status: beverageStatus,
+  } = useContext(BeverageContext);
+  const { status: languageStatus } = useContext(LanguageContext);
 
   useEffect(() => {
     const badge = location.state?.badge;
@@ -49,7 +52,12 @@ const Update: React.FC<Props> = ({ location }) => {
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
         <Navigation />
-        {status === StatusEnum.fulfilled ? <Label /> : <Spinner />}
+        {beverageStatus === StatusEnum.fulfilled &&
+        languageStatus === StatusEnum.fulfilled ? (
+          <Label />
+        ) : (
+          <Spinner />
+        )}
         <Modal />
       </Wrapper>
     </Layout>
