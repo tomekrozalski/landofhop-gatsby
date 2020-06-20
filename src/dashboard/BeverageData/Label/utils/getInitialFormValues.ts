@@ -3,7 +3,7 @@ import { IntlShape } from 'react-intl';
 import { SiteLanguage } from 'utils/enums';
 import { BeverageType } from 'dashboard/utils/contexts';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
-import { LangValue as LangValueNormalizer } from 'dashboard/utils/normalizers';
+import { LanguageValue as LanguageValueType } from 'dashboard/utils/types';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 
 type Props = {
@@ -25,48 +25,55 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
   } = data;
   const { formatMessage, locale } = intl;
 
-  console.log('name', name);
+  const getLanguageLabelById = (value: string) =>
+    getValueByLanguage(
+      languages.find(({ id }) => id === value).name,
+      locale as SiteLanguage,
+    ).value;
 
-  const getLanguageLabelById = (value: string | undefined) => {
-    console.log('value', value);
-    const languageObject = languages.find(({ id }) => id === value);
-    return getValueByLanguage(languageObject.name, locale as SiteLanguage)
-      .value;
+  const LanguageNormalizer = ({ language, value }: LanguageValueType) => ({
+    lang: {
+      label: language
+        ? getLanguageLabelById(language)
+        : formatMessage({ id: 'language.none' }),
+      value: language || 'none',
+    },
+    value,
+  });
+
+  const normalizeObjectLanguage = ({
+    id,
+    name: brandName,
+  }: {
+    id: string;
+    name: { language?: string; value: string }[];
+  }) => {
+    const normalizedNames = brandName.map(({ language, value }) => ({
+      language: language
+        ? languages.find(({ id: langId }) => langId === language).code
+        : 'none',
+      value,
+    }));
+
+    return {
+      label: getValueByLanguage(normalizedNames, locale as SiteLanguage).value,
+      value: id,
+    };
   };
+
+  console.log('!', tale?.label?.map(LanguageNormalizer));
 
   return {
     [FieldName.badge]: badge,
     // -----------
-    [FieldName.name]: name.map(({ language, value }) => ({
-      lang: {
-        label: getLanguageLabelById(language),
-        value: language,
-      }, // @ToDo: we don't know does language exists, if not it should render "not applies"
-      value,
-    })),
-    [FieldName.series]:
-      series?.label?.map(LangValueNormalizer(formatMessage)) || [],
-    [FieldName.brand]: brand.id
-      ? {
-          label: getValueByLanguage(brand.name, locale as SiteLanguage).value,
-          value: brand.id,
-        }
-      : '',
+    [FieldName.name]: name.map(LanguageNormalizer),
+    [FieldName.series]: series?.label?.map(LanguageNormalizer) || [],
+    [FieldName.brand]: brand.id ? normalizeObjectLanguage(brand) : '',
     [FieldName.cooperation]: cooperation?.label
-      ? cooperation?.label.map(
-          ({ id, name: cooperationName }: { id: string; name: any }) => ({
-            label: getValueByLanguage(cooperationName, locale as SiteLanguage)
-              .value,
-            value: id,
-          }),
-        )
+      ? cooperation?.label.map(normalizeObjectLanguage)
       : null,
     [FieldName.contract]: contract?.label
-      ? {
-          label: getValueByLanguage(contract.label.name, locale as SiteLanguage)
-            .value,
-          value: contract.label.id,
-        }
+      ? normalizeObjectLanguage(contract.label)
       : null,
     [FieldName.place]: place?.label
       ? {
@@ -79,17 +86,7 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
           value: place.label.id,
         }
       : null,
-    [FieldName.tale]: tale?.label
-      ? tale?.label.map(
-          ({ language, value }: { language: string; value: string }) => ({
-            lang: {
-              label: getLanguageLabelById(language),
-              value: language,
-            },
-            value,
-          }),
-        )
-      : null,
+    [FieldName.tale]: tale?.label?.map(LanguageNormalizer) || [],
     [FieldName.barcode]: null,
     // -----------
     [FieldName.fermentation]: null,

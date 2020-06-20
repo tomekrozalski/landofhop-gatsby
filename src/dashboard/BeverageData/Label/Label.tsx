@@ -11,8 +11,6 @@ const Label: React.FC = () => {
   const { data } = useContext(BeverageContext);
   const { values: languages } = useContext(LanguageContext);
 
-  console.log('data', data);
-
   return (
     <Formik
       component={FormBody}

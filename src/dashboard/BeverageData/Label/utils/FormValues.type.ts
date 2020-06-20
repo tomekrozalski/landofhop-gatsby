@@ -37,8 +37,8 @@ export type FormValues = {
     | null;
   [FieldName.tale]:
     | {
-        label: string;
+        lang: Lang;
         value: string;
       }[]
-    | null;
+    | [];
 };
