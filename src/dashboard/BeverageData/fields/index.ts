@@ -1,7 +1,9 @@
 import Badge from './Badge';
+import Barcode from './Barcode';
 import Brand from './Brand';
 import City from './City';
 import Code from './Code';
+import Container from './Container';
 import Contract from './Contract';
 import Cooperation from './Cooperation';
 import Country from './Country';
@@ -16,9 +18,11 @@ import Website from './Website';
 
 export {
   Badge,
+  Barcode,
   Brand,
   City,
   Code,
+  Container,
   Contract,
   Cooperation,
   Country,

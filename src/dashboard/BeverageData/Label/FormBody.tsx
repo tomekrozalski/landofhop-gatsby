@@ -9,7 +9,9 @@ import { BeverageContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
 import {
   Badge,
+  Barcode,
   Brand,
+  Container,
   Contract,
   Cooperation,
   Name,
@@ -68,6 +70,17 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       <Tale
         fieldName={BeverageFieldNames.tale}
         formName={FormName.beverageLabel}
+      />
+      <Barcode
+        fieldName={BeverageFieldNames.barcode}
+        formName={FormName.beverageLabel}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.otherInfo" />
+      <Container
+        fieldName={BeverageFieldNames.container}
+        formName={FormName.beverageLabel}
+        required
       />
       <Footer>
         <Button type="submit" disabled={!isValid}>

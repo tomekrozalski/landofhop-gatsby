@@ -7,7 +7,6 @@ const Basic = styled.div`
   grid-template-columns:
     repeat(2, 45rem) repeat(2, var(--size-input-height))
     1fr;
-  grid-template-rows: var(--size-input-height);
 `;
 
 export default Basic;

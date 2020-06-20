@@ -41,4 +41,5 @@ export type FormValues = {
         value: string;
       }[]
     | [];
+  [FieldName.barcode]: string | null;
 };

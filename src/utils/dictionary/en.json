@@ -126,7 +126,8 @@
       "labelInfo": {
         "description": "Data which could be taken just from the container",
         "title": "Label"
-      }
+      },
+      "otherInfo": "Other informations"
     },
     "continue": "Continue",
     "loadError": "Load error",
@@ -173,9 +174,11 @@
   },
   "global": {
     "badge": "Badge",
+    "barcode": "Barcode",
     "brand": "Brand",
     "city": "City",
     "code": "Code",
+    "container": "Container",
     "contract": "Contract",
     "cooperation": "Cooperation",
     "country": "Country",

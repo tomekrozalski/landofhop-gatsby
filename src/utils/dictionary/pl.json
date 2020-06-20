@@ -126,7 +126,8 @@
       "labelInfo": {
         "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
         "title": "Etykieta"
-      }
+      },
+      "otherInfo": "Pozostałe informacje"
     },
     "continue": "Dalej",
     "loadError": "Błąd pobierania",
@@ -173,9 +174,11 @@
   },
   "global": {
     "badge": "Identyfikator",
+    "barcode": "Kod kreskowy",
     "brand": "Marka",
     "city": "Miejscowość",
     "code": "Kod",
+    "container": "Opakowanie",
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
     "country": "Kraj",

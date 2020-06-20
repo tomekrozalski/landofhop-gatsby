@@ -67,12 +67,12 @@ export default Yup.object().shape({
         .required(),
     }),
   ),
-  // [FieldName.barcode]: Yup
-  // 	.string()
-  // 	.transform(v => (v === null ? 'abdef' : v))
-  // 	.min(5, 'danger')
-  // 	.required('danger'),
-  // // -----------
+  [FieldName.barcode]: Yup.string()
+    // null should be treated as correct option
+    .transform(v => (v === null ? 'abdef' : v))
+    .min(5)
+    .required(),
+  // -----------
   // [FieldName.fermentation]: Yup
   // 	.array()
   // 	.of(

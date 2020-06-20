@@ -15,6 +15,7 @@ type Props = {
 const getInitialFormValues = ({ data, intl, languages }: Props) => {
   const {
     badge,
+    barcode,
     brand,
     contract,
     cooperation,
@@ -25,21 +26,34 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
   } = data;
   const { formatMessage, locale } = intl;
 
+  console.log('getInitialFormValues data', data);
+
   const getLanguageLabelById = (value: string) =>
     getValueByLanguage(
       languages.find(({ id }) => id === value).name,
       locale as SiteLanguage,
     ).value;
 
-  const LanguageNormalizer = ({ language, value }: LanguageValueType) => ({
-    lang: {
-      label: language
-        ? getLanguageLabelById(language)
-        : formatMessage({ id: 'language.none' }),
-      value: language || 'none',
-    },
-    value,
-  });
+  const getLabelByLanguageId = (language: string | undefined) => {
+    switch (language) {
+      case '':
+        return '';
+      case undefined:
+        return formatMessage({ id: 'language.none' });
+      default:
+        return getLanguageLabelById(language);
+    }
+  };
+
+  const LanguageNormalizer = ({ language, value }: LanguageValueType) => {
+    return {
+      lang: {
+        label: getLabelByLanguageId(language),
+        value: language || 'none',
+      },
+      value,
+    };
+  };
 
   const normalizeObjectLanguage = ({
     id,
@@ -60,8 +74,6 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
       value: id,
     };
   };
-
-  console.log('!', tale?.label?.map(LanguageNormalizer));
 
   return {
     [FieldName.badge]: badge,
@@ -87,7 +99,7 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
         }
       : null,
     [FieldName.tale]: tale?.label?.map(LanguageNormalizer) || [],
-    [FieldName.barcode]: null,
+    [FieldName.barcode]: barcode || null,
     // -----------
     [FieldName.fermentation]: null,
     [FieldName.style]: [],
@@ -110,14 +122,14 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
     [FieldName.hoppyness]: null,
     [FieldName.temperature]: null,
     // -----------
-    // [FieldName.container]: {
-    // 	color: containerColorsList()[0],
-    // 	material: containerMaterialsList()[0],
-    // 	unit: containerUnitsList()[0],
-    // 	type: containerTypesList()[0],
-    // 	capacityValue: 0,
-    // 	hasCapWireFlip: false,
-    // },
+    [FieldName.container]: {
+      // color: containerColorsList()[0],
+      // material: containerMaterialsList()[0],
+      // unit: containerUnitsList()[0],
+      // type: containerTypesList()[0],
+      value: 0,
+      hasCapWireFlip: false,
+    },
     [FieldName.price]: [],
   };
 };

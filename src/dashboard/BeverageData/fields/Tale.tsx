@@ -2,11 +2,11 @@ import React from 'react';
 import { FieldArray } from 'formik';
 
 import { FormName } from 'utils/enums';
-import { Label, TextArea } from 'elements';
+import { Label, TextInput } from 'elements';
 import { emptyLangValue } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
 import { ActionButtons, LanguageSelect, Plug } from '../elements';
-import { TextArea as Grid } from '../elements/grids';
+import { Basic as Grid } from '../elements/grids';
 
 type Props = {
   fieldName: FieldName;
@@ -33,9 +33,10 @@ const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={`${fieldName}-${index}`}>
               <div style={{ gridColumn: '2 / 3', gridRow: 'span 2' }}>
-                <TextArea
+                <TextInput
                   name={`${fieldName}.${index}.value`}
                   form={formName}
+                  textarea
                 />
                 <LanguageSelect
                   name={`${fieldName}.${index}.lang`}

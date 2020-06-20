@@ -13,6 +13,7 @@ type Props = {
   invert?: boolean;
   name: string;
   type?: 'text' | 'number';
+  textarea?: boolean;
 };
 
 const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
@@ -21,6 +22,7 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
   form,
   invert = false,
   name,
+  textarea = false,
   type = 'text',
 }) => {
   const [field, { error, touched }] = useField<{}>(name);
@@ -33,6 +35,7 @@ const TextInput: React.FC<Props & FieldAttributes<{}>> = ({
         id={getAnchor({ form, name })}
         invert={invert}
         name={name}
+        textarea={textarea}
         touched={touched}
         type={type}
       />
