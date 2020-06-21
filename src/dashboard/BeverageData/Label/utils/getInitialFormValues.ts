@@ -2,7 +2,11 @@ import { IntlShape } from 'react-intl';
 
 import { SiteLanguage } from 'utils/enums';
 import { BeverageType } from 'dashboard/utils/contexts';
-import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import {
+  BeverageFieldNames as FieldName,
+  ContainerType,
+  ContainerUnit,
+} from 'dashboard/utils/enums';
 import { LanguageValue as LanguageValueType } from 'dashboard/utils/types';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 
@@ -123,10 +127,20 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
     [FieldName.temperature]: null,
     // -----------
     [FieldName.container]: {
-      // color: containerColorsList()[0],
-      // material: containerMaterialsList()[0],
-      // unit: containerUnitsList()[0],
-      // type: containerTypesList()[0],
+      color: null,
+      material: null,
+      unit: {
+        label: formatMessage({
+          id: `beverage.details.container.unit.${ContainerUnit.ml}`,
+        }),
+        value: ContainerUnit.ml,
+      },
+      type: {
+        label: formatMessage({
+          id: `beverage.details.container.type.${ContainerType.bottle}`,
+        }),
+        value: ContainerType.bottle,
+      },
       value: 0,
       hasCapWireFlip: false,
     },

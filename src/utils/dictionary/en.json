@@ -60,6 +60,9 @@
           "bottle": "bottle",
           "can": "can"
         },
+        "unit": {
+          "ml": "ml"
+        },
         "value": "{value} {unit, select, ml {ml} other {}}"
       },
       "contains": "contains",

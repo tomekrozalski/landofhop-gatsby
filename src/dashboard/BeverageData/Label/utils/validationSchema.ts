@@ -209,31 +209,29 @@ export default Yup.object().shape({
   // 	})
   // 	.nullable(true),
   // // -----------
-  // [FieldName.container]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		type: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		color: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		material: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		capacityValue: Yup.number()
-  // 			.min(1, 'danger')
-  // 			.max(5000, 'danger')
-  // 			.required('danger'),
-  // 		unit: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		hasCapWireFlip: Yup.boolean(),
-  // 	}),
+  [FieldName.container]: Yup.object().shape({
+    type: Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+    color: Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+    material: Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+    capacityValue: Yup.number()
+      .min(1)
+      .max(5000)
+      .required(),
+    unit: Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+    hasCapWireFlip: Yup.boolean(),
+  }),
   // [FieldName.price]: Yup.array()
   // 	.of(
   // 		Yup.object().shape({

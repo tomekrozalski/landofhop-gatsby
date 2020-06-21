@@ -4,6 +4,12 @@ import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { FieldName } from 'dashboard/utils/enums';
 import { Five as Grid } from '../../elements/grids';
+import {
+  ContainerColorSelect,
+  ContainerMaterialSelect,
+  ContainerTypeSelect,
+  ContainerUnitSelect,
+} from '../../elements';
 
 type Props = {
   disabled?: boolean;
@@ -19,11 +25,11 @@ const Container: React.FC<Props> = ({
 }) => (
   <Grid>
     <Label name={fieldName} form={formName} required={required} />
-    <div>type</div>
-    <div>material</div>
-    <div>color</div>
+    <ContainerTypeSelect form={formName} name={fieldName} />
+    <ContainerMaterialSelect form={formName} name={fieldName} />
+    <ContainerColorSelect form={formName} name={fieldName} />
     <TextInput name={`${fieldName}.value`} form={formName} type="number" />
-    <div>unit</div>
+    <ContainerUnitSelect form={formName} name={fieldName} />
   </Grid>
 );
 

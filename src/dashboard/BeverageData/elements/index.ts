@@ -5,6 +5,10 @@ import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
 import {
+  ContainerColorSelect,
+  ContainerMaterialSelect,
+  ContainerTypeSelect,
+  ContainerUnitSelect,
   CountrySelect,
   InstitutionSelect,
   LanguageSelect,
@@ -16,6 +20,10 @@ import SubSection from './SubSection';
 export {
   ActionButtons,
   Condition,
+  ContainerColorSelect,
+  ContainerMaterialSelect,
+  ContainerTypeSelect,
+  ContainerUnitSelect,
   CountrySelect,
   FormSection,
   InstitutionSelect,

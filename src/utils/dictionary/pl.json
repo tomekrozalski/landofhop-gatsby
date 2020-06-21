@@ -60,6 +60,9 @@
           "bottle": "butelka",
           "can": "puszka"
         },
+        "unit": {
+          "ml": "ml"
+        },
         "value": "{value} {unit, select, ml {ml} other {}}"
       },
       "contains": "zawiera",
