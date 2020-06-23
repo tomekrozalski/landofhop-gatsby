@@ -2,10 +2,16 @@
 import React, { useState } from 'react';
 
 import { Subform as SubformEnum } from 'dashboard/utils/enums';
+import { FormValues as FormValuesLabel } from 'dashboard/BeverageData/Label/utils';
 
 type SubformType = SubformEnum | null;
+type LabelType = FormValuesLabel | null;
 
 export const NavigationContext = React.createContext({
+  label: null as LabelType,
+  setLabel: (value: LabelType) => {
+    value;
+  },
   setSubform: (value: SubformType) => {
     value;
   },
@@ -14,9 +20,14 @@ export const NavigationContext = React.createContext({
 
 const Navigation: React.FC = ({ children }) => {
   const [subform, setSubform] = useState<SubformType>(null);
+  const [label, setLabel] = useState<LabelType>(null);
+
+  console.log('navigation context label:', label);
 
   return (
-    <NavigationContext.Provider value={{ setSubform, subform }}>
+    <NavigationContext.Provider
+      value={{ label, setLabel, setSubform, subform }}
+    >
       {children}
     </NavigationContext.Provider>
   );

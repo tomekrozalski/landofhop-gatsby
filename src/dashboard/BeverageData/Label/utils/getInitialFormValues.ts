@@ -3,10 +3,12 @@ import { IntlShape } from 'react-intl';
 import { SiteLanguage } from 'utils/enums';
 import { BeverageType } from 'dashboard/utils/contexts';
 import {
-  BeverageFieldNames as FieldName,
+  ContainerColor,
+  ContainerMaterial,
   ContainerType,
   ContainerUnit,
-} from 'dashboard/utils/enums';
+} from 'components/BeverageDetails/utils/enums';
+import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { LanguageValue as LanguageValueType } from 'dashboard/utils/types';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 
@@ -21,6 +23,7 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
     badge,
     barcode,
     brand,
+    container,
     contract,
     cooperation,
     name,
@@ -127,21 +130,59 @@ const getInitialFormValues = ({ data, intl, languages }: Props) => {
     [FieldName.temperature]: null,
     // -----------
     [FieldName.container]: {
-      color: null,
-      material: null,
-      unit: {
-        label: formatMessage({
-          id: `beverage.details.container.unit.${ContainerUnit.ml}`,
-        }),
-        value: ContainerUnit.ml,
-      },
-      type: {
-        label: formatMessage({
-          id: `beverage.details.container.type.${ContainerType.bottle}`,
-        }),
-        value: ContainerType.bottle,
-      },
-      value: 0,
+      color: container.color
+        ? {
+            label: formatMessage({
+              id: `beverage.details.container.color.${container.color}`,
+            }),
+            value: container.color as ContainerColor,
+          }
+        : {
+            label: formatMessage({
+              id: `beverage.details.container.material.${ContainerColor.brown}`,
+            }),
+            value: ContainerColor.brown,
+          },
+      material: container.material
+        ? {
+            label: formatMessage({
+              id: `beverage.details.container.material.${container.material}`,
+            }),
+            value: container.material as ContainerMaterial,
+          }
+        : {
+            label: formatMessage({
+              id: `beverage.details.container.material.${ContainerMaterial.glass}`,
+            }),
+            value: ContainerMaterial.glass,
+          },
+      unit: container.unit
+        ? {
+            label: formatMessage({
+              id: `beverage.details.container.unit.${container.unit}`,
+            }),
+            value: container.unit as ContainerUnit,
+          }
+        : {
+            label: formatMessage({
+              id: `beverage.details.container.unit.${ContainerUnit.ml}`,
+            }),
+            value: ContainerUnit.ml,
+          },
+      type: container.type
+        ? {
+            label: formatMessage({
+              id: `beverage.details.container.type.${container.type}`,
+            }),
+            value: container.type as ContainerType,
+          }
+        : {
+            label: formatMessage({
+              id: `beverage.details.container.type.${ContainerType.bottle}`,
+            }),
+            value: ContainerType.bottle,
+          },
+      value: container.value || 0,
       hasCapWireFlip: false,
     },
     [FieldName.price]: [],

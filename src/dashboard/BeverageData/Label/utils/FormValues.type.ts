@@ -1,4 +1,10 @@
 import { Lang } from 'dashboard/utils/types/form';
+import {
+  ContainerColor,
+  ContainerMaterial,
+  ContainerType,
+  ContainerUnit,
+} from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
 export type FormValues = {
@@ -42,4 +48,25 @@ export type FormValues = {
       }[]
     | [];
   [FieldName.barcode]: string | null;
+
+  [FieldName.container]: {
+    color: {
+      label: string;
+      value: ContainerColor;
+    };
+    hasCapWireFlip: boolean;
+    material: {
+      label: string;
+      value: ContainerMaterial;
+    };
+    type: {
+      label: string;
+      value: ContainerType;
+    };
+    unit: {
+      label: string;
+      value: ContainerUnit;
+    };
+    value: number;
+  };
 };

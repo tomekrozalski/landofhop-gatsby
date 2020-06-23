@@ -7,8 +7,8 @@ import {
   ContainerColorBottle,
   ContainerColorCan,
   ContainerType,
-  FieldName,
-} from 'dashboard/utils/enums';
+} from 'components/BeverageDetails/utils/enums';
+import { FieldName } from 'dashboard/utils/enums';
 import { Select } from '../elements';
 
 type Props = {

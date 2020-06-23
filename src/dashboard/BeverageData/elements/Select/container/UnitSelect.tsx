@@ -2,7 +2,8 @@ import React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
-import { ContainerUnit, FieldName } from 'dashboard/utils/enums';
+import { ContainerUnit } from 'components/BeverageDetails/utils/enums';
+import { FieldName } from 'dashboard/utils/enums';
 import { Select } from '../elements';
 
 type Props = {

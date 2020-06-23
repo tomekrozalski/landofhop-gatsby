@@ -222,7 +222,7 @@ export default Yup.object().shape({
       label: Yup.string().required(),
       value: Yup.string().required(),
     }),
-    capacityValue: Yup.number()
+    value: Yup.number()
       .min(1)
       .max(5000)
       .required(),
