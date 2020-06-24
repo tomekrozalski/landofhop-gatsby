@@ -8,7 +8,7 @@ import { BeverageContext, LanguageContext } from 'dashboard/utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';
-import { Label } from '.';
+import { Form } from '.';
 
 type Props = {
   location: {
@@ -44,6 +44,10 @@ const Update: React.FC<Props> = ({ location }) => {
     return resetBeverageDetails;
   }, []);
 
+  const contextsLoaded =
+    beverageStatus === StatusEnum.fulfilled &&
+    languageStatus === StatusEnum.fulfilled;
+
   return (
     <Layout>
       <SEO title="updateBeverage" />
@@ -52,12 +56,7 @@ const Update: React.FC<Props> = ({ location }) => {
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
         <Navigation />
-        {beverageStatus === StatusEnum.fulfilled &&
-        languageStatus === StatusEnum.fulfilled ? (
-          <Label />
-        ) : (
-          <Spinner />
-        )}
+        {contextsLoaded ? <Form /> : <Spinner />}
         <Modal />
       </Wrapper>
     </Layout>

@@ -8,7 +8,7 @@ import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { BeverageContext } from 'dashboard/utils/contexts';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';
-import { Label } from '.';
+import { Form } from '.';
 
 const Add: React.FC = () => {
   const { status } = useContext(BeverageContext);
@@ -21,7 +21,7 @@ const Add: React.FC = () => {
           <FormattedMessage id="dashboard.addBeverage.title" />
         </Header>
         <Navigation />
-        {status !== StatusEnum.idle ? <Spinner /> : <Label />}
+        {status !== StatusEnum.idle ? <Spinner /> : <Form />}
         <Modal />
       </Wrapper>
     </Layout>

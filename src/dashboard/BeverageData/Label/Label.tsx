@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
 
+import { FormName } from 'utils/enums';
 import {
   BeverageContext,
   LanguageContext,
@@ -14,15 +15,15 @@ const Label: React.FC = () => {
   const intl = useIntl();
   const { data } = useContext(BeverageContext);
   const { values: languages } = useContext(LanguageContext);
-  const { setLabel } = useContext(NavigationContext);
+  const { setLabel, setPart } = useContext(NavigationContext);
 
   return (
     <Formik
       component={FormBody}
       initialValues={getInitialFormValues({ data, intl, languages })}
       onSubmit={(values, { setSubmitting }) => {
-        console.log('values', values);
         setLabel(values);
+        setPart(FormName.beverageProducer);
         setSubmitting(false);
       }}
       validationSchema={validationSchema}
