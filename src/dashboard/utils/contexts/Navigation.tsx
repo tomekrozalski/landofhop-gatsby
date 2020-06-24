@@ -28,8 +28,6 @@ const Navigation: React.FC = ({ children }) => {
   const [subform, setSubform] = useState<SubformType>(null);
   const [part, setPart] = useState<FormName>(FormName.beverageLabel);
 
-  console.log('navigation context label:', part, label);
-
   return (
     <NavigationContext.Provider
       value={{ label, part, setLabel, setPart, setSubform, subform }}

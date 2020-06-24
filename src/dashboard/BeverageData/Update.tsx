@@ -28,6 +28,11 @@ const Update: React.FC<Props> = ({ location }) => {
   } = useContext(BeverageContext);
   const { status: languageStatus } = useContext(LanguageContext);
 
+  const preventClose = (e: Event) => {
+    e.preventDefault();
+    e.returnValue = true;
+  };
+
   useEffect(() => {
     const badge = location.state?.badge;
     const brand = location.state?.brand;
@@ -41,7 +46,12 @@ const Update: React.FC<Props> = ({ location }) => {
       });
     }
 
-    return resetBeverageDetails;
+    window.addEventListener('beforeunload', preventClose);
+
+    return () => {
+      resetBeverageDetails();
+      window.removeEventListener('beforeunload', preventClose);
+    };
   }, []);
 
   const contextsLoaded =

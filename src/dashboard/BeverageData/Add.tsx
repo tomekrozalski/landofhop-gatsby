@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
@@ -12,6 +12,19 @@ import { Form } from '.';
 
 const Add: React.FC = () => {
   const { status } = useContext(BeverageContext);
+
+  const preventClose = (e: Event) => {
+    e.preventDefault();
+    e.returnValue = true;
+  };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', preventClose);
+
+    return () => {
+      window.removeEventListener('beforeunload', preventClose);
+    };
+  }, []);
 
   return (
     <Layout>
