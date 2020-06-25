@@ -10,6 +10,7 @@ import Country from './Country';
 import Latitude from './Latitude';
 import Longitude from './Longitude';
 import Name from './Name';
+import Notes from './Notes';
 import OwnedBy from './OwnedBy';
 import Place from './Place';
 import Series from './Series';
@@ -29,6 +30,7 @@ export {
   Latitude,
   Longitude,
   Name,
+  Notes,
   OwnedBy,
   Place,
   Series,

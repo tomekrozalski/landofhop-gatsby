@@ -126,17 +126,26 @@
     },
     "beverage": {
       "brandInfo": "Informacje dotyczące marki",
+      "editorialInfo": {
+        "description": "Informacje końcowe, od redakcji, niejako nieoficjalne",
+        "title": "Redakcyjne"
+      },
       "labelInfo": {
         "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
         "title": "Etykieta"
       },
-      "otherInfo": "Pozostałe informacje"
+      "otherInfo": "Pozostałe informacje",
+      "producerInfo": {
+        "description": "Dane uzupełniające na temat produktu zaczerpnięte ze strony internetowej producenta lub innych jego materiałów promocyjnych",
+        "title": "Informacje od producenta"
+      }
     },
     "continue": "Dalej",
     "loadError": "Błąd pobierania",
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "reset": "Zresetuj",
     "reveal": "Dodaj",
+    "saveAndMoveBack": "Zapisz i cofnij",
     "select": {
       "noOptions": "Brak wyników",
       "placeholder": {
@@ -191,6 +200,7 @@
     "loading": "Ładuję…",
     "longitude": "Długość geograficzna",
     "name": "Nazwa",
+    "notes": "Notatki",
     "ownedBy": "Należący/a do",
     "password": "Hasło",
     "place": "Miejsce",

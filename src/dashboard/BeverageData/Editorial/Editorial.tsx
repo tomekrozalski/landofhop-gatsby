@@ -8,22 +8,24 @@ import {
   LanguageContext,
   NavigationContext,
 } from 'dashboard/utils/contexts';
-import { getInitialFormValues, validationSchema } from './utils';
+import { validationSchema } from './utils';
 import FormBody from './FormBody';
 
-const Label: React.FC = () => {
+const Editorial: React.FC = () => {
   const intl = useIntl();
   const { data } = useContext(BeverageContext);
   const { values: languages } = useContext(LanguageContext);
-  const { label, saveLabel, setPart } = useContext(NavigationContext);
+  const { saveEditorial } = useContext(NavigationContext);
 
   return (
     <Formik
       component={FormBody}
-      initialValues={label || getInitialFormValues({ data, intl, languages })}
+      initialValues={{
+        notes: null,
+      }}
       onSubmit={(values, { setSubmitting }) => {
-        saveLabel(values);
-        setPart(FormName.beverageProducer);
+        saveEditorial(values);
+
         setSubmitting(false);
       }}
       validationSchema={validationSchema}
@@ -32,4 +34,4 @@ const Label: React.FC = () => {
   );
 };
 
-export default Label;
+export default Editorial;

@@ -126,17 +126,26 @@
     },
     "beverage": {
       "brandInfo": "Informations connected with branding",
+      "editorialInfo": {
+        "description": "Final information, from the editorial office, somehow unofficial",
+        "title": "Editorial"
+      },
       "labelInfo": {
         "description": "Data which could be taken just from the container",
         "title": "Label"
       },
-      "otherInfo": "Other informations"
+      "otherInfo": "Other informations",
+      "producerInfo": {
+        "description": "Supplementary data about the product from the manufacturer's website or other promotional materials",
+        "title": "Producer"
+      }
     },
     "continue": "Continue",
     "loadError": "Load error",
     "notLoggedInError": "Not logged in. Access denied",
     "reset": "Reset",
     "reveal": "Reveal",
+    "saveAndMoveBack": "Save and move back",
     "select": {
       "noOptions": "No options",
       "placeholder": {
@@ -191,6 +200,7 @@
     "loading": "Loading…",
     "longitude": "Longitude",
     "name": "Name",
+    "notes": "Notes",
     "ownedBy": "Owned by",
     "password": "Password",
     "place": "Place",

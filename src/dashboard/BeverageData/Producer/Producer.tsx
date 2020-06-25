@@ -15,14 +15,14 @@ const Producer: React.FC = () => {
   const intl = useIntl();
   const { data } = useContext(BeverageContext);
   const { values: languages } = useContext(LanguageContext);
-  const { setLabel, setPart } = useContext(NavigationContext);
+  const { saveProducer, setPart } = useContext(NavigationContext);
 
   return (
     <Formik
       component={FormBody}
       initialValues={{}}
       onSubmit={(values, { setSubmitting }) => {
-        setLabel(values);
+        saveProducer(values);
         setPart(FormName.beverageEditorial);
         setSubmitting(false);
       }}
