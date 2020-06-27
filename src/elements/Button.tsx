@@ -41,12 +41,12 @@ const Wrapper = styled.button`
     color: var(--color-black);
   }
 
-  &[type='submit']:not(:disabled):not(.button-submitting):hover {
+  &.go-on:not(:disabled):not(.button-submitting):hover {
     background-color: var(--color-success-strong);
     color: var(--color-white);
   }
 
-  &[type='reset']:not(:disabled):not(.button-submitting) {
+  &.move-back:not(:disabled):not(.button-submitting) {
     background-color: var(--color-danger-light);
 
     &:hover {
@@ -57,17 +57,39 @@ const Wrapper = styled.button`
 `;
 
 type Props = {
+  appearance?: 'moveBack' | 'goOn';
   disabled?: boolean;
   isSubmitting?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   type?: 'button' | 'reset' | 'submit';
 };
 
-const Button: React.FC<Props> = ({ children, isSubmitting, ...props }) => (
-  <Wrapper className={isSubmitting ? 'button-submitting' : ''} {...props}>
-    {children}
-    {isSubmitting && <ButtonSpinner />}
-  </Wrapper>
-);
+const Button: React.FC<Props> = ({
+  appearance = 'goOn',
+  children,
+  isSubmitting,
+  ...props
+}) => {
+  const classNames = [];
+
+  if (isSubmitting) {
+    classNames.push('button-submitting');
+  }
+
+  if (appearance === 'moveBack') {
+    classNames.push('move-back');
+  }
+
+  if (appearance === 'goOn') {
+    classNames.push('go-on');
+  }
+
+  return (
+    <Wrapper className={classNames.join(' ')} {...props}>
+      {children}
+      {isSubmitting && <ButtonSpinner />}
+    </Wrapper>
+  );
+};
 
 export default Button;

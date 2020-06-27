@@ -7,7 +7,7 @@ import { Button } from 'elements';
 import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
 import { BeverageContext, NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
-import {} from '../fields';
+import { Tale } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -27,9 +27,18 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       title="dashboard.beverage.producerInfo.title"
     >
       {/* -------------------------------- */}
-
+      <Tale
+        fieldName={BeverageFieldNames.tale}
+        formName={FormName.beverageProducer}
+      />
+      {/* -------------------------------- */}
       <Footer>
-        <Button type="reset" onClick={moveBack} disabled={!isValid}>
+        <Button
+          appearance="moveBack"
+          type="submit"
+          onClick={moveBack}
+          disabled={!isValid}
+        >
           <FormattedMessage id="dashboard.saveAndMoveBack" />
         </Button>
         <Button type="submit" disabled={!isValid}>

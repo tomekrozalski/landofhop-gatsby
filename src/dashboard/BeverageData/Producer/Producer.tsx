@@ -20,7 +20,9 @@ const Producer: React.FC = () => {
   return (
     <Formik
       component={FormBody}
-      initialValues={{}}
+      initialValues={{
+        tale: [],
+      }}
       onSubmit={(values, { setSubmitting }) => {
         saveProducer(values);
         setPart(FormName.beverageEditorial);
