@@ -23,8 +23,7 @@ const Badge: React.FC<Props> = ({
   required = false,
 }) => {
   const [nameField] = useField(connectedFieldName);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta, { setTouched, setValue }] = useField(fieldName);
+  const [field, , { setTouched, setValue }] = useField(fieldName);
 
   useEffect(() => {
     if (!disabled) {

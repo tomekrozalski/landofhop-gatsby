@@ -5,7 +5,7 @@ import { FormikProps } from 'formik';
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
 import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
-import { BeverageContext } from 'dashboard/utils/contexts';
+import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
 import {
   Badge,
@@ -23,8 +23,8 @@ import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
-  const { formType } = useContext(BeverageContext);
-  const isUpdate = formType === FormType.update;
+  const { beverageFormType } = useContext(NavigationContext);
+  const isUpdate = beverageFormType === FormType.update;
 
   return (
     <FormSection

@@ -53,20 +53,22 @@ export type FormValues = {
     color: {
       label: string;
       value: ContainerColor;
-    };
+    } | null;
     hasCapWireFlip: boolean;
     material: {
       label: string;
       value: ContainerMaterial;
-    };
-    type: {
-      label: string;
-      value: ContainerType;
-    };
+    } | null;
+    type:
+      | {
+          label: string;
+          value: ContainerType;
+        }
+      | string;
     unit: {
       label: string;
       value: ContainerUnit;
-    };
+    } | null;
     value: number;
   };
 };

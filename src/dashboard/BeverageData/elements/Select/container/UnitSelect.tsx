@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
 import { ContainerUnit } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
+
 import { Select } from '../elements';
 
 type Props = {
@@ -17,6 +19,18 @@ type Props = {
 
 const UnitSelect: React.FC<Props> = ({ name, ...props }) => {
   const { formatMessage } = useIntl();
+  const [unitField, , { setValue }] = useField(`${name}.unit`);
+
+  useEffect(() => {
+    if (!unitField.value) {
+      setValue({
+        label: formatMessage({
+          id: `beverage.details.container.unit.${ContainerUnit.ml}`,
+        }),
+        value: ContainerUnit.ml,
+      });
+    }
+  }, []);
 
   return (
     <Select

@@ -214,14 +214,18 @@ export default Yup.object().shape({
       label: Yup.string().required(),
       value: Yup.string().required(),
     }),
-    color: Yup.object().shape({
-      label: Yup.string().required(),
-      value: Yup.string().required(),
-    }),
-    material: Yup.object().shape({
-      label: Yup.string().required(),
-      value: Yup.string().required(),
-    }),
+    color: Yup.object()
+      .shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      })
+      .nullable(true),
+    material: Yup.object()
+      .shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      })
+      .nullable(true),
     value: Yup.number()
       .min(1)
       .max(5000)

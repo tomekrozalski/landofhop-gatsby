@@ -5,7 +5,6 @@ import { FormikProps } from 'formik';
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
 import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
-import { BeverageContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
 import { Notes } from '../fields';
 import { Footer } from '../elements/grids';

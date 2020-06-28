@@ -4,7 +4,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { BeverageContext, LanguageContext } from 'dashboard/utils/contexts';
+import { NavigationContext, LanguageContext } from 'dashboard/utils/contexts';
 import { Status as StatusEnum } from 'dashboard/utils/enums';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';
@@ -24,8 +24,8 @@ const Update: React.FC<Props> = ({ location }) => {
   const {
     getBeverageDetails,
     resetBeverageDetails,
-    status: beverageStatus,
-  } = useContext(BeverageContext);
+    beverageDataLoadStatus,
+  } = useContext(NavigationContext);
   const { status: languageStatus } = useContext(LanguageContext);
 
   const preventClose = (e: Event) => {
@@ -34,16 +34,18 @@ const Update: React.FC<Props> = ({ location }) => {
   };
 
   useEffect(() => {
-    const badge = location.state?.badge;
-    const brand = location.state?.brand;
-    const shortId = location.state?.shortId;
+    if (languageStatus === StatusEnum.fulfilled) {
+      const badge = location.state?.badge;
+      const brand = location.state?.brand;
+      const shortId = location.state?.shortId;
 
-    if (badge && brand && shortId) {
-      getBeverageDetails({
-        badge,
-        brand,
-        shortId,
-      });
+      if (badge && brand && shortId) {
+        getBeverageDetails({
+          badge,
+          brand,
+          shortId,
+        });
+      }
     }
 
     window.addEventListener('beforeunload', preventClose);
@@ -52,11 +54,7 @@ const Update: React.FC<Props> = ({ location }) => {
       resetBeverageDetails();
       window.removeEventListener('beforeunload', preventClose);
     };
-  }, []);
-
-  const contextsLoaded =
-    beverageStatus === StatusEnum.fulfilled &&
-    languageStatus === StatusEnum.fulfilled;
+  }, [languageStatus]);
 
   return (
     <Layout>
@@ -66,7 +64,11 @@ const Update: React.FC<Props> = ({ location }) => {
           <FormattedMessage id="dashboard.updateBeverage.title" />
         </Header>
         <Navigation />
-        {contextsLoaded ? <Form /> : <Spinner />}
+        {beverageDataLoadStatus === StatusEnum.fulfilled ? (
+          <Form />
+        ) : (
+          <Spinner />
+        )}
         <Modal />
       </Wrapper>
     </Layout>

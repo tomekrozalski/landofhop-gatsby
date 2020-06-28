@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
 
@@ -22,17 +22,41 @@ type Props = {
 
 const ColorSelect: React.FC<Props> = ({ name, ...props }) => {
   const { formatMessage } = useIntl();
+  const [, , { setValue }] = useField(`${name}.color`);
   const [typeField] = useField(`${name}.type`);
 
   const getEnum = () => {
-    switch (typeField.value.value) {
-      case ContainerType.can:
-        return ContainerColorCan;
-      case ContainerType.bottle:
-      default:
-        return ContainerColorBottle;
+    if (typeField.value) {
+      switch (typeField.value.value) {
+        case ContainerType.can:
+          return ContainerColorCan;
+        case ContainerType.bottle:
+        default:
+          return ContainerColorBottle;
+      }
+    } else {
+      return [];
     }
   };
+
+  useEffect(() => {
+    if (typeField.value) {
+      setValue({
+        ...(typeField.value.value === ContainerType.bottle && {
+          label: formatMessage({
+            id: `beverage.details.container.color.${ContainerColorBottle.brown}`,
+          }),
+          value: ContainerColorBottle.brown,
+        }),
+        ...(typeField.value.value === ContainerType.can && {
+          label: formatMessage({
+            id: `beverage.details.container.color.${ContainerColorCan.silver}`,
+          }),
+          value: ContainerColorCan.silver,
+        }),
+      });
+    }
+  }, [typeField.value]);
 
   return (
     <Select
