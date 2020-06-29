@@ -13,12 +13,14 @@ import { LanguageContext } from 'dashboard/utils/contexts';
 import { FormValues as FormValuesLabel } from 'dashboard/BeverageData/Label/utils';
 import { FormValues as FormValuesProducer } from 'dashboard/BeverageData/Producer/utils';
 import { FormValues as FormValuesEditorial } from 'dashboard/BeverageData/Editorial/utils';
-import { label as initialLabelValues } from './initialValues';
+import {
+  label as initialLabelValues,
+  producer as initialProducerValues,
+} from './initialValues';
 import { dataToLabelForm, dataToProducerForm } from './normalize';
 import { BeverageType } from './Beverage.type';
 
 type SubformType = SubformEnum | null;
-type ProducerType = FormValuesProducer | null;
 type EditorialType = FormValuesEditorial | null;
 
 export const NavigationContext = React.createContext({
@@ -32,7 +34,7 @@ export const NavigationContext = React.createContext({
   }) => {},
   label: initialLabelValues as FormValuesLabel,
   part: FormName.beverageLabel,
-  producer: null as ProducerType,
+  producer: initialProducerValues as FormValuesProducer,
   resetBeverageDetails: () => {},
   saveEditorial: (values: FormValuesEditorial) => {
     values;
@@ -58,7 +60,9 @@ const Navigation: React.FC = ({ children }) => {
 
   const [editorial, setEditorial] = useState<EditorialType>(null);
   const [label, setLabel] = useState<FormValuesLabel>(initialLabelValues);
-  const [producer, setProducer] = useState<ProducerType>(null);
+  const [producer, setProducer] = useState<FormValuesProducer>(
+    initialProducerValues,
+  );
   const [subform, setSubform] = useState<SubformType>(null);
   const [part, setPart] = useState<FormName>(FormName.beverageLabel);
 
@@ -116,7 +120,7 @@ const Navigation: React.FC = ({ children }) => {
 
   const resetBeverageDetails = () => {
     setLabel(initialLabelValues);
-    setProducer(null);
+    setProducer(initialProducerValues);
     setEditorial(null);
   };
 

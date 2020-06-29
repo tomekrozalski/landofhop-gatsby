@@ -28,11 +28,6 @@ const Update: React.FC<Props> = ({ location }) => {
   } = useContext(NavigationContext);
   const { status: languageStatus } = useContext(LanguageContext);
 
-  const preventClose = (e: Event) => {
-    e.preventDefault();
-    e.returnValue = true;
-  };
-
   useEffect(() => {
     if (languageStatus === StatusEnum.fulfilled) {
       const badge = location.state?.badge;
@@ -48,12 +43,7 @@ const Update: React.FC<Props> = ({ location }) => {
       }
     }
 
-    window.addEventListener('beforeunload', preventClose);
-
-    return () => {
-      resetBeverageDetails();
-      window.removeEventListener('beforeunload', preventClose);
-    };
+    return resetBeverageDetails;
   }, [languageStatus]);
 
   return (

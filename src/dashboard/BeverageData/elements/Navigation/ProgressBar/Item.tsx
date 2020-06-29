@@ -3,15 +3,11 @@ import styled from 'styled-components';
 
 import { Icon } from '.';
 
-const Wrapper = styled.li`
+const Wrapper = styled.li<{ active?: boolean }>`
   flex: 1;
-`;
-
-const Button = styled.button.attrs({
-  type: 'button',
-})<{ active?: boolean }>`
-  display: block;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 8rem;
 
   &:focus {
@@ -30,10 +26,8 @@ type Props = {
 };
 
 const Item: React.FC<Props> = ({ active = false, order }) => (
-  <Wrapper>
-    <Button active={active}>
-      <Icon order={order} />
-    </Button>
+  <Wrapper active={active}>
+    <Icon order={order} />
   </Wrapper>
 );
 
