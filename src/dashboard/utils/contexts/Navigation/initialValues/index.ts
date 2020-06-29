@@ -1,4 +1,5 @@
 import label from './label';
 import producer from './producer';
+import editorial from './editorial';
 
-export { label, producer };
+export { editorial, label, producer };

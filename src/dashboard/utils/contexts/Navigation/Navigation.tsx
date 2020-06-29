@@ -16,17 +16,21 @@ import { FormValues as FormValuesEditorial } from 'dashboard/BeverageData/Editor
 import {
   label as initialLabelValues,
   producer as initialProducerValues,
+  editorial as initialEditorialValues,
 } from './initialValues';
-import { dataToLabelForm, dataToProducerForm } from './normalize';
+import {
+  dataToLabelForm,
+  dataToProducerForm,
+  dataToEditorialForm,
+} from './normalize';
 import { BeverageType } from './Beverage.type';
 
 type SubformType = SubformEnum | null;
-type EditorialType = FormValuesEditorial | null;
 
 export const NavigationContext = React.createContext({
   beverageDataLoadStatus: StatusEnum.idle,
   beverageFormType: FormType.add,
-  editorial: null as EditorialType,
+  editorial: initialEditorialValues as FormValuesEditorial,
   getBeverageDetails: ({}: {
     badge: string;
     brand: string;
@@ -58,7 +62,9 @@ const Navigation: React.FC = ({ children }) => {
   const intl = useIntl();
   const { values: languages } = useContext(LanguageContext);
 
-  const [editorial, setEditorial] = useState<EditorialType>(null);
+  const [editorial, setEditorial] = useState<FormValuesEditorial>(
+    initialEditorialValues,
+  );
   const [label, setLabel] = useState<FormValuesLabel>(initialLabelValues);
   const [producer, setProducer] = useState<FormValuesProducer>(
     initialProducerValues,
@@ -111,6 +117,14 @@ const Navigation: React.FC = ({ children }) => {
             languages,
           }),
         );
+
+        setEditorial(
+          dataToEditorialForm({
+            data: beverageDetails,
+            intl,
+            languages,
+          }),
+        );
         setBeverageDataLoadStatus(StatusEnum.fulfilled);
       })
       .catch(() => {
@@ -121,7 +135,7 @@ const Navigation: React.FC = ({ children }) => {
   const resetBeverageDetails = () => {
     setLabel(initialLabelValues);
     setProducer(initialProducerValues);
-    setEditorial(null);
+    setEditorial(initialEditorialValues);
   };
 
   return (

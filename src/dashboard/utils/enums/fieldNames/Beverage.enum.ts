@@ -1,11 +1,15 @@
 enum Beverage {
+  added = 'added',
   aged = 'aged',
   alcohol = 'alcohol',
+  alcoholScope = 'alcoholScope',
   badge = 'badge',
   barcode = 'barcode',
   bitterness = 'bitterness',
   brand = 'brand',
   dryHopped = 'dryHopped',
+  clarity = 'clarity',
+  color = 'color',
   container = 'container',
   contract = 'contract',
   cooperation = 'cooperation',
@@ -29,6 +33,7 @@ enum Beverage {
   sweetness = 'sweetness',
   tale = 'tale',
   temperature = 'temperature',
+  updated = 'updated',
 }
 
 export default Beverage;
