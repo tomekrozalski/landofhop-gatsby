@@ -12,7 +12,7 @@ import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
 const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
-  const { saveProducer, setPart } = useContext(NavigationContext);
+  const { setPart } = useContext(NavigationContext);
 
   const moveBack = (e: React.MouseEvent) => {
     e.preventDefault();

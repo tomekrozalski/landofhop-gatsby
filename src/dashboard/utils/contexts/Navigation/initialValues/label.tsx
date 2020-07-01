@@ -3,9 +3,9 @@ import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 const label = {
   [FieldName.badge]: '',
   // -----------
-  [FieldName.name]: [{ lang: '', value: '' }],
+  [FieldName.name]: [{ lang: { value: '' }, value: '' }],
   [FieldName.series]: [],
-  [FieldName.brand]: '',
+  [FieldName.brand]: { label: '', value: '' },
   [FieldName.cooperation]: null,
   [FieldName.contract]: null,
   [FieldName.place]: null,

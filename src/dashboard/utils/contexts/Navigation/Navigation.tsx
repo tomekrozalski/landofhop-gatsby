@@ -18,11 +18,7 @@ import {
   producer as initialProducerValues,
   editorial as initialEditorialValues,
 } from './initialValues';
-import {
-  dataToLabelForm,
-  dataToProducerForm,
-  dataToEditorialForm,
-} from './normalize';
+import { dataToForm, formToData } from './normalize';
 import { BeverageType } from './Beverage.type';
 
 type SubformType = SubformEnum | null;
@@ -83,7 +79,8 @@ const Navigation: React.FC = ({ children }) => {
   const saveEditorial = (values: FormValuesEditorial) => {
     setEditorial(values);
 
-    console.log('transform data and call to API');
+    const normalizedData = formToData({ label, producer, editorial: values });
+    console.log('call to API with', normalizedData);
   };
 
   const getBeverageDetails = ({
@@ -102,29 +99,19 @@ const Navigation: React.FC = ({ children }) => {
       path: `beverage/${shortId}/${brand}/${badge}`,
     })
       .then((beverageDetails: BeverageType) => {
-        setLabel(
-          dataToLabelForm({
-            data: beverageDetails,
-            intl,
-            languages,
-          }),
-        );
+        const {
+          normalizedLabel,
+          normalizedProducer,
+          normalizedEditorial,
+        } = dataToForm({
+          data: beverageDetails,
+          intl,
+          languages,
+        });
 
-        setProducer(
-          dataToProducerForm({
-            data: beverageDetails,
-            intl,
-            languages,
-          }),
-        );
-
-        setEditorial(
-          dataToEditorialForm({
-            data: beverageDetails,
-            intl,
-            languages,
-          }),
-        );
+        setLabel(normalizedLabel);
+        setProducer(normalizedProducer);
+        setEditorial(normalizedEditorial);
         setBeverageDataLoadStatus(StatusEnum.fulfilled);
       })
       .catch(() => {

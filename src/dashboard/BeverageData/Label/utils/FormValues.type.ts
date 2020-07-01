@@ -15,38 +15,30 @@ export type FormValues = {
     lang: Lang;
     value: string;
   }[];
-  [FieldName.brand]:
-    | {
-        label: string;
-        value: string;
-      }
-    | string;
+  [FieldName.brand]: {
+    label: string;
+    value: string;
+  };
   [FieldName.cooperation]:
     | {
         label: string;
         value: string;
       }[]
     | null;
-  [FieldName.contract]:
-    | {
-        label: string;
-        value: string;
-      }
-    | string
-    | null;
-  [FieldName.place]:
-    | {
-        label: string;
-        value: string;
-      }
-    | string
-    | null;
+  [FieldName.contract]: {
+    label: string;
+    value: string;
+  } | null;
+  [FieldName.place]: {
+    label: string;
+    value: string;
+  } | null;
   [FieldName.tale]:
     | {
         lang: Lang;
         value: string;
       }[]
-    | [];
+    | null;
   [FieldName.barcode]: string | null;
 
   [FieldName.container]: {

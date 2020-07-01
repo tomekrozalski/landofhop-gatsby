@@ -1,6 +1,4 @@
-export type Lang =
-  | {
-      label?: string;
-      value: string;
-    }
-  | string;
+export type Lang = {
+  label?: string;
+  value: string;
+};

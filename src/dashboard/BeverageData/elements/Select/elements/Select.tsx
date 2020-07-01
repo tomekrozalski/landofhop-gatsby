@@ -3,6 +3,7 @@ import { useField } from 'formik';
 import ReactSelect from 'react-select';
 import { useIntl } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
+import isEqual from 'lodash/isEqual';
 
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
@@ -40,8 +41,9 @@ const Select: React.FC<Props> = ({
   placeholder,
 }) => {
   const { formatMessage } = useIntl();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, _, { setValue }] = useField(name);
+  const [field, , { setValue }] = useField(name);
+
+  const value = isEqual(field.value, { value: '' }) ? null : field.value;
 
   return (
     <Wrapper area={area}>
@@ -64,7 +66,7 @@ const Select: React.FC<Props> = ({
             : formatMessage({ id: 'dashboard.select.placeholder.default' })
         }
         styles={styles}
-        value={field.value}
+        value={value}
       />
     </Wrapper>
   );

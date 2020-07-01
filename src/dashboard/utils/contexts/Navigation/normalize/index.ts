@@ -1,5 +1,4 @@
-import dataToLabelForm from './dataToForm/label';
-import dataToProducerForm from './dataToForm/producer';
-import dataToEditorialForm from './dataToForm/editorial';
+import dataToForm from './dataToForm';
+import formToData from './formToData';
 
-export { dataToLabelForm, dataToProducerForm, dataToEditorialForm };
+export { dataToForm, formToData };
