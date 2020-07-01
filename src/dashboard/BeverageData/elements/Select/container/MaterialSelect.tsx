@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
-import isEqual from 'lodash/isEqual';
+import isEmpty from 'lodash/isEmpty';
 
 import { FormName } from 'utils/enums';
 import {
@@ -41,7 +41,7 @@ const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   };
 
   useEffect(() => {
-    if (typeField.value) {
+    if (typeField.value?.label !== '') {
       setValue({
         ...(typeField.value.value === ContainerType.bottle && {
           label: formatMessage({
@@ -62,7 +62,7 @@ const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   return (
     <Select
       {...props}
-      disabled={isEqual(materialField.value, { value: '' })}
+      disabled={materialField.value?.label === ''}
       name={`${name}.material`}
       options={Object.keys(getEnum()).map(type => ({
         label: formatMessage({

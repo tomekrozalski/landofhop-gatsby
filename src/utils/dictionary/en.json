@@ -185,6 +185,7 @@
     }
   },
   "global": {
+    "added": "Added",
     "badge": "Badge",
     "barcode": "Barcode",
     "brand": "Brand",
@@ -206,6 +207,7 @@
     "place": "Place",
     "series": "Series",
     "tale": "Tale",
+    "updated": "Last time updated",
     "website": "Website"
   },
   "header": {

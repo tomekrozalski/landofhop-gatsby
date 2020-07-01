@@ -9,7 +9,10 @@ import {
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { LanguageValue } from 'dashboard/utils/types';
-import { getValueByLanguage as getValueByLanguageHelper } from 'dashboard/utils/helpers';
+import {
+  convertDateToString,
+  getValueByLanguage as getValueByLanguageHelper,
+} from 'dashboard/utils/helpers';
 import {
   normalizeObjectLanguage as normalizeObjectLanguageHelper,
   normalizeLanguageValuePair as normalizeLanguageValuePairHelper,
@@ -29,6 +32,7 @@ type Props = {
 
 const dataToForm = ({ data, intl, languages }: Props) => {
   const {
+    added,
     badge,
     barcode,
     brand,
@@ -40,6 +44,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     place,
     series,
     tale,
+    updated,
   } = data;
 
   const normalizeObjectLanguage = normalizeObjectLanguageHelper({
@@ -158,6 +163,8 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     },
     normalizedEditorial: {
       ...initialEditorialValues,
+      added: convertDateToString(added),
+      ...(updated && { updated: convertDateToString(updated) }),
       ...(notes && {
         [FieldName.notes]: notes,
       }),

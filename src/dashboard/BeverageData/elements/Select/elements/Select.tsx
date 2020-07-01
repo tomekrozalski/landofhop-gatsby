@@ -3,7 +3,6 @@ import { useField } from 'formik';
 import ReactSelect from 'react-select';
 import { useIntl } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
-import isEqual from 'lodash/isEqual';
 
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
@@ -43,7 +42,8 @@ const Select: React.FC<Props> = ({
   const { formatMessage } = useIntl();
   const [field, , { setValue }] = useField(name);
 
-  const value = isEqual(field.value, { value: '' }) ? null : field.value;
+  const value =
+    field.value?.label === '' || field.value?.value === '' ? null : field.value;
 
   return (
     <Wrapper area={area}>

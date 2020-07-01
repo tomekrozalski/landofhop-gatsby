@@ -1,3 +1,4 @@
+import Added from './Added';
 import Badge from './Badge';
 import Barcode from './Barcode';
 import Brand from './Brand';
@@ -15,9 +16,11 @@ import OwnedBy from './OwnedBy';
 import Place from './Place';
 import Series from './Series';
 import Tale from './Tale';
+import Updated from './Updated';
 import Website from './Website';
 
 export {
+  Added,
   Badge,
   Barcode,
   Brand,
@@ -35,5 +38,6 @@ export {
   Place,
   Series,
   Tale,
+  Updated,
   Website,
 };

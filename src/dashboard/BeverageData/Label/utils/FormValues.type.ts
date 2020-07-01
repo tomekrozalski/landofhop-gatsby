@@ -33,12 +33,10 @@ export type FormValues = {
     label: string;
     value: string;
   } | null;
-  [FieldName.tale]:
-    | {
-        lang: Lang;
-        value: string;
-      }[]
-    | null;
+  [FieldName.tale]: {
+    lang: Lang;
+    value: string;
+  }[];
   [FieldName.barcode]: string | null;
 
   [FieldName.container]: {

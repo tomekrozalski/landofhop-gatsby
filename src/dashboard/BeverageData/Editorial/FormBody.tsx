@@ -4,10 +4,10 @@ import { FormikProps } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
-import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
+import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
-import { Notes } from '../fields';
+import { Added, Notes, Updated } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -27,6 +27,15 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       title="dashboard.beverage.editorialInfo.title"
     >
       {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.otherInfo" />
+      <Added
+        fieldName={BeverageFieldNames.added}
+        formName={FormName.beverageEditorial}
+      />
+      <Updated
+        fieldName={BeverageFieldNames.updated}
+        formName={FormName.beverageEditorial}
+      />
       <Notes
         fieldName={BeverageFieldNames.notes}
         formName={FormName.beverageEditorial}

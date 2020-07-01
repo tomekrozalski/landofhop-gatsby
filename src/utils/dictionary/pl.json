@@ -185,6 +185,7 @@
     }
   },
   "global": {
+    "added": "Dodano",
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
     "brand": "Marka",
@@ -206,6 +207,7 @@
     "place": "Miejsce",
     "series": "Seria",
     "tale": "Opis",
+    "updated": "Ostatnio poprawiono",
     "website": "Strona internetowa"
   },
   "header": {

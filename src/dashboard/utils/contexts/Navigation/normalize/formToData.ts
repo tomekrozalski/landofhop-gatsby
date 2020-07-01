@@ -1,4 +1,5 @@
 import { Lang } from 'dashboard/utils/types/form';
+import { convertStringToDate } from 'dashboard/utils/helpers';
 import { FormValues as FormValuesLabel } from 'dashboard/BeverageData/Label/utils';
 import { FormValues as FormValuesProducer } from 'dashboard/BeverageData/Producer/utils';
 import { FormValues as FormValuesEditorial } from 'dashboard/BeverageData/Editorial/utils';
@@ -62,12 +63,14 @@ const formToData = ({ label, producer, editorial }: Props) => {
         // editorial
       },
     }),
-    ...(label.tale && {
+    ...((label.tale?.length || producer.tale?.length) && {
       tale: {
-        ...(label.tale && {
+        ...(label.tale?.length && {
           label: label.tale.map(normalizeLangValue),
         }),
-        // producer
+        ...(producer.tale?.length && {
+          producer: producer.tale.map(normalizeLangValue),
+        }),
       },
     }),
     ...(label.barcode && { barcode: label.barcode }),
@@ -96,9 +99,11 @@ const formToData = ({ label, producer, editorial }: Props) => {
     // color: editorial
     // clarity: editorial
     // price: label, producer, editorial
-    // added: editorial
+    added: convertStringToDate(editorial.added),
+    ...(editorial.updated && {
+      updated: convertStringToDate(editorial.updated),
+    }),
     // updated: editorial
-
     container: {
       color: label.container.color.value,
       material: label.container.material.value,

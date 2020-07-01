@@ -3,10 +3,8 @@ import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
 export type FormValues = {
   // -----------
-  [FieldName.tale]:
-    | {
-        lang: Lang;
-        value: string;
-      }[]
-    | [];
+  [FieldName.tale]: {
+    lang: Lang;
+    value: string;
+  }[];
 };

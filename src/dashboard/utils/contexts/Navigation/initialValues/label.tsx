@@ -1,4 +1,10 @@
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import {
+  ContainerColor,
+  ContainerMaterial,
+  ContainerType,
+  ContainerUnit,
+} from 'components/BeverageDetails/utils/enums';
 
 const label = {
   [FieldName.badge]: '',
@@ -34,10 +40,10 @@ const label = {
   [FieldName.temperature]: null,
   // -----------
   [FieldName.container]: {
-    color: { value: '' },
-    material: { value: '' },
-    unit: { value: '' },
-    type: { value: '' },
+    color: { label: '', value: ContainerColor.brown },
+    material: { label: '', value: ContainerMaterial.glass },
+    unit: { label: '', value: ContainerUnit.ml },
+    type: { label: '', value: ContainerType.bottle },
     value: 0,
     hasCapWireFlip: false,
   },
