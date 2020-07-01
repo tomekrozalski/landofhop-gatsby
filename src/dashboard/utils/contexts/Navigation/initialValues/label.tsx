@@ -34,10 +34,10 @@ const label = {
   [FieldName.temperature]: null,
   // -----------
   [FieldName.container]: {
-    color: null,
-    material: null,
-    unit: null,
-    type: '',
+    color: { value: '' },
+    material: { value: '' },
+    unit: { value: '' },
+    type: { value: '' },
     value: 0,
     hasCapWireFlip: false,
   },

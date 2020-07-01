@@ -31,6 +31,7 @@ const formToData = ({ label, producer, editorial }: Props) => {
         ...(label.series.length && {
           label: label.series.map(normalizeLangValue),
         }),
+        // producer
       },
     }),
     brand: label.brand.value,
@@ -39,6 +40,8 @@ const formToData = ({ label, producer, editorial }: Props) => {
         ...(label.cooperation && {
           label: label.cooperation.map(({ value }) => value),
         }),
+        // producer
+        // editorial
       },
     }),
     ...(label.contract && {
@@ -46,6 +49,8 @@ const formToData = ({ label, producer, editorial }: Props) => {
         ...(label.contract && {
           label: label.contract.value,
         }),
+        // producer
+        // editorial
       },
     }),
     ...(label.place && {
@@ -53,6 +58,8 @@ const formToData = ({ label, producer, editorial }: Props) => {
         ...(label.place && {
           label: label.place.value,
         }),
+        // producer
+        // editorial
       },
     }),
     ...(label.tale && {
@@ -60,9 +67,46 @@ const formToData = ({ label, producer, editorial }: Props) => {
         ...(label.tale && {
           label: label.tale.map(normalizeLangValue),
         }),
+        // producer
       },
     }),
     ...(label.barcode && { barcode: label.barcode }),
+
+    // fermentation: label, producer, editorial
+    // style: label, producer, editorial
+    // extract: label, producer
+    // alcohol: label, producer
+    // alcoholScope: editorial
+    // filtration: label, producer, editorial
+    // pasteurization: label, producer, editorial
+    // aged: label, producer, editorial
+    // dryHopped: label, producer, editorial
+    // expirationDate: label, producer
+    // ingredients: label, producer
+    // ingredientList: label, producer
+    // smokedMalt: label, producer
+
+    // bitterness: label, producer
+    // sweetness: label, producer
+    // fullness: label, producer
+    // power: label, producer
+    // hoppyness: label, producer
+    // temperature: label, producer
+
+    // color: editorial
+    // clarity: editorial
+    // price: label, producer, editorial
+    // added: editorial
+    // updated: editorial
+
+    container: {
+      color: label.container.color.value,
+      material: label.container.material.value,
+      type: label.container.type.value,
+      unit: label.container.unit.value,
+      value: label.container.value,
+    },
+    ...(editorial.notes && { notes: editorial.notes }),
   };
 };
 

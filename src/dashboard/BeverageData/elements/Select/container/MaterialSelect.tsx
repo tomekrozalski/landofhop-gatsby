@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
+import isEqual from 'lodash/isEqual';
 
 import { FormName } from 'utils/enums';
 import {
@@ -22,7 +23,7 @@ type Props = {
 
 const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   const { formatMessage } = useIntl();
-  const [, , { setValue }] = useField(`${name}.material`);
+  const [materialField, , { setValue }] = useField(`${name}.material`);
   const [typeField] = useField(`${name}.type`);
 
   const getEnum = () => {
@@ -61,6 +62,7 @@ const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   return (
     <Select
       {...props}
+      disabled={isEqual(materialField.value, { value: '' })}
       name={`${name}.material`}
       options={Object.keys(getEnum()).map(type => ({
         label: formatMessage({
