@@ -11,13 +11,13 @@ import { Added, Notes, Updated } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
-const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
-  const { setPart } = useContext(NavigationContext);
+const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
+  const { saveEditorial, setPart } = useContext(NavigationContext);
 
   const moveBack = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // saveProducer ?
+    saveEditorial(values);
     setPart(FormName.beverageProducer);
   };
 

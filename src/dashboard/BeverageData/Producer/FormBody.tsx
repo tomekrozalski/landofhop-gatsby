@@ -4,20 +4,20 @@ import { FormikProps } from 'formik';
 
 import { FormName } from 'utils/enums';
 import { Button } from 'elements';
-import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
+import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
 import { Tale } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
-const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
-  const { setPart } = useContext(NavigationContext);
+const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
+  const { saveProducer, setPart } = useContext(NavigationContext);
 
   const moveBack = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // saveProducer ?
+    saveProducer(values);
     setPart(FormName.beverageLabel);
   };
 

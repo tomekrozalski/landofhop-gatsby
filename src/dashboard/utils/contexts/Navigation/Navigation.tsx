@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
 import React, { useContext, useState } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
+import { navigate } from 'gatsby';
 
 import { FormName } from 'utils/enums';
 import { serverCall } from 'utils/helpers';
+import { AuthenticationContext } from 'utils/contexts';
 import {
   FormType,
   Subform as SubformEnum,
@@ -24,6 +26,9 @@ import { BeverageType } from './Beverage.type';
 type SubformType = SubformEnum | null;
 
 export const NavigationContext = React.createContext({
+  addBeverage: (values: FormValuesEditorial) => {
+    values;
+  },
   beverageDataLoadStatus: StatusEnum.idle,
   beverageFormType: FormType.add,
   editorial: initialEditorialValues as FormValuesEditorial,
@@ -56,6 +61,7 @@ export const NavigationContext = React.createContext({
 
 const Navigation: React.FC = ({ children }) => {
   const intl = useIntl();
+  const { token } = useContext(AuthenticationContext);
   const { values: languages } = useContext(LanguageContext);
 
   const [editorial, setEditorial] = useState<FormValuesEditorial>(
@@ -75,12 +81,23 @@ const Navigation: React.FC = ({ children }) => {
 
   const saveLabel = setLabel;
   const saveProducer = setProducer;
+  const saveEditorial = setEditorial;
 
-  const saveEditorial = (values: FormValuesEditorial) => {
-    setEditorial(values);
-
+  const addBeverage = (values: FormValuesEditorial) => {
     const normalizedData = formToData({ label, producer, editorial: values });
-    console.log('call to API with', normalizedData);
+
+    serverCall({
+      path: 'beverage',
+      method: 'POST',
+      body: JSON.stringify(normalizedData),
+      token,
+    })
+      .then(({ badge, brand, shortId }) => {
+        navigate(`pl/update-beverage-images/${shortId}/${brand}/${badge}`);
+      })
+      .catch((e: any) => {
+        console.log('e', e);
+      });
   };
 
   const getBeverageDetails = ({
@@ -128,6 +145,7 @@ const Navigation: React.FC = ({ children }) => {
   return (
     <NavigationContext.Provider
       value={{
+        addBeverage,
         beverageDataLoadStatus,
         beverageFormType,
         editorial,
