@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { LanguageValue } from 'utils/types';
 import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { Stretcher } from '.';
 
@@ -42,11 +41,17 @@ type Props = {
   badge: string;
   brand: {
     badge: string;
-    name: LanguageValue;
+    name: {
+      language?: string | null;
+      value: string;
+    };
   };
   hasTail?: boolean;
   height?: number;
-  name: LanguageValue;
+  name: {
+    language?: string | null;
+    value: string;
+  };
   outline?: string;
   shortId: string;
   type: BeverageImageType;

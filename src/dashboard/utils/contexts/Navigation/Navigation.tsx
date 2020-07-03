@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { navigate } from 'gatsby';
 
@@ -83,6 +83,19 @@ const Navigation: React.FC = ({ children }) => {
   const saveProducer = setProducer;
   const saveEditorial = setEditorial;
 
+  const preventClose = (e: Event) => {
+    e.preventDefault();
+    e.returnValue = true;
+  };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', preventClose);
+
+    return () => {
+      window.removeEventListener('beforeunload', preventClose);
+    };
+  }, []);
+
   const addBeverage = (values: FormValuesEditorial) => {
     const normalizedData = formToData({ label, producer, editorial: values });
 
@@ -92,8 +105,12 @@ const Navigation: React.FC = ({ children }) => {
       body: JSON.stringify(normalizedData),
       token,
     })
-      .then(({ badge, brand, shortId }) => {
-        navigate(`pl/update-beverage-images/${shortId}/${brand}/${badge}`);
+      .then(async ({ badge, brand, shortId }) => {
+        await window.removeEventListener('beforeunload', preventClose);
+
+        navigate('/pl/update-beverage-images', {
+          state: { badge, brand, shortId },
+        });
       })
       .catch((e: any) => {
         console.log('e', e);

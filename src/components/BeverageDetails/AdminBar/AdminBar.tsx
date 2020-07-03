@@ -41,7 +41,8 @@ const AdminBar = () => {
         <FormattedMessage id="beverage.details.adminBar.update" />
       </StyledLink>
       <StyledLink
-        to={`/update-beverage-images/${shortId}/${brand.badge}/${badge}`}
+        to="/update-beverage-images"
+        state={{ badge, brand: brand.badge, shortId }}
       >
         <FormattedMessage id="beverage.details.adminBar.updatePhotos" />
       </StyledLink>

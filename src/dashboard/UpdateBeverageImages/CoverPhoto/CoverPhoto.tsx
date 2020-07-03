@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { CoverImage, SectionHeader } from 'elements';
 import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { BeverageContext } from '../UpdateBeverageImages';
@@ -10,15 +9,13 @@ import { Aside, SectionWrapper } from './elements';
 import { DropZone, Error, Navigation } from '.';
 
 type Props = {
-  next: BeverageBaseTypes;
-  previous: BeverageBaseTypes;
   updateValues: () => void;
 };
 
-const CoverPhoto: React.FC<Props> = ({ next, previous, updateValues }) => {
-  const [errors, setErrors] = useState<Blob[]>([]);
-
+const CoverPhoto: React.FC<Props> = ({ updateValues }) => {
   const { badge, brand, photos, shortId } = useContext(BeverageContext);
+
+  const [errors, setErrors] = useState<Blob[]>([]);
 
   return (
     <>
@@ -50,11 +47,7 @@ const CoverPhoto: React.FC<Props> = ({ next, previous, updateValues }) => {
           <DropZone setErrors={setErrors} updateValues={updateValues} />
         </Frame>
         <Aside>
-          <Navigation
-            current={{ badge, brand, shortId }}
-            next={next}
-            previous={previous}
-          />
+          <Navigation current={{ badge, brand, shortId }} />
           {errors.length ? (
             <Error size={errors[0].size} type={errors[0].type} />
           ) : null}

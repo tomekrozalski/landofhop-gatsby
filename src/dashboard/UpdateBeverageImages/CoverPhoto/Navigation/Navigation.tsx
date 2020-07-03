@@ -7,8 +7,8 @@ import { Button, Dot, Header, Inactive, Wrapper } from '.';
 
 type Props = {
   current: BeverageBaseTypes;
-  next: BeverageBaseTypes;
-  previous: BeverageBaseTypes;
+  next?: BeverageBaseTypes;
+  previous?: BeverageBaseTypes;
 };
 
 const Navigation: React.FC<Props> = ({ current, next, previous }) => (

@@ -378,9 +378,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const BeverageDetails = path.resolve(
     `src/components/BeverageDetails/GatsbyAPI.tsx`,
   );
-  const UpdateBeverageImages = path.resolve(
-    `src/dashboard/UpdateBeverageImages/GatsbyAPI.tsx`,
-  );
 
   const allbeverages = await graphql(`
     query AllBeverages {
@@ -440,18 +437,6 @@ exports.createPages = async ({ graphql, actions }) => {
         page: Math.floor(index / itemsPerPage) + 1, // @ToDo: I don't use it right now
         previous,
         shortId,
-      },
-    });
-
-    createPage({
-      path: `/update-beverage-images/${shortId}/${brandBadge}/${badge}`,
-      component: UpdateBeverageImages,
-      context: {
-        shortId,
-        badge,
-        brandBadge,
-        next,
-        previous,
       },
     });
   });

@@ -2,50 +2,54 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { Layout, SEO } from 'components';
+import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
-import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import {
-  Beverage as BeverageTypes,
-  TranslatedBeverage as TranslatedBeverageTypes,
-} from './utils/types';
-import { initialBeverageData, translateBeverage } from './utils/helpers';
+import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { TranslatedBeverage as TranslatedBeverageType } from './utils/types';
+import { initialBeverageData } from './utils/helpers';
 import { Cap, CoverPhoto, Gallery } from '.';
 
-// @Info: I could use Partial generic, but it would complicate displaying some components
-export const BeverageContext = React.createContext<TranslatedBeverageTypes>(
+export const BeverageContext = React.createContext<TranslatedBeverageType>(
   initialBeverageData,
 );
 
 type Props = {
-  data: {
-    beverage: BeverageTypes;
-  };
-  pageContext: {
-    badge: string;
-    brandBadge: string;
-    next: BeverageBaseTypes;
-    previous: BeverageBaseTypes;
-    shortId: string;
+  location: {
+    state: {
+      badge?: string;
+      brand?: string;
+      shortId?: string;
+    } | null;
   };
 };
 
-const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => {
+const UpdateBeverageImages: React.FC<Props> = ({ location }) => {
   const { token } = useContext(AuthenticationContext);
 
-  const [
-    fetchedBeverage,
-    setFetchedBeverage,
-  ] = useState<TranslatedBeverageTypes | null>(null);
+  const [beverageImagesData, setBeverageImagesData] = useState<
+    TranslatedBeverageType
+  >(initialBeverageData);
+  const [status, setStatus] = useState<StatusEnum>(StatusEnum.idle);
+
+  useEffect(() => {
+    if (beverageImagesData) {
+      setStatus(StatusEnum.fulfilled);
+    }
+  }, [beverageImagesData]);
 
   const updateValues = () => {
-    const { badge, brand, shortId } = data.beverage;
+    const badge = location.state?.badge;
+    const brand = location.state?.brand;
+    const shortId = location.state?.shortId;
 
-    serverCall({
-      path: `beverage/update-beverage-images/pl/${shortId}/${brand.badge}/${badge}`,
-      token,
-    }).then(setFetchedBeverage);
+    if (badge && brand && shortId) {
+      serverCall({
+        path: `beverage/update-beverage-images/pl/${shortId}/${brand}/${badge}`,
+        token,
+      }).then(setBeverageImagesData);
+    }
   };
 
   useEffect(updateValues, []);
@@ -53,20 +57,20 @@ const UpdateBeverageImages: React.FC<Props> = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="updateBeverageImages" />
-      <BeverageContext.Provider
-        value={fetchedBeverage || translateBeverage(data.beverage)}
-      >
+      <BeverageContext.Provider value={beverageImagesData}>
         <Wrapper>
           <Header>
             <FormattedMessage id="dashboard.updateBeverageImages.title" />
           </Header>
-          <CoverPhoto
-            next={pageContext.next}
-            previous={pageContext.previous}
-            updateValues={updateValues}
-          />
-          <Gallery updateValues={updateValues} />
-          <Cap updateValues={updateValues} />
+          {status === StatusEnum.fulfilled ? (
+            <>
+              <CoverPhoto updateValues={updateValues} />
+              <Gallery updateValues={updateValues} />
+              <Cap updateValues={updateValues} />
+            </>
+          ) : (
+            <Spinner />
+          )}
         </Wrapper>
       </BeverageContext.Provider>
     </Layout>

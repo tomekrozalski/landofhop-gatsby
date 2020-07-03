@@ -1,24 +1,27 @@
-import { ContainerType } from 'utils/enums/beverage';
-import { InstitutionTranslated, LanguageValue } from 'utils/types';
+import { ContainerType } from 'components/BeverageDetails/utils/enums';
+import { LanguageValue } from 'dashboard/utils/types';
 
 export type TranslatedBeverage = {
   id: string;
   shortId: string;
   badge: string;
   name: LanguageValue;
-  brand: InstitutionTranslated;
-  photos: {
+  brand: {
+    badge: string;
+    name: LanguageValue;
+  };
+  photos?: {
     cap: boolean | null;
-    cover: {
+    cover?: {
       height: number;
       width: number;
-    } | null;
+    };
     gallery?: number;
-    outlines: {
+    outlines?: {
       cover?: string;
       gallery?: string;
-    } | null;
-  } | null;
+    };
+  };
   container: {
     type: ContainerType;
   };
