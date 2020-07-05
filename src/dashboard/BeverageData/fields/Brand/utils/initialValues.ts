@@ -4,7 +4,9 @@ export default {
   [FieldName.badge]: '',
   [FieldName.name]: [
     {
-      lang: '',
+      lang: {
+        value: '',
+      },
       value: '',
     },
   ],

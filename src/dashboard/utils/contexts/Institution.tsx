@@ -49,8 +49,8 @@ const Institution: React.FC = ({ children }) => {
         path: 'institution',
         token,
       })
-        .then(() => {
-          getInstitutions();
+        .then((institutions: InstitutionType[]) => {
+          setValues(institutions);
           resolve();
         })
         .catch(reject);
