@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 
-import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
-import { AuthenticationContext } from 'utils/contexts';
+import {
+  AuthenticationContext,
+  AuthenticationStatusEnum,
+} from 'utils/contexts';
 import { Spinner } from 'elements';
 import DashboardStateProvider from 'dashboard/utils/contexts';
 import { NotLoggedIn } from '.';

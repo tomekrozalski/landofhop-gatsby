@@ -4,7 +4,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { Status as StatusEnum } from 'utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';

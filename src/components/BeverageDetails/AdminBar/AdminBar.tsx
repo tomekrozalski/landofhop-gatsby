@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 
-import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { ButtonBasicCSS } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
@@ -29,10 +28,10 @@ const StyledLink = styled(Link)`
 `;
 
 const AdminBar = () => {
-  const { authenticationStatus } = useContext(AuthenticationContext);
+  const { isLoggedIn } = useContext(AuthenticationContext);
   const { badge, brand, shortId } = useContext(BeverageContext);
 
-  return authenticationStatus === AuthenticationStatusEnum.success ? (
+  return isLoggedIn ? (
     <AdminBarWrapper>
       <StyledLink
         to="/update-beverage"

@@ -4,38 +4,51 @@ import { differenceInSeconds, fromUnixTime } from 'date-fns';
 import jwt from 'jsonwebtoken';
 import isObject from 'lodash/isObject';
 
-import { AuthenticationStatus } from 'utils/enums';
 import { serverCall } from 'utils/helpers';
 import { NavigationContext } from './Navigation';
 
+export enum AuthenticationStatusEnum {
+  idle,
+  error,
+  expired,
+  loading,
+  success,
+}
+
 export const AuthenticationContext = React.createContext({
-  authenticationStatus: AuthenticationStatus.loading,
+  authenticationStatus: AuthenticationStatusEnum.idle,
+  isLoggedIn: false,
   logIn: ({}: { email: string; password: string }) => new Promise(() => {}),
+  logInAfterFailure: () => {},
   logOut: () => {},
-  setAuthenticationStatus: (val: AuthenticationStatus) => {
-    val;
-  },
   token: '',
   tokenExpirationDate: new Date(),
 });
 
 const Authentication: React.FC = ({ children }) => {
   const [authenticationStatus, setAuthenticationStatus] = useState(
-    AuthenticationStatus.loading,
+    AuthenticationStatusEnum.loading,
   );
   const [tokenExpirationDate, setTokenExpirationDate] = useState<Date>(
     new Date(),
   );
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState('');
   const [timeout, saveTimeout] = useState<number | null>(null);
 
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
   useEffect(() => {
+    setLoggedIn(authenticationStatus === AuthenticationStatusEnum.success);
+  }, [authenticationStatus]);
+
+  const logInAfterFailure = () => {
     if (timeout) {
       clearTimeout(timeout);
     }
-  }, [authenticationStatus]);
+
+    setAuthenticationStatus(AuthenticationStatusEnum.idle);
+  };
 
   const logOut = () => {
     if (window.localStorage.getItem('token')) {
@@ -44,11 +57,11 @@ const Authentication: React.FC = ({ children }) => {
 
     setLoginbar(false);
     setTokenExpirationDate(new Date());
-    setAuthenticationStatus(AuthenticationStatus.idle);
+    setAuthenticationStatus(AuthenticationStatusEnum.idle);
   };
 
   const tokenExpired = () => {
-    setAuthenticationStatus(AuthenticationStatus.expired);
+    setAuthenticationStatus(AuthenticationStatusEnum.expired);
     setLoginbar(true);
     setNavbar(true);
 
@@ -71,7 +84,7 @@ const Authentication: React.FC = ({ children }) => {
         if (differenceInSeconds(expirationDate, new Date()) > 10) {
           setToken(value);
           setTokenExpirationDate(expirationDate);
-          setAuthenticationStatus(AuthenticationStatus.success);
+          setAuthenticationStatus(AuthenticationStatusEnum.success);
           resolve();
         }
       }
@@ -86,7 +99,7 @@ const Authentication: React.FC = ({ children }) => {
     if (storageToken) {
       checkTokenExpiration(storageToken).catch(tokenExpired);
     } else {
-      setAuthenticationStatus(AuthenticationStatus.idle);
+      setAuthenticationStatus(AuthenticationStatusEnum.idle);
     }
   }, []);
 
@@ -113,7 +126,7 @@ const Authentication: React.FC = ({ children }) => {
           .catch(logOut);
       })
       .catch(() => {
-        setAuthenticationStatus(AuthenticationStatus.error);
+        setAuthenticationStatus(AuthenticationStatusEnum.error);
       });
   };
 
@@ -121,9 +134,10 @@ const Authentication: React.FC = ({ children }) => {
     <AuthenticationContext.Provider
       value={{
         authenticationStatus,
+        isLoggedIn,
         logIn,
+        logInAfterFailure,
         logOut,
-        setAuthenticationStatus,
         token,
         tokenExpirationDate,
       }}

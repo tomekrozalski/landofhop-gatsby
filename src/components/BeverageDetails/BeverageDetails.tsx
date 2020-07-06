@@ -4,7 +4,6 @@ import { useIntl } from 'gatsby-plugin-intl';
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import { AuthenticationStatus as AuthenticationStatusEnum } from 'utils/enums';
 import { Layout } from 'components';
 import { BeverageContext } from './utils/contexts';
 import {
@@ -36,21 +35,21 @@ type Props = {
 
 const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
   const { locale } = useIntl();
-  const { authenticationStatus } = useContext(AuthenticationContext);
+  const { isLoggedIn } = useContext(AuthenticationContext);
   const [
     fetchedBeverage,
     setFetchedBeverage,
   ] = useState<TranslatedBeverageTypes | null>(null);
 
   useEffect(() => {
-    if (authenticationStatus === AuthenticationStatusEnum.success) {
+    if (isLoggedIn) {
       const { badge, brand, shortId } = data.beverage;
 
       serverCall({
         path: `beverage/${locale}/${shortId}/${brand.badge}/${badge}`,
       }).then(setFetchedBeverage);
     }
-  }, [authenticationStatus]);
+  }, [isLoggedIn]);
 
   return (
     <Layout>

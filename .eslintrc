@@ -8,7 +8,7 @@
       "jsx": true
     }
   },
-  "plugins": ["@typescript-eslint", "jest"],
+  "plugins": ["@typescript-eslint", "react-hooks", "jest"],
   "extends": [
     "airbnb",
     "plugin:import/typescript",

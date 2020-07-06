@@ -6,7 +6,7 @@ import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { Status as StatusEnum } from 'utils/enums';
 import { TranslatedBeverage as TranslatedBeverageType } from './utils/types';
 import { initialBeverageData } from './utils/helpers';
 import { Cap, CoverPhoto, Gallery } from '.';
@@ -46,7 +46,7 @@ const UpdateBeverageImages: React.FC<Props> = ({ location }) => {
 
     if (badge && brand && shortId) {
       serverCall({
-        path: `beverage/update-beverage-images/pl/${shortId}/${brand}/${badge}`,
+        path: `beverage/images/pl/${shortId}/${brand}/${badge}`,
         token,
       }).then(setBeverageImagesData);
     }

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
-import { Status as StatusEnum } from 'dashboard/utils/enums';
+import { Status as StatusEnum } from 'utils/enums';
 import { CountryOutput } from 'dashboard/utils/types/form';
 import { CountryType } from '.';
 

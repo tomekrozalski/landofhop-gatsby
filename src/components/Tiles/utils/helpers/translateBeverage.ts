@@ -18,11 +18,6 @@ const translateBeverage = ({
     brand: {
       badge: brand.badge,
       name: getValueByLanguage(brand.name, locale),
-      shortId: brand.shortId,
-      website: brand.website,
-      consortium: brand.consortium
-        ? getValueByLanguage(brand.consortium, locale)
-        : null,
     },
     ...rest,
   };

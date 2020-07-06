@@ -3,14 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { navigate } from 'gatsby';
 
-import { FormName } from 'utils/enums';
+import { FormName, Status as StatusEnum } from 'utils/enums';
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
-import {
-  FormType,
-  Subform as SubformEnum,
-  Status as StatusEnum,
-} from 'dashboard/utils/enums';
+import { FormType, Subform as SubformEnum } from 'dashboard/utils/enums';
 import { LanguageContext } from 'dashboard/utils/contexts';
 import { FormValues as FormValuesLabel } from 'dashboard/BeverageData/Label/utils';
 import { FormValues as FormValuesProducer } from 'dashboard/BeverageData/Producer/utils';

@@ -4,10 +4,15 @@ import { TranslatedBeverage as TranslatedBeverageTypes } from './utils/types';
 import { ListItem } from './elements';
 import { Image, TileLink } from '.';
 
-const Tile: React.FC<TranslatedBeverageTypes> = props => (
+type Props = {
+  data: TranslatedBeverageTypes;
+  missing?: boolean;
+};
+
+const Tile: React.FC<Props> = ({ data, missing = false }) => (
   <ListItem>
-    <TileLink {...props}>
-      <Image {...props} />
+    <TileLink data={data} missing={missing}>
+      <Image {...data} />
     </TileLink>
   </ListItem>
 );

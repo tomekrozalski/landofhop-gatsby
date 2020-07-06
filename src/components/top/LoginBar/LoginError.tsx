@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { AuthenticationStatus } from 'utils/enums';
 import { AuthenticationContext } from 'utils/contexts';
 import { Warning } from 'elements/icons';
 import { IconWrapper, LoginBarContainer, ResetButton } from './elements';
 
 const LoginError = () => {
-  const { setAuthenticationStatus } = useContext(AuthenticationContext);
+  const { logInAfterFailure } = useContext(AuthenticationContext);
 
   return (
     <LoginBarContainer as="div">
@@ -15,9 +14,7 @@ const LoginError = () => {
         <Warning />
       </IconWrapper>
       <FormattedMessage id="loginbar.loginFailed" />
-      <ResetButton
-        onClick={() => setAuthenticationStatus(AuthenticationStatus.idle)}
-      >
+      <ResetButton onClick={logInAfterFailure}>
         <FormattedMessage id="loginbar.tryAgain" />
       </ResetButton>
     </LoginBarContainer>

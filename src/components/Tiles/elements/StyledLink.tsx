@@ -13,6 +13,13 @@ const StyledLink = styled(Link)`
   &:hover > div {
     transform: scale(0.9);
   }
+
+  ${({ missing }) =>
+    missing &&
+    `
+    background-color: #333;
+
+  `}
 `;
 
 export default StyledLink;

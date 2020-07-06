@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
-import { FormName } from 'utils/enums';
+import { FormName, Status as StatusEnum } from 'utils/enums';
 import { PlaceContext } from 'dashboard/utils/contexts';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
-import { FieldName, Status as StatusEnum } from 'dashboard/utils/enums';
+import { FieldName } from 'dashboard/utils/enums';
 import { Error, Loading, Select } from './elements';
 
 type Props = {

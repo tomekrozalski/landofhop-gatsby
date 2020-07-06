@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
 
-import { AuthenticationStatus } from 'utils/enums';
-import { AuthenticationContext, NavigationContext } from 'utils/contexts';
+import {
+  AuthenticationContext,
+  AuthenticationStatusEnum,
+  NavigationContext,
+} from 'utils/contexts';
 import { Wrapper } from './elements';
 import { initialFormValues, validationSchema } from './utils';
 import { FormBody, LoginError, LoginSuccess, TokenExpired } from '.';
@@ -13,14 +16,14 @@ const LoginBar: React.FC = () => {
 
   const renderContent = () => {
     switch (authenticationStatus) {
-      case AuthenticationStatus.error:
+      case AuthenticationStatusEnum.error:
         return <LoginError />;
-      case AuthenticationStatus.expired:
+      case AuthenticationStatusEnum.expired:
         return <TokenExpired />;
-      case AuthenticationStatus.success:
+      case AuthenticationStatusEnum.success:
         return <LoginSuccess />;
-      case AuthenticationStatus.loading:
-      case AuthenticationStatus.idle:
+      case AuthenticationStatusEnum.loading:
+      case AuthenticationStatusEnum.idle:
       default:
         return FormBody;
     }
