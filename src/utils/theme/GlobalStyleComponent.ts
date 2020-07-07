@@ -139,6 +139,16 @@ const GlobalStyleComponent = createGlobalStyle`
   li {
     list-style-type: none;
   }
+
+  .work-in-progress {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--color-white),
+      var(--color-white) 1rem,
+      var(--color-producer-light) 1rem,
+      var(--color-producer-light) 2rem
+    );
+  }
 `;
 
 export default GlobalStyleComponent;

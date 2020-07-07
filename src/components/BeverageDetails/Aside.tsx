@@ -57,12 +57,13 @@ const Button = styled(Inactive)`
 `;
 
 type Props = {
-  next: BeverageBaseTypes;
-  previous: BeverageBaseTypes;
+  adminMode?: boolean;
+  next?: BeverageBaseTypes;
+  previous?: BeverageBaseTypes;
 };
 
-const Aside: React.FC<Props> = ({ next, previous }) => (
-  <Wrapper>
+const Aside: React.FC<Props> = ({ adminMode, next, previous }) => (
+  <Wrapper className={adminMode ? 'work-in-progress' : ''}>
     {previous ? (
       <Button
         as={Link}

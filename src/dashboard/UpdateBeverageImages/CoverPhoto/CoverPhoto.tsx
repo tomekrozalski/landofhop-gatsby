@@ -9,10 +9,11 @@ import { Aside, SectionWrapper } from './elements';
 import { DropZone, Error, Navigation } from '.';
 
 type Props = {
+  adminMode: boolean;
   updateValues: () => void;
 };
 
-const CoverPhoto: React.FC<Props> = ({ updateValues }) => {
+const CoverPhoto: React.FC<Props> = ({ adminMode, updateValues }) => {
   const { badge, brand, photos, shortId } = useContext(BeverageContext);
 
   const [errors, setErrors] = useState<Blob[]>([]);
@@ -47,7 +48,10 @@ const CoverPhoto: React.FC<Props> = ({ updateValues }) => {
           <DropZone setErrors={setErrors} updateValues={updateValues} />
         </Frame>
         <Aside>
-          <Navigation current={{ badge, brand, shortId }} />
+          <Navigation
+            adminMode={adminMode}
+            current={{ badge, brand, shortId }}
+          />
           {errors.length ? (
             <Error size={errors[0].size} type={errors[0].type} />
           ) : null}

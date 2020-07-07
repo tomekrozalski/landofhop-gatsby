@@ -27,7 +27,11 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const AdminBar = () => {
+type Props = {
+  adminMode?: boolean;
+};
+
+const AdminBar: React.FC<Props> = ({ adminMode = false }) => {
   const { isLoggedIn } = useContext(AuthenticationContext);
   const { badge, brand, shortId } = useContext(BeverageContext);
 
@@ -41,7 +45,7 @@ const AdminBar = () => {
       </StyledLink>
       <StyledLink
         to="/update-beverage-images"
-        state={{ badge, brand: brand.badge, shortId }}
+        state={{ adminMode, badge, brand: brand.badge, shortId }}
       >
         <FormattedMessage id="beverage.details.adminBar.updatePhotos" />
       </StyledLink>

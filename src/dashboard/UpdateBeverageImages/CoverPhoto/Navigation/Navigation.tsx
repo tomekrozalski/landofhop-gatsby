@@ -6,12 +6,18 @@ import { LeftIcon, RightIcon } from 'elements/icons';
 import { Button, Dot, Header, Inactive, Wrapper } from '.';
 
 type Props = {
+  adminMode: boolean;
   current: BeverageBaseTypes;
   next?: BeverageBaseTypes;
   previous?: BeverageBaseTypes;
 };
 
-const Navigation: React.FC<Props> = ({ current, next, previous }) => (
+const Navigation: React.FC<Props> = ({
+  adminMode,
+  current,
+  next,
+  previous,
+}) => (
   <Wrapper>
     <Header>
       <FormattedMessage id="dashboard.updateBeverageImages.navigation" />
@@ -28,12 +34,26 @@ const Navigation: React.FC<Props> = ({ current, next, previous }) => (
         <LeftIcon />
       </Inactive>
     )}
-    <Button
-      as={Link}
-      to={`/details/${current.shortId}/${current.brand.badge}/${current.badge}`}
-    >
-      <Dot />
-    </Button>
+    {adminMode ? (
+      <Button
+        as={Link}
+        to="/details"
+        state={{
+          badge: current.badge,
+          brand: current.brand.badge,
+          shortId: current.shortId,
+        }}
+      >
+        <Dot />
+      </Button>
+    ) : (
+      <Button
+        as={Link}
+        to={`/details/${current.shortId}/${current.brand.badge}/${current.badge}`}
+      >
+        <Dot />
+      </Button>
+    )}
     {next ? (
       <Button
         as={Link}

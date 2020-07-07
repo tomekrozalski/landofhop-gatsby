@@ -15,9 +15,9 @@ const TileLink: React.FC<Props> = ({
 }) =>
   missing ? (
     <StyledLink
-      to="details"
+      to="/details"
       state={{ badge, brand: brand.badge, shortId }}
-      missing
+      className="work-in-progress"
     >
       {children}
     </StyledLink>
