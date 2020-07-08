@@ -5,12 +5,13 @@ import { FormValues as FormValuesProducer } from 'dashboard/BeverageData/Produce
 import { FormValues as FormValuesEditorial } from 'dashboard/BeverageData/Editorial/utils';
 
 type Props = {
+  id: string | null;
   label: FormValuesLabel;
   producer: FormValuesProducer;
   editorial: FormValuesEditorial;
 };
 
-const formToData = ({ label, producer, editorial }: Props) => {
+const formToData = ({ id, label, producer, editorial }: Props) => {
   console.log('formToData', label, producer, editorial);
 
   const normalizeLangValue = ({
@@ -25,6 +26,7 @@ const formToData = ({ label, producer, editorial }: Props) => {
   });
 
   return {
+    ...(id && { id }),
     badge: label.badge,
     name: label.name.map(normalizeLangValue),
     ...(label.series.length && {

@@ -5,6 +5,7 @@ import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'utils/enums';
+import { FormType } from 'dashboard/utils/enums';
 import { NavigationContext, LanguageContext } from 'dashboard/utils/contexts';
 import { Modal } from 'dashboard/elements';
 import { Navigation } from './elements';
@@ -25,8 +26,13 @@ const Update: React.FC<Props> = ({ location }) => {
     getBeverageDetails,
     resetBeverageDetails,
     beverageDataLoadStatus,
+    setBeverageFormType,
   } = useContext(NavigationContext);
   const { status: languageStatus } = useContext(LanguageContext);
+
+  useEffect(() => {
+    setBeverageFormType(FormType.update);
+  }, []);
 
   useEffect(() => {
     if (languageStatus === StatusEnum.fulfilled) {

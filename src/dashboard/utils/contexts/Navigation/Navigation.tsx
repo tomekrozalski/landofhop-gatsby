@@ -22,7 +22,7 @@ import { BeverageType } from './Beverage.type';
 type SubformType = SubformEnum | null;
 
 export const NavigationContext = React.createContext({
-  addBeverage: (values: FormValuesEditorial) => {
+  saveBeverage: (values: FormValuesEditorial) => {
     values;
   },
   beverageDataLoadStatus: StatusEnum.idle,
@@ -46,6 +46,9 @@ export const NavigationContext = React.createContext({
   saveProducer: (value: FormValuesProducer) => {
     value;
   },
+  setBeverageFormType: (value: FormType) => {
+    value;
+  },
   setPart: (value: FormName) => {
     value;
   },
@@ -67,9 +70,9 @@ const Navigation: React.FC = ({ children }) => {
   const [producer, setProducer] = useState<FormValuesProducer>(
     initialProducerValues,
   );
+  const [id, setId] = useState<string | null>(null);
   const [subform, setSubform] = useState<SubformType>(null);
   const [part, setPart] = useState<FormName>(FormName.beverageLabel);
-
   const [beverageDataLoadStatus, setBeverageDataLoadStatus] = useState(
     StatusEnum.idle,
   );
@@ -92,12 +95,17 @@ const Navigation: React.FC = ({ children }) => {
     };
   }, []);
 
-  const addBeverage = (values: FormValuesEditorial) => {
-    const normalizedData = formToData({ label, producer, editorial: values });
+  const saveBeverage = (values: FormValuesEditorial) => {
+    const normalizedData = formToData({
+      id,
+      label,
+      producer,
+      editorial: values,
+    });
 
     serverCall({
       path: 'beverage',
-      method: 'POST',
+      method: beverageFormType === FormType.add ? 'POST' : 'PUT',
       body: JSON.stringify(normalizedData),
       token,
     })
@@ -123,7 +131,6 @@ const Navigation: React.FC = ({ children }) => {
     shortId: string;
   }) => {
     setBeverageDataLoadStatus(StatusEnum.pending);
-    setBeverageFormType(FormType.update);
 
     serverCall({
       path: `beverage/${shortId}/${brand}/${badge}`,
@@ -139,6 +146,7 @@ const Navigation: React.FC = ({ children }) => {
           languages,
         });
 
+        setId(beverageDetails.id);
         setLabel(normalizedLabel);
         setProducer(normalizedProducer);
         setEditorial(normalizedEditorial);
@@ -158,7 +166,7 @@ const Navigation: React.FC = ({ children }) => {
   return (
     <NavigationContext.Provider
       value={{
-        addBeverage,
+        saveBeverage,
         beverageDataLoadStatus,
         beverageFormType,
         editorial,
@@ -170,6 +178,7 @@ const Navigation: React.FC = ({ children }) => {
         saveEditorial,
         saveLabel,
         saveProducer,
+        setBeverageFormType,
         setPart,
         setSubform,
         subform,

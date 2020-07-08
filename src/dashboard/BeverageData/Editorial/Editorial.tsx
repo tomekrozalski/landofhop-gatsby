@@ -6,13 +6,13 @@ import { validationSchema } from './utils';
 import FormBody from './FormBody';
 
 const Editorial: React.FC = () => {
-  const { addBeverage, editorial } = useContext(NavigationContext);
+  const { saveBeverage, editorial } = useContext(NavigationContext);
 
   return (
     <Formik
       component={FormBody}
       initialValues={editorial}
-      onSubmit={addBeverage}
+      onSubmit={saveBeverage}
       validationSchema={validationSchema}
       validateOnMount
     />
