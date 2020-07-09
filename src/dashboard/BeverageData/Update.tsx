@@ -13,11 +13,12 @@ import { Form } from '.';
 
 type Props = {
   location: {
-    state: {
+    state?: {
+      adminMode?: boolean;
       badge?: string;
       brand?: string;
       shortId?: string;
-    } | null;
+    };
   };
 };
 
@@ -26,12 +27,14 @@ const Update: React.FC<Props> = ({ location }) => {
     getBeverageDetails,
     resetBeverageDetails,
     beverageDataLoadStatus,
+    setAdminMode,
     setBeverageFormType,
   } = useContext(NavigationContext);
   const { status: languageStatus } = useContext(LanguageContext);
 
   useEffect(() => {
     setBeverageFormType(FormType.update);
+    setAdminMode(location.state?.adminMode ?? false);
   }, []);
 
   useEffect(() => {

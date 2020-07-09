@@ -39,7 +39,7 @@ const AdminBar: React.FC<Props> = ({ adminMode = false }) => {
     <AdminBarWrapper>
       <StyledLink
         to="/update-beverage"
-        state={{ badge, brand: brand.badge, shortId }}
+        state={{ adminMode, badge, brand: brand.badge, shortId }}
       >
         <FormattedMessage id="beverage.details.adminBar.update" />
       </StyledLink>
