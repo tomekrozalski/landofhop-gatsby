@@ -48,8 +48,8 @@ const Place: React.FC = ({ children }) => {
         path: 'place',
         token,
       })
-        .then(() => {
-          getPlaces();
+        .then((places: PlaceType[]) => {
+          setValues(places);
           resolve();
         })
         .catch(reject);

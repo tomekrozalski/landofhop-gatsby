@@ -46,9 +46,6 @@ export const NavigationContext = React.createContext({
   saveProducer: (value: FormValuesProducer) => {
     value;
   },
-  setAdminMode: (value: boolean) => {
-    value;
-  },
   setBeverageFormType: (value: FormType) => {
     value;
   },
@@ -83,7 +80,6 @@ const Navigation: React.FC = ({ children }) => {
     StatusEnum.idle,
   );
   const [beverageFormType, setBeverageFormType] = useState(FormType.add);
-  const [adminMode, setAdminMode] = useState(false);
 
   // -------------------------------------------------------------------
 
@@ -119,15 +115,15 @@ const Navigation: React.FC = ({ children }) => {
       token,
     })
       .then(async ({ badge, brand, shortId }) => {
-        if (badge && brand && shortId) {
-          await window.removeEventListener('beforeunload', preventClose);
+        await window.removeEventListener('beforeunload', preventClose);
 
+        fetch(`${process.env.GATSBY}/__refresh`, {
+          method: 'POST',
+        }).then(() => {
           navigate('/pl/update-beverage-images', {
-            state: { adminMode, badge, brand, shortId },
+            state: { badge, brand, shortId },
           });
-        } else {
-          throw Error('Incorrect response');
-        }
+        });
       })
       .catch((e: any) => {
         console.log('e', e);
@@ -191,7 +187,6 @@ const Navigation: React.FC = ({ children }) => {
         saveEditorial,
         saveLabel,
         saveProducer,
-        setAdminMode,
         setBeverageFormType,
         setPart,
         setSubform,

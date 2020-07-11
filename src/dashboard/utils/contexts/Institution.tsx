@@ -51,9 +51,13 @@ const Institution: React.FC = ({ children }) => {
       })
         .then((institutions: InstitutionType[]) => {
           setValues(institutions);
+          setStatus(StatusEnum.fulfilled);
           resolve();
         })
-        .catch(reject);
+        .catch(() => {
+          setStatus(StatusEnum.rejected);
+          reject();
+        });
     });
 
   return (

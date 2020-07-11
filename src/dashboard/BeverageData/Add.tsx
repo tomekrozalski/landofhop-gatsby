@@ -12,15 +12,12 @@ import { Navigation } from './elements';
 import { Form } from '.';
 
 const Add: React.FC = () => {
-  const {
-    beverageDataLoadStatus,
-    setAdminMode,
-    setBeverageFormType,
-  } = useContext(NavigationContext);
+  const { beverageDataLoadStatus, setBeverageFormType } = useContext(
+    NavigationContext,
+  );
 
   useEffect(() => {
     setBeverageFormType(FormType.add);
-    setAdminMode(false);
   }, []);
 
   return (

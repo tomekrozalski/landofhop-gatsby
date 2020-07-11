@@ -17,12 +17,11 @@ export const BeverageContext = React.createContext<TranslatedBeverageType>(
 
 type Props = {
   location: {
-    state: {
-      adminMode?: boolean;
+    state?: {
       badge?: string;
       brand?: string;
       shortId?: string;
-    } | null;
+    };
   };
 };
 
@@ -65,10 +64,7 @@ const UpdateBeverageImages: React.FC<Props> = ({ location }) => {
           </Header>
           {status === StatusEnum.fulfilled ? (
             <>
-              <CoverPhoto
-                updateValues={updateValues}
-                adminMode={location.state?.adminMode ?? false}
-              />
+              <CoverPhoto updateValues={updateValues} />
               <Gallery updateValues={updateValues} />
               <Cap updateValues={updateValues} />
             </>

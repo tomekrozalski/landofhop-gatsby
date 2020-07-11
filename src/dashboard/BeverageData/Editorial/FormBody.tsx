@@ -11,7 +11,11 @@ import { Added, Notes, Updated } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
-const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
+const FormBody: React.FC<FormikProps<FormValues>> = ({
+  isSubmitting,
+  isValid,
+  values,
+}) => {
   const { saveEditorial, setPart } = useContext(NavigationContext);
 
   const moveBack = (e: React.MouseEvent) => {
@@ -49,7 +53,7 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
         >
           <FormattedMessage id="dashboard.saveAndMoveBack" />
         </Button>
-        <Button type="submit" disabled={!isValid}>
+        <Button type="submit" disabled={!isValid} isSubmitting={isSubmitting}>
           <FormattedMessage id="dashboard.continue" />
         </Button>
       </Footer>

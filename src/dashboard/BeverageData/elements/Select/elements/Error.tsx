@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const Error = () => (
   <Wrapper>
-    <FieldStatusIndicator danger>
+    <FieldStatusIndicator danger position={1.3}>
       <FormattedMessage id="dashboard.loadError" />
     </FieldStatusIndicator>
   </Wrapper>
