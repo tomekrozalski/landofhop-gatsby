@@ -61,8 +61,8 @@ const Language: React.FC = ({ children }) => {
         path: 'language',
         token,
       })
-        .then(() => {
-          getLanguages();
+        .then((languages: LanguageType[]) => {
+          setValues(languages);
           resolve();
         })
         .catch(reject);
