@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/no-empty-function */
 import React, { useContext, useEffect, useState } from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { serverCall } from 'utils/helpers';
 import { AuthenticationContext } from 'utils/contexts';
@@ -15,6 +16,7 @@ export const LanguageContext = React.createContext({
 });
 
 const Language: React.FC = ({ children }) => {
+  const { locale } = useIntl();
   const { token } = useContext(AuthenticationContext);
   const [status, setStatus] = useState(StatusEnum.idle);
   const [values, setValues] = useState<LanguageType[]>([]);
@@ -31,7 +33,16 @@ const Language: React.FC = ({ children }) => {
         path: 'language',
       })
         .then((languages: LanguageType[]) => {
-          setValues(languages);
+          const sorted = languages.sort((a: LanguageType, b: LanguageType) => {
+            const first =
+              a.name.find(item => item.language === locale) || a.name[0];
+            const second =
+              b.name.find(item => item.language === locale) || b.name[0];
+
+            return first.value.localeCompare(second.value);
+          });
+
+          setValues(sorted);
           setStatus(StatusEnum.fulfilled);
         })
         .catch(() => {

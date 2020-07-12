@@ -23,9 +23,7 @@ type Props = {
 
 const MonthAxis: React.FC<Props> = ({ scale, ticks, x, y }) => {
   const group = useRef<SVGGElement>(null!);
-  const { locale } = useIntl();
-
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   useEffect(() => {
     const axis = d3
