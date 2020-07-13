@@ -14,6 +14,7 @@ import {
   LanguageSelect,
   PlaceSelect,
 } from './Select';
+import StyledSwitch from './StyledSwitch';
 import SubformWrapper from './SubformWrapper';
 import SubSection from './SubSection';
 
@@ -32,6 +33,7 @@ export {
   OpenSubform,
   PlaceSelect,
   Plug,
+  StyledSwitch,
   SubformWrapper,
   SubSection,
 };

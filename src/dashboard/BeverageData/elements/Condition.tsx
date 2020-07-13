@@ -29,13 +29,13 @@ const Wrapper = styled.div<{ on: 1 | 0 }>`
 `;
 
 type Props = {
-  empty: [] | string | number;
+  empty: any;
   name: FieldName;
 };
 
 const Condition: React.FC<Props> = ({ empty, name }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta, { setTouched, setValue }] = useField(name);
+  const [field, , { setTouched, setValue }] = useField(name);
 
   const onClick = () => {
     if (field.value === null) {
