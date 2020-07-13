@@ -8,15 +8,21 @@ import { BeverageFieldNames, FormType } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
 import {
+  Alcohol,
   Badge,
   Barcode,
   Brand,
   Container,
   Contract,
   Cooperation,
+  Extract,
+  Fermentation,
+  Filtration,
   Name,
+  Pasteurization,
   Place,
   Series,
+  Style,
   Tale,
 } from '../fields';
 import { Footer } from '../elements/grids';
@@ -73,6 +79,32 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       <Barcode
         fieldName={BeverageFieldNames.barcode}
+        formName={FormName.beverageLabel}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.brewingInfo" />
+      <Fermentation
+        fieldName={BeverageFieldNames.fermentation}
+        formName={FormName.beverageLabel}
+      />
+      <Style
+        fieldName={BeverageFieldNames.style}
+        formName={FormName.beverageLabel}
+      />
+      <Extract
+        fieldName={BeverageFieldNames.extract}
+        formName={FormName.beverageLabel}
+      />
+      <Alcohol
+        fieldName={BeverageFieldNames.alcohol}
+        formName={FormName.beverageLabel}
+      />
+      <Filtration
+        fieldName={BeverageFieldNames.filtration}
+        formName={FormName.beverageLabel}
+      />
+      <Pasteurization
+        fieldName={BeverageFieldNames.pasteurization}
         formName={FormName.beverageLabel}
       />
       {/* -------------------------------- */}

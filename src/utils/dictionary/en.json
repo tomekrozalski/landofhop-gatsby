@@ -126,6 +126,7 @@
     },
     "beverage": {
       "brandInfo": "Informations connected with branding",
+      "brewingInfo": "Informations connected with brewing",
       "editorialInfo": {
         "description": "Final information, from the editorial office, somehow unofficial",
         "title": "Editorial"
@@ -186,6 +187,7 @@
   },
   "global": {
     "added": "Added",
+    "alcohol": "Alcohol",
     "badge": "Badge",
     "barcode": "Barcode",
     "brand": "Brand",
@@ -196,6 +198,9 @@
     "cooperation": "Cooperation",
     "country": "Country",
     "email": "Email",
+    "extract": "Extract",
+    "fermentation": "fermentation",
+    "filtration": "filtration",
     "institution": "Institution",
     "latitude": "Latitude",
     "loading": "Loading…",
@@ -204,8 +209,10 @@
     "notes": "Notes",
     "ownedBy": "Owned by",
     "password": "Password",
+    "pasteurization": "Pasteurization",
     "place": "Place",
     "series": "Series",
+    "style": "Style",
     "tale": "Tale",
     "updated": "Last time updated",
     "website": "Website"

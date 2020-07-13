@@ -126,6 +126,7 @@
     },
     "beverage": {
       "brandInfo": "Informacje dotyczące marki",
+      "brewingInfo": "Informacje dotyczące warzenia",
       "editorialInfo": {
         "description": "Informacje końcowe, od redakcji, niejako nieoficjalne",
         "title": "Redakcyjne"
@@ -186,6 +187,7 @@
   },
   "global": {
     "added": "Dodano",
+    "alcohol": "Alkohol",
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
     "brand": "Marka",
@@ -196,6 +198,9 @@
     "cooperation": "Kooperacja",
     "country": "Kraj",
     "email": "Email",
+    "extract": "Ekstrakt",
+    "fermentation": "Fermentacja",
+    "filtration": "Filtracja",
     "institution": "Instytucja",
     "latitude": "Szerokość geograficzna",
     "loading": "Ładuję…",
@@ -204,8 +209,10 @@
     "notes": "Notatki",
     "ownedBy": "Należący/a do",
     "password": "Hasło",
+    "pasteurization": "Pasteryzacja",
     "place": "Miejsce",
     "series": "Seria",
+    "style": "Styl",
     "tale": "Opis",
     "updated": "Ostatnio poprawiono",
     "website": "Strona internetowa"
