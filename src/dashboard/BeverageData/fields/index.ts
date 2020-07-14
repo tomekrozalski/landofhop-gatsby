@@ -1,4 +1,5 @@
 import Added from './Added';
+import Aged from './Aged';
 import Alcohol from './Alcohol';
 import Badge from './Badge';
 import Barcode from './Barcode';
@@ -9,6 +10,8 @@ import Container from './Container';
 import Contract from './Contract';
 import Cooperation from './Cooperation';
 import Country from './Country';
+import DryHopped from './DryHopped';
+import ExpirationDate from './ExpirationDate';
 import Extract from './Extract';
 import Fermentation from './Fermentation';
 import Filtration from './Filtration';
@@ -27,6 +30,7 @@ import Website from './Website';
 
 export {
   Added,
+  Aged,
   Alcohol,
   Badge,
   Barcode,
@@ -37,6 +41,8 @@ export {
   Contract,
   Cooperation,
   Country,
+  DryHopped,
+  ExpirationDate,
   Extract,
   Fermentation,
   Filtration,

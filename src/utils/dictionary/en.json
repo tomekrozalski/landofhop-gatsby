@@ -187,7 +187,16 @@
   },
   "global": {
     "added": "Added",
+    "aged": "Aged",
     "alcohol": "Alcohol",
+    "alcoholRelate": {
+      "abv": "Abv",
+      "capacity": "Capacity"
+    },
+    "alcoholUnit": {
+      "degree": "°",
+      "percent": "%"
+    },
     "badge": "Badge",
     "barcode": "Barcode",
     "brand": "Brand",
@@ -197,8 +206,19 @@
     "contract": "Contract",
     "cooperation": "Cooperation",
     "country": "Country",
+    "dryHopped": "Dry hopped",
     "email": "Email",
+    "expirationDate": "Expiration date",
     "extract": "Extract",
+    "extractRelate": {
+      "weight": "weight",
+      "blg": "BLG",
+      "plato": "Plato"
+    },
+    "extractUnit": {
+      "degree": "°",
+      "percent": "%"
+    },
     "fermentation": "fermentation",
     "filtration": "filtration",
     "institution": "Institution",
@@ -214,6 +234,11 @@
     "series": "Series",
     "style": "Style",
     "tale": "Tale",
+    "timeUnit": {
+      "day": "day",
+      "month": "month",
+      "year": "year"
+    },
     "updated": "Last time updated",
     "website": "Website"
   },

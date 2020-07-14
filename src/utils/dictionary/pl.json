@@ -187,7 +187,16 @@
   },
   "global": {
     "added": "Dodano",
+    "aged": "Leżakowanie",
     "alcohol": "Alkohol",
+    "alcoholRelate": {
+      "abv": "Abv",
+      "capacity": "obj."
+    },
+    "alcoholUnit": {
+      "degree": "°",
+      "percent": "%"
+    },
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
     "brand": "Marka",
@@ -197,8 +206,19 @@
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
     "country": "Kraj",
+    "dryHopped": "Chmielone na zimno",
     "email": "Email",
+    "expirationDate": "Termin ważności do spożycia",
     "extract": "Ekstrakt",
+    "extractRelate": {
+      "weight": "wag.",
+      "blg": "BLG",
+      "plato": "Plato"
+    },
+    "extractUnit": {
+      "degree": "°",
+      "percent": "%"
+    },
     "fermentation": "Fermentacja",
     "filtration": "Filtracja",
     "institution": "Instytucja",
@@ -214,6 +234,11 @@
     "series": "Seria",
     "style": "Styl",
     "tale": "Opis",
+    "timeUnit": {
+      "day": "dzień",
+      "month": "miesiąc",
+      "year": "rok"
+    },
     "updated": "Ostatnio poprawiono",
     "website": "Strona internetowa"
   },

@@ -5,11 +5,17 @@ import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
 import {
+  AlcoholRelateSelect,
+  AlcoholScopeSelect,
+  AlcoholUnitSelect,
   ContainerColorSelect,
   ContainerMaterialSelect,
   ContainerTypeSelect,
   ContainerUnitSelect,
   CountrySelect,
+  ExpirationDateUnitSelect,
+  ExtractRelateSelect,
+  ExtractUnitSelect,
   InstitutionSelect,
   LanguageSelect,
   PlaceSelect,
@@ -20,12 +26,18 @@ import SubSection from './SubSection';
 
 export {
   ActionButtons,
+  AlcoholRelateSelect,
+  AlcoholScopeSelect,
+  AlcoholUnitSelect,
   Condition,
   ContainerColorSelect,
   ContainerMaterialSelect,
   ContainerTypeSelect,
   ContainerUnitSelect,
   CountrySelect,
+  ExpirationDateUnitSelect,
+  ExtractRelateSelect,
+  ExtractUnitSelect,
   FormSection,
   InstitutionSelect,
   LanguageSelect,
