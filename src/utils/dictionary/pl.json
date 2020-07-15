@@ -193,6 +193,11 @@
       "abv": "Abv",
       "capacity": "obj."
     },
+    "alcoholScope": {
+      "<0.5%": "~ <0.5%",
+      "±0.5%": "~ ±0.5%",
+      "±1.0%": "~ ±1.0%"
+    },
     "alcoholUnit": {
       "degree": "°",
       "percent": "%"

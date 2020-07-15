@@ -7,6 +7,7 @@ import { emptyLangValue } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
 import { ActionButtons, LanguageSelect, Plug } from '../elements';
 import { Basic as Grid } from '../elements/grids';
+import { FormattedMessage } from 'react-intl';
 
 type Props = {
   fieldName: FieldName;
@@ -25,11 +26,10 @@ const Aged: React.FC<Props> = ({ fieldName, formName }) => (
         if (values && loopLength) {
           return values.map((_: any, index: number) => (
             // eslint-disable-next-line react/no-array-index-key
-            <div
-              style={{ border: '2px solid red', padding: '10px' }}
-              key={`${fieldName}-${index}`}
-            >
-              <div>Bum</div>
+            <React.Fragment key={`${fieldName}-${index}`}>
+              <div style={{ border: '2px solid red', padding: '10px' }}>
+                <FormattedMessage id="app.bum" defaultMessage="global.notes" />
+              </div>
               {loopLength === index + 1 && (
                 <ActionButtons
                   push={push}
@@ -37,7 +37,7 @@ const Aged: React.FC<Props> = ({ fieldName, formName }) => (
                   withRemove
                 />
               )}
-            </div>
+            </React.Fragment>
           ));
         }
 

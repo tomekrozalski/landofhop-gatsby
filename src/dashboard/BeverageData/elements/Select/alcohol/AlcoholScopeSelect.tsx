@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
 import { AlcoholScope } from 'components/BeverageDetails/utils/enums';
@@ -11,28 +12,38 @@ type Props = {
   placeholder?: string;
 };
 
-const AlcoholScopeSelect: React.FC<Props> = props => (
-  <Select
-    {...props}
-    options={[
-      {
-        label: '--',
-        value: '-',
-      },
-      {
-        label: '~ <0.5%',
-        value: AlcoholScope.lessThan05,
-      },
-      {
-        label: '~ ±0.5%',
-        value: AlcoholScope.plusMinus05,
-      },
-      {
-        label: '~ ±1.0%',
-        value: AlcoholScope.plusMinus1,
-      },
-    ]}
-  />
-);
+const AlcoholScopeSelect: React.FC<Props> = props => {
+  const { formatMessage } = useIntl();
+
+  return (
+    <Select
+      {...props}
+      options={[
+        {
+          label: '--',
+          value: '-',
+        },
+        {
+          label: formatMessage({
+            id: `global.alcoholScope.${AlcoholScope.lessThan05}`,
+          }),
+          value: AlcoholScope.lessThan05,
+        },
+        {
+          label: formatMessage({
+            id: `global.alcoholScope.${AlcoholScope.plusMinus05}`,
+          }),
+          value: AlcoholScope.plusMinus05,
+        },
+        {
+          label: formatMessage({
+            id: `global.alcoholScope.${AlcoholScope.plusMinus1}`,
+          }),
+          value: AlcoholScope.plusMinus1,
+        },
+      ]}
+    />
+  );
+};
 
 export default AlcoholScopeSelect;

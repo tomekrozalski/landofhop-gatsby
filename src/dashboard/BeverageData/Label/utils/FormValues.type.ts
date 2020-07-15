@@ -38,6 +38,9 @@ export type FormValues = {
     value: string;
   }[];
   [FieldName.barcode]: string | null;
+  // -----------
+  [FieldName.fermentation]: string[];
+  [FieldName.style]: { lang: Lang; value: string }[];
 
   [FieldName.container]: {
     color: {

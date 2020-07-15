@@ -76,6 +76,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       },
     }),
     ...(label.barcode && { barcode: label.barcode }),
+    // -----------
+    ...(label.fermentation && {
+      fermentation: {
+        ...(label.fermentation && {
+          label: label.fermentation,
+        }),
+      },
+    }),
+    ...(label.style?.length && {
+      style: {
+        ...(label.style?.length && {
+          label: label.style.map(normalizeLangValue),
+        }),
+      },
+    }),
 
     // fermentation: label, producer, editorial
     // style: label, producer, editorial

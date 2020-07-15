@@ -1,4 +1,5 @@
 import { IntlShape } from 'react-intl';
+import isBoolean from 'lodash/isBoolean';
 
 import { SiteLanguage } from 'utils/enums';
 import {
@@ -23,6 +24,7 @@ import {
   editorial as initialEditorialValues,
 } from '../initialValues';
 import { BeverageType } from '../Beverage.type';
+import { Filtration } from 'components/BeverageDetails/Testimony';
 
 type Props = {
   data: BeverageType;
@@ -33,19 +35,27 @@ type Props = {
 const dataToForm = ({ data, intl, languages }: Props) => {
   const {
     added,
+    alcohol,
     badge,
     barcode,
     brand,
     container,
     contract,
     cooperation,
+    extract,
+    fermentation,
+    filtration,
     name,
     notes,
+    pasteurization,
     place,
     series,
+    style,
     tale,
     updated,
   } = data;
+
+  console.log('data', data);
 
   const normalizeObjectLanguage = normalizeObjectLanguageHelper({
     intl,
@@ -93,9 +103,60 @@ const dataToForm = ({ data, intl, languages }: Props) => {
         [FieldName.tale]: tale.label.map(normalizeLanguageValuePair),
       }),
       ...(barcode && { [FieldName.barcode]: barcode }),
-
       // -----------
-
+      ...(fermentation?.label && { fermentation: fermentation.label }),
+      ...(style?.label && {
+        style: style.label.map(normalizeLanguageValuePair),
+      }),
+      ...(extract?.label && {
+        extract: {
+          relate: {
+            label: intl.formatMessage({
+              id: `global.extractRelate.${extract.label.relate}`,
+            }),
+            value: extract.label.relate,
+          },
+          unit: {
+            label: intl.formatMessage({
+              id: `global.extractUnit.${extract.label.unit}`,
+            }),
+            value: extract.label.unit,
+          },
+          value: extract.label.value,
+        },
+      }),
+      ...(alcohol?.label && {
+        alcohol: {
+          relate: {
+            label: intl.formatMessage({
+              id: `global.alcoholRelate.${alcohol.label.relate}`,
+            }),
+            value: alcohol.label.relate,
+          },
+          unit: {
+            label: intl.formatMessage({
+              id: `global.alcoholUnit.${alcohol.label.unit}`,
+            }),
+            value: alcohol.label.unit,
+          },
+          value: alcohol.label.value,
+          scope: alcohol.label.scope
+            ? {
+                label: intl.formatMessage({
+                  id: `global.alcoholScope.${alcohol.label.scope}`,
+                }),
+                value: alcohol.label.scope,
+              }
+            : {
+                label: '--',
+                value: '-',
+              },
+        },
+      }),
+      ...(isBoolean(filtration?.label) && { filtration: filtration?.label }),
+      ...(isBoolean(pasteurization?.label) && {
+        pasteurization: pasteurization?.label,
+      }),
       // -----------
       // required
       [FieldName.container]: {
