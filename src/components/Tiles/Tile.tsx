@@ -6,12 +6,11 @@ import { Image, TileLink } from '.';
 
 type Props = {
   data: TranslatedBeverageTypes;
-  missing?: boolean;
 };
 
-const Tile: React.FC<Props> = ({ data, missing = false }) => (
+const Tile: React.FC<Props> = ({ data }) => (
   <ListItem>
-    <TileLink data={data} missing={missing}>
+    <TileLink data={data}>
       <Image {...data} />
     </TileLink>
   </ListItem>

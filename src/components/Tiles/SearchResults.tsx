@@ -26,7 +26,7 @@ const SearchResults: React.FC = () => {
   return (
     <Grid>
       {searchResults.map(props => (
-        <Tile key={props.id} {...props} />
+        <Tile key={props.id} data={props} />
       ))}
     </Grid>
   );
