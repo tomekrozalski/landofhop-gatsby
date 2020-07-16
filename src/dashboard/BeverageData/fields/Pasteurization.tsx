@@ -14,7 +14,7 @@ type Props = {
 const Pasteurization: React.FC<Props> = ({ fieldName, formName }) => (
   <Grid>
     <Label name={fieldName} form={formName} />
-    <Condition name={fieldName} empty />
+    <Condition name={fieldName} empty={false} />
     <StyledSwitch name={fieldName} form={formName} />
   </Grid>
 );

@@ -33,7 +33,7 @@ const Fermentation: React.FC<Props> = ({ fieldName, formName }) => {
   return (
     <Grid>
       <Label name={fieldName} form={formName} />
-      <Condition name={fieldName} empty={[]} />
+      <Condition name={fieldName} empty={[FermentationEnum.top]} />
       <ListOfOptions className={value === null ? 'disabled' : ''}>
         <li>
           <input

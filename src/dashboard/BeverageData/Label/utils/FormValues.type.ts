@@ -1,9 +1,14 @@
 import { Lang } from 'dashboard/utils/types/form';
 import {
+  AlcoholRelate,
+  AlcoholScope,
+  AlcoholUnit,
   ContainerColor,
   ContainerMaterial,
   ContainerType,
   ContainerUnit,
+  ExtractRelate,
+  ExtractUnit,
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
@@ -41,6 +46,34 @@ export type FormValues = {
   // -----------
   [FieldName.fermentation]: string[];
   [FieldName.style]: { lang: Lang; value: string }[];
+  [FieldName.extract]: {
+    relate: {
+      label: string;
+      value: ExtractRelate;
+    };
+    unit: {
+      label: string;
+      value: ExtractUnit;
+    };
+    value: number;
+  };
+  [FieldName.alcohol]: {
+    relate: {
+      label: string;
+      value: AlcoholRelate;
+    };
+    scope: {
+      label: string;
+      value: AlcoholScope | '-';
+    };
+    unit: {
+      label: string;
+      value: AlcoholUnit;
+    };
+    value: number;
+  };
+  [FieldName.filtration]: boolean | null;
+  [FieldName.pasteurization]: boolean | null;
 
   [FieldName.container]: {
     color: {

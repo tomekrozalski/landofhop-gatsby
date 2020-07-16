@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 // import { constants } from 'utils';
 // import { isValidDate } from 'dashboard/beverage/utils';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 
 export default Yup.object().shape({
   [FieldName.badge]: Yup.string()
@@ -73,67 +74,57 @@ export default Yup.object().shape({
     .min(5)
     .required(),
   // -----------
-  // [FieldName.fermentation]: Yup
-  // 	.array()
-  // 	.of(
-  // 		Yup.mixed().oneOf([
-  // 			constants.fermentations.top,
-  // 			constants.fermentations.bottom,
-  // 			constants.fermentations.spontaneous,
-  // 		]),
-  // 	)
-  // 	.nullable(true),
-  // [FieldName.style]: Yup
-  // 	.array()
-  // 	.of(
-  // 		Yup.object().shape({
-  // 			lang: Yup.object().shape({
-  // 				label: Yup.string().required('danger'),
-  // 				value: Yup.string().required('danger'),
-  // 			}),
-  // 			value: Yup.string()
-  // 				.min(3, 'danger')
-  // 				.required('danger'),
-  // 		}),
-  // 	),
-  // [FieldName.extract]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		value: Yup.number()
-  // 			.min(0, 'danger')
-  // 			.max(100, 'danger')
-  // 			.required('danger'),
-  // 		unit: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		relate: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 	})
-  // 	.nullable(true),
-  // [FieldName.alcohol]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		value: Yup.number()
-  // 			.min(0, 'danger')
-  // 			.max(100, 'danger')
-  // 			.required('danger'),
-  // 		unit: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		relate: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 		scope: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 	})
-  // 	.nullable(true),
+  [FieldName.fermentation]: Yup.array()
+    .of(Yup.mixed().oneOf(Object.values(FermentationEnum)))
+    .min(1)
+    .nullable(true),
+  [FieldName.style]: Yup.array().of(
+    Yup.object().shape({
+      lang: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      value: Yup.string()
+        .min(3)
+        .required(),
+    }),
+  ),
+  [FieldName.extract]: Yup.object()
+    .shape({
+      value: Yup.number()
+        .min(0)
+        .max(100)
+        .required(),
+      unit: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      relate: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    })
+    .nullable(true),
+  [FieldName.alcohol]: Yup.object()
+    .shape({
+      value: Yup.number()
+        .min(0)
+        .max(100)
+        .required(),
+      unit: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      relate: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      scope: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    })
+    .nullable(true),
   // [FieldName.expirationDate]: Yup
   // 	.object()
   // 	.shape({

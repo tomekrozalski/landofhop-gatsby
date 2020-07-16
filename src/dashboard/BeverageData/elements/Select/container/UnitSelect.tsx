@@ -22,7 +22,7 @@ const UnitSelect: React.FC<Props> = ({ name, ...props }) => {
   const [unitField, , { setValue }] = useField(`${name}.unit`);
 
   useEffect(() => {
-    if (!unitField.value) {
+    if (!unitField.value?.label) {
       setValue({
         label: formatMessage({
           id: `beverage.details.container.unit.${ContainerUnit.ml}`,

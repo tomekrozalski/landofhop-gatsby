@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
 
@@ -22,7 +22,8 @@ type Props = {
 
 const ColorSelect: React.FC<Props> = ({ name, ...props }) => {
   const { formatMessage } = useIntl();
-  const [colorField, , { setValue }] = useField(`${name}.color`);
+  const [loaded, setLoaded] = useState(false);
+  const [, , { setValue }] = useField(`${name}.color`);
   const [typeField] = useField(`${name}.type`);
 
   const getEnum = () => {
@@ -40,28 +41,32 @@ const ColorSelect: React.FC<Props> = ({ name, ...props }) => {
   };
 
   useEffect(() => {
-    if (typeField.value?.label !== '') {
-      setValue({
-        ...(typeField.value.value === ContainerType.bottle && {
+    if (loaded) {
+      if (typeField.value.value === ContainerType.bottle) {
+        setValue({
           label: formatMessage({
             id: `beverage.details.container.color.${ContainerColorBottle.brown}`,
           }),
           value: ContainerColorBottle.brown,
-        }),
-        ...(typeField.value.value === ContainerType.can && {
+        });
+      }
+
+      if (typeField.value.value === ContainerType.can) {
+        setValue({
           label: formatMessage({
             id: `beverage.details.container.color.${ContainerColorCan.silver}`,
           }),
           value: ContainerColorCan.silver,
-        }),
-      });
+        });
+      }
     }
+
+    setLoaded(true);
   }, [typeField.value]);
 
   return (
     <Select
       {...props}
-      disabled={colorField.value?.label === ''}
       name={`${name}.color`}
       options={Object.keys(getEnum()).map(type => ({
         label: formatMessage({

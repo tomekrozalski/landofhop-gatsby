@@ -7,12 +7,14 @@ enum ContainerColorBottle {
 
 enum ContainerColorCan {
   black = 'black',
+  golden = 'golden',
   silver = 'silver',
 }
 
 enum ContainerColor {
   brown = 'brown',
   black = 'black',
+  golden = 'golden',
   green = 'green',
   silver = 'silver',
   transparent = 'transparent',

@@ -313,6 +313,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       }
       enum ContainerColor {
         brown
+        golden
         green
         black
         silver

@@ -1,15 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useIntl } from 'gatsby-plugin-intl';
+import React from 'react';
 
-import { serverCall } from 'utils/helpers';
-import { AuthenticationContext } from 'utils/contexts';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
 import { Layout } from 'components';
 import { BeverageContext } from './utils/contexts';
-import {
-  Beverage as BeverageTypes,
-  TranslatedBeverage as TranslatedBeverageTypes,
-} from './utils/types';
+import { Beverage as BeverageTypes } from './utils/types';
 import { translateBeverage } from './utils/helpers';
 import { BeverageDetailsSeo, GridWrapper } from './elements';
 import {
@@ -33,43 +27,22 @@ type Props = {
   };
 };
 
-const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => {
-  const { locale } = useIntl();
-  const { isLoggedIn } = useContext(AuthenticationContext);
-  const [
-    fetchedBeverage,
-    setFetchedBeverage,
-  ] = useState<TranslatedBeverageTypes | null>(null);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      const { badge, brand, shortId } = data.beverage;
-
-      serverCall({
-        path: `beverage/${locale}/${shortId}/${brand.badge}/${badge}`,
-      }).then(setFetchedBeverage);
-    }
-  }, [isLoggedIn]);
-
-  return (
-    <Layout>
-      <BeverageContext.Provider
-        value={fetchedBeverage || translateBeverage(data.beverage)}
-      >
-        <GridWrapper>
-          <Gallery />
-          <Header />
-          <Tale />
-          <Testimony />
-          <Impressions />
-          <FootNotes />
-          <AdminBar />
-          <Aside next={pageContext.next} previous={pageContext.previous} />
-          <BeverageDetailsSeo />
-        </GridWrapper>
-      </BeverageContext.Provider>
-    </Layout>
-  );
-};
+const BeverageDetails: React.FC<Props> = ({ data, pageContext }) => (
+  <Layout>
+    <BeverageContext.Provider value={translateBeverage(data.beverage)}>
+      <GridWrapper>
+        <Gallery />
+        <Header />
+        <Tale />
+        <Testimony />
+        <Impressions />
+        <FootNotes />
+        <AdminBar />
+        <Aside next={pageContext.next} previous={pageContext.previous} />
+        <BeverageDetailsSeo />
+      </GridWrapper>
+    </BeverageContext.Provider>
+  </Layout>
+);
 
 export default BeverageDetails;

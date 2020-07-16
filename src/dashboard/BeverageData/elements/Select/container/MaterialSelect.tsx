@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useField } from 'formik';
 import { useIntl } from 'gatsby-plugin-intl';
-import isEmpty from 'lodash/isEmpty';
 
 import { FormName } from 'utils/enums';
 import {
@@ -23,7 +22,8 @@ type Props = {
 
 const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   const { formatMessage } = useIntl();
-  const [materialField, , { setValue }] = useField(`${name}.material`);
+  const [loaded, setLoaded] = useState(false);
+  const [, , { setValue }] = useField(`${name}.material`);
   const [typeField] = useField(`${name}.type`);
 
   const getEnum = () => {
@@ -41,28 +41,32 @@ const MaterialSelect: React.FC<Props> = ({ name, ...props }) => {
   };
 
   useEffect(() => {
-    if (typeField.value?.label !== '') {
-      setValue({
-        ...(typeField.value.value === ContainerType.bottle && {
+    if (loaded) {
+      if (typeField.value.value === ContainerType.bottle) {
+        setValue({
           label: formatMessage({
             id: `beverage.details.container.material.${ContainerMaterialBottle.glass}`,
           }),
           value: ContainerMaterialBottle.glass,
-        }),
-        ...(typeField.value.value === ContainerType.can && {
+        });
+      }
+
+      if (typeField.value.value === ContainerType.can) {
+        setValue({
           label: formatMessage({
             id: `beverage.details.container.material.${ContainerMaterialCan.aluminum}`,
           }),
           value: ContainerMaterialCan.aluminum,
-        }),
-      });
+        });
+      }
     }
+
+    setLoaded(true);
   }, [typeField.value]);
 
   return (
     <Select
       {...props}
-      disabled={materialField.value?.label === ''}
       name={`${name}.material`}
       options={Object.keys(getEnum()).map(type => ({
         label: formatMessage({

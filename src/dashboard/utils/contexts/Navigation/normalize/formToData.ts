@@ -1,3 +1,5 @@
+import isBoolean from 'lodash/isBoolean';
+
 import { Lang } from 'dashboard/utils/types/form';
 import { convertStringToDate } from 'dashboard/utils/helpers';
 import { FormValues as FormValuesLabel } from 'dashboard/BeverageData/Label/utils';
@@ -88,6 +90,45 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       style: {
         ...(label.style?.length && {
           label: label.style.map(normalizeLangValue),
+        }),
+      },
+    }),
+    ...(label.extract && {
+      extract: {
+        ...(label.extract && {
+          label: {
+            relate: label.extract.relate.value,
+            unit: label.extract.unit.value,
+            value: label.extract.value,
+          },
+        }),
+      },
+    }),
+    ...(label.alcohol && {
+      alcohol: {
+        ...(label.alcohol && {
+          label: {
+            relate: label.alcohol.relate.value,
+            unit: label.alcohol.unit.value,
+            value: label.alcohol.value,
+            ...(label.alcohol.scope.value !== '-' && {
+              scope: label.alcohol.scope.value,
+            }),
+          },
+        }),
+      },
+    }),
+    ...(isBoolean(label.filtration) && {
+      filtration: {
+        ...(isBoolean(label.filtration) && {
+          label: label.filtration,
+        }),
+      },
+    }),
+    ...(isBoolean(label.pasteurization) && {
+      pasteurization: {
+        ...(isBoolean(label.pasteurization) && {
+          label: label.pasteurization,
         }),
       },
     }),

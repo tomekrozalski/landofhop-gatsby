@@ -27,7 +27,9 @@ const Badge: React.FC<Props> = ({
 
   useEffect(() => {
     if (!disabled) {
-      setValue(slugify(nameField.value[0].value, { lower: true }));
+      setValue(
+        slugify(nameField.value[0].value, { lower: true, strict: true }),
+      );
       if (field.value) {
         setTouched(true);
       }
