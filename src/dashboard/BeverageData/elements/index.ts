@@ -1,6 +1,7 @@
 import ActionButtons from './ActionButtons';
 import Condition from './Condition';
 import FormSection from './FormSection';
+import ListOfOptions from './ListOfOptions';
 import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
@@ -41,6 +42,7 @@ export {
   FormSection,
   InstitutionSelect,
   LanguageSelect,
+  ListOfOptions,
   Navigation,
   OpenSubform,
   PlaceSelect,

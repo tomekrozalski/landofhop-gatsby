@@ -16,6 +16,7 @@
           "beech": "inside beech barrel",
           "oak": "inside oak barrel"
         },
+        "beech": "beech",
         "previousContent": {
           "name": "after",
           "content": "{content}"
@@ -25,7 +26,9 @@
           "beech": "with beech wood",
           "oak": "with oak wood"
         },
-        "name": "leżakowane"
+        "name": "aged",
+        "flow": "Way of aged {order}",
+        "oak": "oak"
       },
       "alcohol": "alcohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",

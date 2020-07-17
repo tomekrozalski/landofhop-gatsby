@@ -7,9 +7,8 @@ import { FormName } from 'utils/enums';
 import { Label } from 'elements';
 import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
-import { Condition } from '../../elements';
-import { Optional as Grid } from '../../elements/grids';
-import { ListOfOptions } from '.';
+import { Condition, ListOfOptions } from '../elements';
+import { Optional as Grid } from '../elements/grids';
 
 type Props = {
   fieldName: FieldName;

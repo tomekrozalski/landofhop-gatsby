@@ -16,6 +16,7 @@
           "beech": "w beczce bukowej",
           "oak": "w beczce dębowej"
         },
+        "beech": "buk",
         "previousContent": {
           "name": "po",
           "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}"
@@ -25,7 +26,9 @@
           "beech": "z drewnem bukowym",
           "oak": "z drewnem dębowym"
         },
-        "name": "leżakowane"
+        "name": "leżakowane",
+        "flow": "Sposób leżakowania {order}",
+        "oak": "dąb"
       },
       "alcohol": "alkohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",

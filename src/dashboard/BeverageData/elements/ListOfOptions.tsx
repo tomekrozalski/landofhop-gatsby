@@ -12,6 +12,7 @@ const ListOfOptions = styled.ul`
 
   li {
     flex-grow: 1;
+    flex-basis: 0;
     display: flex;
     justify-content: center;
     align-items: center;
