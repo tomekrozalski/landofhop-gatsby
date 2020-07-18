@@ -18,8 +18,15 @@
         },
         "beech": "buk",
         "previousContent": {
+          "bourbon": "bourbon",
+          "cognac": "koniak",
+          "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}",
+          "description": "Poprzednia zawartość w którym drewno miało kontakt",
           "name": "po",
-          "content": "{content, select, bourbon {bourbonie} cognac {koniaku} porto {porto} redWine {czerwonym winie} rum {rumie} whisky {whisky}}"
+          "porto": "porto",
+          "redWine": "czerwone wino",
+          "rum": "rum",
+          "whisky": "whisky"
         },
         "wood": {
           "unknown": "z drewnem",
@@ -28,7 +35,8 @@
         },
         "name": "leżakowane",
         "flow": "Sposób leżakowania {order}",
-        "oak": "dąb"
+        "oak": "dąb",
+        "timeOfAged": "Czas leżakowania"
       },
       "alcohol": "alkohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",

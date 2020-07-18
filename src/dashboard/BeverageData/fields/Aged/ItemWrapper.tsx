@@ -13,7 +13,8 @@ const ItemWrapper = styled.fieldset`
   }
 
   .aged-type,
-  .aged-wood {
+  .aged-wood,
+  .aged-previous-content {
     margin: 0.5rem 0;
   }
 
@@ -22,10 +23,26 @@ const ItemWrapper = styled.fieldset`
   }
 
   .aged-time-input-wrapper {
-    display: flex;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: var(--size-input-height) 1fr 1fr;
+  }
 
-    > * + * {
-      margin-left: 1rem; /* gap: 1rem; */
+  .aged-previous-content-input-wrapper {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: var(--size-input-height) 1fr;
+  }
+
+  .aged-time,
+  .aged-previous-content {
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem 0;
+
+      &::after {
+        content: ':';
+      }
     }
   }
 `;

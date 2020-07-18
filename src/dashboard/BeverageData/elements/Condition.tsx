@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useField } from 'formik';
 
 import { Checkmark as CheckmarkIcon } from 'elements/icons';
-import { FieldName } from 'dashboard/utils/enums';
 
 const Wrapper = styled.div<{ on: 1 | 0 }>`
   display: inline-block;
@@ -30,7 +29,7 @@ const Wrapper = styled.div<{ on: 1 | 0 }>`
 
 type Props = {
   empty: any;
-  name: FieldName;
+  name: string;
 };
 
 const Condition: React.FC<Props> = ({ empty, name }) => {

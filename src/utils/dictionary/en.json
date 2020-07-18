@@ -18,8 +18,15 @@
         },
         "beech": "beech",
         "previousContent": {
+          "bourbon": "bourbon",
+          "cognac": "cognac",
+          "content": "{content}",
+          "description": "Previous content with which the wood had contact",
           "name": "after",
-          "content": "{content}"
+          "porto": "porto",
+          "redWine": "red wine",
+          "rum": "rum",
+          "whisky": "whisky"
         },
         "wood": {
           "unknown": "wood",
@@ -28,7 +35,8 @@
         },
         "name": "aged",
         "flow": "Way of aged {order}",
-        "oak": "oak"
+        "oak": "oak",
+        "timeOfAged": "Time of aged"
       },
       "alcohol": "alcohol",
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",

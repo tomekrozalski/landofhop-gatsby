@@ -23,22 +23,22 @@ const AgedWood = ({ fieldName, index }: Props) => {
         <li>
           <input
             checked={!!value[index]?.wood?.includes(AgedWoodEnum.oak)}
-            id="aged-wood-oak"
+            id={`aged-wood-oak-${index}`}
             onChange={onChange(AgedWoodEnum.oak)}
             type="checkbox"
           />
-          <label htmlFor="aged-wood-oak">
+          <label htmlFor={`aged-wood-oak-${index}`}>
             <FormattedMessage id="beverage.details.aged.oak" />
           </label>
         </li>
         <li>
           <input
             checked={!!value[index]?.wood?.includes(AgedWoodEnum.beech)}
-            id="aged-wood-beech"
+            id={`aged-wood-beech-${index}`}
             onChange={onChange(AgedWoodEnum.beech)}
             type="checkbox"
           />
-          <label htmlFor="aged-wood-beech">
+          <label htmlFor={`aged-wood-beech-${index}`}>
             <FormattedMessage id="beverage.details.aged.beech" />
           </label>
         </li>

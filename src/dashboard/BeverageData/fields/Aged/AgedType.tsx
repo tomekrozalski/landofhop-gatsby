@@ -23,22 +23,22 @@ const AgedType = ({ fieldName, index }: Props) => {
         <li>
           <input
             checked={!!value[index]?.type?.includes(AgedTypeEnum.barrel)}
-            id="aged-type-barrel"
+            id={`aged-type-barrel-${index}`}
             onChange={onChange(AgedTypeEnum.barrel)}
             type="checkbox"
           />
-          <label htmlFor="aged-type-barrel">
+          <label htmlFor={`aged-type-barrel-${index}`}>
             <FormattedMessage id="beverage.details.aged.barrel.unknown" />
           </label>
         </li>
         <li>
           <input
             checked={!!value[index]?.type?.includes(AgedTypeEnum.wood)}
-            id="aged-type-wood"
+            id={`aged-type-wood-${index}`}
             onChange={onChange(AgedTypeEnum.wood)}
             type="checkbox"
           />
-          <label htmlFor="aged-type-wood">
+          <label htmlFor={`aged-type-wood-${index}`}>
             <FormattedMessage id="beverage.details.aged.wood.unknown" />
           </label>
         </li>

@@ -1,3 +1,5 @@
+import AgedPreviousContentSelect from './AgedPreviousContentSelect';
+import AgedTimeUnitSelect from './time/AgedTimeUnitSelect';
 import AlcoholRelateSelect from './alcohol/AlcoholRelateSelect';
 import AlcoholScopeSelect from './alcohol/AlcoholScopeSelect';
 import AlcoholUnitSelect from './alcohol/AlcoholUnitSelect';
@@ -14,6 +16,8 @@ import LanguageSelect from './LanguageSelect';
 import PlaceSelect from './PlaceSelect';
 
 export {
+  AgedPreviousContentSelect,
+  AgedTimeUnitSelect,
   AlcoholRelateSelect,
   AlcoholScopeSelect,
   AlcoholUnitSelect,

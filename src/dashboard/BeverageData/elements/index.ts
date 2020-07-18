@@ -6,6 +6,8 @@ import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
 import {
+  AgedPreviousContentSelect,
+  AgedTimeUnitSelect,
   AlcoholRelateSelect,
   AlcoholScopeSelect,
   AlcoholUnitSelect,
@@ -27,6 +29,8 @@ import SubSection from './SubSection';
 
 export {
   ActionButtons,
+  AgedPreviousContentSelect,
+  AgedTimeUnitSelect,
   AlcoholRelateSelect,
   AlcoholScopeSelect,
   AlcoholUnitSelect,

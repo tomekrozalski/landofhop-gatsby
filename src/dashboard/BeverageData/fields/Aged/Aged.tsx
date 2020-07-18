@@ -3,16 +3,18 @@ import { FieldArray } from 'formik';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
-import { Label, TextInput } from 'elements';
+import { Label } from 'elements';
 import { FieldName } from 'dashboard/utils/enums';
-import { ActionButtons, ExpirationDateUnitSelect, Plug } from '../../elements';
+import { ActionButtons, Plug } from '../../elements';
 import { Basic as Grid } from '../../elements/grids';
-import { AgedType, AgedWood, ItemWrapper } from '.';
+import { AgedTime, AgedType, AgedWood, ItemWrapper, PreviousContent } from '.';
 
 type Props = {
   fieldName: FieldName;
   formName: FormName;
 };
+
+const emptyAged = { previousContent: null, time: null, type: [], wood: [] };
 
 const Aged: React.FC<Props> = ({ fieldName, formName }) => (
   <Grid>
@@ -36,25 +38,21 @@ const Aged: React.FC<Props> = ({ fieldName, formName }) => (
                 </h3>
                 <AgedType fieldName={fieldName} index={index} />
                 <AgedWood fieldName={fieldName} index={index} />
-                <div className="aged-time">
-                  Czas leżakowania:
-                  <div className="aged-time-input-wrapper">
-                    <TextInput
-                      name={`${fieldName}.${index}.value`}
-                      form={formName}
-                      type="number"
-                    />
-                    <ExpirationDateUnitSelect
-                      name={`${fieldName}.unit`}
-                      form={formName}
-                    />
-                  </div>
-                </div>
-                <div>Poprzednia zawartość w którym drewno miało kontakt:</div>
+                <AgedTime
+                  fieldName={fieldName}
+                  formName={formName}
+                  index={index}
+                />
+                <PreviousContent
+                  fieldName={fieldName}
+                  formName={formName}
+                  index={index}
+                />
               </ItemWrapper>
               {loopLength === index + 1 && (
                 <ActionButtons
                   push={push}
+                  pushContent={emptyAged}
                   remove={() => remove(loopLength - 1)}
                   withRemove
                 />
@@ -63,7 +61,7 @@ const Aged: React.FC<Props> = ({ fieldName, formName }) => (
           ));
         }
 
-        return <Plug onClick={() => push({ type: [], wood: [] })} />;
+        return <Plug onClick={() => push(emptyAged)} />;
       }}
     />
   </Grid>
