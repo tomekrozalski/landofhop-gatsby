@@ -24,7 +24,6 @@ import {
   editorial as initialEditorialValues,
 } from '../initialValues';
 import { BeverageType } from '../Beverage.type';
-import { Filtration } from 'components/BeverageDetails/Testimony';
 
 type Props = {
   data: BeverageType;
@@ -35,6 +34,7 @@ type Props = {
 const dataToForm = ({ data, intl, languages }: Props) => {
   const {
     added,
+    aged,
     alcohol,
     badge,
     barcode,
@@ -156,6 +156,31 @@ const dataToForm = ({ data, intl, languages }: Props) => {
       ...(isBoolean(filtration?.label) && { filtration: filtration?.label }),
       ...(isBoolean(pasteurization?.label) && {
         pasteurization: pasteurization?.label,
+      }),
+      ...(aged?.label?.length && {
+        aged: aged?.label.map(({ type, wood, time, previousContent }) => ({
+          type: type || null,
+          wood: wood || null,
+          time: time
+            ? {
+                unit: {
+                  label: intl.formatMessage({
+                    id: `global.timeUnit.${time.unit}`,
+                  }),
+                  value: time.unit,
+                },
+                value: time.value,
+              }
+            : null,
+          previousContent: previousContent?.length
+            ? previousContent.map(value => ({
+                label: intl.formatMessage({
+                  id: `beverage.details.aged.previousContent.${value}`,
+                }),
+                value,
+              }))
+            : null,
+        })),
       }),
       // -----------
       // required

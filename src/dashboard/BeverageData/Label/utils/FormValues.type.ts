@@ -1,5 +1,9 @@
 import { Lang } from 'dashboard/utils/types/form';
 import {
+  AgedPreviousContent,
+  AgedTimeUnit,
+  AgedType,
+  AgedWood,
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
@@ -74,6 +78,23 @@ export type FormValues = {
   };
   [FieldName.filtration]: boolean | null;
   [FieldName.pasteurization]: boolean | null;
+  [FieldName.aged]: {
+    type?: AgedType;
+    wood?: AgedWood;
+    time: {
+      unit: {
+        label: string;
+        value: AgedTimeUnit;
+      };
+      value: number;
+    } | null;
+    previousContent:
+      | {
+          label: string;
+          value: AgedPreviousContent;
+        }[]
+      | null;
+  }[];
 
   [FieldName.container]: {
     color: {

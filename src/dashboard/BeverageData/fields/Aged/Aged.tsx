@@ -14,7 +14,7 @@ type Props = {
   formName: FormName;
 };
 
-const emptyAged = { previousContent: null, time: null, type: [], wood: [] };
+const emptyAged = { previousContent: [], time: null, type: null, wood: null };
 
 const Aged: React.FC<Props> = ({ fieldName, formName }) => (
   <Grid>

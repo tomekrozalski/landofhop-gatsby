@@ -19,8 +19,6 @@ const AgedTime = ({ fieldName, formName, index }: Props) => {
   const { formatMessage } = useIntl();
   const [{ value }] = useField(fieldName);
 
-  console.log('--->', value);
-
   return (
     <div className="aged-time">
       <label>

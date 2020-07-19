@@ -5,8 +5,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { AgedType as AgedTypeEnum } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
-import { ListOfOptions } from '../../elements';
-import { setType } from './utils';
+import { Condition, ListOfOptions } from '../../elements';
 
 type Props = {
   fieldName: FieldName;
@@ -15,30 +14,48 @@ type Props = {
 
 const AgedType = ({ fieldName, index }: Props) => {
   const [{ value }, , { setValue }] = useField(fieldName);
-  const onChange = setType({ index, setValue, value });
+
+  const setType = (type: AgedTypeEnum) =>
+    setValue(
+      value.map((item: { type?: AgedTypeEnum }, i: number) =>
+        i === index ? { ...item, type } : item,
+      ),
+    );
+
+  const isDisabled = value[index]?.type === null;
 
   return (
     <div className="aged-type">
-      <ListOfOptions>
+      <Condition
+        name={`${fieldName}.${index}.type`}
+        empty={AgedTypeEnum.barrel}
+      />
+      <ListOfOptions className={isDisabled ? 'disabled' : ''}>
         <li>
           <input
-            checked={!!value[index]?.type?.includes(AgedTypeEnum.barrel)}
-            id={`aged-type-barrel-${index}`}
-            onChange={onChange(AgedTypeEnum.barrel)}
-            type="checkbox"
+            checked={value[index]?.type === AgedTypeEnum.barrel}
+            disabled={isDisabled}
+            onChange={() => setType(AgedTypeEnum.barrel)}
+            type="radio"
+            id={`aged-type-${index}-${AgedTypeEnum.barrel}`}
+            name={`aged-type-${index}`}
+            value={AgedTypeEnum.barrel}
           />
-          <label htmlFor={`aged-type-barrel-${index}`}>
+          <label htmlFor={`aged-type-${index}-${AgedTypeEnum.barrel}`}>
             <FormattedMessage id="beverage.details.aged.barrel.unknown" />
           </label>
         </li>
         <li>
           <input
-            checked={!!value[index]?.type?.includes(AgedTypeEnum.wood)}
-            id={`aged-type-wood-${index}`}
-            onChange={onChange(AgedTypeEnum.wood)}
-            type="checkbox"
+            checked={value[index]?.type === AgedTypeEnum.wood}
+            disabled={isDisabled}
+            onChange={() => setType(AgedTypeEnum.wood)}
+            type="radio"
+            id={`aged-type-${index}-${AgedTypeEnum.wood}`}
+            name={`aged-type-${index}`}
+            value={AgedTypeEnum.wood}
           />
-          <label htmlFor={`aged-type-wood-${index}`}>
+          <label htmlFor={`aged-type-${index}-${AgedTypeEnum.wood}`}>
             <FormattedMessage id="beverage.details.aged.wood.unknown" />
           </label>
         </li>

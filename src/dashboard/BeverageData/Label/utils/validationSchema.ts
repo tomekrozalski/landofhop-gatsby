@@ -125,6 +125,39 @@ export default Yup.object().shape({
       }),
     })
     .nullable(true),
+  [FieldName.aged]: Yup.array().of(
+    Yup.object().shape({
+      type: Yup.string()
+        // null should be treated as correct option
+        .transform(v => (v === null ? 'ok' : v))
+        .required(),
+      wood: Yup.string()
+        // null should be treated as correct option
+        .transform(v => (v === null ? 'ok' : v))
+        .required(),
+      time: Yup.object()
+        .shape({
+          unit: Yup.object().shape({
+            label: Yup.string().required(),
+            value: Yup.string().required(),
+          }),
+          value: Yup.number()
+            .min(1)
+            .required(),
+        })
+        .nullable(true),
+      previousContent: Yup.array()
+        .of(
+          Yup.object().shape({
+            label: Yup.string().required(),
+            value: Yup.string().required(),
+          }),
+        )
+        .min(1)
+        .nullable(true),
+    }),
+  ),
+
   // [FieldName.expirationDate]: Yup
   // 	.object()
   // 	.shape({

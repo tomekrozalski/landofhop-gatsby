@@ -132,6 +132,25 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...(label.aged.length && {
+      aged: {
+        ...(label.aged.length && {
+          label: label.aged.map(({ type, wood, time, previousContent }) => ({
+            ...(type && { type }),
+            ...(wood && { wood }),
+            ...(time && {
+              time: {
+                unit: time.unit.value,
+                value: time.value,
+              },
+            }),
+            ...(previousContent && {
+              previousContent: previousContent.map(({ value }) => value),
+            }),
+          })),
+        }),
+      },
+    }),
 
     // fermentation: label, producer, editorial
     // style: label, producer, editorial

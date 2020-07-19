@@ -19,6 +19,7 @@ const AgedPreviousContentSelect: React.FC<Props> = props => {
   return (
     <Select
       {...props}
+      isMulti
       options={contents.map(value => ({
         label: formatMessage({
           id: `beverage.details.aged.previousContent.${value}`,

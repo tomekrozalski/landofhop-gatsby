@@ -28,6 +28,8 @@ const ItemWrapper = styled.fieldset`
     grid-template-columns: var(--size-input-height) 1fr 1fr;
   }
 
+  .aged-type,
+  .aged-wood,
   .aged-previous-content-input-wrapper {
     display: grid;
     grid-gap: 1rem;

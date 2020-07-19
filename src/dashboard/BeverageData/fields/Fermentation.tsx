@@ -29,14 +29,17 @@ const Fermentation: React.FC<Props> = ({ fieldName, formName }) => {
     }
   };
 
+  const isDisabled = value === null;
+
   return (
     <Grid>
       <Label name={fieldName} form={formName} />
       <Condition name={fieldName} empty={[FermentationEnum.top]} />
-      <ListOfOptions className={value === null ? 'disabled' : ''}>
+      <ListOfOptions className={isDisabled ? 'disabled' : ''}>
         <li>
           <input
             checked={!!value?.includes(FermentationEnum.top)}
+            disabled={isDisabled}
             id="fermentation-top"
             onChange={e => onOptionChange(e, FermentationEnum.top)}
             type="checkbox"
@@ -48,6 +51,7 @@ const Fermentation: React.FC<Props> = ({ fieldName, formName }) => {
         <li>
           <input
             checked={!!value?.includes(FermentationEnum.bottom)}
+            disabled={isDisabled}
             id="fermentation-bottom"
             onChange={e => onOptionChange(e, FermentationEnum.bottom)}
             type="checkbox"
@@ -59,6 +63,7 @@ const Fermentation: React.FC<Props> = ({ fieldName, formName }) => {
         <li>
           <input
             checked={!!value?.includes(FermentationEnum.spontaneous)}
+            disabled={isDisabled}
             id="fermentation-spontaneous"
             onChange={e => onOptionChange(e, FermentationEnum.spontaneous)}
             type="checkbox"
