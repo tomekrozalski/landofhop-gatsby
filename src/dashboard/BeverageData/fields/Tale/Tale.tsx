@@ -1,36 +1,20 @@
 import React from 'react';
 import { FieldArray } from 'formik';
-import styled from 'styled-components';
-import Markdown from 'markdown-to-jsx';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { emptyLangValue } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
-import { ActionButtons, LanguageSelect, Plug } from '../elements';
-import { Basic as Grid } from '../elements/grids';
+import { Basic as Grid } from '../../elements/grids';
+import { ActionButtons, LanguageSelect, Plug } from '../../elements';
 
-const StyledMarkdown = styled(Markdown)`
-  grid-column: 2 / 3;
-  grid-row: span 2;
-  padding: 0 1rem;
-  max-height: 28.6rem;
-  overflow-y: scroll;
-  border: 1px solid var(--color-producer-light);
-`;
+import { TaleValue } from './TaleValue.type';
+import Markdown from './Markdown';
 
 type Props = {
   fieldName: FieldName;
   formName: FormName;
   required?: boolean;
-};
-
-type ValueProps = {
-  lang: {
-    label: string;
-    value: string;
-  };
-  value: string;
 };
 
 const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
@@ -48,7 +32,7 @@ const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
         const loopLength = values.length;
 
         if (values && loopLength) {
-          return values.map(({ lang, value }: ValueProps, index: number) => (
+          return values.map(({ lang, value }: TaleValue, index: number) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={`${fieldName}-${index}`}>
               <div style={{ gridColumn: '2 / 3', gridRow: 'span 2' }}>
@@ -69,7 +53,7 @@ const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
                   withRemove
                 />
               )}
-              <StyledMarkdown lang={lang.value}>{value}</StyledMarkdown>
+              <Markdown lang={lang} value={value} />
             </React.Fragment>
           ));
         }
