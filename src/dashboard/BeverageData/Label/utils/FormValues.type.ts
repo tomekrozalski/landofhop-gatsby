@@ -11,6 +11,7 @@ import {
   ContainerMaterial,
   ContainerType,
   ContainerUnit,
+  ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
 } from 'components/BeverageDetails/utils/enums';
@@ -95,6 +96,13 @@ export type FormValues = {
         }[]
       | null;
   }[];
+  [FieldName.expirationDate]: {
+    unit: {
+      label: string;
+      value: ExpirationDateUnit;
+    };
+    value: number;
+  } | null;
 
   [FieldName.container]: {
     color: {

@@ -151,6 +151,16 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...(label.expirationDate && {
+      expirationDate: {
+        ...(label.expirationDate && {
+          label: {
+            unit: label.expirationDate.unit.value,
+            value: label.expirationDate.value,
+          },
+        }),
+      },
+    }),
 
     // fermentation: label, producer, editorial
     // style: label, producer, editorial

@@ -157,20 +157,18 @@ export default Yup.object().shape({
         .nullable(true),
     }),
   ),
-
-  // [FieldName.expirationDate]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		value: Yup.number()
-  // 			.min(1, 'danger')
-  // 			.max(500, 'danger')
-  // 			.required('danger'),
-  // 		unit: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 	})
-  // 	.nullable(true),
+  [FieldName.expirationDate]: Yup.object()
+    .shape({
+      value: Yup.number()
+        .min(1)
+        .max(500)
+        .required(),
+      unit: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    })
+    .nullable(true),
   // // -----------
   // [FieldName.ingredients]: Yup
   // 	.array()

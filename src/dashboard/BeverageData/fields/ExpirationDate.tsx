@@ -1,8 +1,10 @@
 import React from 'react';
 import { useField } from 'formik';
+import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
+import { ExpirationDateUnit } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
 import { Condition, ExpirationDateUnitSelect } from '../elements';
 import { ConditionalDouble as Grid } from '../elements/grids';
@@ -13,6 +15,7 @@ type Props = {
 };
 
 const ExpirationDate: React.FC<Props> = ({ fieldName, formName }) => {
+  const { formatMessage } = useIntl();
   const [field] = useField(fieldName);
 
   return (
@@ -22,7 +25,12 @@ const ExpirationDate: React.FC<Props> = ({ fieldName, formName }) => {
         name={fieldName}
         empty={{
           value: 0,
-          unit: '',
+          unit: {
+            label: formatMessage({
+              id: `global.timeUnit.${ExpirationDateUnit.month}`,
+            }),
+            value: ExpirationDateUnit.month,
+          },
         }}
       />
       <TextInput

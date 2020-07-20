@@ -42,6 +42,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     container,
     contract,
     cooperation,
+    expirationDate,
     extract,
     fermentation,
     filtration,
@@ -181,6 +182,17 @@ const dataToForm = ({ data, intl, languages }: Props) => {
               }))
             : null,
         })),
+      }),
+      ...(expirationDate?.label && {
+        expirationDate: {
+          unit: {
+            label: intl.formatMessage({
+              id: `global.timeUnit.${expirationDate.label.unit}`,
+            }),
+            value: expirationDate.label.unit,
+          },
+          value: expirationDate.label.value,
+        },
       }),
       // -----------
       // required

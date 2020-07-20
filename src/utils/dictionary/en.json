@@ -79,7 +79,7 @@
       },
       "contains": "contains",
       "contract": "Brewed by {brands}",
-      "cooperation": "{contract, select, contract {} other {Uwarzono}} in cooperation with {cooperation}",
+      "cooperation": "{contract, select, contract {} other {Brewed}} in cooperation with {cooperation}",
       "country": "country",
       "dryHopped": "dry-hopped",
       "expirationDate": "expiration date",
