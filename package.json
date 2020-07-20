@@ -6,6 +6,7 @@
   "author": "Tomek Rozalski <kontakt@tomaszrozalski.pl>",
   "dependencies": {
     "@nfront/global-styles": "^1.2.1",
+    "@sentry/browser": "^5.19.2",
     "@types/d3": "^5.7.2",
     "@types/styled-components": "^4.4.0",
     "@types/yup": "^0.26.24",
