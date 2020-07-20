@@ -143,6 +143,7 @@
         "description": "Final information, from the editorial office, somehow unofficial",
         "title": "Editorial"
       },
+      "ingredientsInfo": "Informations connected with ingredients",
       "labelInfo": {
         "description": "Data which could be taken just from the container",
         "title": "Label"
@@ -214,6 +215,7 @@
       "degree": "°",
       "percent": "%"
     },
+    "areIngredientsComplete": "Are ingredients complete",
     "badge": "Badge",
     "barcode": "Barcode",
     "brand": "Brand",
@@ -238,6 +240,8 @@
     },
     "fermentation": "fermentation",
     "filtration": "filtration",
+    "ingredientsDescription": "Ingredients",
+    "ingredientsList": "Ingredients list",
     "institution": "Institution",
     "latitude": "Latitude",
     "loading": "Loading…",
@@ -249,6 +253,7 @@
     "pasteurization": "Pasteurization",
     "place": "Place",
     "series": "Series",
+    "smokedMalt": "Contains malt dried with smoke",
     "style": "Style",
     "tale": "Tale",
     "timeUnit": {

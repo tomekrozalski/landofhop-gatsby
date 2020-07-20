@@ -19,7 +19,7 @@ enum Beverage {
   filtration = 'filtration',
   fullness = 'fullness',
   hoppyness = 'hoppyness',
-  ingredients = 'ingredients',
+  ingredientsDescription = 'ingredientsDescription',
   ingredientsList = 'ingredientsList',
   name = 'name',
   notes = 'notes',

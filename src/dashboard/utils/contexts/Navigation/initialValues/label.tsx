@@ -28,7 +28,7 @@ const label = {
   [FieldName.dryHopped]: null,
   [FieldName.expirationDate]: null,
   // -----------
-  [FieldName.ingredients]: [],
+  [FieldName.ingredientsDescription]: [],
   [FieldName.ingredientsList]: null,
   [FieldName.smokedMalt]: null,
   // -----------

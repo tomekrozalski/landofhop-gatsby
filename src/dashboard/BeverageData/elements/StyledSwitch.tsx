@@ -14,7 +14,7 @@ export const Wrapper = styled(Switch)`
 `;
 
 type Props = {
-  name: FieldName;
+  name: string | FieldName;
   form: FormName;
 };
 

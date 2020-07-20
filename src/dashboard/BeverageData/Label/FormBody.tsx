@@ -21,10 +21,13 @@ import {
   Extract,
   Fermentation,
   Filtration,
+  IngredientsDescription,
+  IngredientsList,
   Name,
   Pasteurization,
   Place,
   Series,
+  SmokedMalt,
   Style,
   Tale,
 } from '../fields';
@@ -120,6 +123,20 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       <ExpirationDate
         fieldName={BeverageFieldNames.expirationDate}
+        formName={FormName.beverageLabel}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.ingredientsInfo" />
+      <IngredientsDescription
+        fieldName={BeverageFieldNames.ingredientsDescription}
+        formName={FormName.beverageLabel}
+      />
+      <IngredientsList
+        fieldName={BeverageFieldNames.ingredientsList}
+        formName={FormName.beverageLabel}
+      />
+      <SmokedMalt
+        fieldName={BeverageFieldNames.smokedMalt}
         formName={FormName.beverageLabel}
       />
       {/* -------------------------------- */}

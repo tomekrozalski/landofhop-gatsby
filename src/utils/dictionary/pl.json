@@ -143,6 +143,7 @@
         "description": "Informacje końcowe, od redakcji, niejako nieoficjalne",
         "title": "Redakcyjne"
       },
+      "ingredientsInfo": "Informacje dotyczące składników",
       "labelInfo": {
         "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
         "title": "Etykieta"
@@ -214,6 +215,7 @@
       "degree": "°",
       "percent": "%"
     },
+    "areIngredientsComplete": "Skład jest kompletny",
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
     "brand": "Marka",
@@ -238,6 +240,8 @@
     },
     "fermentation": "Fermentacja",
     "filtration": "Filtracja",
+    "ingredientsDescription": "Składniki",
+    "ingredientsList": "Lista składników",
     "institution": "Instytucja",
     "latitude": "Szerokość geograficzna",
     "loading": "Ładuję…",
@@ -249,6 +253,7 @@
     "pasteurization": "Pasteryzacja",
     "place": "Miejsce",
     "series": "Seria",
+    "smokedMalt": "Zawiera słód suszony dymem",
     "style": "Styl",
     "tale": "Opis",
     "timeUnit": {
