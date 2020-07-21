@@ -21,7 +21,7 @@ const Description: React.FC<Props> = ({ fieldName, formName, index }) => (
   <Wrapper>
     <TextInput name={`${fieldName}.${index}.value`} form={formName} textarea />
     <LanguageSelect
-      name={`${fieldName}.${index}.lang`}
+      name={`${fieldName}.${index}.language`}
       placeholder="selectLanguage"
     />
   </Wrapper>

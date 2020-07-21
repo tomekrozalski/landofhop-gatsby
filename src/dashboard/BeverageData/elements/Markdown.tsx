@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import MarkdownToJSX from 'markdown-to-jsx';
 import { debounce } from 'lodash';
 
-import { TaleValue } from './TaleValue.type';
-
 const StyledMarkdown = styled(MarkdownToJSX)`
   grid-column: 2 / 3;
   grid-row: span 2;
@@ -14,7 +12,15 @@ const StyledMarkdown = styled(MarkdownToJSX)`
   border: 1px solid var(--color-producer-light);
 `;
 
-const MarkDown: React.FC<TaleValue> = ({ lang, value }) => {
+type Props = {
+  lang: {
+    label: string;
+    value: string;
+  };
+  value: string;
+};
+
+const MarkDown: React.FC<Props> = ({ lang, value }) => {
   const [text, setText] = useState(value);
 
   const change = debounce(setText, 200);

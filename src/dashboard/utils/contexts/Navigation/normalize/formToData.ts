@@ -161,6 +161,17 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...(label.ingredientsDescription?.length && {
+      ingredientsDescription: {
+        label: label.ingredientsDescription.map(
+          ({ language, value, complete }) => ({
+            ...(language.value !== 'none' && { language: language.value }),
+            value,
+            complete,
+          }),
+        ),
+      },
+    }),
 
     // fermentation: label, producer, editorial
     // style: label, producer, editorial

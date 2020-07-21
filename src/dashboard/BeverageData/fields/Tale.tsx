@@ -5,11 +5,16 @@ import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { emptyLangValue } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
-import { Basic as Grid } from '../../elements/grids';
-import { ActionButtons, LanguageSelect, Plug } from '../../elements';
+import { Basic as Grid } from '../elements/grids';
+import { ActionButtons, LanguageSelect, Markdown, Plug } from '../elements';
 
-import { TaleValue } from './TaleValue.type';
-import Markdown from './Markdown';
+type TaleValue = {
+  lang: {
+    label: string;
+    value: string;
+  };
+  value: string;
+};
 
 type Props = {
   fieldName: FieldName;

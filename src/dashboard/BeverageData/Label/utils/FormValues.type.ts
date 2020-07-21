@@ -49,7 +49,7 @@ export type FormValues = {
   }[];
   [FieldName.barcode]: string | null;
   // -----------
-  [FieldName.fermentation]: string[];
+  [FieldName.fermentation]: string[] | null;
   [FieldName.style]: { lang: Lang; value: string }[];
   [FieldName.extract]: {
     relate: {
@@ -61,7 +61,7 @@ export type FormValues = {
       value: ExtractUnit;
     };
     value: number;
-  };
+  } | null;
   [FieldName.alcohol]: {
     relate: {
       label: string;
@@ -76,7 +76,7 @@ export type FormValues = {
       value: AlcoholUnit;
     };
     value: number;
-  };
+  } | null;
   [FieldName.filtration]: boolean | null;
   [FieldName.pasteurization]: boolean | null;
   [FieldName.aged]: {
@@ -103,6 +103,14 @@ export type FormValues = {
     };
     value: number;
   } | null;
+  [FieldName.ingredientsDescription]: {
+    language: {
+      label: string;
+      value: string;
+    };
+    value: string;
+    complete: boolean;
+  }[];
 
   [FieldName.container]: {
     color: {

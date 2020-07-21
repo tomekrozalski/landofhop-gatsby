@@ -5,28 +5,14 @@ import { FormName } from 'utils/enums';
 import { Label } from 'elements';
 import { FieldName } from 'dashboard/utils/enums';
 import { Basic as Grid } from '../../elements/grids';
-import { ActionButtons, Plug } from '../../elements';
-import { Complete, Description } from '.';
+import { ActionButtons, Markdown, Plug } from '../../elements';
+import { IngredientsDescriptionType } from './IngredientsDescription.type';
+import { Complete, Description, emptyIngredientsDescription } from '.';
 
 type Props = {
   fieldName: FieldName;
   formName: FormName;
   required?: boolean;
-};
-
-type IngredientsDescriptionValue = {
-  complete: boolean;
-  lang: {
-    label: string;
-    value: string;
-  };
-  value: string;
-};
-
-const emptyIngredientsDescription = {
-  complete: true,
-  lang: '',
-  value: '• , • , • ',
 };
 
 const IngredientsDescription: React.FC<Props> = ({
@@ -48,30 +34,35 @@ const IngredientsDescription: React.FC<Props> = ({
         const loopLength = values.length;
 
         if (values && loopLength) {
-          return values.map((_: IngredientsDescriptionValue, index: number) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <React.Fragment key={`${fieldName}-${index}`}>
-              <Description
-                fieldName={fieldName}
-                formName={formName}
-                index={index}
-              />
-              <Complete
-                fieldName={fieldName}
-                formName={formName}
-                index={index}
-              />
-              {loopLength === index + 1 && (
-                <ActionButtons
-                  push={push}
-                  pushContent={emptyIngredientsDescription}
-                  remove={() => remove(loopLength - 1)}
-                  withRemove
+          return values.map(
+            (
+              { language, value }: IngredientsDescriptionType,
+              index: number,
+            ) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <React.Fragment key={`${fieldName}-${index}`}>
+                <Description
+                  fieldName={fieldName}
+                  formName={formName}
+                  index={index}
                 />
-              )}
-              {/* <Markdown lang={lang} value={value} /> */}
-            </React.Fragment>
-          ));
+                <Complete
+                  fieldName={fieldName}
+                  formName={formName}
+                  index={index}
+                />
+                {loopLength === index + 1 && (
+                  <ActionButtons
+                    push={push}
+                    pushContent={emptyIngredientsDescription}
+                    remove={() => remove(loopLength - 1)}
+                    withRemove
+                  />
+                )}
+                <Markdown lang={language} value={value} />
+              </React.Fragment>
+            ),
+          );
         }
 
         return <Plug onClick={() => push(emptyIngredientsDescription)} />;

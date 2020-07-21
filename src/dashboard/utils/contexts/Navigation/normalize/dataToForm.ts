@@ -17,6 +17,7 @@ import {
 import {
   normalizeObjectLanguage as normalizeObjectLanguageHelper,
   normalizeLanguageValuePair as normalizeLanguageValuePairHelper,
+  normalizeIngredientsDescription as normalizeIngredientsDescriptionHelper,
 } from '../helpers';
 import {
   label as initialLabelValues,
@@ -46,6 +47,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     extract,
     fermentation,
     filtration,
+    ingredientsDescription,
     name,
     notes,
     pasteurization,
@@ -194,6 +196,12 @@ const dataToForm = ({ data, intl, languages }: Props) => {
           value: expirationDate.label.value,
         },
       }),
+      ...(ingredientsDescription?.label?.length && {
+        ingredientsDescription: ingredientsDescription.label.map(
+          normalizeIngredientsDescriptionHelper({ languages, intl }),
+        ),
+      }),
+
       // -----------
       // required
       [FieldName.container]: {

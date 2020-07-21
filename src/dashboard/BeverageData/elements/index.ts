@@ -2,6 +2,7 @@ import ActionButtons from './ActionButtons';
 import Condition from './Condition';
 import FormSection from './FormSection';
 import ListOfOptions from './ListOfOptions';
+import Markdown from './Markdown';
 import Navigation from './Navigation';
 import OpenSubform from './OpenSubform';
 import Plug from './Plug';
@@ -19,6 +20,7 @@ import {
   ExpirationDateUnitSelect,
   ExtractRelateSelect,
   ExtractUnitSelect,
+  IngredientSelect,
   InstitutionSelect,
   LanguageSelect,
   PlaceSelect,
@@ -44,9 +46,11 @@ export {
   ExtractRelateSelect,
   ExtractUnitSelect,
   FormSection,
+  IngredientSelect,
   InstitutionSelect,
   LanguageSelect,
   ListOfOptions,
+  Markdown,
   Navigation,
   OpenSubform,
   PlaceSelect,

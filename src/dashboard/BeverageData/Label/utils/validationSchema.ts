@@ -169,20 +169,19 @@ export default Yup.object().shape({
       }),
     })
     .nullable(true),
-  // // -----------
-  // [FieldName.ingredients]: Yup
-  // 	.array()
-  // 	.of(
-  // 		Yup.object().shape({
-  // 			lang: Yup.object().shape({
-  // 				label: Yup.string().required('danger'),
-  // 				value: Yup.string().required('danger'),
-  // 			}),
-  // 			value: Yup.string()
-  // 				.min(12, 'danger')
-  // 				.required('danger'),
-  // 		}),
-  // 	),
+  // -----------
+  [FieldName.ingredientsDescription]: Yup.array().of(
+    Yup.object().shape({
+      language: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      value: Yup.string()
+        .min(12)
+        .required(),
+      complete: Yup.boolean().required(),
+    }),
+  ),
   // [FieldName.ingredientsList]: Yup
   // 	.array()
   // 	.min(1, 'danger')
