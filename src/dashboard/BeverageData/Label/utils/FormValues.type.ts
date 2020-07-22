@@ -14,6 +14,7 @@ import {
   ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
+  IngredientType,
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
@@ -69,7 +70,7 @@ export type FormValues = {
     };
     scope: {
       label: string;
-      value: AlcoholScope | '-';
+      value: AlcoholScope | string;
     };
     unit: {
       label: string;
@@ -80,8 +81,8 @@ export type FormValues = {
   [FieldName.filtration]: boolean | null;
   [FieldName.pasteurization]: boolean | null;
   [FieldName.aged]: {
-    type?: AgedType;
-    wood?: AgedWood;
+    type: AgedType | null;
+    wood: AgedWood | null;
     time: {
       unit: {
         label: string;
@@ -111,6 +112,12 @@ export type FormValues = {
     value: string;
     complete: boolean;
   }[];
+  [FieldName.ingredientsList]: {
+    label: string;
+    value: string;
+    types: IngredientType;
+  }[];
+  [FieldName.smokedMalt]: boolean | null;
 
   [FieldName.container]: {
     color: {

@@ -1,5 +1,7 @@
 import { OptionProps } from 'react-select/src/types';
 
+import { IngredientType } from 'components/BeverageDetails/utils/enums';
+
 export type EnhancedOptions = OptionProps & { isMulti: boolean };
 
 export default {
@@ -72,11 +74,11 @@ export default {
   multiValue: (base: any, { data }: EnhancedOptions) => {
     const getBgColor = () => {
       switch (data.type) {
-        case 'hop':
+        case IngredientType.hop:
           return 'var(--color-ingredients-hop)';
-        case 'malt':
+        case IngredientType.malt:
           return 'var(--color-ingredients-malt)';
-        case 'appendix':
+        case IngredientType.appendix:
           return 'var(--color-ingredients-appendix)';
         default:
           return 'var(--color-bright)';
@@ -98,9 +100,9 @@ export default {
   multiValueLabel: (base: any, { data }: EnhancedOptions) => {
     const getColor = () => {
       switch (data.type) {
-        case 'hop':
-        case 'malt':
-        case 'appendix':
+        case IngredientType.hop:
+        case IngredientType.malt:
+        case IngredientType.appendix:
           return 'var(--color-white)';
         default:
           return 'var(--color-black)';
@@ -119,7 +121,9 @@ export default {
       whiteSpace: 'nowrap',
     };
   },
-  multiValueRemove: () => ({}),
+  multiValueRemove: () => ({
+    marginLeft: '0.3rem',
+  }),
   option: (base: any, { isFocused, isSelected }: EnhancedOptions) => ({
     ...base,
     backgroundColor: `${isFocused ? 'var(--color-brightest)' : 'transparent'}`,

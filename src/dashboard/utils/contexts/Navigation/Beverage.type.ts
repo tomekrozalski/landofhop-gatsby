@@ -141,10 +141,14 @@ export type BeverageType = {
   };
   ingredientsList?: {
     label?: {
+      badge: string;
+      id: string;
       name: LanguageValue[];
       type: IngredientType;
     }[];
     producer?: {
+      badge: string;
+      id: string;
       name: LanguageValue[];
       type: IngredientType;
     }[];

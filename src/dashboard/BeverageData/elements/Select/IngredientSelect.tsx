@@ -37,9 +37,11 @@ const IngredientSelect: React.FC<Props> = props => {
   return (
     <Select
       {...props}
-      options={values.map(({ id, name }) => ({
+      isMulti
+      options={values.map(({ id, name, type }) => ({
         label: getValueByLanguage(name, locale).value,
         value: id,
+        type,
       }))}
     />
   );

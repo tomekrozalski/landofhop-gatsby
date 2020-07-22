@@ -172,6 +172,16 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ),
       },
     }),
+    ...(label.ingredientsList?.length && {
+      ingredientsList: {
+        label: label.ingredientsList.map(({ value }) => value),
+      },
+    }),
+    ...(isBoolean(label.smokedMalt) && {
+      smokedMalt: {
+        label: label.smokedMalt,
+      },
+    }),
 
     // fermentation: label, producer, editorial
     // style: label, producer, editorial

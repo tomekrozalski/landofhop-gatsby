@@ -3,6 +3,9 @@ import isBoolean from 'lodash/isBoolean';
 
 import { SiteLanguage } from 'utils/enums';
 import {
+  AlcoholRelate,
+  AlcoholScope,
+  AlcoholUnit,
   ContainerColor,
   ContainerMaterial,
   ContainerType,
@@ -48,11 +51,14 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     fermentation,
     filtration,
     ingredientsDescription,
+    ingredientsList,
+    isAged,
     name,
     notes,
     pasteurization,
     place,
     series,
+    smokedMalt,
     style,
     tale,
     updated,
@@ -134,13 +140,13 @@ const dataToForm = ({ data, intl, languages }: Props) => {
             label: intl.formatMessage({
               id: `global.alcoholRelate.${alcohol.label.relate}`,
             }),
-            value: alcohol.label.relate,
+            value: alcohol.label.relate as AlcoholRelate,
           },
           unit: {
             label: intl.formatMessage({
               id: `global.alcoholUnit.${alcohol.label.unit}`,
             }),
-            value: alcohol.label.unit,
+            value: alcohol.label.unit as AlcoholUnit,
           },
           value: alcohol.label.value,
           scope: alcohol.label.scope
@@ -148,7 +154,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
                 label: intl.formatMessage({
                   id: `global.alcoholScope.${alcohol.label.scope}`,
                 }),
-                value: alcohol.label.scope,
+                value: alcohol.label.scope as AlcoholScope,
               }
             : {
                 label: '--',
@@ -185,6 +191,10 @@ const dataToForm = ({ data, intl, languages }: Props) => {
             : null,
         })),
       }),
+      ...(!aged?.label?.length &&
+        isAged?.label && {
+          aged: [{ type: null, wood: null, time: null, previousContent: null }],
+        }),
       ...(expirationDate?.label && {
         expirationDate: {
           unit: {
@@ -200,6 +210,18 @@ const dataToForm = ({ data, intl, languages }: Props) => {
         ingredientsDescription: ingredientsDescription.label.map(
           normalizeIngredientsDescriptionHelper({ languages, intl }),
         ),
+      }),
+      ...(ingredientsList?.label?.length && {
+        ingredientsList: ingredientsList.label.map(
+          ({ id, name: ingredientName, type }) => ({
+            label: getValueByLanguage(ingredientName),
+            value: id,
+            type,
+          }),
+        ),
+      }),
+      ...(isBoolean(smokedMalt?.label) && {
+        smokedMalt: smokedMalt.label,
       }),
 
       // -----------

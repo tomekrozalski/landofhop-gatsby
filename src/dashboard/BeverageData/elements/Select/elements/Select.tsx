@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { getAnchor } from 'utils/helpers';
 import { FormName } from 'utils/enums';
+import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
 import { MultiValueRemove, Option, styles } from '.';
 
@@ -26,6 +27,7 @@ type Props = {
     label: string;
     value?: string;
     options?: { label: string; value: string }[];
+    type?: IngredientType;
   }[];
   placeholder?: string;
 };

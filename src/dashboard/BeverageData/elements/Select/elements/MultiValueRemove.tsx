@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { components } from 'react-select';
 
 import { Danger as Icon } from 'elements/icons';
+import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { EnhancedOptions } from './styles';
 
 const Wrapper = styled.div<{ color: string; hoverColor: string }>`
@@ -11,7 +12,7 @@ const Wrapper = styled.div<{ color: string; hoverColor: string }>`
   padding: 0 5px;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 0.3rem;
   bottom: 0;
   cursor: pointer;
 
@@ -32,9 +33,9 @@ const Wrapper = styled.div<{ color: string; hoverColor: string }>`
 const MultiValueRemove: React.FC<EnhancedOptions> = props => {
   const getColor = () => {
     switch (props.data.type) {
-      case 'hop':
-      case 'malt':
-      case 'appendix':
+      case IngredientType.hop:
+      case IngredientType.malt:
+      case IngredientType.appendix:
         return 'var(--color-white)';
       default:
         return 'var(--color-black)';
@@ -43,9 +44,9 @@ const MultiValueRemove: React.FC<EnhancedOptions> = props => {
 
   const getHoverColor = () => {
     switch (props.data.type) {
-      case 'hop':
-      case 'malt':
-      case 'appendix':
+      case IngredientType.hop:
+      case IngredientType.malt:
+      case IngredientType.appendix:
         return 'var(--color-black)';
       default:
         return 'var(--color-white)';
