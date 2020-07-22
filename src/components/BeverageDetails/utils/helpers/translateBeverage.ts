@@ -107,13 +107,22 @@ const translateBeverage = ({
     dryHopped: dryHopped
       ? {
           label: dryHopped.label
-            ? dryHopped.label.map(hop => translate(hop))
+            ? dryHopped.label.map(({ id, name }) => ({
+                id,
+                name: translate(name),
+              }))
             : null,
           producer: dryHopped.producer
-            ? dryHopped.producer.map(hop => translate(hop))
+            ? dryHopped.producer.map(({ id, name }) => ({
+                id,
+                name: translate(name),
+              }))
             : null,
           editorial: dryHopped.editorial
-            ? dryHopped.editorial.map(hop => translate(hop))
+            ? dryHopped.editorial.map(({ id, name }) => ({
+                id,
+                name: translate(name),
+              }))
             : null,
         }
       : null,

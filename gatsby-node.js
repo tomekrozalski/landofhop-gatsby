@@ -221,9 +221,13 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 		    editorial: Boolean
       }
       type DryHopped {
-        label: [[LanguageValue!]]
-        producer: [[LanguageValue!]]
-        editorial: [[LanguageValue!]]
+        label: [DryHoppedValue]
+        producer: [DryHoppedValue]
+        editorial: [DryHoppedValue]
+      }
+      type DryHoppedValue {
+        id: String!
+        name: [LanguageValue!]!
       }
       type ExpirationDate {
         label: ExpirationDateValues

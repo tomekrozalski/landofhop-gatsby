@@ -113,9 +113,18 @@ export type BeverageType = {
     editorial?: true;
   };
   dryHopped?: {
-    label?: Array<LanguageValue[]>;
-    producer?: Array<LanguageValue[]>;
-    editorial?: Array<LanguageValue[]>;
+    label?: {
+      id: string;
+      name: LanguageValue[];
+    }[];
+    producer?: {
+      id: string;
+      name: LanguageValue[];
+    }[];
+    editorial?: {
+      id: string;
+      name: LanguageValue[];
+    }[];
   };
   expirationDate?: {
     label?: {

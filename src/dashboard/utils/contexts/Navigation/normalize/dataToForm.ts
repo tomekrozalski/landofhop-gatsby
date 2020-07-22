@@ -46,6 +46,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     container,
     contract,
     cooperation,
+    dryHopped,
     expirationDate,
     extract,
     fermentation,
@@ -53,6 +54,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     ingredientsDescription,
     ingredientsList,
     isAged,
+    isDryHopped,
     name,
     notes,
     pasteurization,
@@ -195,6 +197,15 @@ const dataToForm = ({ data, intl, languages }: Props) => {
         isAged?.label && {
           aged: [{ type: null, wood: null, time: null, previousContent: null }],
         }),
+      ...(isDryHopped?.label && {
+        dryHopped: isDryHopped.label ? [] : null,
+      }),
+      ...(dryHopped?.label && {
+        dryHopped: dryHopped.label.map(({ id, name: hopName }) => ({
+          label: getValueByLanguage(hopName),
+          value: id,
+        })),
+      }),
       ...(expirationDate?.label && {
         expirationDate: {
           unit: {
@@ -221,7 +232,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
         ),
       }),
       ...(isBoolean(smokedMalt?.label) && {
-        smokedMalt: smokedMalt.label,
+        smokedMalt: smokedMalt?.label,
       }),
 
       // -----------

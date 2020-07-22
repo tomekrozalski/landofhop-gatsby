@@ -204,16 +204,25 @@ export const query = graphql`
       }
       dryHopped {
         editorial {
-          language
-          value
+          id
+          name {
+            language
+            value
+          }
         }
         label {
-          language
-          value
+          id
+          name {
+            language
+            value
+          }
         }
         producer {
-          language
-          value
+          id
+          name {
+            language
+            value
+          }
         }
       }
       expirationDate {

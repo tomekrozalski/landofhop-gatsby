@@ -1,10 +1,10 @@
 import React from 'react';
-import { useField } from 'formik';
 
 import { FormName } from 'utils/enums';
-import { Label, TextInput } from 'elements';
+import { Label } from 'elements';
+import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { FieldName } from 'dashboard/utils/enums';
-import { Condition } from '../elements';
+import { Condition, IngredientSelect } from '../elements';
 import { Optional as Grid } from '../elements/grids';
 
 type Props = {
@@ -12,20 +12,16 @@ type Props = {
   formName: FormName;
 };
 
-const DryHopped: React.FC<Props> = ({ fieldName, formName }) => {
-  const [field] = useField(fieldName);
-
-  return (
-    <Grid>
-      <Label name={fieldName} form={formName} />
-      {/* <Condition name={fieldName} empty="" />
-      <TextInput
-        disabled={field.value === null}
-        name={fieldName}
-        form={formName}
-      /> */}
-    </Grid>
-  );
-};
+const DryHopped: React.FC<Props> = ({ fieldName, formName }) => (
+  <Grid>
+    <Label name={fieldName} form={formName} />
+    <Condition name={fieldName} empty={[]} />
+    <IngredientSelect
+      filterByType={IngredientType.hop}
+      name={fieldName}
+      form={formName}
+    />
+  </Grid>
+);
 
 export default DryHopped;

@@ -151,6 +151,22 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...(label.dryHopped?.length && {
+      dryHopped: {
+        ...(label.dryHopped?.length && {
+          label: label.dryHopped.map(({ value }) => value),
+        }),
+      },
+    }),
+    ...(label.dryHopped &&
+      !label.dryHopped?.length && {
+        isDryHopped: {
+          ...(label.dryHopped &&
+            !label.dryHopped?.length && {
+              label: true,
+            }),
+        },
+      }),
     ...(label.expirationDate && {
       expirationDate: {
         ...(label.expirationDate && {

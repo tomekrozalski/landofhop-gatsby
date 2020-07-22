@@ -26,9 +26,12 @@ const DryHopped: React.FC = () => {
             <Label>
               {dryHopped && dryHopped.label ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.label.map(({ language, value }) => (
-                    <SourceItem lang={getLangAttr(language)} key={value}>
-                      {value}
+                  {dryHopped.label.map(({ name }) => (
+                    <SourceItem
+                      lang={getLangAttr(name.language)}
+                      key={name.value}
+                    >
+                      {name.value}
                     </SourceItem>
                   ))}
                 </FormattedList>
@@ -41,9 +44,12 @@ const DryHopped: React.FC = () => {
             <Producer>
               {dryHopped && dryHopped.producer ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.producer.map(({ language, value }) => (
-                    <SourceItem lang={getLangAttr(language)} key={value}>
-                      {value}
+                  {dryHopped.producer.map(({ name }) => (
+                    <SourceItem
+                      lang={getLangAttr(name.language)}
+                      key={name.value}
+                    >
+                      {name.value}
                     </SourceItem>
                   ))}
                 </FormattedList>
@@ -56,9 +62,12 @@ const DryHopped: React.FC = () => {
             <Editorial>
               {dryHopped && dryHopped.editorial ? (
                 <FormattedList type="conjunction" mode="short">
-                  {dryHopped.editorial.map(({ language, value }) => (
-                    <SourceItem lang={getLangAttr(language)} key={value}>
-                      {value}
+                  {dryHopped.editorial.map(({ name }) => (
+                    <SourceItem
+                      lang={getLangAttr(name.language)}
+                      key={name.value}
+                    >
+                      {name.value}
                     </SourceItem>
                   ))}
                 </FormattedList>

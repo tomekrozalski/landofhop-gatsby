@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 
 import { FormName, Status as StatusEnum } from 'utils/enums';
+import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { FieldName } from 'dashboard/utils/enums';
 import { IngredientContext } from 'dashboard/utils/contexts';
@@ -10,13 +11,14 @@ import { Error, Loading, Select } from './elements';
 type Props = {
   area?: string;
   disabled?: boolean;
+  filterByType?: IngredientType;
   form?: FormName;
   isMulti?: boolean;
   name: FieldName;
   placeholder?: string;
 };
 
-const IngredientSelect: React.FC<Props> = props => {
+const IngredientSelect: React.FC<Props> = ({ filterByType, ...rest }) => {
   const { locale } = useIntl();
   const { getIngredients, status, values } = useContext(IngredientContext);
 
@@ -36,13 +38,15 @@ const IngredientSelect: React.FC<Props> = props => {
 
   return (
     <Select
-      {...props}
+      {...rest}
       isMulti
-      options={values.map(({ id, name, type }) => ({
-        label: getValueByLanguage(name, locale).value,
-        value: id,
-        type,
-      }))}
+      options={values
+        .filter(({ type }) => (filterByType ? type === filterByType : true))
+        .map(({ id, name, type }) => ({
+          label: getValueByLanguage(name, locale).value,
+          value: id,
+          type,
+        }))}
     />
   );
 };

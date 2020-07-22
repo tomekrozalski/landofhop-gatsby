@@ -97,6 +97,12 @@ export type FormValues = {
         }[]
       | null;
   }[];
+  [FieldName.dryHopped]:
+    | {
+        label: string;
+        value: string;
+      }[]
+    | null;
   [FieldName.expirationDate]: {
     unit: {
       label: string;
