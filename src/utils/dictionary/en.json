@@ -124,6 +124,10 @@
       "openButton": "Add new country",
       "title": "Add new country"
     },
+    "addNewIngredient": {
+      "openButton": "Add new ingredient",
+      "title": "Add new ingredient"
+    },
     "addNewInstitution": {
       "openButton": "Add new institution",
       "title": "Add new institution"
