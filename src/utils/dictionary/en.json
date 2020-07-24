@@ -169,6 +169,7 @@
       "placeholder": {
         "default": "Select…",
         "selectCountry": "Select country…",
+        "selectIngredientType": "Select type…",
         "selectLanguage": "Select language…"
       }
     },
@@ -246,6 +247,12 @@
     "filtration": "filtration",
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",
+    "ingredientType": {
+      "appendix": "appendix",
+      "hop": "hop",
+      "malt": "malt",
+      "yeast": "yeast"
+    },
     "institution": "Institution",
     "latitude": "Latitude",
     "loading": "Loading…",
@@ -265,6 +272,7 @@
       "month": "month",
       "year": "year"
     },
+    "type": "Type",
     "updated": "Last time updated",
     "website": "Website"
   },

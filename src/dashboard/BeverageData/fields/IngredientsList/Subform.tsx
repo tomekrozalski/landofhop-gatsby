@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 
 // import { IngredientContext } from 'dashboard/utils/contexts';
 // import { PlaceInput, PlaceOutput } from 'dashboard/utils/types/form';
-// import { initialValues, validationSchema } from './utils';
+import { initialValues, validationSchema } from './utils';
 // import formatData from './utils/formatData';
 import { FormBody } from '.';
 
@@ -17,11 +17,11 @@ const Subform = ({ close }: Props) => {
   return (
     <Formik
       component={FormBody}
-      initialValues={{}}
+      initialValues={initialValues}
       onSubmit={values => {
         console.log('values', values);
       }}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       validateOnMount
     />
   );

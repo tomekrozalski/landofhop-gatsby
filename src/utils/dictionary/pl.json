@@ -169,6 +169,7 @@
       "placeholder": {
         "default": "Wybierz…",
         "selectCountry": "Wybierz kraj…",
+        "selectIngredientType": "Wybierz typ…",
         "selectLanguage": "Wybierz język…"
       }
     },
@@ -246,6 +247,12 @@
     "filtration": "Filtracja",
     "ingredientsDescription": "Składniki",
     "ingredientsList": "Lista składników",
+    "ingredientType": {
+      "appendix": "dodatek",
+      "hop": "chmiel",
+      "malt": "słód",
+      "yeast": "drożdże"
+    },
     "institution": "Instytucja",
     "latitude": "Szerokość geograficzna",
     "loading": "Ładuję…",
@@ -265,6 +272,7 @@
       "month": "miesiąc",
       "year": "rok"
     },
+    "type": "Typ",
     "updated": "Ostatnio poprawiono",
     "website": "Strona internetowa"
   },

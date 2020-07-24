@@ -3,6 +3,7 @@ enum FormName {
   beverageProducer = 'beverageProducer',
   beverageEditorial = 'beverageEditorial',
   country = 'coutry',
+  ingredient = 'ingredient',
   institution = 'institution',
   language = 'language',
   logIn = 'logIn',

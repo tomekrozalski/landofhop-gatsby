@@ -17,6 +17,7 @@ import Fermentation from './Fermentation';
 import Filtration from './Filtration';
 import IngredientsDescription from './IngredientsDescription';
 import IngredientsList from './IngredientsList';
+import IngredientType from './IngredientType';
 import Latitude from './Latitude';
 import Longitude from './Longitude';
 import Name from './Name';
@@ -51,6 +52,7 @@ export {
   Filtration,
   IngredientsDescription,
   IngredientsList,
+  IngredientType,
   Latitude,
   Longitude,
   Name,

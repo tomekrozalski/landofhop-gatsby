@@ -12,6 +12,7 @@ import ExpirationDateUnitSelect from './time/ExpirationDateUnitSelect';
 import ExtractRelateSelect from './extract/ExtractRelateSelect';
 import ExtractUnitSelect from './extract/ExtractUnitSelect';
 import IngredientSelect from './IngredientSelect';
+import IngredientTypeSelect from './IngredientTypeSelect';
 import InstitutionSelect from './InstitutionSelect';
 import LanguageSelect from './LanguageSelect';
 import PlaceSelect from './PlaceSelect';
@@ -32,6 +33,7 @@ export {
   ExtractUnitSelect,
   IngredientSelect,
   InstitutionSelect,
+  IngredientTypeSelect,
   LanguageSelect,
   PlaceSelect,
 };
