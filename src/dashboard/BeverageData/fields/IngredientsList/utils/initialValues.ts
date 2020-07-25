@@ -11,5 +11,8 @@ export default {
       value: '',
     },
   ],
-  [FieldName.type]: '',
+  [FieldName.type]: {
+    label: '',
+    value: '',
+  },
 };

@@ -1,8 +1,13 @@
-import { CountryInput, CountryOutput } from 'dashboard/utils/types/form';
+import { IngredientInput, IngredientOutput } from 'dashboard/utils/types/form';
 
-const formatData = ({ code, name }: CountryInput): CountryOutput => ({
-  code,
+const formatData = ({
+  badge,
+  name,
+  type,
+}: IngredientInput): IngredientOutput => ({
+  badge,
   name: name.map(({ lang, value }) => ({ lang: lang.value, value })),
+  type: type.value,
 });
 
 export default formatData;

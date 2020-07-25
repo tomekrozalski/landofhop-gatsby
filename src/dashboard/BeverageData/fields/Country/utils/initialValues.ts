@@ -4,7 +4,10 @@ export default {
   [FieldName.code]: '',
   [FieldName.name]: [
     {
-      lang: '',
+      lang: {
+        label: '',
+        value: '',
+      },
       value: '',
     },
   ],
