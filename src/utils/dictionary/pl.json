@@ -147,6 +147,7 @@
         "description": "Informacje końcowe, od redakcji, niejako nieoficjalne",
         "title": "Redakcyjne"
       },
+      "impressionsInfo": "Informacje dotyczące odczuć",
       "ingredientsInfo": "Informacje dotyczące składników",
       "labelInfo": {
         "description": "Dane, które można wyciągnąć tylko na podstawie opakowania",
@@ -223,6 +224,7 @@
     "areIngredientsComplete": "Skład jest kompletny",
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
+    "bitterness": "Gorycz",
     "brand": "Marka",
     "city": "Miejscowość",
     "code": "Kod",
@@ -245,6 +247,8 @@
     },
     "fermentation": "Fermentacja",
     "filtration": "Filtracja",
+    "fullness": "Pełnia",
+    "hoppyness": "Chmielowość",
     "ingredientsDescription": "Składniki",
     "ingredientsList": "Lista składników",
     "ingredientType": {
@@ -263,10 +267,16 @@
     "password": "Hasło",
     "pasteurization": "Pasteryzacja",
     "place": "Miejsce",
+    "power": "Moc",
     "series": "Seria",
     "smokedMalt": "Zawiera słód suszony dymem",
     "style": "Styl",
+    "sweetness": "Słodycz",
     "tale": "Opis",
+    "temperature": "Zalecana temperatura podawania",
+    "temperatureUnit": {
+      "celcius": "°C"
+    },
     "timeUnit": {
       "day": "dzień",
       "month": "miesiąc",

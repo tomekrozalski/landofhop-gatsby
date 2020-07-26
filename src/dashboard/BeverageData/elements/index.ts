@@ -25,6 +25,7 @@ import {
   InstitutionSelect,
   LanguageSelect,
   PlaceSelect,
+  TemperatureUnitSelect,
 } from './Select';
 import StyledSwitch from './StyledSwitch';
 import SubformWrapper from './SubformWrapper';
@@ -60,4 +61,5 @@ export {
   StyledSwitch,
   SubformWrapper,
   SubSection,
+  TemperatureUnitSelect,
 };

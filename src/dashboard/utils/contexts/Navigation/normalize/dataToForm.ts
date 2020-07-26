@@ -1,5 +1,6 @@
 import { IntlShape } from 'react-intl';
 import isBoolean from 'lodash/isBoolean';
+import isNumber from 'lodash/isNumber';
 
 import { SiteLanguage } from 'utils/enums';
 import {
@@ -35,13 +36,14 @@ type Props = {
   languages: any[];
 };
 
-const dataToForm = ({ data, intl, languages }: Props) => {
-  const {
+const dataToForm = ({
+  data: {
     added,
     aged,
     alcohol,
     badge,
     barcode,
+    bitterness,
     brand,
     container,
     contract,
@@ -51,6 +53,8 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     extract,
     fermentation,
     filtration,
+    fullness,
+    hoppyness,
     ingredientsDescription,
     ingredientsList,
     isAged,
@@ -59,15 +63,18 @@ const dataToForm = ({ data, intl, languages }: Props) => {
     notes,
     pasteurization,
     place,
+    power,
     series,
     smokedMalt,
     style,
+    sweetness,
     tale,
+    temperature,
     updated,
-  } = data;
-
-  console.log('data', data);
-
+  },
+  intl,
+  languages,
+}: Props) => {
   const normalizeObjectLanguage = normalizeObjectLanguageHelper({
     intl,
     languages,
@@ -217,6 +224,7 @@ const dataToForm = ({ data, intl, languages }: Props) => {
           value: expirationDate.label.value,
         },
       }),
+      // -----------
       ...(ingredientsDescription?.label?.length && {
         ingredientsDescription: ingredientsDescription.label.map(
           normalizeIngredientsDescriptionHelper({ languages, intl }),
@@ -234,7 +242,24 @@ const dataToForm = ({ data, intl, languages }: Props) => {
       ...(isBoolean(smokedMalt?.label) && {
         smokedMalt: smokedMalt?.label,
       }),
-
+      // -----------
+      ...(isNumber(bitterness?.label) && { bitterness: bitterness?.label }),
+      ...(isNumber(sweetness?.label) && { sweetness: sweetness?.label }),
+      ...(isNumber(fullness?.label) && { fullness: fullness?.label }),
+      ...(isNumber(power?.label) && { power: power?.label }),
+      ...(isNumber(hoppyness?.label) && { hoppyness: hoppyness?.label }),
+      ...(temperature?.label && {
+        temperature: {
+          from: temperature.label.from,
+          to: temperature.label.to,
+          unit: {
+            label: intl.formatMessage({
+              id: `global.temperatureUnit.${temperature.label.unit}`,
+            }),
+            value: temperature.label.unit,
+          },
+        },
+      }),
       // -----------
       // required
       [FieldName.container]: {

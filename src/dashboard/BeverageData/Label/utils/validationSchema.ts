@@ -182,53 +182,46 @@ export default Yup.object().shape({
       complete: Yup.boolean().required(),
     }),
   ),
-  // [FieldName.ingredientsList]: Yup
-  // 	.array()
-  // 	.min(1, 'danger')
-  // 	.nullable(true),
-  // // -----------
-  // [FieldName.bitterness]: Yup
-  // 	.number()
-  // 	.min(0, 'danger')
-  // 	.max(100, 'danger')
-  // 	.nullable(true),
-  // [FieldName.sweetness]: Yup
-  // 	.number()
-  // 	.min(0, 'danger')
-  // 	.max(100, 'danger')
-  // 	.nullable(true),
-  // [FieldName.fullness]: Yup
-  // 	.number()
-  // 	.min(0, 'danger')
-  // 	.max(100, 'danger')
-  // 	.nullable(true),
-  // [FieldName.power]: Yup
-  // 	.number()
-  // 	.min(0, 'danger')
-  // 	.max(100, 'danger')
-  // 	.nullable(true),
-  // [FieldName.hoppyness]: Yup
-  // 	.number()
-  // 	.min(0, 'danger')
-  // 	.max(100, 'danger')
-  // 	.nullable(true),
-  // [FieldName.temperature]: Yup
-  // 	.object()
-  // 	.shape({
-  // 		from: Yup.number()
-  // 			.min(0, 'danger')
-  // 			.max(Yup.ref('to'), 'danger')
-  // 			.required('danger'),
-  // 		to: Yup.number()
-  // 			.min(Yup.ref('from'), 'danger')
-  // 			.max(100, 'danger')
-  // 			.required('danger'),
-  // 		unit: Yup.object().shape({
-  // 			label: Yup.string().required('danger'),
-  // 			value: Yup.string().required('danger'),
-  // 		}),
-  // 	})
-  // 	.nullable(true),
+  [FieldName.ingredientsList]: Yup.array()
+    .min(1)
+    .nullable(true),
+  // -----------
+  [FieldName.bitterness]: Yup.number()
+    .min(0)
+    .max(100)
+    .nullable(true),
+  [FieldName.sweetness]: Yup.number()
+    .min(0)
+    .max(100)
+    .nullable(true),
+  [FieldName.fullness]: Yup.number()
+    .min(0)
+    .max(100)
+    .nullable(true),
+  [FieldName.power]: Yup.number()
+    .min(0)
+    .max(100)
+    .nullable(true),
+  [FieldName.hoppyness]: Yup.number()
+    .min(0)
+    .max(100)
+    .nullable(true),
+  [FieldName.temperature]: Yup.object()
+    .shape({
+      from: Yup.number()
+        .min(0)
+        .max(Yup.ref('to'))
+        .required(),
+      to: Yup.number()
+        .min(Yup.ref('from'))
+        .max(100)
+        .required(),
+      unit: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    })
+    .nullable(true),
   // // -----------
   [FieldName.container]: Yup.object().shape({
     type: Yup.object().shape({

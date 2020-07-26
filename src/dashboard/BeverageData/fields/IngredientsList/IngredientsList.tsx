@@ -18,7 +18,7 @@ const IngredientsList: React.FC<Props> = ({ fieldName, formName }) => {
   return (
     <Grid>
       <Label name={fieldName} form={formName} />
-      <Condition name={fieldName} empty="" />
+      <Condition name={fieldName} empty={[]} />
       <IngredientSelect name={fieldName} form={formName} />
       <OpenSubform
         label="dashboard.addNewIngredient.openButton"

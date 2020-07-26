@@ -1,4 +1,5 @@
 import isBoolean from 'lodash/isBoolean';
+import isNumber from 'lodash/isNumber';
 
 import { Lang } from 'dashboard/utils/types/form';
 import { convertStringToDate } from 'dashboard/utils/helpers';
@@ -177,6 +178,7 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    // -----------
     ...(label.ingredientsDescription?.length && {
       ingredientsDescription: {
         label: label.ingredientsDescription.map(
@@ -198,7 +200,42 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         label: label.smokedMalt,
       },
     }),
-
+    // -----------
+    ...(isNumber(label.bitterness) && {
+      bitterness: {
+        label: label.bitterness,
+      },
+    }),
+    ...(isNumber(label.sweetness) && {
+      sweetness: {
+        label: label.sweetness,
+      },
+    }),
+    ...(isNumber(label.fullness) && {
+      fullness: {
+        label: label.fullness,
+      },
+    }),
+    ...(isNumber(label.power) && {
+      power: {
+        label: label.power,
+      },
+    }),
+    ...(isNumber(label.hoppyness) && {
+      hoppyness: {
+        label: label.hoppyness,
+      },
+    }),
+    ...(label.temperature && {
+      temperature: {
+        label: {
+          from: label.temperature.from,
+          to: label.temperature.to,
+          unit: label.temperature.unit.value,
+        },
+      },
+    }),
+    // -----------
     // fermentation: label, producer, editorial
     // style: label, producer, editorial
     // extract: label, producer

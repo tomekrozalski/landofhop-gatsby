@@ -147,6 +147,7 @@
         "description": "Final information, from the editorial office, somehow unofficial",
         "title": "Editorial"
       },
+      "impressionsInfo": "Informations connected with impressions",
       "ingredientsInfo": "Informations connected with ingredients",
       "labelInfo": {
         "description": "Data which could be taken just from the container",
@@ -223,6 +224,7 @@
     "areIngredientsComplete": "Are ingredients complete",
     "badge": "Badge",
     "barcode": "Barcode",
+    "bitterness": "gorycz",
     "brand": "Brand",
     "city": "City",
     "code": "Code",
@@ -245,6 +247,8 @@
     },
     "fermentation": "fermentation",
     "filtration": "filtration",
+    "fullness": "Fullness",
+    "hoppyness": "Hoppyness",
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",
     "ingredientType": {
@@ -263,10 +267,16 @@
     "password": "Password",
     "pasteurization": "Pasteurization",
     "place": "Place",
+    "power": "power",
     "series": "Series",
     "smokedMalt": "Contains malt dried with smoke",
     "style": "Style",
+    "sweetness": "Sweetness",
     "tale": "Tale",
+    "temperature": "Recommended serving temperature",
+    "temperatureUnit": {
+      "celcius": "°C"
+    },
     "timeUnit": {
       "day": "day",
       "month": "month",

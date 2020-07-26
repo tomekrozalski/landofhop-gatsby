@@ -12,6 +12,7 @@ import {
   Alcohol,
   Badge,
   Barcode,
+  Bitterness,
   Brand,
   Container,
   Contract,
@@ -21,15 +22,20 @@ import {
   Extract,
   Fermentation,
   Filtration,
+  Fullness,
+  Hoppyness,
   IngredientsDescription,
   IngredientsList,
   Name,
   Pasteurization,
   Place,
+  Power,
   Series,
   SmokedMalt,
   Style,
+  Sweetness,
   Tale,
+  Temperature,
 } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
@@ -140,12 +146,40 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
         formName={FormName.beverageLabel}
       />
       {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.impressionsInfo" />
+      <Bitterness
+        fieldName={BeverageFieldNames.bitterness}
+        formName={FormName.beverageLabel}
+      />
+      <Sweetness
+        fieldName={BeverageFieldNames.sweetness}
+        formName={FormName.beverageLabel}
+      />
+      <Fullness
+        fieldName={BeverageFieldNames.fullness}
+        formName={FormName.beverageLabel}
+      />
+      <Power
+        fieldName={BeverageFieldNames.power}
+        formName={FormName.beverageLabel}
+      />
+      <Hoppyness
+        fieldName={BeverageFieldNames.hoppyness}
+        formName={FormName.beverageLabel}
+      />
+      <Temperature
+        fieldName={BeverageFieldNames.temperature}
+        formName={FormName.beverageLabel}
+      />
+      {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.otherInfo" />
       <Container
         fieldName={BeverageFieldNames.container}
         formName={FormName.beverageLabel}
         required
       />
+      {/* container: druciany korek i korek */}
+      {/* price */}
       <Footer>
         <Button type="submit" disabled={!isValid}>
           <FormattedMessage id="dashboard.continue" />

@@ -15,6 +15,7 @@ import {
   ExtractRelate,
   ExtractUnit,
   IngredientType,
+  TemperatureUnit,
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
@@ -124,7 +125,21 @@ export type FormValues = {
     types: IngredientType;
   }[];
   [FieldName.smokedMalt]: boolean | null;
-
+  // -----------
+  [FieldName.bitterness]: number | null;
+  [FieldName.sweetness]: number | null;
+  [FieldName.fullness]: number | null;
+  [FieldName.power]: number | null;
+  [FieldName.hoppyness]: number | null;
+  [FieldName.temperature]: {
+    from: number;
+    to: number;
+    unit: {
+      label: string;
+      value: TemperatureUnit;
+    };
+  } | null;
+  // -----------
   [FieldName.container]: {
     color: {
       label: string;
