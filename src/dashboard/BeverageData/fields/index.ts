@@ -29,6 +29,7 @@ import OwnedBy from './OwnedBy';
 import Pasteurization from './Pasteurization';
 import Place from './Place';
 import Power from './Power';
+import Price from './Price';
 import Series from './Series';
 import SmokedMalt from './SmokedMalt';
 import Style from './Style';
@@ -70,6 +71,7 @@ export {
   Pasteurization,
   Place,
   Power,
+  Price,
   Series,
   SmokedMalt,
   Style,

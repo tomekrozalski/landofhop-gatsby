@@ -30,6 +30,7 @@ import {
   Pasteurization,
   Place,
   Power,
+  Price,
   Series,
   SmokedMalt,
   Style,
@@ -179,7 +180,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
         required
       />
       {/* container: druciany korek i korek */}
-      {/* price */}
+      <Price
+        fieldName={BeverageFieldNames.price}
+        formName={FormName.beverageLabel}
+      />
       <Footer>
         <Button type="submit" disabled={!isValid}>
           <FormattedMessage id="dashboard.continue" />

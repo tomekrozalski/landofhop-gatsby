@@ -232,6 +232,10 @@
     "contract": "Kontrakt",
     "cooperation": "Kooperacja",
     "country": "Kraj",
+    "currency": {
+      "EUR": "€",
+      "PLN": "zł"
+    },
     "dryHopped": "Chmielone na zimno",
     "email": "Email",
     "expirationDate": "Termin ważności do spożycia",
@@ -268,6 +272,7 @@
     "pasteurization": "Pasteryzacja",
     "place": "Miejsce",
     "power": "Moc",
+    "price": "Cena",
     "series": "Seria",
     "smokedMalt": "Zawiera słód suszony dymem",
     "style": "Styl",
