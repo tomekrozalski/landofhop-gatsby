@@ -53,7 +53,7 @@ const Series: React.FC<Props> = ({ fieldName, formName, required = false }) => (
           ));
         }
 
-        return <Plug onClick={() => push(emptyLangValue)} wide />;
+        return <Plug onClick={() => push(emptyLangValue)} wide={2} />;
       }}
     />
   </Grid>

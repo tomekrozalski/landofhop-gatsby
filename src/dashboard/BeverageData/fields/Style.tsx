@@ -47,7 +47,7 @@ const Style: React.FC<Props> = ({ fieldName, formName }) => (
           ));
         }
 
-        return <Plug onClick={() => push(emptyLangValue)} wide />;
+        return <Plug onClick={() => push(emptyLangValue)} wide={2} />;
       }}
     />
   </Grid>

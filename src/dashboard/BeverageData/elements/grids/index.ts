@@ -6,6 +6,7 @@ import Double from './Double';
 import Five from './Five';
 import Footer from './Footer';
 import Optional from './Optional';
+import Three from './Three';
 
 export {
   Basic,
@@ -16,4 +17,5 @@ export {
   Five,
   Footer,
   Optional,
+  Three,
 };

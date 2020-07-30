@@ -3,7 +3,7 @@ import React from 'react';
 import { FormName } from 'utils/enums';
 import { Label, TextInput } from 'elements';
 import { FieldName } from 'dashboard/utils/enums';
-import { Five as Grid } from '../elements/grids';
+import { Three as Grid } from '../elements/grids';
 import {
   ContainerColorSelect,
   ContainerMaterialSelect,
