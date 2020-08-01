@@ -6,6 +6,7 @@ import { Currency } from 'components/BeverageDetails/utils/enums';
 import { Select } from './elements';
 
 type Props = {
+  area?: string;
   form?: FormName;
   name: string;
   placeholder?: string;

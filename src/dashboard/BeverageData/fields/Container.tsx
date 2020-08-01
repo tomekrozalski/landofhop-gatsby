@@ -25,11 +25,16 @@ const Container: React.FC<Props> = ({
 }) => (
   <Grid>
     <Label name={fieldName} form={formName} required={required} />
-    <ContainerTypeSelect form={formName} name={fieldName} />
-    <ContainerMaterialSelect form={formName} name={fieldName} />
-    <ContainerColorSelect form={formName} name={fieldName} />
-    <TextInput name={`${fieldName}.value`} form={formName} type="number" />
-    <ContainerUnitSelect form={formName} name={fieldName} />
+    <ContainerTypeSelect area="2 / 3" form={formName} name={fieldName} />
+    <ContainerMaterialSelect area="3 / 4" form={formName} name={fieldName} />
+    <ContainerColorSelect area="4 / 5" form={formName} name={fieldName} />
+    <TextInput
+      area="2 / 3"
+      name={`${fieldName}.value`}
+      form={formName}
+      type="number"
+    />
+    <ContainerUnitSelect area="3 / 4" form={formName} name={fieldName} />
   </Grid>
 );
 

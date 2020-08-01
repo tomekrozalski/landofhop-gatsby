@@ -41,27 +41,24 @@ const Price: React.FC<Props> = ({ fieldName, formName }) => {
             return values.map((_: any, index: number) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={`${fieldName}-${index}`}>
-                <div style={{ gridColumn: '2 / 3' }}>
-                  <TextInput
-                    disabled={field.value === null}
-                    name={`${fieldName}.${index}.value`}
-                    form={formName}
-                    type="number"
-                  />
-                </div>
-                <div style={{ gridColumn: '3 / 4' }}>
-                  <CurrencySelect
-                    name={`${fieldName}.${index}.currency`}
-                    form={formName}
-                  />
-                </div>
-                <div style={{ gridColumn: '4 / 5' }}>
-                  <TextInput
-                    disabled={field.value === null}
-                    name={`${fieldName}.${index}.date`}
-                    form={formName}
-                  />
-                </div>
+                <TextInput
+                  area="2 / 3"
+                  disabled={field.value === null}
+                  name={`${fieldName}.${index}.value`}
+                  form={formName}
+                  type="number"
+                />
+                <CurrencySelect
+                  area="3 / 4"
+                  name={`${fieldName}.${index}.currency`}
+                  form={formName}
+                />
+                <TextInput
+                  area="4 / 5"
+                  disabled={field.value === null}
+                  name={`${fieldName}.${index}.date`}
+                  form={formName}
+                />
                 {loopLength === index + 1 && (
                   <ActionButtons
                     push={push}

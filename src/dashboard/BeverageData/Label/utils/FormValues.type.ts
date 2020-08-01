@@ -11,6 +11,7 @@ import {
   ContainerMaterial,
   ContainerType,
   ContainerUnit,
+  Currency,
   ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
@@ -160,4 +161,12 @@ export type FormValues = {
     };
     value: number;
   };
+  [FieldName.price]: {
+    currency: {
+      label: string;
+      value: Currency;
+    };
+    date: string;
+    value: string;
+  }[];
 };

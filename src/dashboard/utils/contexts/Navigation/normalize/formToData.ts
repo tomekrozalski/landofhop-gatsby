@@ -272,6 +272,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       unit: label.container.unit.value,
       value: label.container.value,
     },
+    ...(label.price?.length && {
+      price: {
+        ...(label.price?.length && {
+          label: label.price.map(({ currency, date, value }) => {
+            const [day, month, year] = date.split('.');
+
+            return {
+              currency: currency.value,
+              date: new Date(+year, +month - 1, +day),
+              value,
+            };
+          }),
+        }),
+      },
+    }),
     ...(editorial.notes && { notes: editorial.notes }),
   };
 };

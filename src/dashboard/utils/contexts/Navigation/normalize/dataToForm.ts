@@ -1,6 +1,7 @@
 import { IntlShape } from 'react-intl';
 import isBoolean from 'lodash/isBoolean';
 import isNumber from 'lodash/isNumber';
+import { format } from 'date-fns';
 
 import { SiteLanguage } from 'utils/enums';
 import {
@@ -64,6 +65,7 @@ const dataToForm = ({
     pasteurization,
     place,
     power,
+    price,
     series,
     smokedMalt,
     style,
@@ -318,6 +320,18 @@ const dataToForm = ({
         value: container.value || 0,
         hasCapWireFlip: false,
       },
+      ...(price?.label && {
+        price: price?.label.map(({ currency, date, value }) => ({
+          currency: {
+            label: intl.formatMessage({
+              id: `global.currency.${currency}`,
+            }),
+            value: currency,
+          },
+          date: format(new Date(date), 'dd.MM.yyyy'),
+          value,
+        })),
+      }),
     },
     normalizedProducer: {
       ...initialProducerValues,

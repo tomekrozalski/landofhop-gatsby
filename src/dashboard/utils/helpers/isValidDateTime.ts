@@ -4,19 +4,19 @@ type OptionsProps = {
   nullable?: boolean;
 };
 
-const isValidDate = (value: string, options: OptionsProps = {}) => {
+const isValidDateTime = (value: string, options: OptionsProps = {}) => {
   if (options.nullable && value === null) {
     return true;
   }
 
-  const group = value.match(/^(\d\d).(\d\d).(\d\d\d\d)$/);
+  const group = value.match(/^(\d\d).(\d\d).(\d\d\d\d), (\d\d):(\d\d):(\d\d)$/);
 
   if (!group) {
     return false;
   }
 
-  const [day, month, year] = group.slice(1);
-  const formattedString = `${year}-${month}-${day}`;
+  const [day, month, year, hour, minute, second] = group.slice(1);
+  const formattedString = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 
   if (!isValid(new Date(formattedString))) {
     return false;
@@ -33,4 +33,4 @@ const isValidDate = (value: string, options: OptionsProps = {}) => {
   return isAfterAppBorn && isBeforeTomorrow;
 };
 
-export default isValidDate;
+export default isValidDateTime;

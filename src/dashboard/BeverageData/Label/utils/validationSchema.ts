@@ -1,8 +1,7 @@
 import * as Yup from 'yup';
 
-// import { constants } from 'utils';
-// import { isValidDate } from 'dashboard/beverage/utils';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
+import { isValidDate } from 'dashboard/utils/helpers';
 import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 
 export default Yup.object().shape({
@@ -250,19 +249,18 @@ export default Yup.object().shape({
     }),
     hasCapWireFlip: Yup.boolean(),
   }),
-  // [FieldName.price]: Yup.array()
-  // 	.of(
-  // 		Yup.object().shape({
-  // 			currency: Yup.object().shape({
-  // 				label: Yup.string().required('danger'),
-  // 				value: Yup.string().required('danger'),
-  // 			}),
-  // 			date: Yup
-  // 				.mixed()
-  // 				.test('isCorrectDate', 'danger', value => isValidDate(value)),
-  // 			value: Yup.number()
-  // 				.min(0, 'danger')
-  // 				.required('danger'),
-  // 		}),
-  // 	),
+  [FieldName.price]: Yup.array().of(
+    Yup.object().shape({
+      currency: Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+      date: Yup.mixed().test('isCorrectDate', 'wrong date value', value =>
+        isValidDate(value),
+      ),
+      value: Yup.number()
+        .min(0)
+        .required(),
+    }),
+  ),
 });
