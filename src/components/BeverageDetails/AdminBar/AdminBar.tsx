@@ -1,31 +1,9 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { FormattedMessage, Link } from 'gatsby-plugin-intl';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { AuthenticationContext } from 'utils/contexts';
-import { ButtonBasicCSS } from 'elements';
 import { BeverageContext } from 'components/BeverageDetails/utils/contexts';
-
-const AdminBarWrapper = styled.div`
-  grid-area: admin;
-  display: flex;
-  align-items: flex-start;
-`;
-
-const StyledLink = styled(Link)`
-  ${ButtonBasicCSS}
-  padding: 0 2rem;
-  background-color: var(--color-black);
-  color: var(--color-white);
-
-  &:hover {
-    background-color: var(--color-success-strong);
-  }
-
-  & + & {
-    margin-left: 1rem;
-  }
-`;
+import { AdminBarWrapper, RemoveBeverage, StyledLink } from '.';
 
 const AdminBar: React.FC = () => {
   const { isLoggedIn } = useContext(AuthenticationContext);
@@ -45,6 +23,7 @@ const AdminBar: React.FC = () => {
       >
         <FormattedMessage id="beverage.details.adminBar.updatePhotos" />
       </StyledLink>
+      <RemoveBeverage />
     </AdminBarWrapper>
   ) : null;
 };

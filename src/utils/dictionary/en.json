@@ -7,6 +7,8 @@
     "details": {
       "added": "added",
       "adminBar": {
+        "confirmationToRemove": "Are you sure?",
+        "removeBeverage": "Remove beverage",
         "update": "Update data",
         "updatePhotos": "Update photos"
       },

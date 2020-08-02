@@ -7,6 +7,8 @@
     "details": {
       "added": "dodano",
       "adminBar": {
+        "confirmationToRemove": "Na pewno usunąć?",
+        "removeBeverage": "Usuń piwo",
         "update": "Popraw informacje",
         "updatePhotos": "Popraw zdjęcia"
       },
