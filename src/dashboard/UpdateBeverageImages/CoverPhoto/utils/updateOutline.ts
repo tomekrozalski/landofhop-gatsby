@@ -21,13 +21,9 @@ const updateOutline = ({
     path: `beverage/update-cover-outline/${id}/${shortId}/${brand}/${badge}`,
     token,
   }).then(val => {
-    fetch(`${process.env.GATSBY}/__refresh`, {
-      method: 'POST',
-    }).then(() => {
-      if (val) {
-        updateValues();
-      }
-    });
+    if (val) {
+      updateValues();
+    }
   });
 
 export default updateOutline;

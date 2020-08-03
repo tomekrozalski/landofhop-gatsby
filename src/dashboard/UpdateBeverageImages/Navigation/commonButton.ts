@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
 
-const Inactive = styled.span`
+const commonButton = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,4 +19,4 @@ const Inactive = styled.span`
   }
 `;
 
-export default Inactive;
+export default commonButton;

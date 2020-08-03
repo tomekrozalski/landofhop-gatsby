@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-const RightIcon: React.FC = () => (
+const Right: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.49 41.57">
     <title>
       <FormattedMessage id="navigation.next" />
@@ -10,4 +10,4 @@ const RightIcon: React.FC = () => (
   </svg>
 );
 
-export default RightIcon;
+export default Right;

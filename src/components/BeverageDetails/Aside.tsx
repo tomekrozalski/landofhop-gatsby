@@ -4,7 +4,7 @@ import { Link } from 'gatsby-plugin-intl';
 
 import { breakpoints } from 'utils/theme';
 import { BeverageBase as BeverageBaseTypes } from 'utils/types';
-import { LeftIcon, RightIcon } from 'elements/icons';
+import { Left as LeftIcon, Right as RightIcon } from 'elements/icons';
 
 const Wrapper = styled.aside`
   grid-area: aside;

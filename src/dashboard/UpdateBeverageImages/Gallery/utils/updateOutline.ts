@@ -12,10 +12,6 @@ const updateOutline = ({ badge, brand, id, shortId, token }: Props) =>
   serverCall({
     path: `beverage/update-container-outline/${id}/${shortId}/${brand}/${badge}`,
     token,
-  }).then(() => {
-    fetch(`${process.env.GATSBY}/__refresh`, {
-      method: 'POST',
-    });
   });
 
 export default updateOutline;

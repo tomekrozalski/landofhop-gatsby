@@ -5,8 +5,9 @@ import { CoverImage, SectionHeader } from 'elements';
 import { BeverageImageType } from 'components/BeverageDetails/utils/enums';
 import { BeverageContext } from '../UpdateBeverageImages';
 import { Frame } from '../elements';
+import { Navigation } from '..';
 import { Aside, SectionWrapper } from './elements';
-import { DropZone, Error, Navigation } from '.';
+import { DropZone, Error } from '.';
 
 type Props = {
   updateValues: () => void;
