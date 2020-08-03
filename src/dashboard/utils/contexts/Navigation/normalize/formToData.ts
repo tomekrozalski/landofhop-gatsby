@@ -271,6 +271,7 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       type: label.container.type.value,
       unit: label.container.unit.value,
       value: label.container.value,
+      ...(label.container.hasCapWireFlip && { hasCapWireFlip: true }),
     },
     ...(label.price?.length && {
       price: {

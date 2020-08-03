@@ -254,6 +254,7 @@
     "fermentation": "fermentation",
     "filtration": "filtration",
     "fullness": "Fullness",
+    "hasCapWireFlip": "Has cap wire flip",
     "hoppyness": "Hoppyness",
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",

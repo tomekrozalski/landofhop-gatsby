@@ -22,16 +22,15 @@ const RemoveBeverage: React.FC = () => {
       body: JSON.stringify({ id }),
       token,
     })
-      .then(values => {
-        console.log('values', values);
-
-        // fetch(`${process.env.GATSBY}/__refresh`, {
-        //   method: 'POST',
-        // }).then(() => {
-        //   navigate('/');
-        // });
+      .then(() => {
+        setTimeout(() => {
+          fetch(`${process.env.GATSBY}/__refresh`, {
+            method: 'POST',
+          }).then(() => navigate('/pl'));
+        }, 3000);
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.error(err);
         setSubmitting(false);
       });
   };

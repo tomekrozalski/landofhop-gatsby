@@ -117,16 +117,12 @@ const Navigation: React.FC = ({ children }) => {
       .then(async ({ badge, brand, shortId }) => {
         await window.removeEventListener('beforeunload', preventClose);
 
-        fetch(`${process.env.GATSBY}/__refresh`, {
-          method: 'POST',
-        }).then(() => {
-          navigate('/pl/update-beverage-images', {
-            state: { badge, brand, shortId },
-          });
+        navigate('/pl/update-beverage-images', {
+          state: { badge, brand, shortId },
         });
       })
       .catch((e: any) => {
-        console.log('e', e);
+        console.error('Error:', e);
       });
   };
 

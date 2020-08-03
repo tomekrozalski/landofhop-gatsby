@@ -318,7 +318,7 @@ const dataToForm = ({
               value: ContainerType.bottle,
             },
         value: container.value || 0,
-        hasCapWireFlip: false,
+        hasCapWireFlip: container.hasCapWireFlip || false,
       },
       ...(price?.label && {
         price: price?.label.map(({ currency, date, value }) => ({

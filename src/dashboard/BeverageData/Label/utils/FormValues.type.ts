@@ -120,11 +120,13 @@ export type FormValues = {
     value: string;
     complete: boolean;
   }[];
-  [FieldName.ingredientsList]: {
-    label: string;
-    value: string;
-    types: IngredientType;
-  }[];
+  [FieldName.ingredientsList]:
+    | {
+        label: string;
+        value: string;
+        types: IngredientType;
+      }[]
+    | null;
   [FieldName.smokedMalt]: boolean | null;
   // -----------
   [FieldName.bitterness]: number | null;

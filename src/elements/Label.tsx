@@ -6,6 +6,7 @@ import { FormName } from 'utils/enums';
 import { getAnchor } from 'utils/helpers';
 
 const Wrapper = styled.label`
+  grid-column: 1 / 2;
   font: var(--font-weight-light) 1.6rem / var(--size-input-height)
     var(--font-primary);
   text-align: right;
