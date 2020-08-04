@@ -7,7 +7,7 @@ import { Button } from 'elements';
 import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
-import { Added, Notes, Updated } from '../fields';
+import { Added, Notes, Price, Updated } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -32,6 +32,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
     >
       {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.otherInfo" />
+      <Price
+        fieldName={BeverageFieldNames.price}
+        formName={FormName.beverageEditorial}
+      />
       <Added
         fieldName={BeverageFieldNames.added}
         formName={FormName.beverageEditorial}

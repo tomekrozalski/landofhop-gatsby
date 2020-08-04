@@ -273,10 +273,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       value: label.container.value,
       ...(label.container.hasCapWireFlip && { hasCapWireFlip: true }),
     },
-    ...(label.price?.length && {
+    ...((label.price?.length || editorial.price?.length) && {
       price: {
         ...(label.price?.length && {
           label: label.price.map(({ currency, date, value }) => {
+            const [day, month, year] = date.split('.');
+
+            return {
+              currency: currency.value,
+              date: new Date(+year, +month - 1, +day),
+              value,
+            };
+          }),
+        }),
+        ...(editorial.price?.length && {
+          editorial: editorial.price.map(({ currency, date, value }) => {
             const [day, month, year] = date.split('.');
 
             return {

@@ -341,6 +341,18 @@ const dataToForm = ({
     },
     normalizedEditorial: {
       ...initialEditorialValues,
+      ...(price?.editorial && {
+        price: price?.editorial.map(({ currency, date, value }) => ({
+          currency: {
+            label: intl.formatMessage({
+              id: `global.currency.${currency}`,
+            }),
+            value: currency,
+          },
+          date: format(new Date(date), 'dd.MM.yyyy'),
+          value,
+        })),
+      }),
       added: convertDateToString(added),
       ...(updated && { updated: convertDateToString(updated) }),
       ...(notes && {

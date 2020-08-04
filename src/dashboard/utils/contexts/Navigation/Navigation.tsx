@@ -122,6 +122,7 @@ const Navigation: React.FC = ({ children }) => {
         });
       })
       .catch((e: any) => {
+        // eslint-disable-next-line no-console
         console.error('Error:', e);
       });
   };
