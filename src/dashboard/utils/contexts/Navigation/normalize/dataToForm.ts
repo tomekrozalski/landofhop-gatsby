@@ -12,6 +12,8 @@ import {
   ContainerMaterial,
   ContainerType,
   ContainerUnit,
+  Currency as CurrencyEnum,
+  IngredientType,
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 import { LanguageValue } from 'dashboard/utils/types';
@@ -237,7 +239,7 @@ const dataToForm = ({
           ({ id, name: ingredientName, type }) => ({
             label: getValueByLanguage(ingredientName),
             value: id,
-            type,
+            type: type as IngredientType,
           }),
         ),
       }),
@@ -326,7 +328,7 @@ const dataToForm = ({
             label: intl.formatMessage({
               id: `global.currency.${currency}`,
             }),
-            value: currency,
+            value: currency as CurrencyEnum,
           },
           date: format(new Date(date), 'dd.MM.yyyy'),
           value,
@@ -335,6 +337,25 @@ const dataToForm = ({
     },
     normalizedProducer: {
       ...initialProducerValues,
+      ...(series?.producer && {
+        [FieldName.series]: series?.producer?.map(normalizeLanguageValuePair),
+      }),
+      ...(cooperation?.producer && {
+        [FieldName.cooperation]: cooperation?.producer.map(
+          normalizeObjectLanguage,
+        ),
+      }),
+      ...(contract?.producer && {
+        [FieldName.contract]: normalizeObjectLanguage(contract.producer),
+      }),
+      ...(place?.producer && {
+        [FieldName.place]: {
+          label: `${getValueByLanguage(
+            place.producer.city,
+          )} (${getValueByLanguage(place.producer.institution)})`,
+          value: place.producer.id,
+        },
+      }),
       ...(tale?.producer && {
         [FieldName.tale]: tale.producer.map(normalizeLanguageValuePair),
       }),
@@ -347,7 +368,7 @@ const dataToForm = ({
             label: intl.formatMessage({
               id: `global.currency.${currency}`,
             }),
-            value: currency,
+            value: currency as CurrencyEnum,
           },
           date: format(new Date(date), 'dd.MM.yyyy'),
           value,

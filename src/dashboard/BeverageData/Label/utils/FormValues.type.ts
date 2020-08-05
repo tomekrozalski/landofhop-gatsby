@@ -124,7 +124,7 @@ export type FormValues = {
     | {
         label: string;
         value: string;
-        types: IngredientType;
+        type: IngredientType;
       }[]
     | null;
   [FieldName.smokedMalt]: boolean | null;
@@ -169,6 +169,6 @@ export type FormValues = {
       value: Currency;
     };
     date: string;
-    value: string;
+    value: number;
   }[];
 };

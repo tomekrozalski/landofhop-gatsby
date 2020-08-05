@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import {
   AuthenticationContext,
@@ -9,7 +9,13 @@ import DashboardStateProvider from 'dashboard/utils/contexts';
 import { NotLoggedIn } from '.';
 
 const DashboardWrapper = (Component: any) => (props: any) => {
-  const { authenticationStatus } = useContext(AuthenticationContext);
+  const { authenticationStatus, checkTokenExpiration, token } = useContext(
+    AuthenticationContext,
+  );
+
+  useEffect(() => {
+    if (token) checkTokenExpiration(token);
+  }, [token]);
 
   switch (authenticationStatus) {
     case AuthenticationStatusEnum.loading:

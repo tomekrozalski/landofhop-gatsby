@@ -32,39 +32,47 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     ...(id && { id }),
     badge: label.badge,
     name: label.name.map(normalizeLangValue),
-    ...(label.series.length && {
+    ...((label.series.length || producer.series.length) && {
       series: {
         ...(label.series.length && {
           label: label.series.map(normalizeLangValue),
         }),
-        // producer
+        ...(producer.series.length && {
+          producer: producer.series.map(normalizeLangValue),
+        }),
       },
     }),
     brand: label.brand.value,
-    ...(label.cooperation && {
+    ...((label.cooperation || producer.cooperation) && {
       cooperation: {
         ...(label.cooperation && {
           label: label.cooperation.map(({ value }) => value),
         }),
-        // producer
+        ...(producer.cooperation && {
+          producer: producer.cooperation.map(({ value }) => value),
+        }),
         // editorial
       },
     }),
-    ...(label.contract && {
+    ...((label.contract || producer.contract) && {
       contract: {
         ...(label.contract && {
           label: label.contract.value,
         }),
-        // producer
+        ...(producer.contract && {
+          producer: producer.contract.value,
+        }),
         // editorial
       },
     }),
-    ...(label.place && {
+    ...((label.place || producer.place) && {
       place: {
         ...(label.place && {
           label: label.place.value,
         }),
-        // producer
+        ...(producer.place && {
+          producer: producer.place.value,
+        }),
         // editorial
       },
     }),

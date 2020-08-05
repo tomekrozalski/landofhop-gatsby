@@ -17,6 +17,8 @@ export enum AuthenticationStatusEnum {
 
 export const AuthenticationContext = React.createContext({
   authenticationStatus: AuthenticationStatusEnum.idle,
+  checkTokenExpiration: (token: string) =>
+    new Promise(resolve => resolve(token)),
   isLoggedIn: false,
   logIn: ({}: { email: string; password: string }) => new Promise(() => {}),
   logInAfterFailure: () => {},
@@ -74,8 +76,8 @@ const Authentication: React.FC = ({ children }) => {
     );
   };
 
-  const checkTokenExpiration = (value: string) => {
-    return new Promise((resolve, reject) => {
+  const checkTokenExpiration = (value: string) =>
+    new Promise((resolve, reject) => {
       const decodedToken = jwt.decode(value, { complete: true });
 
       if (isObject(decodedToken)) {
@@ -91,7 +93,6 @@ const Authentication: React.FC = ({ children }) => {
 
       reject();
     });
-  };
 
   useEffect(() => {
     const storageToken = window.localStorage.getItem('token');
@@ -134,6 +135,7 @@ const Authentication: React.FC = ({ children }) => {
     <AuthenticationContext.Provider
       value={{
         authenticationStatus,
+        checkTokenExpiration,
         isLoggedIn,
         logIn,
         logInAfterFailure,
