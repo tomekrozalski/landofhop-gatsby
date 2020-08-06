@@ -12,7 +12,7 @@ import {
 const SmokedMalt: React.FC = () => {
   const { smokedMalt } = useContext(BeverageContext);
 
-  return smokedMalt ? (
+  return smokedMalt.label || smokedMalt.producer ? (
     <>
       <dt>
         <FormattedMessage id="beverage.details.smokedMalt" />

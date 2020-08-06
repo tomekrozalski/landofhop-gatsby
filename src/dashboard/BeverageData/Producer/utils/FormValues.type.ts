@@ -7,9 +7,12 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  Currency,
   ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
+  IngredientType,
+  TemperatureUnit,
 } from 'components/BeverageDetails/utils/enums';
 import { BeverageFieldNames as FieldName } from 'dashboard/utils/enums';
 
@@ -97,4 +100,44 @@ export type FormValues = {
     };
     value: number;
   } | null;
+  // -----------
+  [FieldName.ingredientsDescription]: {
+    language: {
+      label: string;
+      value: string;
+    };
+    value: string;
+    complete: boolean;
+  }[];
+  [FieldName.ingredientsList]:
+    | {
+        label: string;
+        value: string;
+        type: IngredientType;
+      }[]
+    | null;
+  [FieldName.smokedMalt]: boolean | null;
+  // -----------
+  [FieldName.bitterness]: number | null;
+  [FieldName.sweetness]: number | null;
+  [FieldName.fullness]: number | null;
+  [FieldName.power]: number | null;
+  [FieldName.hoppyness]: number | null;
+  [FieldName.temperature]: {
+    from: number;
+    to: number;
+    unit: {
+      label: string;
+      value: TemperatureUnit;
+    };
+  } | null;
+  // -----------
+  [FieldName.price]: {
+    currency: {
+      label: string;
+      value: Currency;
+    };
+    date: string;
+    value: number;
+  }[];
 };

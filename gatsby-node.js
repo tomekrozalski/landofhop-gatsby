@@ -248,7 +248,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       }
       type IngredientsDescriptionValues {
         complete: Boolean!
-        language: String!
+        language: String
         value: String!
       }
       type IngredientsList {

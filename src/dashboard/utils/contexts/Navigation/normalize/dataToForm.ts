@@ -464,6 +464,57 @@ const dataToForm = ({
           value: expirationDate.producer.value,
         },
       }),
+      // -----------
+      ...(ingredientsDescription?.producer?.length && {
+        ingredientsDescription: ingredientsDescription.producer.map(
+          normalizeIngredientsDescriptionHelper({ languages, intl }),
+        ),
+      }),
+      ...(ingredientsList?.producer?.length && {
+        ingredientsList: ingredientsList.producer.map(
+          ({ id, name: ingredientName, type }) => ({
+            label: getValueByLanguage(ingredientName),
+            value: id,
+            type: type as IngredientType,
+          }),
+        ),
+      }),
+      ...(isBoolean(smokedMalt?.producer) && {
+        smokedMalt: smokedMalt?.producer,
+      }),
+      // -----------
+      ...(isNumber(bitterness?.producer) && {
+        bitterness: bitterness?.producer,
+      }),
+      ...(isNumber(sweetness?.producer) && { sweetness: sweetness?.producer }),
+      ...(isNumber(fullness?.producer) && { fullness: fullness?.producer }),
+      ...(isNumber(power?.producer) && { power: power?.producer }),
+      ...(isNumber(hoppyness?.producer) && { hoppyness: hoppyness?.producer }),
+      ...(temperature?.producer && {
+        temperature: {
+          from: temperature.producer.from,
+          to: temperature.producer.to,
+          unit: {
+            label: intl.formatMessage({
+              id: `global.temperatureUnit.${temperature.producer.unit}`,
+            }),
+            value: temperature.producer.unit,
+          },
+        },
+      }),
+      // -----------
+      ...(price?.producer && {
+        price: price?.producer.map(({ currency, date, value }) => ({
+          currency: {
+            label: intl.formatMessage({
+              id: `global.currency.${currency}`,
+            }),
+            value: currency as CurrencyEnum,
+          },
+          date: format(new Date(date), 'dd.MM.yyyy'),
+          value,
+        })),
+      }),
     },
     normalizedEditorial: {
       ...initialEditorialValues,

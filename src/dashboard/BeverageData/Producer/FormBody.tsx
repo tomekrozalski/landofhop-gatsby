@@ -10,6 +10,7 @@ import { FormSection, SubSection } from '../elements';
 import {
   Aged,
   Alcohol,
+  Bitterness,
   Contract,
   Cooperation,
   DryHopped,
@@ -17,11 +18,20 @@ import {
   Extract,
   Fermentation,
   Filtration,
+  Fullness,
+  Hoppyness,
+  IngredientsDescription,
+  IngredientsList,
   Pasteurization,
   Place,
+  Power,
+  Price,
   Series,
+  SmokedMalt,
   Style,
+  Sweetness,
   Tale,
+  Temperature,
 } from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
@@ -102,6 +112,51 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
         formName={FormName.beverageProducer}
       />
       {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.ingredientsInfo" />
+      <IngredientsDescription
+        fieldName={BeverageFieldNames.ingredientsDescription}
+        formName={FormName.beverageProducer}
+      />
+      <IngredientsList
+        fieldName={BeverageFieldNames.ingredientsList}
+        formName={FormName.beverageProducer}
+      />
+      <SmokedMalt
+        fieldName={BeverageFieldNames.smokedMalt}
+        formName={FormName.beverageProducer}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.impressionsInfo" />
+      <Bitterness
+        fieldName={BeverageFieldNames.bitterness}
+        formName={FormName.beverageProducer}
+      />
+      <Sweetness
+        fieldName={BeverageFieldNames.sweetness}
+        formName={FormName.beverageProducer}
+      />
+      <Fullness
+        fieldName={BeverageFieldNames.fullness}
+        formName={FormName.beverageProducer}
+      />
+      <Power
+        fieldName={BeverageFieldNames.power}
+        formName={FormName.beverageProducer}
+      />
+      <Hoppyness
+        fieldName={BeverageFieldNames.hoppyness}
+        formName={FormName.beverageProducer}
+      />
+      <Temperature
+        fieldName={BeverageFieldNames.temperature}
+        formName={FormName.beverageProducer}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.otherInfo" />
+      <Price
+        fieldName={BeverageFieldNames.price}
+        formName={FormName.beverageProducer}
+      />
       <Footer>
         <Button
           appearance="moveBack"

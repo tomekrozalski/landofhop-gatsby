@@ -179,7 +179,6 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
         formName={FormName.beverageLabel}
         required
       />
-      {/* container: druciany korek i korek */}
       <Price
         fieldName={BeverageFieldNames.price}
         formName={FormName.beverageLabel}

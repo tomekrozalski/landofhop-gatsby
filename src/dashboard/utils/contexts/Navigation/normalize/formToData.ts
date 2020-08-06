@@ -248,60 +248,116 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       },
     }),
     // -----------
-    ...(label.ingredientsDescription?.length && {
+    ...((label.ingredientsDescription?.length ||
+      producer.ingredientsDescription?.length) && {
       ingredientsDescription: {
-        label: label.ingredientsDescription.map(
-          ({ language, value, complete }) => ({
-            ...(language.value !== 'none' && { language: language.value }),
-            value,
-            complete,
-          }),
-        ),
+        ...(label.ingredientsDescription?.length && {
+          label: label.ingredientsDescription.map(
+            ({ language, value, complete }) => ({
+              ...(language.value !== 'none' && { language: language.value }),
+              value,
+              complete,
+            }),
+          ),
+        }),
+        ...(producer.ingredientsDescription?.length && {
+          producer: producer.ingredientsDescription.map(
+            ({ language, value, complete }) => ({
+              ...(language.value !== 'none' && { language: language.value }),
+              value,
+              complete,
+            }),
+          ),
+        }),
       },
     }),
-    ...(label.ingredientsList?.length && {
+    ...((label.ingredientsList?.length || producer.ingredientsList?.length) && {
       ingredientsList: {
-        label: label.ingredientsList.map(({ value }) => value),
+        ...(label.ingredientsList?.length && {
+          label: label.ingredientsList.map(({ value }) => value),
+        }),
+        ...(producer.ingredientsList?.length && {
+          producer: producer.ingredientsList.map(({ value }) => value),
+        }),
       },
     }),
-    ...(isBoolean(label.smokedMalt) && {
+    ...((isBoolean(label.smokedMalt) || isBoolean(producer.smokedMalt)) && {
       smokedMalt: {
-        label: label.smokedMalt,
+        ...(isBoolean(label.smokedMalt) && {
+          label: label.smokedMalt,
+        }),
+        ...(isBoolean(producer.smokedMalt) && {
+          producer: producer.smokedMalt,
+        }),
       },
     }),
     // -----------
-    ...(isNumber(label.bitterness) && {
+    ...((isNumber(label.bitterness) || isNumber(producer.bitterness)) && {
       bitterness: {
-        label: label.bitterness,
+        ...(isNumber(label.bitterness) && {
+          label: label.bitterness,
+        }),
+        ...(isNumber(producer.bitterness) && {
+          producer: producer.bitterness,
+        }),
       },
     }),
-    ...(isNumber(label.sweetness) && {
+    ...((isNumber(label.sweetness) || isNumber(producer.sweetness)) && {
       sweetness: {
-        label: label.sweetness,
+        ...(isNumber(label.sweetness) && {
+          label: label.sweetness,
+        }),
+        ...(isNumber(producer.sweetness) && {
+          producer: producer.sweetness,
+        }),
       },
     }),
-    ...(isNumber(label.fullness) && {
+    ...((isNumber(label.fullness) || isNumber(producer.fullness)) && {
       fullness: {
-        label: label.fullness,
+        ...(isNumber(label.fullness) && {
+          label: label.fullness,
+        }),
+        ...(isNumber(producer.fullness) && {
+          producer: producer.fullness,
+        }),
       },
     }),
-    ...(isNumber(label.power) && {
+    ...((isNumber(label.power) || isNumber(producer.power)) && {
       power: {
-        label: label.power,
+        ...(isNumber(label.power) && {
+          label: label.power,
+        }),
+        ...(isNumber(producer.power) && {
+          producer: producer.power,
+        }),
       },
     }),
-    ...(isNumber(label.hoppyness) && {
+    ...((isNumber(label.hoppyness) || isNumber(producer.hoppyness)) && {
       hoppyness: {
-        label: label.hoppyness,
+        ...(isNumber(label.hoppyness) && {
+          label: label.hoppyness,
+        }),
+        ...(isNumber(producer.hoppyness) && {
+          producer: producer.hoppyness,
+        }),
       },
     }),
-    ...(label.temperature && {
+    ...((label.temperature || producer.temperature) && {
       temperature: {
-        label: {
-          from: label.temperature.from,
-          to: label.temperature.to,
-          unit: label.temperature.unit.value,
-        },
+        ...(label.temperature && {
+          label: {
+            from: label.temperature.from,
+            to: label.temperature.to,
+            unit: label.temperature.unit.value,
+          },
+        }),
+        ...(producer.temperature && {
+          producer: {
+            from: producer.temperature.from,
+            to: producer.temperature.to,
+            unit: producer.temperature.unit.value,
+          },
+        }),
       },
     }),
     // -----------
@@ -342,10 +398,23 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       value: label.container.value,
       ...(label.container.hasCapWireFlip && { hasCapWireFlip: true }),
     },
-    ...((label.price?.length || editorial.price?.length) && {
+    ...((label.price?.length ||
+      producer.price?.length ||
+      editorial.price?.length) && {
       price: {
         ...(label.price?.length && {
           label: label.price.map(({ currency, date, value }) => {
+            const [day, month, year] = date.split('.');
+
+            return {
+              currency: currency.value,
+              date: new Date(+year, +month - 1, +day),
+              value,
+            };
+          }),
+        }),
+        ...(producer.price?.length && {
+          producer: producer.price.map(({ currency, date, value }) => {
             const [day, month, year] = date.split('.');
 
             return {
