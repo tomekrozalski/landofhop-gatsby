@@ -7,7 +7,22 @@ import { Button } from 'elements';
 import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
-import { Added, Notes, Price, Updated } from '../fields';
+import {
+  Added,
+  Aged,
+  AlcoholScope,
+  Contract,
+  Cooperation,
+  DryHopped,
+  Fermentation,
+  Filtration,
+  Notes,
+  Pasteurization,
+  Place,
+  Price,
+  Style,
+  Updated,
+} from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -30,6 +45,50 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       description="dashboard.beverage.editorialInfo.description"
       title="dashboard.beverage.editorialInfo.title"
     >
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.brandInfo" />
+      <Cooperation
+        fieldName={BeverageFieldNames.cooperation}
+        formName={FormName.beverageEditorial}
+      />
+      <Contract
+        fieldName={BeverageFieldNames.contract}
+        formName={FormName.beverageEditorial}
+      />
+      <Place
+        fieldName={BeverageFieldNames.place}
+        formName={FormName.beverageEditorial}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.brewingInfo" />
+      <Fermentation
+        fieldName={BeverageFieldNames.fermentation}
+        formName={FormName.beverageEditorial}
+      />
+      <Style
+        fieldName={BeverageFieldNames.style}
+        formName={FormName.beverageEditorial}
+      />
+      <AlcoholScope
+        fieldName={BeverageFieldNames.alcoholScope}
+        formName={FormName.beverageEditorial}
+      />
+      <Filtration
+        fieldName={BeverageFieldNames.filtration}
+        formName={FormName.beverageEditorial}
+      />
+      <Pasteurization
+        fieldName={BeverageFieldNames.pasteurization}
+        formName={FormName.beverageEditorial}
+      />
+      <Aged
+        fieldName={BeverageFieldNames.aged}
+        formName={FormName.beverageEditorial}
+      />
+      <DryHopped
+        fieldName={BeverageFieldNames.dryHopped}
+        formName={FormName.beverageEditorial}
+      />
       {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.otherInfo" />
       <Price

@@ -1,6 +1,7 @@
 import Added from './Added';
 import Aged from './Aged';
 import Alcohol from './Alcohol';
+import AlcoholScope from './AlcoholScope';
 import Badge from './Badge';
 import Barcode from './Barcode';
 import Bitterness from './Bitterness';
@@ -43,6 +44,7 @@ export {
   Added,
   Aged,
   Alcohol,
+  AlcoholScope,
   Badge,
   Barcode,
   Bitterness,

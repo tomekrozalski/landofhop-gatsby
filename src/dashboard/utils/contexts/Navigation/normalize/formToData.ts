@@ -44,7 +44,9 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       },
     }),
     brand: label.brand.value,
-    ...((label.cooperation || producer.cooperation) && {
+    ...((label.cooperation ||
+      producer.cooperation ||
+      editorial.cooperation) && {
       cooperation: {
         ...(label.cooperation && {
           label: label.cooperation.map(({ value }) => value),
@@ -52,10 +54,12 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.cooperation && {
           producer: producer.cooperation.map(({ value }) => value),
         }),
-        // editorial
+        ...(editorial.cooperation && {
+          editorial: editorial.cooperation.map(({ value }) => value),
+        }),
       },
     }),
-    ...((label.contract || producer.contract) && {
+    ...((label.contract || producer.contract || editorial.contract) && {
       contract: {
         ...(label.contract && {
           label: label.contract.value,
@@ -63,10 +67,12 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.contract && {
           producer: producer.contract.value,
         }),
-        // editorial
+        ...(editorial.contract && {
+          editorial: editorial.contract.value,
+        }),
       },
     }),
-    ...((label.place || producer.place) && {
+    ...((label.place || producer.place || editorial.place) && {
       place: {
         ...(label.place && {
           label: label.place.value,
@@ -74,7 +80,9 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.place && {
           producer: producer.place.value,
         }),
-        // editorial
+        ...(editorial.place && {
+          editorial: editorial.place.value,
+        }),
       },
     }),
     ...((label.tale?.length || producer.tale?.length) && {
@@ -89,7 +97,9 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     }),
     ...(label.barcode && { barcode: label.barcode }),
     // -----------
-    ...((label.fermentation || producer.fermentation) && {
+    ...((label.fermentation ||
+      producer.fermentation ||
+      editorial.fermentation) && {
       fermentation: {
         ...(label.fermentation && {
           label: label.fermentation,
@@ -97,15 +107,23 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.fermentation && {
           producer: producer.fermentation,
         }),
+        ...(editorial.fermentation && {
+          editorial: editorial.fermentation,
+        }),
       },
     }),
-    ...((label.style?.length || producer.style?.length) && {
+    ...((label.style?.length ||
+      producer.style?.length ||
+      editorial.style?.length) && {
       style: {
         ...(label.style?.length && {
           label: label.style.map(normalizeLangValue),
         }),
         ...(producer.style?.length && {
           producer: producer.style.map(normalizeLangValue),
+        }),
+        ...(editorial.style?.length && {
+          editorial: editorial.style.map(normalizeLangValue),
         }),
       },
     }),
@@ -127,7 +145,7 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
-    ...((label.alcohol || producer.alcohol) && {
+    ...((label.alcohol || producer.alcohol || editorial.alcoholScope) && {
       alcohol: {
         ...(label.alcohol && {
           label: {
@@ -149,9 +167,17 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
             }),
           },
         }),
+        ...(editorial.alcoholScope &&
+          editorial.alcoholScope.value !== '-' && {
+            editorial: {
+              scope: editorial.alcoholScope.value,
+            },
+          }),
       },
     }),
-    ...((isBoolean(label.filtration) || isBoolean(producer.filtration)) && {
+    ...((isBoolean(label.filtration) ||
+      isBoolean(producer.filtration) ||
+      isBoolean(editorial.filtration)) && {
       filtration: {
         ...(isBoolean(label.filtration) && {
           label: label.filtration,
@@ -159,10 +185,14 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(isBoolean(producer.filtration) && {
           producer: producer.filtration,
         }),
+        ...(isBoolean(editorial.filtration) && {
+          editorial: editorial.filtration,
+        }),
       },
     }),
     ...((isBoolean(label.pasteurization) ||
-      isBoolean(producer.pasteurization)) && {
+      isBoolean(producer.pasteurization) ||
+      isBoolean(editorial.pasteurization)) && {
       pasteurization: {
         ...(isBoolean(label.pasteurization) && {
           label: label.pasteurization,
@@ -170,9 +200,14 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(isBoolean(producer.pasteurization) && {
           producer: producer.pasteurization,
         }),
+        ...(isBoolean(editorial.pasteurization) && {
+          editorial: editorial.pasteurization,
+        }),
       },
     }),
-    ...((label.aged.length || producer.aged.length) && {
+    ...((label.aged.length ||
+      producer.aged.length ||
+      editorial.aged.length) && {
       aged: {
         ...(label.aged.length && {
           label: label.aged.map(({ type, wood, time, previousContent }) => ({
@@ -206,9 +241,28 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
             }),
           ),
         }),
+        ...(editorial.aged.length && {
+          editorial: editorial.aged.map(
+            ({ type, wood, time, previousContent }) => ({
+              ...(type && { type }),
+              ...(wood && { wood }),
+              ...(time && {
+                time: {
+                  unit: time.unit.value,
+                  value: time.value,
+                },
+              }),
+              ...(previousContent && {
+                previousContent: previousContent.map(({ value }) => value),
+              }),
+            }),
+          ),
+        }),
       },
     }),
-    ...((label.dryHopped?.length || producer.dryHopped?.length) && {
+    ...((label.dryHopped?.length ||
+      producer.dryHopped?.length ||
+      editorial.dryHopped?.length) && {
       dryHopped: {
         ...(label.dryHopped?.length && {
           label: label.dryHopped.map(({ value }) => value),
@@ -216,10 +270,14 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.dryHopped?.length && {
           producer: producer.dryHopped.map(({ value }) => value),
         }),
+        ...(editorial.dryHopped?.length && {
+          editorial: editorial.dryHopped.map(({ value }) => value),
+        }),
       },
     }),
     ...(((label.dryHopped && !label.dryHopped?.length) ||
-      (producer.dryHopped && !producer.dryHopped?.length)) && {
+      (producer.dryHopped && !producer.dryHopped?.length) ||
+      (editorial.dryHopped && !editorial.dryHopped?.length)) && {
       isDryHopped: {
         ...(label.dryHopped &&
           !label.dryHopped?.length && {
@@ -228,6 +286,10 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(producer.dryHopped &&
           !producer.dryHopped?.length && {
             producer: true,
+          }),
+        ...(editorial.dryHopped &&
+          !editorial.dryHopped?.length && {
+            editorial: true,
           }),
       },
     }),

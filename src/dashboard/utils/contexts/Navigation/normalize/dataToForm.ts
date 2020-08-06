@@ -165,7 +165,7 @@ const dataToForm = ({
           scope: alcohol.label.scope
             ? {
                 label: intl.formatMessage({
-                  id: `global.alcoholScope.${alcohol.label.scope}`,
+                  id: `global.alcoholScopeValues.${alcohol.label.scope}`,
                 }),
                 value: alcohol.label.scope as AlcoholScope,
               }
@@ -212,9 +212,10 @@ const dataToForm = ({
         dryHopped: isDryHopped.label ? [] : null,
       }),
       ...(dryHopped?.label && {
-        dryHopped: dryHopped.label.map(({ id, name: hopName }) => ({
+        dryHopped: dryHopped.label.map(({ id, name: hopName, type }) => ({
           label: getValueByLanguage(hopName),
           value: id,
+          type: type as IngredientType,
         })),
       }),
       ...(expirationDate?.label && {
@@ -399,7 +400,7 @@ const dataToForm = ({
           scope: alcohol.producer.scope
             ? {
                 label: intl.formatMessage({
-                  id: `global.alcoholScope.${alcohol.producer.scope}`,
+                  id: `global.alcoholScopeValues.${alcohol.producer.scope}`,
                 }),
                 value: alcohol.producer.scope as AlcoholScope,
               }
@@ -448,9 +449,10 @@ const dataToForm = ({
         dryHopped: isDryHopped.producer ? [] : null,
       }),
       ...(dryHopped?.producer && {
-        dryHopped: dryHopped.producer.map(({ id, name: hopName }) => ({
+        dryHopped: dryHopped.producer.map(({ id, name: hopName, type }) => ({
           label: getValueByLanguage(hopName),
           value: id,
+          type: type as IngredientType,
         })),
       }),
       ...(expirationDate?.producer && {
@@ -518,6 +520,81 @@ const dataToForm = ({
     },
     normalizedEditorial: {
       ...initialEditorialValues,
+      ...(cooperation?.editorial && {
+        [FieldName.cooperation]: cooperation?.editorial.map(
+          normalizeObjectLanguage,
+        ),
+      }),
+      ...(contract?.editorial && {
+        [FieldName.contract]: normalizeObjectLanguage(contract.editorial),
+      }),
+      ...(place?.editorial && {
+        [FieldName.place]: {
+          label: `${getValueByLanguage(
+            place.editorial.city,
+          )} (${getValueByLanguage(place.editorial.institution)})`,
+          value: place.editorial.id,
+        },
+      }),
+      // -----------
+      ...(fermentation?.editorial && { fermentation: fermentation.editorial }),
+      ...(style?.editorial && {
+        style: style.editorial.map(normalizeLanguageValuePair),
+      }),
+      ...(alcohol?.editorial && {
+        alcoholScope: {
+          label: intl.formatMessage({
+            id: `global.alcoholScopeValues.${alcohol.editorial.scope}`,
+          }),
+          value: alcohol.editorial.scope as AlcoholScope,
+        },
+      }),
+      ...(isBoolean(filtration?.editorial) && {
+        filtration: filtration?.editorial,
+      }),
+      ...(isBoolean(pasteurization?.editorial) && {
+        pasteurization: pasteurization?.editorial,
+      }),
+      ...(aged?.editorial?.length && {
+        aged: aged?.editorial.map(({ type, wood, time, previousContent }) => ({
+          type: type || null,
+          wood: wood || null,
+          time: time
+            ? {
+                unit: {
+                  label: intl.formatMessage({
+                    id: `global.timeUnit.${time.unit}`,
+                  }),
+                  value: time.unit,
+                },
+                value: time.value,
+              }
+            : null,
+          previousContent: previousContent?.length
+            ? previousContent.map(value => ({
+                label: intl.formatMessage({
+                  id: `beverage.details.aged.previousContent.${value}`,
+                }),
+                value,
+              }))
+            : null,
+        })),
+      }),
+      ...(!aged?.editorial?.length &&
+        isAged?.editorial && {
+          aged: [{ type: null, wood: null, time: null, previousContent: null }],
+        }),
+      ...(isDryHopped?.editorial && {
+        dryHopped: isDryHopped.editorial ? [] : null,
+      }),
+      ...(dryHopped?.editorial && {
+        dryHopped: dryHopped.editorial.map(({ id, name: hopName, type }) => ({
+          label: getValueByLanguage(hopName),
+          value: id,
+          type: type as IngredientType,
+        })),
+      }),
+      // -----------
       ...(price?.editorial && {
         price: price?.editorial.map(({ currency, date, value }) => ({
           currency: {

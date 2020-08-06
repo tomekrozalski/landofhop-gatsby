@@ -12,21 +12,21 @@ import {
 const SmokedMalt: React.FC = () => {
   const { smokedMalt } = useContext(BeverageContext);
 
-  return smokedMalt.label || smokedMalt.producer ? (
+  return smokedMalt?.label || smokedMalt?.producer ? (
     <>
       <dt>
         <FormattedMessage id="beverage.details.smokedMalt" />
       </dt>
       <dd>
         <SourceGroup>
-          {smokedMalt.label && (
+          {smokedMalt?.label && (
             <Label>
               <SourceItem>
                 <FormattedMessage id="yes" />
               </SourceItem>
             </Label>
           )}
-          {smokedMalt.producer && (
+          {smokedMalt?.producer && (
             <Producer>
               <SourceItem>
                 <FormattedMessage id="yes" />
