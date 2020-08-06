@@ -7,7 +7,22 @@ import { Button } from 'elements';
 import { BeverageFieldNames } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { FormSection, SubSection } from '../elements';
-import { Contract, Cooperation, Place, Series, Tale } from '../fields';
+import {
+  Aged,
+  Alcohol,
+  Contract,
+  Cooperation,
+  DryHopped,
+  ExpirationDate,
+  Extract,
+  Fermentation,
+  Filtration,
+  Pasteurization,
+  Place,
+  Series,
+  Style,
+  Tale,
+} from '../fields';
 import { Footer } from '../elements/grids';
 import { FormValues } from './utils';
 
@@ -46,6 +61,44 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
       />
       <Tale
         fieldName={BeverageFieldNames.tale}
+        formName={FormName.beverageProducer}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.brewingInfo" />
+      <Fermentation
+        fieldName={BeverageFieldNames.fermentation}
+        formName={FormName.beverageProducer}
+      />
+      <Style
+        fieldName={BeverageFieldNames.style}
+        formName={FormName.beverageProducer}
+      />
+      <Extract
+        fieldName={BeverageFieldNames.extract}
+        formName={FormName.beverageProducer}
+      />
+      <Alcohol
+        fieldName={BeverageFieldNames.alcohol}
+        formName={FormName.beverageProducer}
+      />
+      <Filtration
+        fieldName={BeverageFieldNames.filtration}
+        formName={FormName.beverageProducer}
+      />
+      <Pasteurization
+        fieldName={BeverageFieldNames.pasteurization}
+        formName={FormName.beverageProducer}
+      />
+      <Aged
+        fieldName={BeverageFieldNames.aged}
+        formName={FormName.beverageProducer}
+      />
+      <DryHopped
+        fieldName={BeverageFieldNames.dryHopped}
+        formName={FormName.beverageProducer}
+      />
+      <ExpirationDate
+        fieldName={BeverageFieldNames.expirationDate}
         formName={FormName.beverageProducer}
       />
       {/* -------------------------------- */}

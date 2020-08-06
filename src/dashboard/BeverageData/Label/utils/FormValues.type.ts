@@ -112,6 +112,7 @@ export type FormValues = {
     };
     value: number;
   } | null;
+  // -----------
   [FieldName.ingredientsDescription]: {
     language: {
       label: string;

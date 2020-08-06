@@ -15,6 +15,7 @@ type Props = {
 };
 
 const formToData = ({ id, label, producer, editorial }: Props) => {
+  // eslint-disable-next-line no-console
   console.log('formToData', label, producer, editorial);
 
   const normalizeLangValue = ({
@@ -88,21 +89,27 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     }),
     ...(label.barcode && { barcode: label.barcode }),
     // -----------
-    ...(label.fermentation && {
+    ...((label.fermentation || producer.fermentation) && {
       fermentation: {
         ...(label.fermentation && {
           label: label.fermentation,
         }),
+        ...(producer.fermentation && {
+          producer: producer.fermentation,
+        }),
       },
     }),
-    ...(label.style?.length && {
+    ...((label.style?.length || producer.style?.length) && {
       style: {
         ...(label.style?.length && {
           label: label.style.map(normalizeLangValue),
         }),
+        ...(producer.style?.length && {
+          producer: producer.style.map(normalizeLangValue),
+        }),
       },
     }),
-    ...(label.extract && {
+    ...((label.extract || producer.extract) && {
       extract: {
         ...(label.extract && {
           label: {
@@ -111,9 +118,16 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
             value: label.extract.value,
           },
         }),
+        ...(producer.extract && {
+          producer: {
+            relate: producer.extract.relate.value,
+            unit: producer.extract.unit.value,
+            value: producer.extract.value,
+          },
+        }),
       },
     }),
-    ...(label.alcohol && {
+    ...((label.alcohol || producer.alcohol) && {
       alcohol: {
         ...(label.alcohol && {
           label: {
@@ -125,23 +139,40 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
             }),
           },
         }),
+        ...(producer.alcohol && {
+          producer: {
+            relate: producer.alcohol.relate.value,
+            unit: producer.alcohol.unit.value,
+            value: producer.alcohol.value,
+            ...(producer.alcohol.scope.value !== '-' && {
+              scope: producer.alcohol.scope.value,
+            }),
+          },
+        }),
       },
     }),
-    ...(isBoolean(label.filtration) && {
+    ...((isBoolean(label.filtration) || isBoolean(producer.filtration)) && {
       filtration: {
         ...(isBoolean(label.filtration) && {
           label: label.filtration,
         }),
+        ...(isBoolean(producer.filtration) && {
+          producer: producer.filtration,
+        }),
       },
     }),
-    ...(isBoolean(label.pasteurization) && {
+    ...((isBoolean(label.pasteurization) ||
+      isBoolean(producer.pasteurization)) && {
       pasteurization: {
         ...(isBoolean(label.pasteurization) && {
           label: label.pasteurization,
         }),
+        ...(isBoolean(producer.pasteurization) && {
+          producer: producer.pasteurization,
+        }),
       },
     }),
-    ...(label.aged.length && {
+    ...((label.aged.length || producer.aged.length) && {
       aged: {
         ...(label.aged.length && {
           label: label.aged.map(({ type, wood, time, previousContent }) => ({
@@ -158,30 +189,60 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
             }),
           })),
         }),
+        ...(producer.aged.length && {
+          producer: producer.aged.map(
+            ({ type, wood, time, previousContent }) => ({
+              ...(type && { type }),
+              ...(wood && { wood }),
+              ...(time && {
+                time: {
+                  unit: time.unit.value,
+                  value: time.value,
+                },
+              }),
+              ...(previousContent && {
+                previousContent: previousContent.map(({ value }) => value),
+              }),
+            }),
+          ),
+        }),
       },
     }),
-    ...(label.dryHopped?.length && {
+    ...((label.dryHopped?.length || producer.dryHopped?.length) && {
       dryHopped: {
         ...(label.dryHopped?.length && {
           label: label.dryHopped.map(({ value }) => value),
         }),
+        ...(producer.dryHopped?.length && {
+          producer: producer.dryHopped.map(({ value }) => value),
+        }),
       },
     }),
-    ...(label.dryHopped &&
-      !label.dryHopped?.length && {
-        isDryHopped: {
-          ...(label.dryHopped &&
-            !label.dryHopped?.length && {
-              label: true,
-            }),
-        },
-      }),
-    ...(label.expirationDate && {
+    ...(((label.dryHopped && !label.dryHopped?.length) ||
+      (producer.dryHopped && !producer.dryHopped?.length)) && {
+      isDryHopped: {
+        ...(label.dryHopped &&
+          !label.dryHopped?.length && {
+            label: true,
+          }),
+        ...(producer.dryHopped &&
+          !producer.dryHopped?.length && {
+            producer: true,
+          }),
+      },
+    }),
+    ...((label.expirationDate || producer.expirationDate) && {
       expirationDate: {
         ...(label.expirationDate && {
           label: {
             unit: label.expirationDate.unit.value,
             value: label.expirationDate.value,
+          },
+        }),
+        ...(producer.expirationDate && {
+          producer: {
+            unit: producer.expirationDate.unit.value,
+            value: producer.expirationDate.value,
           },
         }),
       },

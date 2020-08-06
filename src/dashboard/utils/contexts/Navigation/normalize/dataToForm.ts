@@ -359,6 +359,111 @@ const dataToForm = ({
       ...(tale?.producer && {
         [FieldName.tale]: tale.producer.map(normalizeLanguageValuePair),
       }),
+      // -----------
+      ...(fermentation?.producer && { fermentation: fermentation.producer }),
+      ...(style?.producer && {
+        style: style.producer.map(normalizeLanguageValuePair),
+      }),
+      ...(extract?.producer && {
+        extract: {
+          relate: {
+            label: intl.formatMessage({
+              id: `global.extractRelate.${extract.producer.relate}`,
+            }),
+            value: extract.producer.relate,
+          },
+          unit: {
+            label: intl.formatMessage({
+              id: `global.extractUnit.${extract.producer.unit}`,
+            }),
+            value: extract.producer.unit,
+          },
+          value: extract.producer.value,
+        },
+      }),
+      ...(alcohol?.producer && {
+        alcohol: {
+          relate: {
+            label: intl.formatMessage({
+              id: `global.alcoholRelate.${alcohol.producer.relate}`,
+            }),
+            value: alcohol.producer.relate as AlcoholRelate,
+          },
+          unit: {
+            label: intl.formatMessage({
+              id: `global.alcoholUnit.${alcohol.producer.unit}`,
+            }),
+            value: alcohol.producer.unit as AlcoholUnit,
+          },
+          value: alcohol.producer.value,
+          scope: alcohol.producer.scope
+            ? {
+                label: intl.formatMessage({
+                  id: `global.alcoholScope.${alcohol.producer.scope}`,
+                }),
+                value: alcohol.producer.scope as AlcoholScope,
+              }
+            : {
+                label: '--',
+                value: '-',
+              },
+        },
+      }),
+      ...(isBoolean(filtration?.producer) && {
+        filtration: filtration?.producer,
+      }),
+      ...(isBoolean(pasteurization?.producer) && {
+        pasteurization: pasteurization?.producer,
+      }),
+      ...(aged?.producer?.length && {
+        aged: aged?.producer.map(({ type, wood, time, previousContent }) => ({
+          type: type || null,
+          wood: wood || null,
+          time: time
+            ? {
+                unit: {
+                  label: intl.formatMessage({
+                    id: `global.timeUnit.${time.unit}`,
+                  }),
+                  value: time.unit,
+                },
+                value: time.value,
+              }
+            : null,
+          previousContent: previousContent?.length
+            ? previousContent.map(value => ({
+                label: intl.formatMessage({
+                  id: `beverage.details.aged.previousContent.${value}`,
+                }),
+                value,
+              }))
+            : null,
+        })),
+      }),
+      ...(!aged?.producer?.length &&
+        isAged?.producer && {
+          aged: [{ type: null, wood: null, time: null, previousContent: null }],
+        }),
+      ...(isDryHopped?.producer && {
+        dryHopped: isDryHopped.producer ? [] : null,
+      }),
+      ...(dryHopped?.producer && {
+        dryHopped: dryHopped.producer.map(({ id, name: hopName }) => ({
+          label: getValueByLanguage(hopName),
+          value: id,
+        })),
+      }),
+      ...(expirationDate?.producer && {
+        expirationDate: {
+          unit: {
+            label: intl.formatMessage({
+              id: `global.timeUnit.${expirationDate.producer.unit}`,
+            }),
+            value: expirationDate.producer.unit,
+          },
+          value: expirationDate.producer.value,
+        },
+      }),
     },
     normalizedEditorial: {
       ...initialEditorialValues,
