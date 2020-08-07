@@ -14,7 +14,6 @@ const DashboardWrapper = (Component: any) => (props: any) => {
   );
 
   useEffect(() => {
-    console.log('!', token);
     if (token) checkTokenExpiration(token);
   }, [token]);
 

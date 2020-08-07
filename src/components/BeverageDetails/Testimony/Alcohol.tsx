@@ -27,7 +27,11 @@ const Alcohol: React.FC = () => {
                   id="beverage.details.alcoholValue"
                   values={alcohol.label}
                 />
-                {alcohol.label.scope}
+                {alcohol.label.scope && (
+                  <FormattedMessage
+                    id={`global.alcoholScopeValues.${alcohol.label.scope}`}
+                  />
+                )}
               </SourceItem>
             </Label>
           )}
@@ -38,13 +42,21 @@ const Alcohol: React.FC = () => {
                   id="beverage.details.alcoholValue"
                   values={alcohol.producer}
                 />
-                {alcohol.producer.scope}
+                {alcohol.producer.scope && (
+                  <FormattedMessage
+                    id={`global.alcoholScopeValues.${alcohol.producer.scope}`}
+                  />
+                )}
               </SourceItem>
             </Producer>
           )}
           {alcohol.editorial && (
             <Editorial noSeparator>
-              <SourceItem>{alcohol.editorial.scope}</SourceItem>
+              <SourceItem>
+                <FormattedMessage
+                  id={`global.alcoholScopeValues.${alcohol.editorial.scope}`}
+                />
+              </SourceItem>
             </Editorial>
           )}
         </SourceGroup>

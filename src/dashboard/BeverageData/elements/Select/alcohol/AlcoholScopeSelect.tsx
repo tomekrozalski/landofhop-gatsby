@@ -25,21 +25,21 @@ const AlcoholScopeSelect: React.FC<Props> = props => {
         },
         {
           label: formatMessage({
-            id: `global.alcoholScopeValues.${AlcoholScope.lessThan05}`,
+            id: `global.alcoholScopeValues.${AlcoholScope.m500}`,
           }),
-          value: AlcoholScope.lessThan05,
+          value: AlcoholScope.m500,
         },
         {
           label: formatMessage({
-            id: `global.alcoholScopeValues.${AlcoholScope.plusMinus05}`,
+            id: `global.alcoholScopeValues.${AlcoholScope.pm500}`,
           }),
-          value: AlcoholScope.plusMinus05,
+          value: AlcoholScope.pm500,
         },
         {
           label: formatMessage({
-            id: `global.alcoholScopeValues.${AlcoholScope.plusMinus1}`,
+            id: `global.alcoholScopeValues.${AlcoholScope.pm1000}`,
           }),
-          value: AlcoholScope.plusMinus1,
+          value: AlcoholScope.pm1000,
         },
       ]}
     />

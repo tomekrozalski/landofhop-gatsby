@@ -1,7 +1,7 @@
 enum AlcoholScope {
-  lessThan05 = '<0.5%',
-  plusMinus05 = '±0.5%',
-  plusMinus1 = '±1.0%',
+  m500 = 'm500',
+  pm500 = 'pm500',
+  pm1000 = 'pm1000',
 }
 
 export default AlcoholScope;

@@ -80,6 +80,8 @@ const Authentication: React.FC = ({ children }) => {
     new Promise((resolve, reject) => {
       const decodedToken = jwt.decode(value, { complete: true });
 
+      console.log('-->', value, decodedToken);
+
       if (isObject(decodedToken)) {
         const expirationDate = fromUnixTime(decodedToken.payload.exp);
 

@@ -156,8 +156,13 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         value: Float!
         scope: String
       }
+      enum AlcoholScopeEnum {
+        m500
+        pm500
+        pm1000
+      }
       type AlcoholScope {
-        scope: String
+        scope: AlcoholScopeEnum
       }
       type Filtration {
         label: Boolean
