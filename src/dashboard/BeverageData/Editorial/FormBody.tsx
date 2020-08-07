@@ -11,6 +11,8 @@ import {
   Added,
   Aged,
   AlcoholScope,
+  Clarity,
+  Color,
   Contract,
   Cooperation,
   DryHopped,
@@ -87,6 +89,16 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       />
       <DryHopped
         fieldName={BeverageFieldNames.dryHopped}
+        formName={FormName.beverageEditorial}
+      />
+      {/* -------------------------------- */}
+      <SubSection title="dashboard.beverage.impressionsInfo" />
+      <Color
+        fieldName={BeverageFieldNames.color}
+        formName={FormName.beverageEditorial}
+      />
+      <Clarity
+        fieldName={BeverageFieldNames.clarity}
         formName={FormName.beverageEditorial}
       />
       {/* -------------------------------- */}

@@ -8,6 +8,8 @@ import Bitterness from './Bitterness';
 import Brand from './Brand';
 import City from './City';
 import Code from './Code';
+import Clarity from './Clarity';
+import Color from './Color';
 import Container from './Container';
 import Contract from './Contract';
 import Cooperation from './Cooperation';
@@ -51,6 +53,8 @@ export {
   Brand,
   City,
   Code,
+  Clarity,
+  Color,
   Container,
   Contract,
   Cooperation,

@@ -3,6 +3,7 @@ import AgedTimeUnitSelect from './time/AgedTimeUnitSelect';
 import AlcoholRelateSelect from './alcohol/AlcoholRelateSelect';
 import AlcoholScopeSelect from './alcohol/AlcoholScopeSelect';
 import AlcoholUnitSelect from './alcohol/AlcoholUnitSelect';
+import ClaritySelect from './ClaritySelect';
 import ContainerColorSelect from './container/ColorSelect';
 import ContainerMaterialSelect from './container/MaterialSelect';
 import ContainerTypeSelect from './container/TypeSelect';
@@ -25,6 +26,7 @@ export {
   AlcoholRelateSelect,
   AlcoholScopeSelect,
   AlcoholUnitSelect,
+  ClaritySelect,
   ContainerColorSelect,
   ContainerMaterialSelect,
   ContainerTypeSelect,

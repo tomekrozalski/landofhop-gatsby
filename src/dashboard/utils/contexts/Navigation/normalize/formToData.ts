@@ -15,9 +15,6 @@ type Props = {
 };
 
 const formToData = ({ id, label, producer, editorial }: Props) => {
-  // eslint-disable-next-line no-console
-  console.log('formToData', label, producer, editorial);
-
   const normalizeLangValue = ({
     lang,
     value,
@@ -422,36 +419,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...(editorial.color && {
+      color: {
+        editorial: editorial.color,
+      },
+    }),
+    ...(editorial.clarity && {
+      clarity: {
+        editorial: editorial.clarity.value,
+      },
+    }),
     // -----------
-    // fermentation: label, producer, editorial
-    // style: label, producer, editorial
-    // extract: label, producer
-    // alcohol: label, producer
-    // alcoholScope: editorial
-    // filtration: label, producer, editorial
-    // pasteurization: label, producer, editorial
-    // aged: label, producer, editorial
-    // dryHopped: label, producer, editorial
-    // expirationDate: label, producer
-    // ingredients: label, producer
-    // ingredientList: label, producer
-    // smokedMalt: label, producer
-
-    // bitterness: label, producer
-    // sweetness: label, producer
-    // fullness: label, producer
-    // power: label, producer
-    // hoppyness: label, producer
-    // temperature: label, producer
-
-    // color: editorial
-    // clarity: editorial
-    // price: label, producer, editorial
     added: convertStringToDate(editorial.added),
     ...(editorial.updated && {
       updated: convertStringToDate(editorial.updated),
     }),
-    // updated: editorial
     container: {
       color: label.container.color.value,
       material: label.container.material.value,

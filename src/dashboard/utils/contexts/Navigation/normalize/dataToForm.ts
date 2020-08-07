@@ -8,6 +8,7 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  Clarity,
   ContainerColor,
   ContainerMaterial,
   ContainerType,
@@ -48,6 +49,8 @@ const dataToForm = ({
     barcode,
     bitterness,
     brand,
+    clarity,
+    color,
     container,
     contract,
     cooperation,
@@ -593,6 +596,18 @@ const dataToForm = ({
           value: id,
           type: type as IngredientType,
         })),
+      }),
+      // -----------
+      ...(color?.editorial && {
+        color: color.editorial,
+      }),
+      ...(clarity?.editorial && {
+        clarity: {
+          label: intl.formatMessage({
+            id: `beverage.details.clarity.${clarity.editorial}`,
+          }),
+          value: clarity.editorial as Clarity,
+        },
       }),
       // -----------
       ...(price?.editorial && {
