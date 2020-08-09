@@ -80,16 +80,24 @@ const Authentication: React.FC = ({ children }) => {
     new Promise((resolve, reject) => {
       const decodedToken = jwt.decode(value, { complete: true });
 
-      console.log('-->', value, decodedToken);
+      console.log('1 -->', value, decodedToken);
 
       if (isObject(decodedToken)) {
         const expirationDate = fromUnixTime(decodedToken.payload.exp);
 
         if (differenceInSeconds(expirationDate, new Date()) > 10) {
+          console.log(
+            '2 -->',
+            differenceInSeconds(expirationDate, new Date()) > 10,
+          );
+
           setToken(value);
           setTokenExpirationDate(expirationDate);
           setAuthenticationStatus(AuthenticationStatusEnum.success);
           resolve();
+        } else {
+          tokenExpired();
+          console.log('3 --> else gonna be rejected');
         }
       }
 
