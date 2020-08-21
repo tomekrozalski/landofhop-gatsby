@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Danger } from 'elements/icons';
@@ -31,6 +31,18 @@ const Modal: React.FC = () => {
         return null;
     }
   };
+
+  useEffect(() => {
+    const classList = document?.querySelector('body')?.classList;
+
+    if (classList) {
+      if (subform) {
+        classList.add('scroll-lock');
+      } else {
+        classList.remove('scroll-lock');
+      }
+    }
+  }, [subform]);
 
   return subform
     ? ReactDOM.createPortal(

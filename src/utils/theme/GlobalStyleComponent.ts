@@ -92,6 +92,10 @@ const GlobalStyleComponent = createGlobalStyle`
     color: var(--color-black);
   }
 
+  body.scroll-lock {
+    overflow: hidden;
+  }
+
   h1 {
     margin: 0;
     font: var(--font-weight-medium) 3rem / 3.8rem var(--font-primary);
