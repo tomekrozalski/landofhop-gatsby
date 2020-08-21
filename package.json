@@ -6,7 +6,6 @@
   "author": "Tomek Rozalski <kontakt@tomaszrozalski.pl>",
   "dependencies": {
     "@nfront/global-styles": "^1.2.1",
-    "@sentry/browser": "^5.19.2",
     "@types/d3": "^5.7.2",
     "@types/styled-components": "^4.4.0",
     "@types/yup": "^0.26.24",
@@ -25,7 +24,6 @@
     "gatsby-plugin-styled-components": "^3.1.11",
     "gatsby-plugin-typescript": "^2.3.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
-    "immer": "^6.0.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
     "markdown-to-jsx": "^6.11.4",
