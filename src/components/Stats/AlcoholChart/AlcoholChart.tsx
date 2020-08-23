@@ -9,6 +9,7 @@ import {
   getMissingAlcoholBeverages,
   normalizeData,
 } from './utils';
+import './alcohol-chart.css';
 
 const AlcoholChart: React.FC = () => {
   const svg = useRef<SVGSVGElement>(null!);
