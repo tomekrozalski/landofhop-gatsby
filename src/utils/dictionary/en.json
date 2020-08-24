@@ -273,6 +273,7 @@
     "longitude": "Longitude",
     "name": "Name",
     "notes": "Notes",
+    "numberOfBeverages": "Number of beverages",
     "ownedBy": "Owned by",
     "password": "Password",
     "pasteurization": "Pasteurization",

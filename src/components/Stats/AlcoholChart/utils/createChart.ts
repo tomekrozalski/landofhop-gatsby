@@ -4,10 +4,11 @@ import { AlcoholData } from '../types';
 
 type Props = {
   data: AlcoholData[];
+  formatMessage: ({ id }: { id: string }) => string;
   wrapper: SVGSVGElement;
 };
 
-const createChart = ({ data, wrapper }: Props) => {
+const createChart = ({ data, formatMessage, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
   const margin = {
@@ -42,19 +43,10 @@ const createChart = ({ data, wrapper }: Props) => {
     .append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  bars
-    .selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', d => yScale(yValue(d)))
-    .attr('width', xScale.bandwidth())
-    .attr('height', d => innerHeight - yScale(yValue(d)));
-
   const xAxis = d3
     .axisBottom(xScale)
-    .ticks(5)
+    .tickSizeOuter(0)
+    .tickValues(xScale.domain().filter(d => !(+d % 1)))
     .tickFormat(d => `${d}%`);
 
   const xAxisGroup = bars
@@ -64,25 +56,23 @@ const createChart = ({ data, wrapper }: Props) => {
 
   xAxisGroup
     .append('text')
-    .attr('x', 20)
-    .attr('y', 20)
-    .attr('fill', 'black')
-    .text('Alkohol');
+    .attr('x', innerWidth)
+    .attr('y', 40)
+    .attr('text-anchor', 'end')
+    .classed('label', true)
+    .text(formatMessage({ id: 'global.alcohol' }));
 
   const yAxis = d3
     .axisLeft(yScale)
-    .ticks(5)
+    .ticks((d3.max(data, d => d.beverages) || 100) / 5)
     .tickSize(-innerWidth);
 
-  const yAxisGroup = bars.append('g').call(yAxis);
+  const yAxisGroup = bars
+    .append('g')
+    .classed('y-axis-group', true)
+    .call(yAxis);
 
   yAxisGroup.select('.domain').remove();
-
-  yAxisGroup
-    .selectAll('.tick')
-    .select('line')
-    .attr('stroke-opacity', 0.2)
-    .attr('stroke-dasharray', 2);
 
   yAxisGroup
     .selectAll('.tick')
@@ -91,10 +81,21 @@ const createChart = ({ data, wrapper }: Props) => {
 
   yAxisGroup
     .append('text')
-    .attr('x', 20)
+    .attr('x', 0)
     .attr('y', 20)
-    .attr('fill', 'black')
-    .text('Ilość piw');
+    .attr('text-anchor', 'start')
+    .classed('label', true)
+    .text(formatMessage({ id: 'global.numberOfBeverages' }));
+
+  bars
+    .selectAll('rect')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('x', d => xScale(xValue(d)) || '')
+    .attr('y', d => yScale(yValue(d)))
+    .attr('width', xScale.bandwidth())
+    .attr('height', d => innerHeight - yScale(yValue(d)));
 };
 
 export default createChart;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { FormattedMessage } from 'gatsby-plugin-intl';
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 import { SectionHeader } from 'elements';
 import { AlcoholData } from './types';
@@ -12,6 +12,7 @@ import {
 import './alcohol-chart.css';
 
 const AlcoholChart: React.FC = () => {
+  const { formatMessage } = useIntl();
   const svg = useRef<SVGSVGElement>(null!);
 
   const rawData = useStaticQuery(graphql`
@@ -48,7 +49,7 @@ const AlcoholChart: React.FC = () => {
       );
     }
 
-    createChart({ data, wrapper: svg.current });
+    createChart({ data, formatMessage, wrapper: svg.current });
   }, []);
 
   return (
