@@ -25,8 +25,8 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
 
   svg.attr('viewBox', `0 0 ${width} ${height}`).classed('alcohol-chart', true);
 
-  const xValue = d => d.value.toString();
-  const yValue = d => d.beverages;
+  const xValue = (d: AlcoholData) => d.value.toString();
+  const yValue = (d: AlcoholData) => d.beverages;
 
   const xScale = d3
     .scaleBand()
@@ -36,7 +36,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
 
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, yValue) + 3 || 10])
+    .domain([0, d3.max(data, yValue) || 10 + 3])
     .range([innerHeight, 0]);
 
   const bars = svg
@@ -64,7 +64,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
 
   const yAxis = d3
     .axisLeft(yScale)
-    .ticks((d3.max(data, d => d.beverages) || 100) / 5)
+    .ticks((d3.max(data, yValue) || 100) / 5)
     .tickSize(-innerWidth);
 
   const yAxisGroup = bars
