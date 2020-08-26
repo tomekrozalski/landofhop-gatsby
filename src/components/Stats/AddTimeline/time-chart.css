@@ -1,20 +1,9 @@
 .time-chart rect.bottle {
-  fill: green;
+  fill: #e3ba22;
+  opacity: 0.25;
 }
 
 .time-chart rect.can {
-  fill: yellowgreen;
-}
-
-.time-chart text {
-  font: var(--font-weight-light) 1.2rem / 1 var(--font-primary);
-}
-
-.time-chart .label {
-  fill: var(--color-black);
-  font: var(--font-weight-regular) 1.5rem / 1 var(--font-primary);
-}
-
-.time-chart .y-axis-group .tick:not(:first-of-type) line {
-  stroke: var(--color-brighter);
+  fill: #e6842a;
+  opacity: 0.25;
 }

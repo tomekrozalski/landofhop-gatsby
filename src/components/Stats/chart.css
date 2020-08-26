@@ -1,0 +1,12 @@
+.chart text {
+  font: var(--font-weight-light) 1.2rem / 1 var(--font-primary);
+}
+
+.chart .label {
+  fill: var(--color-black);
+  font: var(--font-weight-regular) 1.5rem / 1 var(--font-primary);
+}
+
+.chart .y-axis-group .tick:not(:first-of-type) line {
+  stroke: var(--color-brighter);
+}

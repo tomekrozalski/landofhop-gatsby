@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { format, getMonth } from 'date-fns';
+import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
 
 import { SiteLanguage } from 'utils/enums';
@@ -29,17 +29,20 @@ const createChart = ({ data, intl, wrapper }: Props) => {
   const height = 600;
   const innerHeight = height - margin.top - margin.bottom;
 
-  svg.attr('viewBox', `0 0 ${width} ${height}`).classed('time-chart', true);
+  svg
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .classed('chart time-chart', true);
 
   const xValue = (d: AddData) => d.date;
   const bottle = (d: AddData) => d.bottle;
   const can = (d: AddData) => d.can;
-  const total = (d: AddData) => d.total;
+  const total = (d: AddData) => d.bottle + d.can;
 
   const xScale = d3
-    .scaleTime()
-    .domain([data[0].date, data[data.length - 1].date])
-    .range([0, innerWidth]);
+    .scaleBand()
+    .domain(data.map(xValue))
+    .range([0, innerWidth])
+    .padding(0.1);
 
   const yScale = d3
     .scaleLinear()
@@ -50,54 +53,45 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  const xAxis = d3
+  const monthAxis = d3
     .axisBottom(xScale)
     .tickSizeOuter(0)
     .ticks(data.length)
-    // .tickValues(
-    //   data.map(({ date }) => {
-    //     // if (!getMonth(date)) {
-    //     //   return intl.locale === SiteLanguage.pl
-    //     //     ? format(date, 'MMM yyyy', { locale: pl })
-    //     //     : format(date, 'MMM yyyy');
-    //     // }
+    .tickFormat((value: string) =>
+      intl.locale === SiteLanguage.pl
+        ? format(new Date(value), 'MMM', { locale: pl })
+        : format(new Date(value), 'MMM'),
+    );
 
-    //     console.log('date', date);
-
-    //     return intl.locale === SiteLanguage.pl
-    //       ? format(date, 'MMM', { locale: pl })
-    //       : format(date, 'MMM');
-    //   }),
-    // )
-    .tickFormat((date: Date) => {
-      if (!getMonth(date)) {
-        return intl.locale === SiteLanguage.pl
-          ? format(date, 'MMM yyyy', { locale: pl })
-          : format(date, 'MMM yyyy');
-      }
-
-      return intl.locale === SiteLanguage.pl
-        ? format(date, 'MMM', { locale: pl })
-        : format(date, 'MMM');
-    });
-
-  const xAxisGroup = bars
+  bars
     .append('g')
-    .call(xAxis)
+    .call(monthAxis)
     .attr('transform', `translate(0, ${innerHeight})`);
 
-  xAxisGroup
-    .selectAll('.tick text')
+  const yearAxis = d3
+    .axisBottom(xScale)
+    .tickSizeOuter(0)
+    .ticks(data.length)
+    .tickValues(
+      xScale.domain().filter(d => {
+        if (d === '2017-06') {
+          return true;
+        }
 
-    .attr('text-anchor', 'end');
+        const [, month] = d.split('-');
+        return month === '01';
+      }),
+    )
+    .tickFormat(d => `${format(new Date(d), 'yyyy')} →`);
 
-  // xAxisGroup
-  //   .append('text')
-  //   .attr('x', innerWidth)
-  //   .attr('y', 40)
-  //   .attr('text-anchor', 'end')
-  //   .classed('label', true)
-  //   .text(formatMessage({ id: 'global.alcohol' }));
+  const yearAxisGroup = bars
+    .append('g')
+    .call(yearAxis)
+    .attr('transform', `translate(0, ${innerHeight + 20})`);
+
+  yearAxisGroup.select('.domain').remove();
+  yearAxisGroup.selectAll('.tick line').remove();
+  yearAxisGroup.selectAll('.tick text').attr('text-anchor', 'start');
 
   const yAxis = d3
     .axisLeft(yScale)
@@ -116,14 +110,6 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .select('text')
     .attr('dy', -5);
 
-  // yAxisGroup
-  //   .append('text')
-  //   .attr('x', 0)
-  //   .attr('y', 20)
-  //   .attr('text-anchor', 'start')
-  //   .classed('label', true)
-  //   .text(formatMessage({ id: 'global.numberOfBeverages' }));
-
   bars
     .selectAll('.bottle')
     .data(data)
@@ -132,7 +118,7 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .classed('bottle', true)
     .attr('x', d => xScale(xValue(d)) || '')
     .attr('y', d => yScale(bottle(d)))
-    .attr('width', 15)
+    .attr('width', xScale.bandwidth())
     .attr('height', d => innerHeight - yScale(bottle(d)));
 
   bars
@@ -143,7 +129,7 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .classed('can', true)
     .attr('x', d => xScale(xValue(d)) || '')
     .attr('y', d => yScale(can(d)) - innerHeight + yScale(bottle(d)))
-    .attr('width', 15)
+    .attr('width', xScale.bandwidth())
     .attr('height', d => innerHeight - yScale(can(d)));
 };
 

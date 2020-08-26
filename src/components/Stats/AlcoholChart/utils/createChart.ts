@@ -23,7 +23,9 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
   const height = 600;
   const innerHeight = height - margin.top - margin.bottom;
 
-  svg.attr('viewBox', `0 0 ${width} ${height}`).classed('alcohol-chart', true);
+  svg
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .classed('chart alcohol-chart', true);
 
   const xValue = (d: AlcoholData) => d.value.toString();
   const yValue = (d: AlcoholData) => d.beverages;
@@ -82,8 +84,9 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
   yAxisGroup
     .append('text')
     .attr('x', 0)
-    .attr('y', 20)
-    .attr('text-anchor', 'start')
+    .attr('y', -25)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'end')
     .classed('label', true)
     .text(formatMessage({ id: 'global.numberOfBeverages' }));
 

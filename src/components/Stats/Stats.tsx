@@ -5,6 +5,7 @@ import Layout from 'components/Layout';
 import SEO from 'components/Seo';
 import { Header, Wrapper } from 'elements/textPage';
 import { AddTimeline, AlcoholChart } from '.';
+import './chart.css';
 
 const Stats: React.FC = () => (
   <Layout>
