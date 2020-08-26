@@ -4,6 +4,7 @@ import { pl } from 'date-fns/locale';
 
 import { SiteLanguage } from 'utils/enums';
 import { AddData } from '../types';
+import { curveBasis } from 'd3';
 
 type Props = {
   data: AddData[];
@@ -34,8 +35,8 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .classed('chart time-chart', true);
 
   const xValue = (d: AddData) => d.date;
-  const bottle = (d: AddData) => d.bottle;
-  const can = (d: AddData) => d.can;
+  const bottles = (d: AddData) => d.bottle;
+  const cans = (d: AddData) => d.can;
   const total = (d: AddData) => d.bottle + d.can;
 
   const xScale = d3
@@ -117,9 +118,9 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .append('rect')
     .classed('bottle', true)
     .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', d => yScale(bottle(d)))
+    .attr('y', d => yScale(bottles(d)))
     .attr('width', xScale.bandwidth())
-    .attr('height', d => innerHeight - yScale(bottle(d)));
+    .attr('height', d => innerHeight - yScale(bottles(d)));
 
   bars
     .selectAll('.can')
@@ -128,9 +129,37 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .append('rect')
     .classed('can', true)
     .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', d => yScale(can(d)) - innerHeight + yScale(bottle(d)))
+    .attr('y', d => yScale(cans(d)) - innerHeight + yScale(bottles(d)))
     .attr('width', xScale.bandwidth())
-    .attr('height', d => innerHeight - yScale(can(d)));
+    .attr('height', d => innerHeight - yScale(cans(d)));
+
+  const lineGenerator = (type: any) =>
+    d3
+      .line<AddData>()
+      .x(d => xScale(xValue(d)) || 0)
+      .y(d => yScale(type(d)))
+      .curve(d3.curveBasis);
+
+  bars
+    .append('path')
+    .datum<any>(data)
+    .attr('d', lineGenerator(cans))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--cans', true);
+
+  bars
+    .append('path')
+    .datum<any>(data)
+    .attr('d', lineGenerator(bottles))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--bottles', true);
+
+  bars
+    .append('path')
+    .datum<any>(data)
+    .attr('d', lineGenerator(total))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--total', true);
 };
 
 export default createChart;

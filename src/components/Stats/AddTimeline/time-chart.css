@@ -1,9 +1,32 @@
 .time-chart rect.bottle {
   fill: #e3ba22;
   opacity: 0.25;
+  transition: opacity var(--transition-default);
+}
+
+.time-chart rect.bottle:hover {
+  opacity: 1;
 }
 
 .time-chart rect.can {
   fill: #e6842a;
   opacity: 0.25;
+}
+
+.time-chart .line-path {
+  fill: none;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+.time-chart .line-path--total {
+  stroke: var(--color-black);
+}
+
+.time-chart .line-path--bottles {
+  stroke: #e3ba22;
+}
+
+.time-chart .line-path--cans {
+  stroke: #e6842a;
 }
