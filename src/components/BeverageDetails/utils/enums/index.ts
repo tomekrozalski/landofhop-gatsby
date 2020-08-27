@@ -6,6 +6,7 @@ import AlcoholRelate from './AlcoholRelate.enum';
 import AlcoholScope from './AlcoholScope.enum';
 import AlcoholUnit from './AlcoholUnit.enum';
 import BeverageImageType from './BeverageImageType.enum';
+import BeverageType from './BeverageType.enum';
 import Clarity from './Clarity.enum';
 import {
   ContainerColor,
@@ -36,6 +37,7 @@ export {
   AlcoholScope,
   AlcoholUnit,
   BeverageImageType,
+  BeverageType,
   Clarity,
   ContainerColor,
   ContainerColorBottle,

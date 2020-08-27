@@ -12,6 +12,7 @@ import {
   Alcohol,
   Badge,
   Barcode,
+  BeverageType,
   Bitterness,
   Brand,
   Container,
@@ -96,6 +97,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.brewingInfo" />
+      <BeverageType
+        fieldName={BeverageFieldNames.beverageType}
+        formName={FormName.beverageLabel}
+      />
       <Fermentation
         fieldName={BeverageFieldNames.fermentation}
         formName={FormName.beverageLabel}

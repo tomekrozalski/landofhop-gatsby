@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */
 import React from 'react';
 import { useField } from 'formik';
+import classNames from 'classnames';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { FormName } from 'utils/enums';
@@ -35,7 +36,9 @@ const Fermentation: React.FC<Props> = ({ fieldName, formName }) => {
     <Grid>
       <Label name={fieldName} form={formName} />
       <Condition name={fieldName} empty={[FermentationEnum.top]} />
-      <ListOfOptions className={isDisabled ? 'disabled' : ''}>
+      <ListOfOptions
+        className={classNames('multivalue', { disabled: isDisabled })}
+      >
         <li>
           <input
             checked={!!value?.includes(FermentationEnum.top)}

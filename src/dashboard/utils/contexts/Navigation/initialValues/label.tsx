@@ -18,6 +18,7 @@ const label = {
   [FieldName.tale]: [],
   [FieldName.barcode]: null,
   // -----------
+  [FieldName.beverageType]: null,
   [FieldName.fermentation]: null,
   [FieldName.style]: [],
   [FieldName.extract]: null,

@@ -4,6 +4,7 @@ import Alcohol from './Alcohol';
 import AlcoholScope from './AlcoholScope';
 import Badge from './Badge';
 import Barcode from './Barcode';
+import BeverageType from './BeverageType';
 import Bitterness from './Bitterness';
 import Brand from './Brand';
 import City from './City';
@@ -49,6 +50,7 @@ export {
   AlcoholScope,
   Badge,
   Barcode,
+  BeverageType,
   Bitterness,
   Brand,
   City,

@@ -109,6 +109,11 @@
         "day": "{value} {value, plural, one {dzień} other {dni}}",
         "month": "{value} {value, plural, one {miesiąc} few {miesiące} other {miesięcy}}",
         "year": "{value} {value, plural, one {rok} few {lata} other {lat}}"
+      },
+      "type": {
+        "beer": "piwo",
+        "radler": "radler",
+        "other": "inne"
       }
     },
     "fermentationType": {
@@ -227,6 +232,7 @@
     "areIngredientsComplete": "Skład jest kompletny",
     "badge": "Identyfikator",
     "barcode": "Kod kreskowy",
+    "beverageType": "Typ napoju",
     "bitterness": "Gorycz",
     "brand": "Marka",
     "city": "Miejscowość",
@@ -259,6 +265,7 @@
     "fullness": "Pełnia",
     "hasCapWireFlip": "Butelka z drucianym korkiem",
     "hoppyness": "Chmielowość",
+    "hopRate": "HopRate",
     "ingredientsDescription": "Składniki",
     "ingredientsList": "Lista składników",
     "ingredientType": {

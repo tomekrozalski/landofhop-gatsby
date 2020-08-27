@@ -109,6 +109,11 @@
         "day": "{value} {value, plural, one {day} other {days}}",
         "month": "{value} {value, plural, one {month} other {months}}",
         "year": "{value} {value, plural, one {year} other {years}}"
+      },
+      "type": {
+        "beer": "beer",
+        "radler": "radler",
+        "other": "other"
       }
     },
     "fermentationType": {
@@ -227,6 +232,7 @@
     "areIngredientsComplete": "Are ingredients complete",
     "badge": "Badge",
     "barcode": "Barcode",
+    "beverageType": "Beverage type",
     "bitterness": "gorycz",
     "brand": "Brand",
     "city": "City",
@@ -259,6 +265,7 @@
     "fullness": "Fullness",
     "hasCapWireFlip": "Has cap wire flip",
     "hoppyness": "Hoppyness",
+    "hopRate": "HopRate",
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",
     "ingredientType": {

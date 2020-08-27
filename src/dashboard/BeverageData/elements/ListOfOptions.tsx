@@ -4,11 +4,6 @@ const ListOfOptions = styled.ul`
   display: flex;
   width: 100%;
   height: var(--size-input-height);
-  background-color: var(--color-brighter);
-
-  &.disabled {
-    background-color: var(--color-brightest);
-  }
 
   li {
     flex-grow: 1;
@@ -19,14 +14,20 @@ const ListOfOptions = styled.ul`
     border-width: 1px;
     border-style: solid;
     border-color: var(--color-dark);
+    background-color: var(--color-brighter);
   }
 
-  li + li {
+  &.multivalue li + li {
     border-left: none;
+  }
+
+  &:not(.multivalue) li + li {
+    margin-left: 1rem;
   }
 
   &.disabled li {
     border-color: var(--color-bright);
+    background-color: var(--color-brightest);
   }
 
   label {

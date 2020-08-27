@@ -5,6 +5,7 @@ enum Beverage {
   alcoholScope = 'alcoholScope',
   badge = 'badge',
   barcode = 'barcode',
+  beverageType = 'beverageType',
   bitterness = 'bitterness',
   brand = 'brand',
   dryHopped = 'dryHopped',
