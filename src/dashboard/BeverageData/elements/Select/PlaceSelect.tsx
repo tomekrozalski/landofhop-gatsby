@@ -42,6 +42,7 @@ const PlaceSelect: React.FC<Props> = props => {
         })`,
         value: id,
       }))}
+      placeholder="selectPlace"
     />
   );
 };

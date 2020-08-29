@@ -42,6 +42,7 @@ const AlcoholScopeSelect: React.FC<Props> = props => {
           value: AlcoholScope.pm1000,
         },
       ]}
+      placeholder="short"
     />
   );
 };

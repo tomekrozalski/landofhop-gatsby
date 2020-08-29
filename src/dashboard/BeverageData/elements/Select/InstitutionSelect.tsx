@@ -41,6 +41,7 @@ const InstitutionSelect: React.FC<Props> = props => {
         label: getValueByLanguage(name, locale).value,
         value: id,
       }))}
+      placeholder="selectBrand"
     />
   );
 };

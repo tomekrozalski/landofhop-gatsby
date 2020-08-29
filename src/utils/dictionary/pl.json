@@ -176,9 +176,12 @@
       "noOptions": "Brak wyników",
       "placeholder": {
         "default": "Wybierz…",
+        "selectBrand": "Wybierz markę…",
         "selectCountry": "Wybierz kraj…",
         "selectIngredientType": "Wybierz typ…",
-        "selectLanguage": "Wybierz język…"
+        "selectLanguage": "Wybierz język…",
+        "selectPlace": "Wybierz miejsce…",
+        "short": "~"
       }
     },
     "updateBeverage": {

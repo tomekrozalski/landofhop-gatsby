@@ -23,6 +23,7 @@ const AlcoholRelateSelect: React.FC<Props> = props => {
         label: formatMessage({ id: `global.alcoholRelate.${value}` }),
         value,
       }))}
+      placeholder="short"
     />
   );
 };

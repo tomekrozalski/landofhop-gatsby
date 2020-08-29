@@ -23,6 +23,7 @@ const AlcoholUnitSelect: React.FC<Props> = props => {
         label: formatMessage({ id: `global.alcoholUnit.${value}` }),
         value,
       }))}
+      placeholder="short"
     />
   );
 };

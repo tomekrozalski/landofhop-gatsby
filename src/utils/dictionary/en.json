@@ -176,9 +176,12 @@
       "noOptions": "No options",
       "placeholder": {
         "default": "Select…",
+        "selectBrand": "Select brand…",
         "selectCountry": "Select country…",
         "selectIngredientType": "Select type…",
-        "selectLanguage": "Select language…"
+        "selectLanguage": "Select language…",
+        "selectPlace": "Select place…",
+        "short": "~"
       }
     },
     "updateBeverage": {

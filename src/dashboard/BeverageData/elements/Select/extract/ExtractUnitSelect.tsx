@@ -23,6 +23,7 @@ const ExtractUnitSelect: React.FC<Props> = props => {
         label: formatMessage({ id: `global.extractUnit.${value}` }),
         value,
       }))}
+      placeholder="short"
     />
   );
 };

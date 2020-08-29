@@ -23,6 +23,7 @@ const ExtractRelateSelect: React.FC<Props> = props => {
         label: formatMessage({ id: `global.extractRelate.${value}` }),
         value,
       }))}
+      placeholder="short"
     />
   );
 };
