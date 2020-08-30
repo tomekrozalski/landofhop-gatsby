@@ -25,6 +25,7 @@ import {
   Filtration,
   Fullness,
   Hoppyness,
+  HopRate,
   IngredientsDescription,
   IngredientsList,
   Name,
@@ -131,6 +132,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       <DryHopped
         fieldName={BeverageFieldNames.dryHopped}
+        formName={FormName.beverageLabel}
+      />
+      <HopRate
+        fieldName={BeverageFieldNames.hopRate}
         formName={FormName.beverageLabel}
       />
       <ExpirationDate

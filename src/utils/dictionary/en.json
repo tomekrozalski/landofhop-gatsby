@@ -267,8 +267,12 @@
     "filtration": "filtration",
     "fullness": "Fullness",
     "hasCapWireFlip": "Has cap wire flip",
+    "hasCork": "Has cork",
     "hoppyness": "Hoppyness",
     "hopRate": "HopRate",
+    "hopRateUnit": {
+      "gl": "g/l"
+    },
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",
     "ingredientType": {

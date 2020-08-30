@@ -94,6 +94,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     }),
     ...(label.barcode && { barcode: label.barcode }),
     // -----------
+    ...((label.beverageType ||
+      producer.beverageType ||
+      editorial.beverageType) && {
+      beverageType: {
+        ...(label.beverageType && {
+          label: label.beverageType,
+        }),
+        ...(producer.beverageType && {
+          producer: producer.beverageType,
+        }),
+        ...(editorial.beverageType && {
+          editorial: editorial.beverageType,
+        }),
+      },
+    }),
     ...((label.fermentation ||
       producer.fermentation ||
       editorial.fermentation) && {
@@ -290,6 +305,22 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
           }),
       },
     }),
+    ...((label.hopRate || producer.hopRate) && {
+      hopRate: {
+        ...(label.hopRate && {
+          label: {
+            unit: label.hopRate.unit.value,
+            value: label.hopRate.value,
+          },
+        }),
+        ...(producer.hopRate && {
+          producer: {
+            unit: producer.hopRate.unit.value,
+            value: producer.hopRate.value,
+          },
+        }),
+      },
+    }),
     ...((label.expirationDate || producer.expirationDate) && {
       expirationDate: {
         ...(label.expirationDate && {
@@ -441,6 +472,7 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
       unit: label.container.unit.value,
       value: label.container.value,
       ...(label.container.hasCapWireFlip && { hasCapWireFlip: true }),
+      ...(label.container.hasCork && { hasCork: true }),
     },
     ...((label.price?.length ||
       producer.price?.length ||

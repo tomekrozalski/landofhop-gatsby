@@ -22,6 +22,7 @@ import Fermentation from './Fermentation';
 import Filtration from './Filtration';
 import Fullness from './Fullness';
 import Hoppyness from './Hoppyness';
+import HopRate from './HopRate';
 import IngredientsDescription from './IngredientsDescription';
 import IngredientsList from './IngredientsList';
 import IngredientType from './IngredientType';
@@ -68,6 +69,7 @@ export {
   Filtration,
   Fullness,
   Hoppyness,
+  HopRate,
   IngredientsDescription,
   IngredientsList,
   IngredientType,

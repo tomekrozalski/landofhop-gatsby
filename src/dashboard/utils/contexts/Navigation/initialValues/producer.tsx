@@ -7,6 +7,7 @@ const producer = {
   [FieldName.place]: null,
   [FieldName.tale]: [],
   // -----------
+  [FieldName.beverageType]: null,
   [FieldName.fermentation]: null,
   [FieldName.style]: [],
   [FieldName.extract]: null,
@@ -15,6 +16,7 @@ const producer = {
   [FieldName.pasteurization]: null,
   [FieldName.aged]: [],
   [FieldName.dryHopped]: null,
+  [FieldName.hopRate]: null,
   [FieldName.expirationDate]: null,
   // -----------
   [FieldName.ingredientsDescription]: [],

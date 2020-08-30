@@ -11,6 +11,7 @@ import {
   Added,
   Aged,
   AlcoholScope,
+  BeverageType,
   Clarity,
   Color,
   Contract,
@@ -63,6 +64,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       />
       {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.brewingInfo" />
+      <BeverageType
+        fieldName={BeverageFieldNames.beverageType}
+        formName={FormName.beverageEditorial}
+      />
       <Fermentation
         fieldName={BeverageFieldNames.fermentation}
         formName={FormName.beverageEditorial}

@@ -7,6 +7,7 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  BeverageType,
   ContainerColor,
   ContainerMaterial,
   ContainerType,
@@ -15,6 +16,7 @@ import {
   ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
+  HopRateUnit,
   IngredientType,
   TemperatureUnit,
 } from 'components/BeverageDetails/utils/enums';
@@ -52,6 +54,7 @@ export type FormValues = {
   }[];
   [FieldName.barcode]: string | null;
   // -----------
+  [FieldName.beverageType]: BeverageType | null;
   [FieldName.fermentation]: string[] | null;
   [FieldName.style]: { lang: Lang; value: string }[];
   [FieldName.extract]: {
@@ -105,6 +108,13 @@ export type FormValues = {
         value: string;
       }[]
     | null;
+  [FieldName.hopRate]: {
+    unit: {
+      label: string;
+      value: HopRateUnit;
+    };
+    value: number;
+  } | null;
   [FieldName.expirationDate]: {
     unit: {
       label: string;
@@ -150,6 +160,7 @@ export type FormValues = {
       value: ContainerColor;
     };
     hasCapWireFlip: boolean;
+    hasCork: boolean;
     material: {
       label: string;
       value: ContainerMaterial;

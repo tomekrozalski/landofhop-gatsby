@@ -5,6 +5,7 @@ import {
   AgedType,
   AgedWood,
   AlcoholScope,
+  BeverageType,
   Clarity,
   Currency,
   ExpirationDateUnit,
@@ -28,6 +29,7 @@ export type FormValues = {
     value: string;
   } | null;
   // -----------
+  [FieldName.beverageType]: BeverageType | null;
   [FieldName.fermentation]: string[] | null;
   [FieldName.style]: { lang: Lang; value: string }[];
   [FieldName.alcoholScope]: {
@@ -68,7 +70,10 @@ export type FormValues = {
   } | null;
   // -----------
   [FieldName.color]: string | null;
-  [FieldName.clarity]: Clarity | null;
+  [FieldName.clarity]: {
+    label: string;
+    value: Clarity;
+  } | null;
   // -----------
   [FieldName.price]: {
     currency: {

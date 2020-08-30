@@ -43,6 +43,8 @@ const Container: React.FC<Props> = ({
       <ContainerUnitSelect area="3 / 4" form={formName} name={fieldName} />
       {type.value.value === ContainerType.bottle && (
         <>
+          <Label name="hasCork" form={formName} />
+          <StyledSwitch name={`${fieldName}.hasCork`} form={formName} />
           <Label name="hasCapWireFlip" form={formName} />
           <StyledSwitch name={`${fieldName}.hasCapWireFlip`} form={formName} />
         </>

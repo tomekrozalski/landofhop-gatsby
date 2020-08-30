@@ -13,6 +13,7 @@ import CurrencySelect from './CurrencySelect';
 import ExpirationDateUnitSelect from './time/ExpirationDateUnitSelect';
 import ExtractRelateSelect from './extract/ExtractRelateSelect';
 import ExtractUnitSelect from './extract/ExtractUnitSelect';
+import HopRateUnitSelect from './HopRateUnitSelect';
 import IngredientSelect from './IngredientSelect';
 import IngredientTypeSelect from './IngredientTypeSelect';
 import InstitutionSelect from './InstitutionSelect';
@@ -36,6 +37,7 @@ export {
   ExpirationDateUnitSelect,
   ExtractRelateSelect,
   ExtractUnitSelect,
+  HopRateUnitSelect,
   IngredientSelect,
   InstitutionSelect,
   IngredientTypeSelect,

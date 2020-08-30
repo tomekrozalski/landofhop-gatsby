@@ -10,6 +10,7 @@ import { FormSection, SubSection } from '../elements';
 import {
   Aged,
   Alcohol,
+  BeverageType,
   Bitterness,
   Contract,
   Cooperation,
@@ -20,6 +21,7 @@ import {
   Filtration,
   Fullness,
   Hoppyness,
+  HopRate,
   IngredientsDescription,
   IngredientsList,
   Pasteurization,
@@ -75,6 +77,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
       />
       {/* -------------------------------- */}
       <SubSection title="dashboard.beverage.brewingInfo" />
+      <BeverageType
+        fieldName={BeverageFieldNames.beverageType}
+        formName={FormName.beverageProducer}
+      />
       <Fermentation
         fieldName={BeverageFieldNames.fermentation}
         formName={FormName.beverageProducer}
@@ -105,6 +111,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid, values }) => {
       />
       <DryHopped
         fieldName={BeverageFieldNames.dryHopped}
+        formName={FormName.beverageProducer}
+      />
+      <HopRate
+        fieldName={BeverageFieldNames.hopRate}
         formName={FormName.beverageProducer}
       />
       <ExpirationDate

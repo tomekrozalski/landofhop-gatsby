@@ -7,10 +7,12 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  BeverageType,
   Currency,
   ExpirationDateUnit,
   ExtractRelate,
   ExtractUnit,
+  HopRateUnit,
   IngredientType,
   TemperatureUnit,
 } from 'components/BeverageDetails/utils/enums';
@@ -40,6 +42,7 @@ export type FormValues = {
     value: string;
   }[];
   // -----------
+  [FieldName.beverageType]: BeverageType | null;
   [FieldName.fermentation]: string[] | null;
   [FieldName.style]: { lang: Lang; value: string }[];
   [FieldName.extract]: {
@@ -93,6 +96,13 @@ export type FormValues = {
         value: string;
       }[]
     | null;
+  [FieldName.hopRate]: {
+    unit: {
+      label: string;
+      value: HopRateUnit;
+    };
+    value: number;
+  } | null;
   [FieldName.expirationDate]: {
     unit: {
       label: string;

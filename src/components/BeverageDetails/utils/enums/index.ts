@@ -25,6 +25,7 @@ import ExpirationDateUnit from './ExpirationDateUnit.enum';
 import ExtractRelate from './ExtractRelate.enum';
 import ExtractUnit from './ExtractUnit.enum';
 import Fermentation from './Fermentation.enum';
+import HopRateUnit from './HopRateUnit.enum';
 import IngredientType from './IngredientType.enum';
 import TemperatureUnit from './TemperatureUnit.enum';
 
@@ -52,6 +53,7 @@ export {
   ExtractRelate,
   ExtractUnit,
   Fermentation,
+  HopRateUnit,
   IngredientType,
   TemperatureUnit,
 };

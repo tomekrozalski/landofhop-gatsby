@@ -5,6 +5,7 @@ const editorial = {
   [FieldName.contract]: null,
   [FieldName.place]: null,
   // -----------
+  [FieldName.beverageType]: null,
   [FieldName.fermentation]: null,
   [FieldName.style]: [],
   [FieldName.alcoholScope]: null,

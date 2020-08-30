@@ -267,8 +267,12 @@
     "filtration": "Filtracja",
     "fullness": "Pełnia",
     "hasCapWireFlip": "Butelka z drucianym korkiem",
+    "hasCork": "Butelka ze zwykłym korkiem",
     "hoppyness": "Chmielowość",
     "hopRate": "HopRate",
+    "hopRateUnit": {
+      "gl": "g/l"
+    },
     "ingredientsDescription": "Składniki",
     "ingredientsList": "Lista składników",
     "ingredientType": {

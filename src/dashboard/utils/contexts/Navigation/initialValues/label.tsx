@@ -27,6 +27,7 @@ const label = {
   [FieldName.pasteurization]: null,
   [FieldName.aged]: [],
   [FieldName.dryHopped]: null,
+  [FieldName.hopRate]: null,
   [FieldName.expirationDate]: null,
   // -----------
   [FieldName.ingredientsDescription]: [],
@@ -46,6 +47,7 @@ const label = {
     unit: { label: '', value: ContainerUnit.ml },
     type: { label: '', value: ContainerType.bottle },
     value: 0,
+    hasCork: false,
     hasCapWireFlip: false,
   },
   [FieldName.price]: [],

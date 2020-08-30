@@ -47,6 +47,7 @@ const dataToForm = ({
     alcohol,
     badge,
     barcode,
+    beverageType,
     bitterness,
     brand,
     clarity,
@@ -61,6 +62,7 @@ const dataToForm = ({
     filtration,
     fullness,
     hoppyness,
+    hopRate,
     ingredientsDescription,
     ingredientsList,
     isAged,
@@ -129,6 +131,7 @@ const dataToForm = ({
       }),
       ...(barcode && { [FieldName.barcode]: barcode }),
       // -----------
+      ...(beverageType?.label && { beverageType: beverageType.label }),
       ...(fermentation?.label && { fermentation: fermentation.label }),
       ...(style?.label && {
         style: style.label.map(normalizeLanguageValuePair),
@@ -220,6 +223,17 @@ const dataToForm = ({
           value: id,
           type: type as IngredientType,
         })),
+      }),
+      ...(hopRate?.label && {
+        hopRate: {
+          unit: {
+            label: intl.formatMessage({
+              id: `global.hopRateUnit.${hopRate.label.unit}`,
+            }),
+            value: hopRate.label.unit,
+          },
+          value: hopRate.label.value,
+        },
       }),
       ...(expirationDate?.label && {
         expirationDate: {
@@ -324,6 +338,7 @@ const dataToForm = ({
               value: ContainerType.bottle,
             },
         value: container.value || 0,
+        hasCork: container.hasCork || false,
         hasCapWireFlip: container.hasCapWireFlip || false,
       },
       ...(price?.label && {
@@ -364,6 +379,7 @@ const dataToForm = ({
         [FieldName.tale]: tale.producer.map(normalizeLanguageValuePair),
       }),
       // -----------
+      ...(beverageType?.producer && { beverageType: beverageType.producer }),
       ...(fermentation?.producer && { fermentation: fermentation.producer }),
       ...(style?.producer && {
         style: style.producer.map(normalizeLanguageValuePair),
@@ -458,6 +474,17 @@ const dataToForm = ({
           type: type as IngredientType,
         })),
       }),
+      ...(hopRate?.producer && {
+        hopRate: {
+          unit: {
+            label: intl.formatMessage({
+              id: `global.hopRateUnit.${hopRate.producer.unit}`,
+            }),
+            value: hopRate.producer.unit,
+          },
+          value: hopRate.producer.value,
+        },
+      }),
       ...(expirationDate?.producer && {
         expirationDate: {
           unit: {
@@ -540,6 +567,7 @@ const dataToForm = ({
         },
       }),
       // -----------
+      ...(beverageType?.editorial && { beverageType: beverageType.editorial }),
       ...(fermentation?.editorial && { fermentation: fermentation.editorial }),
       ...(style?.editorial && {
         style: style.editorial.map(normalizeLanguageValuePair),

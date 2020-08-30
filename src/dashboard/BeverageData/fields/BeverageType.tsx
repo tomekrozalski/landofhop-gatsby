@@ -24,11 +24,11 @@ const BeverageType: React.FC<Props> = ({ fieldName, formName }) => {
   return (
     <Grid>
       <Label name={fieldName} form={formName} />
-      <Condition name={fieldName} empty={[BeverageTypeEnum.beer]} />
+      <Condition name={fieldName} empty={BeverageTypeEnum.beer} />
       <ListOfOptions className={classNames({ disabled: isDisabled })}>
         <li>
           <input
-            checked={!!value?.includes(BeverageTypeEnum.beer)}
+            checked={value === BeverageTypeEnum.beer}
             disabled={isDisabled}
             id="beverage-type-beer"
             onChange={() => setValue(BeverageTypeEnum.beer)}
@@ -40,7 +40,7 @@ const BeverageType: React.FC<Props> = ({ fieldName, formName }) => {
         </li>
         <li>
           <input
-            checked={!!value?.includes(BeverageTypeEnum.radler)}
+            checked={value === BeverageTypeEnum.radler}
             disabled={isDisabled}
             id="beverage-type-radler"
             onChange={() => setValue(BeverageTypeEnum.radler)}
@@ -52,7 +52,7 @@ const BeverageType: React.FC<Props> = ({ fieldName, formName }) => {
         </li>
         <li>
           <input
-            checked={!!value?.includes(BeverageTypeEnum.other)}
+            checked={value === BeverageTypeEnum.other}
             disabled={isDisabled}
             id="beverage-type-other"
             onChange={() => setValue(BeverageTypeEnum.other)}
