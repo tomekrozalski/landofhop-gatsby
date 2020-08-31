@@ -17,7 +17,7 @@ const Button = styled.button`
   :hover {
     background-color: var(--color-success-strong);
 
-    ${Title}::before {
+    ${Title} {
       transform: scaleX(1);
     }
   }

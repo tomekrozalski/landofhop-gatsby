@@ -34,6 +34,7 @@ export const NavigationContext = React.createContext({
     shortId: string;
   }) => {},
   label: initialLabelValues as FormValuesLabel,
+  link: null,
   part: FormName.beverageLabel,
   producer: initialProducerValues as FormValuesProducer,
   resetBeverageDetails: () => {},
@@ -80,6 +81,7 @@ const Navigation: React.FC = ({ children }) => {
     StatusEnum.idle,
   );
   const [beverageFormType, setBeverageFormType] = useState(FormType.add);
+  const [link, setLink] = useState(null);
 
   // -------------------------------------------------------------------
 
@@ -157,6 +159,9 @@ const Navigation: React.FC = ({ children }) => {
         setProducer(normalizedProducer);
         setEditorial(normalizedEditorial);
         setBeverageDataLoadStatus(StatusEnum.fulfilled);
+        setLink(
+          `/details/${beverageDetails.shortId}/${beverageDetails.brand.badge}/${beverageDetails.badge}`,
+        );
       })
       .catch(() => {
         setBeverageDataLoadStatus(StatusEnum.rejected);
@@ -178,6 +183,7 @@ const Navigation: React.FC = ({ children }) => {
         editorial,
         getBeverageDetails,
         label,
+        link,
         part,
         producer,
         resetBeverageDetails,

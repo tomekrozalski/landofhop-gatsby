@@ -12,6 +12,10 @@ const Title = styled.div<{ direction: 'left' | 'right' }>`
   ${({ direction }) => direction}: var(--size-input-height);
   white-space: nowrap;
   pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: top ${({ direction }) => direction};
+  transition: transform var(--transition-default);
+  z-index: 222;
 
   ::before {
     display: block;
@@ -19,9 +23,7 @@ const Title = styled.div<{ direction: 'left' | 'right' }>`
     height: 100%;
     content: '';
     background-color: var(--color-black);
-    transform: scaleX(0);
-    transform-origin: top ${({ direction }) => direction};
-    transition: transform var(--transition-default);
+
     position: absolute;
     top: 0;
     left: 0;
