@@ -9,6 +9,7 @@ import ExpirationDate from './ExpirationDate';
 import Extract from './Extract';
 import Fermentation from './Fermentation';
 import Filtration from './Filtration';
+import HopRate from './HopRate';
 import Ingredients from './Ingredients';
 import Pasteurization from './Pasteurization';
 import Price from './Price';
@@ -30,6 +31,7 @@ export {
   Extract,
   Fermentation,
   Filtration,
+  HopRate,
   Ingredients,
   Pasteurization,
   Price,

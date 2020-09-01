@@ -39,6 +39,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         place: 'Place',
         tale: 'Tale',
         barcode: 'String',
+        beverageType: 'BeverageType',
         fermentation: 'Fermentation',
         extract: 'Extract',
         alcohol: 'Alcohol',
@@ -49,6 +50,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         style: 'Style',
         isDryHopped: 'isDryHopped',
         dryHopped: 'DryHopped',
+        hopRate: 'HopRate',
         expirationDate: 'ExpirationDate',
         ingredientsDescription: 'IngredientsDescription',
         ingredientsList: 'IngredientsList',
@@ -108,6 +110,16 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       type Tale {
         label: [LanguageValue]
         producer: [LanguageValue]
+      }
+      enum BeverageTypeEnum {
+        beer
+        radler
+        other
+      }
+      type BeverageType {
+        label: BeverageTypeEnum
+        producer: BeverageTypeEnum
+        editorial: BeverageTypeEnum
       }
       enum FermentationTypes {
         top
@@ -233,6 +245,17 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       type DryHoppedValue {
         id: String!
         name: [LanguageValue!]!
+      }
+      type HopRate {
+        label: HopRateValues
+        producer: HopRateValues
+      }
+      type HopRateValues {
+        value: Int!
+			  unit: HopRateUnitEnum!
+      }
+      enum HopRateUnitEnum {
+        gl
       }
       type ExpirationDate {
         label: ExpirationDateValues

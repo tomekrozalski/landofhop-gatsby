@@ -12,6 +12,7 @@ import {
   Extract,
   Fermentation,
   Filtration,
+  HopRate,
   Ingredients,
   Pasteurization,
   Price,
@@ -34,6 +35,7 @@ const Testimony: React.FC = () => (
     <Aged />
     <Style />
     <DryHopped />
+    <HopRate />
     <ExpirationDate />
     <Ingredients />
     <SmokedMalt />

@@ -3,6 +3,7 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  BeverageType,
   Clarity,
   ContainerColor,
   ContainerMaterial,
@@ -12,6 +13,7 @@ import {
   ExtractRelate,
   ExtractUnit,
   Fermentation,
+  HopRateUnit,
   IngredientType,
   TemperatureUnit,
 } from '../enums';
@@ -56,6 +58,11 @@ export type Beverage = {
     producer: LanguageValue[] | null;
   } | null;
   barcode: string | null;
+  beverageType: {
+    label: BeverageType;
+    producer: BeverageType;
+    editorial: BeverageType;
+  } | null;
   fermentation: {
     label: Fermentation[] | null;
     producer: Fermentation[] | null;
@@ -139,6 +146,16 @@ export type Beverage = {
           name: LanguageValue[];
         }[]
       | null;
+  } | null;
+  hopRate: {
+    label: {
+      value: number;
+      unit: HopRateUnit;
+    } | null;
+    producer: {
+      value: number;
+      unit: HopRateUnit;
+    } | null;
   } | null;
   expirationDate: {
     label: {

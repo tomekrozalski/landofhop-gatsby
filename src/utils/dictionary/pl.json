@@ -91,6 +91,10 @@
       "filtration": "filtracja",
       "fullness": "pełnia",
       "hoppyness": "chmielowość",
+      "hopRate": {
+        "name": "hop rate",
+        "value": "{value} {unit, select, gl {g/L} other {}}"
+      },
       "ingredients": "składniki",
       "pasteurization": "pasteryzacja",
       "power": "moc",

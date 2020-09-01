@@ -91,6 +91,10 @@
       "filtration": "filtration",
       "fullness": "fullness",
       "hoppyness": "hoppyness",
+      "hopRate": {
+        "name": "hop rate",
+        "value": "{value} {unit, select, gl {g/L} other {}}"
+      },
       "ingredients": "ingredients",
       "pasteurization": "pasteurization",
       "power": "power",

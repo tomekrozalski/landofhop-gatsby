@@ -89,6 +89,11 @@ export const query = graphql`
       }
       badge
       barcode
+      beverageType {
+        label
+        producer
+        editorial
+      }
       bitterness {
         label
         producer
@@ -264,6 +269,16 @@ export const query = graphql`
       hoppyness {
         label
         producer
+      }
+      hopRate {
+        label {
+          unit
+          value
+        }
+        producer {
+          unit
+          value
+        }
       }
       id
       ingredientsList {
