@@ -20,7 +20,7 @@ const normalizeData = (values: RawData): AddData[] => {
     });
 
     current = add(current, { months: 1 });
-  } while (isBefore(current, latest));
+  } while (isBefore(current, add(latest, { months: 1 })));
 
   values.allBeverage.edges.forEach(({ node }) => {
     const index = domain.findIndex(

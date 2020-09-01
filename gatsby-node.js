@@ -251,7 +251,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         producer: HopRateValues
       }
       type HopRateValues {
-        value: Int!
+        value: Float!
 			  unit: HopRateUnitEnum!
       }
       enum HopRateUnitEnum {
