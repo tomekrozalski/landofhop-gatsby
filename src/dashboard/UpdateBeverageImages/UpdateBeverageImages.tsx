@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { serverCall } from 'utils/helpers';
@@ -55,25 +54,22 @@ const UpdateBeverageImages: React.FC<Props> = ({ location }) => {
   useEffect(updateValues, []);
 
   return (
-    <Layout>
-      <SEO title="updateBeverageImages" />
-      <BeverageContext.Provider value={beverageImagesData}>
-        <Wrapper>
-          <Header>
-            <FormattedMessage id="dashboard.updateBeverageImages.title" />
-          </Header>
-          {status === StatusEnum.fulfilled ? (
-            <>
-              <CoverPhoto updateValues={updateValues} />
-              <Gallery updateValues={updateValues} />
-              <Cap updateValues={updateValues} />
-            </>
-          ) : (
-            <Spinner />
-          )}
-        </Wrapper>
-      </BeverageContext.Provider>
-    </Layout>
+    <BeverageContext.Provider value={beverageImagesData}>
+      <Wrapper>
+        <Header>
+          <FormattedMessage id="dashboard.updateBeverageImages.title" />
+        </Header>
+        {status === StatusEnum.fulfilled ? (
+          <>
+            <CoverPhoto updateValues={updateValues} />
+            <Gallery updateValues={updateValues} />
+            <Cap updateValues={updateValues} />
+          </>
+        ) : (
+          <Spinner />
+        )}
+      </Wrapper>
+    </BeverageContext.Provider>
   );
 };
 

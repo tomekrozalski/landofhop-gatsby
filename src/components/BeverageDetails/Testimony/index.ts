@@ -1,6 +1,7 @@
 import Aged from './Aged';
 import Alcohol from './Alcohol';
 import Barcode from './Barcode';
+import BeverageType from './BeverageType';
 import City from './City';
 import Container from './Container';
 import Country from './Country';
@@ -23,6 +24,7 @@ export {
   Aged,
   Alcohol,
   Barcode,
+  BeverageType,
   City,
   Container,
   Country,

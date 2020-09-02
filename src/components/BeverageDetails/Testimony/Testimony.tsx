@@ -4,6 +4,7 @@ import {
   Aged,
   Alcohol,
   Barcode,
+  BeverageType,
   City,
   Container,
   Country,
@@ -27,6 +28,7 @@ const Testimony: React.FC = () => (
     <City />
     <Country />
     <Barcode />
+    <BeverageType />
     <Fermentation />
     <Extract />
     <Alcohol />

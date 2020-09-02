@@ -116,6 +116,7 @@
       },
       "type": {
         "beer": "piwo",
+        "name": "typ napoju",
         "radler": "radler",
         "other": "inne"
       }

@@ -13,6 +13,7 @@ export enum AuthenticationStatusEnum {
   expired,
   loading,
   success,
+  retry,
 }
 
 export const AuthenticationContext = React.createContext({
@@ -36,7 +37,6 @@ const Authentication: React.FC = ({ children }) => {
   );
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState('');
-  const [timeout, saveTimeout] = useState<number | null>(null);
 
   const { setLoginbar, setNavbar } = useContext(NavigationContext);
 
@@ -45,11 +45,7 @@ const Authentication: React.FC = ({ children }) => {
   }, [authenticationStatus]);
 
   const logInAfterFailure = () => {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-
-    setAuthenticationStatus(AuthenticationStatusEnum.idle);
+    setAuthenticationStatus(AuthenticationStatusEnum.retry);
   };
 
   const logOut = () => {
@@ -66,38 +62,22 @@ const Authentication: React.FC = ({ children }) => {
     setAuthenticationStatus(AuthenticationStatusEnum.expired);
     setLoginbar(true);
     setNavbar(true);
-
-    saveTimeout(
-      setTimeout(() => {
-        setLoginbar(false);
-        setNavbar(false);
-        logOut();
-      }, 5000),
-    );
   };
 
   const checkTokenExpiration = (value: string) =>
     new Promise((resolve, reject) => {
       const decodedToken = jwt.decode(value, { complete: true });
 
-      console.log('1 -->', value, decodedToken);
-
       if (isObject(decodedToken)) {
         const expirationDate = fromUnixTime(decodedToken.payload.exp);
 
         if (differenceInSeconds(expirationDate, new Date()) > 10) {
-          console.log(
-            '2 -->',
-            differenceInSeconds(expirationDate, new Date()) > 10,
-          );
-
           setToken(value);
           setTokenExpirationDate(expirationDate);
           setAuthenticationStatus(AuthenticationStatusEnum.success);
           resolve();
         } else {
           tokenExpired();
-          console.log('3 --> else gonna be rejected');
         }
       }
 

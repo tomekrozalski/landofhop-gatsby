@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'utils/enums';
@@ -53,21 +52,14 @@ const Update: React.FC<Props> = ({ location }) => {
   }, [languageStatus]);
 
   return (
-    <Layout>
-      <SEO title="updateBeverage" />
-      <Wrapper>
-        <Header>
-          <FormattedMessage id="dashboard.updateBeverage.title" />
-        </Header>
-        <Navigation />
-        {beverageDataLoadStatus === StatusEnum.fulfilled ? (
-          <Form />
-        ) : (
-          <Spinner />
-        )}
-        <Modal />
-      </Wrapper>
-    </Layout>
+    <Wrapper>
+      <Header>
+        <FormattedMessage id="dashboard.updateBeverage.title" />
+      </Header>
+      <Navigation />
+      {beverageDataLoadStatus === StatusEnum.fulfilled ? <Form /> : <Spinner />}
+      <Modal />
+    </Wrapper>
   );
 };
 

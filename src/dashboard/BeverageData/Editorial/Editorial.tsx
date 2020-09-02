@@ -12,7 +12,9 @@ const Editorial: React.FC = () => {
     <Formik
       component={FormBody}
       initialValues={editorial}
-      onSubmit={saveBeverage}
+      onSubmit={(values, { setSubmitting }) => {
+        saveBeverage(values).finally(() => setSubmitting(false));
+      }}
       validationSchema={validationSchema}
       validateOnMount
     />

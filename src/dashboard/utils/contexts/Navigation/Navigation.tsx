@@ -61,7 +61,7 @@ export const NavigationContext = React.createContext({
 
 const Navigation: React.FC = ({ children }) => {
   const intl = useIntl();
-  const { token } = useContext(AuthenticationContext);
+  const { checkTokenExpiration, token } = useContext(AuthenticationContext);
   const { values: languages } = useContext(LanguageContext);
 
   // -------------------------------------------------------------------
@@ -110,22 +110,29 @@ const Navigation: React.FC = ({ children }) => {
       editorial: values,
     });
 
-    serverCall({
-      path: 'beverage',
-      method: beverageFormType === FormType.add ? 'POST' : 'PUT',
-      body: JSON.stringify(normalizedData),
-      token,
-    })
-      .then(async ({ badge, brand, shortId }) => {
-        await window.removeEventListener('beforeunload', preventClose);
+    return checkTokenExpiration(token)
+      .then(() => {
+        return serverCall({
+          path: 'beverage',
+          method: beverageFormType === FormType.add ? 'POST' : 'PUT',
+          body: JSON.stringify(normalizedData),
+          token,
+        })
+          .then(async ({ badge, brand, shortId }) => {
+            await window.removeEventListener('beforeunload', preventClose);
 
-        navigate('/pl/update-beverage-images', {
-          state: { badge, brand, shortId },
-        });
+            navigate('/pl/update-beverage-images', {
+              state: { badge, brand, shortId },
+            });
+          })
+          .catch((e: any) => {
+            // eslint-disable-next-line no-console
+            console.error('Error:', e);
+          });
       })
-      .catch((e: any) => {
+      .catch(() => {
         // eslint-disable-next-line no-console
-        console.error('Error:', e);
+        console.warn('Save beverage failed. Token is expired');
       });
   };
 

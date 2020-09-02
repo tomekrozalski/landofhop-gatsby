@@ -116,6 +116,7 @@
       },
       "type": {
         "beer": "beer",
+        "name": "beverage type",
         "radler": "radler",
         "other": "other"
       }

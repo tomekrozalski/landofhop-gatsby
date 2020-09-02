@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { Layout, SEO } from 'components';
 import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'utils/enums';
@@ -21,17 +20,14 @@ const Add: React.FC = () => {
   }, []);
 
   return (
-    <Layout>
-      <SEO title="addBeverage" />
-      <Wrapper>
-        <Header>
-          <FormattedMessage id="dashboard.addBeverage.title" />
-        </Header>
-        <Navigation />
-        {beverageDataLoadStatus !== StatusEnum.idle ? <Spinner /> : <Form />}
-        <Modal />
-      </Wrapper>
-    </Layout>
+    <Wrapper>
+      <Header>
+        <FormattedMessage id="dashboard.addBeverage.title" />
+      </Header>
+      <Navigation />
+      {beverageDataLoadStatus !== StatusEnum.idle ? <Spinner /> : <Form />}
+      <Modal />
+    </Wrapper>
   );
 };
 
