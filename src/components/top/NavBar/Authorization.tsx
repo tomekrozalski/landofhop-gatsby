@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { AuthenticationContext, NavigationContext } from 'utils/contexts';
+import {
+  AuthenticationContext,
+  AuthenticationStatusEnum,
+  NavigationContext,
+} from 'utils/contexts';
 import { styledLinkCSS } from './elements';
 
 const Wrapper = styled.div`
@@ -36,8 +40,15 @@ const Button = styled.button.attrs({
 `;
 
 const Authorization: React.FC = () => {
-  const { isLoggedIn, logOut } = useContext(AuthenticationContext);
+  const { isLoggedIn, logOut, setAuthenticationStatus } = useContext(
+    AuthenticationContext,
+  );
   const { toggleLoginbar } = useContext(NavigationContext);
+
+  const onLogIn = () => {
+    setAuthenticationStatus(AuthenticationStatusEnum.idle);
+    toggleLoginbar();
+  };
 
   return (
     <Wrapper>
@@ -62,7 +73,7 @@ const Authorization: React.FC = () => {
           <FormattedMessage id="navbar.logOut" />
         </Button>
       ) : (
-        <Button onClick={toggleLoginbar}>
+        <Button onClick={onLogIn}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 21.15">
             <path
               d="M13.37 9.94H11.5V5.94c0-2.24-1.79-4.06-4-4.06C5.29 1.88 3.5 3.7 3.5

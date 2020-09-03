@@ -22,9 +22,10 @@ import { BeverageType } from './Beverage.type';
 type SubformType = SubformEnum | null;
 
 export const NavigationContext = React.createContext({
-  saveBeverage: (values: FormValuesEditorial) => {
-    values;
-  },
+  saveBeverage: (values: FormValuesEditorial) =>
+    new Promise(() => {
+      values;
+    }),
   beverageDataLoadStatus: StatusEnum.idle,
   beverageFormType: FormType.add,
   editorial: initialEditorialValues as FormValuesEditorial,

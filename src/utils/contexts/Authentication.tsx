@@ -24,6 +24,9 @@ export const AuthenticationContext = React.createContext({
   logIn: ({}: { email: string; password: string }) => new Promise(() => {}),
   logInAfterFailure: () => {},
   logOut: () => {},
+  setAuthenticationStatus: (value: AuthenticationStatusEnum) => {
+    value;
+  },
   token: '',
   tokenExpirationDate: new Date(),
 });
@@ -130,6 +133,7 @@ const Authentication: React.FC = ({ children }) => {
         logIn,
         logInAfterFailure,
         logOut,
+        setAuthenticationStatus,
         token,
         tokenExpirationDate,
       }}
