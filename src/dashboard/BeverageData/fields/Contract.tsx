@@ -15,7 +15,7 @@ const Contract: React.FC<Props> = ({ fieldName, formName }) => (
   <Grid>
     <Label name={fieldName} form={formName} />
     <Condition name={fieldName} empty="" />
-    <InstitutionSelect form={formName} name={fieldName} />
+    <InstitutionSelect form={formName} name={fieldName} withUnknown />
   </Grid>
 );
 

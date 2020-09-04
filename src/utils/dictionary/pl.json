@@ -81,6 +81,7 @@
       },
       "contains": "zawiera",
       "contract": "Uwarzono przez {brands}",
+      "contractUnknown": "tak, lecz nieznany",
       "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
       "country": "kraj",
       "dryHopped": "chmielone na zimno",
@@ -287,6 +288,7 @@
       "yeast": "drożdże"
     },
     "institution": "Instytucja",
+    "institutions": "Instytucje",
     "latitude": "Szerokość geograficzna",
     "loading": "Ładuję…",
     "longitude": "Długość geograficzna",

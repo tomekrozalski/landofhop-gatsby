@@ -14,10 +14,11 @@ type Props = {
   isMulti?: boolean;
   name: FieldName;
   placeholder?: string;
+  withUnknown?: boolean;
 };
 
-const InstitutionSelect: React.FC<Props> = props => {
-  const { locale } = useIntl();
+const InstitutionSelect: React.FC<Props> = ({ withUnknown, ...rest }) => {
+  const { formatMessage, locale } = useIntl();
   const { getInstitutions, status, values } = useContext(InstitutionContext);
 
   useEffect(() => {
@@ -36,11 +37,29 @@ const InstitutionSelect: React.FC<Props> = props => {
 
   return (
     <Select
-      {...props}
-      options={values.map(({ id, name }) => ({
-        label: getValueByLanguage(name, locale).value,
-        value: id,
-      }))}
+      {...rest}
+      options={
+        withUnknown
+          ? [
+              {
+                label: formatMessage({
+                  id: 'beverage.details.contractUnknown',
+                }),
+                value: '--',
+              },
+              {
+                label: formatMessage({ id: 'global.institutions' }),
+                options: values.map(({ id, name }) => ({
+                  label: getValueByLanguage(name, locale).value,
+                  value: id,
+                })),
+              },
+            ]
+          : values.map(({ id, name }) => ({
+              label: getValueByLanguage(name, locale).value,
+              value: id,
+            }))
+      }
       placeholder="selectBrand"
     />
   );

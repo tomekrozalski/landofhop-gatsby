@@ -81,6 +81,7 @@
       },
       "contains": "contains",
       "contract": "Brewed by {brands}",
+      "contractUnknown": "yes, but unknown",
       "cooperation": "{contract, select, contract {} other {Brewed}} in cooperation with {cooperation}",
       "country": "country",
       "dryHopped": "dry-hopped",
@@ -287,6 +288,7 @@
       "yeast": "yeast"
     },
     "institution": "Institution",
+    "institutions": "Institutions",
     "latitude": "Latitude",
     "loading": "Loading…",
     "longitude": "Longitude",

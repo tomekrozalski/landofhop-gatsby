@@ -2,6 +2,7 @@ import {
   AlcoholRelate,
   AlcoholScope,
   AlcoholUnit,
+  BeverageType as BeverageTypeEnum,
   Clarity,
   ContainerColor,
   ContainerMaterial,
@@ -38,6 +39,11 @@ export type BeverageType = {
     producer?: Institution;
     editorial?: Institution;
   };
+  isContract?: {
+    label?: boolean;
+    producer?: boolean;
+    editorial?: boolean;
+  };
   place?: {
     label?: Place;
     producer?: Place;
@@ -48,6 +54,7 @@ export type BeverageType = {
     producer?: LanguageValue[];
   };
   barcode?: string;
+  beverageType?: BeverageTypeEnum;
   fermentation?: {
     label?: Fermentation[];
     producer?: Fermentation[];

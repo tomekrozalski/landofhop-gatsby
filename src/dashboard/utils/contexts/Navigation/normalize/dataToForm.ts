@@ -54,6 +54,7 @@ const dataToForm = ({
     color,
     container,
     contract,
+    isContract,
     cooperation,
     dryHopped,
     expirationDate,
@@ -114,6 +115,14 @@ const dataToForm = ({
         [FieldName.cooperation]: cooperation?.label.map(
           normalizeObjectLanguage,
         ),
+      }),
+      ...(isContract?.label && {
+        [FieldName.contract]: {
+          label: intl.formatMessage({
+            id: 'beverage.details.contractUnknown',
+          }),
+          value: '--',
+        },
       }),
       ...(contract?.label && {
         [FieldName.contract]: normalizeObjectLanguage(contract.label),
@@ -364,6 +373,14 @@ const dataToForm = ({
           normalizeObjectLanguage,
         ),
       }),
+      ...(isContract?.producer && {
+        [FieldName.contract]: {
+          label: intl.formatMessage({
+            id: 'beverage.details.contractUnknown',
+          }),
+          value: '--',
+        },
+      }),
       ...(contract?.producer && {
         [FieldName.contract]: normalizeObjectLanguage(contract.producer),
       }),
@@ -554,6 +571,14 @@ const dataToForm = ({
         [FieldName.cooperation]: cooperation?.editorial.map(
           normalizeObjectLanguage,
         ),
+      }),
+      ...(isContract?.editorial && {
+        [FieldName.contract]: {
+          label: intl.formatMessage({
+            id: 'beverage.details.contractUnknown',
+          }),
+          value: '--',
+        },
       }),
       ...(contract?.editorial && {
         [FieldName.contract]: normalizeObjectLanguage(contract.editorial),

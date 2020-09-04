@@ -56,7 +56,9 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
-    ...((label.contract || producer.contract || editorial.contract) && {
+    ...(((label.contract && label.contract.value !== '--') ||
+      (producer.contract && producer.contract.value !== '--') ||
+      (editorial.contract && editorial.contract.value !== '--')) && {
       contract: {
         ...(label.contract && {
           label: label.contract.value,
@@ -67,6 +69,15 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         ...(editorial.contract && {
           editorial: editorial.contract.value,
         }),
+      },
+    }),
+    ...((label.contract?.value === '--' ||
+      producer.contract?.value === '--' ||
+      editorial.contract?.value === '--') && {
+      isContract: {
+        ...(label.contract?.value === '--' && { label: true }),
+        ...(producer.contract?.value === '--' && { producer: true }),
+        ...(editorial.contract?.value === '--' && { editorial: true }),
       },
     }),
     ...((label.place || producer.place || editorial.place) && {
