@@ -302,6 +302,11 @@ export const query = graphql`
         label
         producer
       }
+      isContract {
+        editorial
+        label
+        producer
+      }
       isDryHopped {
         editorial
         producer

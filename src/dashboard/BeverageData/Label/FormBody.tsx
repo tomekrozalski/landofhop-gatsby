@@ -33,6 +33,7 @@ import {
   Place,
   Power,
   Price,
+  Remark,
   Series,
   SmokedMalt,
   Style,
@@ -86,6 +87,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({ isValid }) => {
       />
       <Place
         fieldName={BeverageFieldNames.place}
+        formName={FormName.beverageLabel}
+      />
+      <Remark
+        fieldName={BeverageFieldNames.remark}
         formName={FormName.beverageLabel}
       />
       <Tale

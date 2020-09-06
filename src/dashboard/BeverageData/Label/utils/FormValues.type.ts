@@ -48,6 +48,7 @@ export type FormValues = {
     label: string;
     value: string;
   } | null;
+  [FieldName.remark]: { lang: Lang; value: string }[];
   [FieldName.tale]: {
     lang: Lang;
     value: string;

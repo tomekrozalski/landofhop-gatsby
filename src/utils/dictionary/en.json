@@ -44,7 +44,7 @@
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",
       "barcode": "barcode",
       "bitterness": "bitterness",
-      "brand": " {prefix, select, contract {for} cooperation {by} other {Brewed by}} {brand}",
+      "brand": " {prefix, select, contract {for} cooperation {by} isContract {Brewed for} other {Brewed by}} {brand}",
       "city": "city",
       "clarity": {
         "clear": "clear",
@@ -301,6 +301,7 @@
     "place": "Place",
     "power": "power",
     "price": "Price",
+    "remark": "Remark",
     "series": "Series",
     "smokedMalt": "Contains malt dried with smoke",
     "style": "Style",

@@ -10,7 +10,9 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const Brand: React.FC = () => {
-  const { brand, contract, cooperation } = useContext(BeverageContext);
+  const { brand, contract, cooperation, isContract } = useContext(
+    BeverageContext,
+  );
 
   const setPrefix = () => {
     if (cooperation) {
@@ -19,6 +21,10 @@ const Brand: React.FC = () => {
 
     if (contract) {
       return 'contract';
+    }
+
+    if (isContract) {
+      return 'isContract';
     }
 
     return false;

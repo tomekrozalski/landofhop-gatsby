@@ -29,6 +29,7 @@ enum Beverage {
   place = 'place',
   power = 'power',
   price = 'price',
+  remark = 'remark',
   series = 'series',
   smokedMalt = 'smokedMalt',
   style = 'style',

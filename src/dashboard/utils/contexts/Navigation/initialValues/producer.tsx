@@ -5,6 +5,7 @@ const producer = {
   [FieldName.cooperation]: null,
   [FieldName.contract]: null,
   [FieldName.place]: null,
+  [FieldName.remark]: [],
   [FieldName.tale]: [],
   // -----------
   [FieldName.beverageType]: null,

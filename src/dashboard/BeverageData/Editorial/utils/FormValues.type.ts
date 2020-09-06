@@ -28,6 +28,7 @@ export type FormValues = {
     label: string;
     value: string;
   } | null;
+  [FieldName.remark]: { lang: Lang; value: string }[];
   // -----------
   [FieldName.beverageType]: BeverageType | null;
   [FieldName.fermentation]: string[] | null;

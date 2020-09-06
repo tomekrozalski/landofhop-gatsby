@@ -44,7 +44,7 @@
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",
       "barcode": "kod kreskowy",
       "bitterness": "gorycz",
-      "brand": " {prefix, select, contract {dla} cooperation {przez} other {Uwarzono przez}} {brand}",
+      "brand": " {prefix, select, contract {dla} cooperation {przez} isContract {Uwarzono dla} other {Uwarzono przez}} {brand}",
       "city": "miejscowość",
       "clarity": {
         "clear": "czyste",
@@ -301,6 +301,7 @@
     "place": "Miejsce",
     "power": "Moc",
     "price": "Cena",
+    "remark": "Komentarz",
     "series": "Seria",
     "smokedMalt": "Zawiera słód suszony dymem",
     "style": "Styl",

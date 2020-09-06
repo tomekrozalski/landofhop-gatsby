@@ -23,6 +23,7 @@ import {
   Pasteurization,
   Place,
   Price,
+  Remark,
   Style,
   Updated,
 } from '../fields';
@@ -60,6 +61,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       />
       <Place
         fieldName={BeverageFieldNames.place}
+        formName={FormName.beverageEditorial}
+      />
+      <Remark
+        fieldName={BeverageFieldNames.remark}
         formName={FormName.beverageEditorial}
       />
       {/* -------------------------------- */}

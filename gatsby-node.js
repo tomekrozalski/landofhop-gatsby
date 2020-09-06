@@ -36,6 +36,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         brand: 'Institution!',
         cooperation: 'Cooperation',
         contract: 'Contract',
+        isContract: 'isContract',
         place: 'Place',
         tale: 'Tale',
         barcode: 'String',
@@ -97,6 +98,11 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         label: Institution
         producer: Institution
         editorial: Institution
+      }
+      type isContract {
+        label: Boolean
+        producer: Boolean
+        editorial: Boolean
       }
       type Place {
         label: PlaceValues

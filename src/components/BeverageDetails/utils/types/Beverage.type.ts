@@ -39,6 +39,11 @@ export type Beverage = {
     producer: Institution | null;
     editorial: Institution | null;
   } | null;
+  isContract: {
+    label: boolean | null;
+    producer: boolean | null;
+    editorial: boolean | null;
+  } | null;
   place: {
     label: {
       city: LanguageValue[];

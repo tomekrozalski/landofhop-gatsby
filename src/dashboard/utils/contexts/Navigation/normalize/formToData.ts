@@ -93,6 +93,21 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
         }),
       },
     }),
+    ...((label.remark?.length ||
+      producer.remark?.length ||
+      editorial.remark?.length) && {
+      remark: {
+        ...(label.remark?.length && {
+          label: label.remark.map(normalizeLangValue),
+        }),
+        ...(producer.remark?.length && {
+          producer: producer.remark.map(normalizeLangValue),
+        }),
+        ...(editorial.remark?.length && {
+          editorial: editorial.remark.map(normalizeLangValue),
+        }),
+      },
+    }),
     ...((label.tale?.length || producer.tale?.length) && {
       tale: {
         ...(label.tale?.length && {
