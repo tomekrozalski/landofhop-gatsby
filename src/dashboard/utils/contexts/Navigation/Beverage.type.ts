@@ -49,12 +49,20 @@ export type BeverageType = {
     producer?: Place;
     editorial?: Place;
   };
+  remark?: {
+    label?: LanguageValue[];
+    producer?: LanguageValue[];
+  };
   tale?: {
     label?: LanguageValue[];
     producer?: LanguageValue[];
   };
   barcode?: string;
-  beverageType?: BeverageTypeEnum;
+  beverageType?: {
+    label?: BeverageTypeEnum;
+    producer?: BeverageTypeEnum;
+    editorial?: BeverageTypeEnum;
+  };
   fermentation?: {
     label?: Fermentation[];
     producer?: Fermentation[];
@@ -123,15 +131,28 @@ export type BeverageType = {
     label?: {
       id: string;
       name: LanguageValue[];
+      type: IngredientType;
     }[];
     producer?: {
       id: string;
       name: LanguageValue[];
+      type: IngredientType;
     }[];
     editorial?: {
       id: string;
       name: LanguageValue[];
+      type: IngredientType;
     }[];
+  };
+  hopRate?: {
+    label?: {
+      unit: string;
+      value: number;
+    };
+    producer?: {
+      unit: string;
+      value: number;
+    };
   };
   expirationDate?: {
     label?: {
@@ -218,6 +239,7 @@ export type BeverageType = {
     type: ContainerType;
     value: number;
     hasCapWireFlip?: boolean;
+    hasCork?: boolean;
   };
   price?: {
     label?: BeveragePrice[];

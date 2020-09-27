@@ -74,6 +74,7 @@ const dataToForm = ({
     place,
     power,
     price,
+    remark,
     series,
     smokedMalt,
     style,
@@ -134,6 +135,9 @@ const dataToForm = ({
           )})`,
           value: place.label.id,
         },
+      }),
+      ...(remark?.label && {
+        [FieldName.remark]: remark.label.map(normalizeLanguageValuePair),
       }),
       ...(tale?.label && {
         [FieldName.tale]: tale.label.map(normalizeLanguageValuePair),
@@ -391,6 +395,9 @@ const dataToForm = ({
           )} (${getValueByLanguage(place.producer.institution)})`,
           value: place.producer.id,
         },
+      }),
+      ...(remark?.producer && {
+        [FieldName.remark]: remark.producer.map(normalizeLanguageValuePair),
       }),
       ...(tale?.producer && {
         [FieldName.tale]: tale.producer.map(normalizeLanguageValuePair),

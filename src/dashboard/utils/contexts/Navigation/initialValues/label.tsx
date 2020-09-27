@@ -46,7 +46,7 @@ const label = {
     color: { label: '', value: ContainerColor.brown },
     material: { label: '', value: ContainerMaterial.glass },
     unit: { label: '', value: ContainerUnit.ml },
-    type: { label: '', value: ContainerType.bottle },
+    type: { label: '', value: ContainerType.undefined },
     value: 0,
     hasCork: false,
     hasCapWireFlip: false,

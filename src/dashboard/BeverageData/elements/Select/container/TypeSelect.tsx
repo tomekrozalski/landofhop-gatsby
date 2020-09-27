@@ -22,10 +22,14 @@ const TypeSelect: React.FC<Props> = ({ name, ...props }) => {
     <Select
       {...props}
       name={`${name}.type`}
-      options={Object.keys(ContainerType).map(type => ({
-        label: formatMessage({ id: `beverage.details.container.type.${type}` }),
-        value: type,
-      }))}
+      options={Object.keys(ContainerType)
+        .filter(type => type !== ContainerType.undefined)
+        .map(type => ({
+          label: formatMessage({
+            id: `beverage.details.container.type.${type}`,
+          }),
+          value: type,
+        }))}
     />
   );
 };
