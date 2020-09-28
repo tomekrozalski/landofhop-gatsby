@@ -382,6 +382,16 @@ export const query = graphql`
           value
         }
       }
+      remark {
+        label {
+          language
+          value
+        }
+        producer {
+          language
+          value
+        }
+      }
       series {
         label {
           language

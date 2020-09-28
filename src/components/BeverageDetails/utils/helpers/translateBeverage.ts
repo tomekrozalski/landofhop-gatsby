@@ -22,6 +22,7 @@ const translateBeverage = ({
   cooperation,
   contract,
   place,
+  remark,
   tale,
   dryHopped,
   ingredientsDescription,
@@ -94,6 +95,12 @@ const translateBeverage = ({
                 country: translate(place.editorial.country),
               }
             : null,
+        }
+      : null,
+    remark: remark
+      ? {
+          label: remark.label ? translate(remark.label) : null,
+          producer: remark.producer ? translate(remark.producer) : null,
         }
       : null,
     tale: tale

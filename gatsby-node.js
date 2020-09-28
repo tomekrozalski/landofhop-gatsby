@@ -38,6 +38,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         contract: 'Contract',
         isContract: 'isContract',
         place: 'Place',
+        remark: 'Remark',
         tale: 'Tale',
         barcode: 'String',
         beverageType: 'BeverageType',
@@ -112,6 +113,10 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       type PlaceValues {
         city: [LanguageValue]
         country: [LanguageValue]
+      }
+      type Remark {
+        label: [LanguageValue]
+        producer: [LanguageValue]
       }
       type Tale {
         label: [LanguageValue]

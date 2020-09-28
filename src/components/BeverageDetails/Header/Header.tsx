@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
-import { Brand, Contract, Cooperation, Name, Series } from '.';
+import { Brand, Contract, Cooperation, Name, Remark, Series } from '.';
 
 const HeaderWrapper = styled.header`
   grid-area: header;
@@ -12,8 +13,8 @@ const Header: React.FC = () => (
   <HeaderWrapper>
     <Name />
     <p>
-      <Contract />
-      <Cooperation />
+      <FormattedMessage id="global.brewed" /> <Remark />
+      <Contract /> <Cooperation />
       <Brand />
       <Series />
     </p>

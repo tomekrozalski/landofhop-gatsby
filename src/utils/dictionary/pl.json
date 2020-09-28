@@ -44,7 +44,7 @@
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {obj.} abv {Abv} other {}}",
       "barcode": "kod kreskowy",
       "bitterness": "gorycz",
-      "brand": " {prefix, select, contract {dla} cooperation {przez} isContract {Uwarzono dla} other {Uwarzono przez}} {brand}",
+      "brand": " {prefix, select, contract {dla} other {przez}} {brand}",
       "city": "miejscowość",
       "clarity": {
         "clear": "czyste",
@@ -80,9 +80,9 @@
         "value": "{value} {unit, select, ml {ml} other {}}"
       },
       "contains": "zawiera",
-      "contract": "Uwarzono przez {brands}",
+      "contract": "przez {brands}",
       "contractUnknown": "tak, lecz nieznany",
-      "cooperation": "{contract, select, contract {} other {Uwarzono}} w kooperacji z {cooperation}",
+      "cooperation": "w kooperacji z {cooperation}",
       "country": "kraj",
       "dryHopped": "chmielone na zimno",
       "expirationDate": "czas przydatności do spożycia",
@@ -244,6 +244,7 @@
     "beverageType": "Typ napoju",
     "bitterness": "Gorycz",
     "brand": "Marka",
+    "brewed": "Uwarzono",
     "city": "Miejscowość",
     "clarity": "Klarowność",
     "code": "Kod",

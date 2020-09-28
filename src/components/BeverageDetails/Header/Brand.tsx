@@ -10,31 +10,13 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const Brand: React.FC = () => {
-  const { brand, contract, cooperation, isContract } = useContext(
-    BeverageContext,
-  );
-
-  const setPrefix = () => {
-    if (cooperation) {
-      return 'cooperation';
-    }
-
-    if (contract) {
-      return 'contract';
-    }
-
-    if (isContract) {
-      return 'isContract';
-    }
-
-    return false;
-  };
+  const { brand, contract, isContract } = useContext(BeverageContext);
 
   return (
     <FormattedMessage
       id="beverage.details.brand"
       values={{
-        prefix: setPrefix(),
+        prefix: contract || isContract ? 'contract' : '',
         brand: (
           <SourceGroup>
             <Label>

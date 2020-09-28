@@ -44,7 +44,7 @@
       "alcoholValue": "{value}{unit, select, degree {°} percent {%} other {}} {relate, select, capacity {cap.} abv {Abv} other {}}",
       "barcode": "barcode",
       "bitterness": "bitterness",
-      "brand": " {prefix, select, contract {for} cooperation {by} isContract {Brewed for} other {Brewed by}} {brand}",
+      "brand": " {prefix, select, contract {for} isContract {for} other {by}} {brand}",
       "city": "city",
       "clarity": {
         "clear": "clear",
@@ -80,9 +80,9 @@
         "value": "{value} {unit, select, ml {ml} other {}}"
       },
       "contains": "contains",
-      "contract": "Brewed by {brands}",
+      "contract": "by {brands}",
       "contractUnknown": "yes, but unknown",
-      "cooperation": "{contract, select, contract {} other {Brewed}} in cooperation with {cooperation}",
+      "cooperation": "in cooperation with {cooperation}",
       "country": "country",
       "dryHopped": "dry-hopped",
       "expirationDate": "expiration date",
@@ -244,6 +244,7 @@
     "beverageType": "Beverage type",
     "bitterness": "gorycz",
     "brand": "Brand",
+    "brewed": "Brewed",
     "city": "City",
     "code": "Code",
     "clarity": "Clarity",

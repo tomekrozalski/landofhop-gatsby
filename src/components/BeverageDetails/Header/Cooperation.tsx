@@ -13,13 +13,12 @@ import {
 } from 'components/BeverageDetails/elements';
 
 const Cooperation: React.FC = () => {
-  const { contract, cooperation } = useContext(BeverageContext);
+  const { cooperation } = useContext(BeverageContext);
 
   return cooperation ? (
     <FormattedMessage
       id="beverage.details.cooperation"
       values={{
-        contract: contract ? 'contract' : null,
         cooperation: (
           <SourceGroup>
             {cooperation.label && (

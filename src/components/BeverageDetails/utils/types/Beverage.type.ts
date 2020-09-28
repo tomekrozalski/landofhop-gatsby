@@ -58,6 +58,10 @@ export type Beverage = {
       country: LanguageValue[];
     } | null;
   } | null;
+  remark: {
+    label: LanguageValue[] | null;
+    producer: LanguageValue[] | null;
+  } | null;
   tale: {
     label: LanguageValue[] | null;
     producer: LanguageValue[] | null;
