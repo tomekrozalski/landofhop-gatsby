@@ -10,6 +10,9 @@ const normalizeData = (values: RawData): AddData[] => {
   );
   const earliest = min(dates);
   const latest = max(dates);
+  const endpoint = new Date(
+    `${format(add(latest, { months: 1 }), 'yyyy-MM')}-01`,
+  );
   let current = earliest;
 
   do {
@@ -20,7 +23,7 @@ const normalizeData = (values: RawData): AddData[] => {
     });
 
     current = add(current, { months: 1 });
-  } while (isBefore(current, add(latest, { months: 1 })));
+  } while (isBefore(current, endpoint));
 
   values.allBeverage.edges.forEach(({ node }) => {
     const index = domain.findIndex(
