@@ -39,8 +39,9 @@ export type FormValues = {
   } | null;
   [FieldName.remark]: { lang: Lang; value: string }[];
   [FieldName.tale]: {
+    article: string;
     lang: Lang;
-    value: string;
+    lead: string;
   }[];
   // -----------
   [FieldName.beverageType]: BeverageType | null;

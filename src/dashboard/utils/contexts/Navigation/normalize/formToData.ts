@@ -26,6 +26,20 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     value,
   });
 
+  const normalizeTale = ({
+    article,
+    lang,
+    lead,
+  }: {
+    article: string;
+    lang: Lang;
+    lead: string;
+  }) => ({
+    ...(article && { article }),
+    ...(lang.value !== 'none' && { language: lang.value }),
+    lead,
+  });
+
   return {
     ...(id && { id }),
     badge: label.badge,
@@ -111,10 +125,10 @@ const formToData = ({ id, label, producer, editorial }: Props) => {
     ...((label.tale?.length || producer.tale?.length) && {
       tale: {
         ...(label.tale?.length && {
-          label: label.tale.map(normalizeLangValue),
+          label: label.tale.map(normalizeTale),
         }),
         ...(producer.tale?.length && {
-          producer: producer.tale.map(normalizeLangValue),
+          producer: producer.tale.map(normalizeTale),
         }),
       },
     }),

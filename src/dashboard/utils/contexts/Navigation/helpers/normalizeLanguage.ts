@@ -1,7 +1,6 @@
 import { IntlShape } from 'react-intl';
 
 import { SiteLanguage } from 'utils/enums';
-import { LanguageValue as LanguageValueType } from 'dashboard/utils/types';
 import { getValueByLanguage } from 'dashboard/utils/helpers';
 import { LanguageType } from '../..';
 
@@ -10,10 +9,10 @@ type FirstProps = {
   languages: LanguageType[];
 };
 
-const normalizeLanguageValuePair = ({ languages, intl }: FirstProps) => ({
+const normalizeLanguage = ({ languages, intl }: FirstProps) => ({
   language,
-  value,
-}: LanguageValueType) => {
+  ...rest
+}: any) => {
   const getLanguageLabelById = (languageId: string) => {
     const name = languages.find(({ id }) => id === languageId)?.name;
 
@@ -38,8 +37,8 @@ const normalizeLanguageValuePair = ({ languages, intl }: FirstProps) => ({
       label: getLabelByLanguageId(language),
       value: language || 'none',
     },
-    value,
+    ...rest,
   };
 };
 
-export default normalizeLanguageValuePair;
+export default normalizeLanguage;

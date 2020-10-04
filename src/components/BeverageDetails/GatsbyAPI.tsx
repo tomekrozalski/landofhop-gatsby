@@ -428,11 +428,13 @@ export const query = graphql`
       tale {
         label {
           language
-          value
+          lead
+          article
         }
         producer {
           language
-          value
+          lead
+          article
         }
       }
       temperature {

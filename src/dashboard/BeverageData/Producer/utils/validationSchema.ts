@@ -44,11 +44,12 @@ export default Yup.object().shape({
   ),
   [FieldName.tale]: Yup.array().of(
     Yup.object().shape({
+      article: Yup.string(),
       lang: Yup.object().shape({
         label: Yup.string().required(),
         value: Yup.string().required(),
       }),
-      value: Yup.string()
+      lead: Yup.string()
         .min(12)
         .required(),
     }),

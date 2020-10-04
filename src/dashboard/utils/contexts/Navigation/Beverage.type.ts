@@ -54,8 +54,16 @@ export type BeverageType = {
     producer?: LanguageValue[];
   };
   tale?: {
-    label?: LanguageValue[];
-    producer?: LanguageValue[];
+    label?: {
+      article?: string;
+      language?: string;
+      lead: string;
+    }[];
+    producer?: {
+      article?: string;
+      language?: string;
+      lead: string;
+    }[];
   };
   barcode?: string;
   beverageType?: {

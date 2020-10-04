@@ -63,8 +63,20 @@ export type Beverage = {
     producer: LanguageValue[] | null;
   } | null;
   tale: {
-    label: LanguageValue[] | null;
-    producer: LanguageValue[] | null;
+    label:
+      | {
+          language: string | null;
+          lead: string;
+          article: string | null;
+        }[]
+      | null;
+    producer:
+      | {
+          language: string | null;
+          lead: string;
+          article: string | null;
+        }[]
+      | null;
   } | null;
   barcode: string | null;
   beverageType: {

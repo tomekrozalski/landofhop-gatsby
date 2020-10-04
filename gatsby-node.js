@@ -118,9 +118,14 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         label: [LanguageValue]
         producer: [LanguageValue]
       }
+      type TaleContent {
+        language: String
+        lead: String!
+        article: String
+      }
       type Tale {
-        label: [LanguageValue]
-        producer: [LanguageValue]
+        label: [TaleContent]
+        producer: [TaleContent]
       }
       enum BeverageTypeEnum {
         beer

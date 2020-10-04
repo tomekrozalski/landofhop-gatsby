@@ -24,7 +24,7 @@ import {
 } from 'dashboard/utils/helpers';
 import {
   normalizeObjectLanguage as normalizeObjectLanguageHelper,
-  normalizeLanguageValuePair as normalizeLanguageValuePairHelper,
+  normalizeLanguage as normalizeLanguageHelper,
   normalizeIngredientsDescription as normalizeIngredientsDescriptionHelper,
 } from '../helpers';
 import {
@@ -91,7 +91,7 @@ const dataToForm = ({
     languages,
   });
 
-  const normalizeLanguageValuePair = normalizeLanguageValuePairHelper({
+  const normalizeLanguage = normalizeLanguageHelper({
     intl,
     languages,
   });
@@ -106,9 +106,9 @@ const dataToForm = ({
       [FieldName.badge]: badge,
       // -----------
       // required
-      [FieldName.name]: name.map(normalizeLanguageValuePair),
+      [FieldName.name]: name.map(normalizeLanguage),
       ...(series?.label && {
-        [FieldName.series]: series?.label?.map(normalizeLanguageValuePair),
+        [FieldName.series]: series?.label?.map(normalizeLanguage),
       }),
       // required
       [FieldName.brand]: normalizeObjectLanguage(brand),
@@ -137,17 +137,17 @@ const dataToForm = ({
         },
       }),
       ...(remark?.label && {
-        [FieldName.remark]: remark.label.map(normalizeLanguageValuePair),
+        [FieldName.remark]: remark.label.map(normalizeLanguage),
       }),
       ...(tale?.label && {
-        [FieldName.tale]: tale.label.map(normalizeLanguageValuePair),
+        [FieldName.tale]: tale.label.map(normalizeLanguage),
       }),
       ...(barcode && { [FieldName.barcode]: barcode }),
       // -----------
       ...(beverageType?.label && { beverageType: beverageType.label }),
       ...(fermentation?.label && { fermentation: fermentation.label }),
       ...(style?.label && {
-        style: style.label.map(normalizeLanguageValuePair),
+        style: style.label.map(normalizeLanguage),
       }),
       ...(extract?.label && {
         extract: {
@@ -370,7 +370,7 @@ const dataToForm = ({
     normalizedProducer: {
       ...initialProducerValues,
       ...(series?.producer && {
-        [FieldName.series]: series?.producer?.map(normalizeLanguageValuePair),
+        [FieldName.series]: series?.producer?.map(normalizeLanguage),
       }),
       ...(cooperation?.producer && {
         [FieldName.cooperation]: cooperation?.producer.map(
@@ -397,16 +397,16 @@ const dataToForm = ({
         },
       }),
       ...(remark?.producer && {
-        [FieldName.remark]: remark.producer.map(normalizeLanguageValuePair),
+        [FieldName.remark]: remark.producer.map(normalizeLanguage),
       }),
       ...(tale?.producer && {
-        [FieldName.tale]: tale.producer.map(normalizeLanguageValuePair),
+        [FieldName.tale]: tale.producer.map(normalizeLanguage),
       }),
       // -----------
       ...(beverageType?.producer && { beverageType: beverageType.producer }),
       ...(fermentation?.producer && { fermentation: fermentation.producer }),
       ...(style?.producer && {
-        style: style.producer.map(normalizeLanguageValuePair),
+        style: style.producer.map(normalizeLanguage),
       }),
       ...(extract?.producer && {
         extract: {
@@ -602,7 +602,7 @@ const dataToForm = ({
       ...(beverageType?.editorial && { beverageType: beverageType.editorial }),
       ...(fermentation?.editorial && { fermentation: fermentation.editorial }),
       ...(style?.editorial && {
-        style: style.editorial.map(normalizeLanguageValuePair),
+        style: style.editorial.map(normalizeLanguage),
       }),
       ...(alcohol?.editorial && {
         alcoholScope: {

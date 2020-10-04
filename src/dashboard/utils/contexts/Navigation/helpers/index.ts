@@ -1,9 +1,9 @@
 import normalizeIngredientsDescription from './normalizeIngredientsDescription';
-import normalizeLanguageValuePair from './normalizeLanguageValuePair';
+import normalizeLanguage from './normalizeLanguage';
 import normalizeObjectLanguage from './normalizeObjectLanguage';
 
 export {
   normalizeIngredientsDescription,
-  normalizeLanguageValuePair,
+  normalizeLanguage,
   normalizeObjectLanguage,
 };
