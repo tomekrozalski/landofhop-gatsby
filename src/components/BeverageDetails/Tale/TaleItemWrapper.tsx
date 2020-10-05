@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TaleItemWrapper = styled.div`
   position: relative;
 
-  .tale-item--producer::before {
+  &.tale-item--producer::before {
     display: block;
     width: calc(100% + 2rem);
     height: calc(100% + 1rem);

@@ -7,6 +7,12 @@ import { FieldName } from 'dashboard/utils/enums';
 import { Basic as Grid } from '../elements/grids';
 import { ActionButtons, LanguageSelect, Markdown, Plug } from '../elements';
 
+const emptyTale = {
+  article: '',
+  lang: '',
+  lead: '',
+};
+
 type TaleValue = {
   article: string;
   lang: {
@@ -60,6 +66,7 @@ const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
                 {loopLength === index + 1 && (
                   <ActionButtons
                     push={push}
+                    pushContent={emptyTale}
                     remove={() => remove(loopLength - 1)}
                     withRemove
                   />
@@ -71,17 +78,7 @@ const Tale: React.FC<Props> = ({ fieldName, formName, required = false }) => (
           );
         }
 
-        return (
-          <Plug
-            onClick={() =>
-              push({
-                article: '',
-                lang: '',
-                lead: '',
-              })
-            }
-          />
-        );
+        return <Plug onClick={() => push(emptyTale)} />;
       }}
     />
   </Grid>

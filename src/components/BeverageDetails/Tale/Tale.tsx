@@ -16,7 +16,7 @@ const Tale: React.FC = () => {
       {tale && (
         <>
           {tale.label &&
-            tale.label.map(props => <TaleItem key={props.value} {...props} />)}
+            tale.label.map(props => <TaleItem key={props.lead} {...props} />)}
           {tale.producer && <TaleItem {...tale.producer} producer />}
         </>
       )}
