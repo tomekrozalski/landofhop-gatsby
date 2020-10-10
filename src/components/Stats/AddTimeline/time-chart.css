@@ -1,14 +1,18 @@
-.time-chart rect.bottle {
+.time-chart rect.total {
+  fill: var(--color-white);
+}
+
+.time-chart rect.bottles {
   fill: #e3ba22;
   opacity: 0.25;
   transition: opacity var(--transition-default);
 }
 
-.time-chart rect.bottle:hover {
+.time-chart rect.bottles:hover {
   opacity: 1;
 }
 
-.time-chart rect.can {
+.time-chart rect.cans {
   fill: #e6842a;
   opacity: 0.25;
 }
@@ -29,4 +33,8 @@
 
 .time-chart .line-path--cans {
   stroke: #e6842a;
+}
+
+.time-chart .legend .label {
+  font-weight: var(--font-weight-light);
 }

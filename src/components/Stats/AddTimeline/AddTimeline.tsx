@@ -3,8 +3,13 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 import { SectionHeader } from 'elements';
-import { AddData } from './types';
-import { createChart, normalizeData } from './utils';
+import { AddData, Sizes } from './types';
+import {
+  createChart,
+  createLegend,
+  normalizeData,
+  setSVGAttributes,
+} from './utils';
 import './time-chart.css';
 
 const AddTimeline: React.FC = () => {
@@ -27,8 +32,33 @@ const AddTimeline: React.FC = () => {
   `);
 
   useEffect(() => {
+    const sizes: Sizes = {
+      chart: {
+        width: 1160,
+        height: 600,
+        margin: {
+          top: 40,
+          right: 40,
+          bottom: 40,
+          left: 40,
+        },
+      },
+      legend: {
+        width: 1160,
+        height: 70,
+        margin: {
+          top: 20,
+          right: 40,
+          bottom: 20,
+          left: 40,
+        },
+      },
+    };
+
     const data: AddData[] = normalizeData(rawData);
-    createChart({ data, intl, wrapper: svg.current });
+    setSVGAttributes({ sizes, wrapper: svg.current });
+    createChart({ data, intl, sizes, wrapper: svg.current });
+    createLegend({ data, intl, sizes, wrapper: svg.current });
   }, []);
 
   return (

@@ -376,7 +376,10 @@
       "name": "Ilość dodawanych piw do bazy w kolejnych miesiącach",
       "numberOfBeverages": "Ilość piw"
     },
-    "name": "Statystyki"
+    "bottles": "butelki",
+    "cans": "puszki",
+    "name": "Statystyki",
+    "total": "razem"
   },
   "titles": {
     "about": "O stronie",

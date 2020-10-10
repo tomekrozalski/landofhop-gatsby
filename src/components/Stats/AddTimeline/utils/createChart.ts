@@ -3,8 +3,7 @@ import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
 
 import { SiteLanguage } from 'utils/enums';
-import { AddData } from '../types';
-import { curveBasis } from 'd3';
+import { AddData, Sizes } from '../types';
 
 type Props = {
   data: AddData[];
@@ -12,27 +11,16 @@ type Props = {
     formatMessage: ({ id }: { id: string }) => string;
     locale: SiteLanguage;
   };
+  sizes: Sizes;
   wrapper: SVGSVGElement;
 };
 
-const createChart = ({ data, intl, wrapper }: Props) => {
+const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
-  const margin = {
-    top: 40,
-    right: 40,
-    bottom: 40,
-    left: 40,
-  };
-
-  const width = 1160;
+  const { height, margin, width } = sizes.chart;
   const innerWidth = width - margin.left - margin.right;
-  const height = 600;
   const innerHeight = height - margin.top - margin.bottom;
-
-  svg
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .classed('chart time-chart', true);
 
   const xValue = (d: AddData) => d.date;
   const bottles = (d: AddData) => d.bottle;
@@ -50,8 +38,9 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .domain([0, (d3.max(data, total) || 0) + 3])
     .range([innerHeight, 0]);
 
-  const bars = svg
+  const chart = svg
     .append('g')
+    .attr('data-attr', 'chart')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   const monthAxis = d3
@@ -64,8 +53,9 @@ const createChart = ({ data, intl, wrapper }: Props) => {
         : format(new Date(value), 'MMM'),
     );
 
-  bars
+  chart
     .append('g')
+    .attr('data-attr', 'monthAxis')
     .call(monthAxis)
     .attr('transform', `translate(0, ${innerHeight})`);
 
@@ -85,8 +75,9 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     )
     .tickFormat(d => `${format(new Date(d), 'yyyy')} →`);
 
-  const yearAxisGroup = bars
+  const yearAxisGroup = chart
     .append('g')
+    .attr('data-attr', 'yearAxis')
     .call(yearAxis)
     .attr('transform', `translate(0, ${innerHeight + 20})`);
 
@@ -99,8 +90,9 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .ticks((d3.max(data, total) || 100) / 5)
     .tickSize(-innerWidth);
 
-  const yAxisGroup = bars
+  const yAxisGroup = chart
     .append('g')
+    .attr('data-attr', 'y-axis-group')
     .classed('y-axis-group', true)
     .call(yAxis);
 
@@ -111,12 +103,14 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .select('text')
     .attr('dy', -5);
 
+  const bars = chart.append('g').attr('data-attr', 'bars');
+
   bars
     .selectAll('.bottle')
     .data(data)
     .enter()
     .append('rect')
-    .classed('bottle', true)
+    .classed('bottles', true)
     .attr('x', d => xScale(xValue(d)) || '')
     .attr('y', d => yScale(bottles(d)))
     .attr('width', xScale.bandwidth())
@@ -127,7 +121,7 @@ const createChart = ({ data, intl, wrapper }: Props) => {
     .data(data)
     .enter()
     .append('rect')
-    .classed('can', true)
+    .classed('cans', true)
     .attr('x', d => xScale(xValue(d)) || '')
     .attr('y', d => yScale(cans(d)) - innerHeight + yScale(bottles(d)))
     .attr('width', xScale.bandwidth())
@@ -140,21 +134,23 @@ const createChart = ({ data, intl, wrapper }: Props) => {
       .y(d => yScale(type(d)))
       .curve(d3.curveBasis);
 
-  bars
+  const lines = chart.append('g').attr('data-attr', 'lines');
+
+  lines
     .append('path')
     .datum<any>(data)
     .attr('d', lineGenerator(cans))
     .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
     .classed('line-path line-path--cans', true);
 
-  bars
+  lines
     .append('path')
     .datum<any>(data)
     .attr('d', lineGenerator(bottles))
     .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
     .classed('line-path line-path--bottles', true);
 
-  bars
+  lines
     .append('path')
     .datum<any>(data)
     .attr('d', lineGenerator(total))

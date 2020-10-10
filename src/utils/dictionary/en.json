@@ -376,7 +376,10 @@
       "name": "Amount of beers added to the database in the following months",
       "numberOfBeverages": "Number of beverages"
     },
-    "name": "Statistics"
+    "bottles": "bottles",
+    "cans": "cans",
+    "name": "Statistics",
+    "total": "total"
   },
   "titles": {
     "about": "About the site",
