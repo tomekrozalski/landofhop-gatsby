@@ -41,9 +41,11 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .domain([0, d3.max(data, yValue) || 10 + 3])
     .range([innerHeight, 0]);
 
-  const bars = svg
+  const chart = svg
     .append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+  const axis = chart.append('g').attr('data-attr', 'axis');
 
   const xAxis = d3
     .axisBottom(xScale)
@@ -51,7 +53,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .tickValues(xScale.domain().filter(d => !(+d % 1)))
     .tickFormat(d => `${d}%`);
 
-  const xAxisGroup = bars
+  const xAxisGroup = axis
     .append('g')
     .call(xAxis)
     .attr('transform', `translate(0, ${innerHeight})`);
@@ -69,7 +71,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .ticks((d3.max(data, yValue) || 100) / 5)
     .tickSize(-innerWidth);
 
-  const yAxisGroup = bars
+  const yAxisGroup = axis
     .append('g')
     .classed('y-axis-group', true)
     .call(yAxis);
@@ -90,14 +92,19 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .classed('label', true)
     .text(formatMessage({ id: 'global.numberOfBeverages' }));
 
+  const bars = chart.append('g').attr('data-attr', 'bars');
+
   bars
     .selectAll('rect')
     .data(data)
     .enter()
     .append('rect')
     .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', d => yScale(yValue(d)))
+    .attr('y', innerHeight)
     .attr('width', xScale.bandwidth())
+    .transition()
+    .duration(1000)
+    .attr('y', d => yScale(yValue(d)))
     .attr('height', d => innerHeight - yScale(yValue(d)));
 };
 

@@ -31,36 +31,33 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
       `translate(${margin.left}, ${sizes.chart.height + margin.top})`,
     );
 
-  const createItem = ({ name, shift }: { name: string; shift: number }) => {
-    const item = legend
-      .append('g')
-      .attr('data-attr', name)
-      .attr('transform', `translate(${shift}, 0)`);
+  const legendGroups = legend
+    .selectAll('g')
+    .data(['total', 'bottles', 'cans'])
+    .enter()
+    .append('g')
+    .attr('data-attr', name => name)
+    .attr('transform', (_, i) => `translate(${(innerWidth / 4) * (i + 1)}, 0)`);
 
-    item
-      .append('rect')
-      .attr('width', innerHeight)
-      .attr('height', innerHeight)
-      .classed(`line-path line-path--${name}`, true);
+  legendGroups
+    .append('rect')
+    .attr('width', innerHeight)
+    .attr('height', innerHeight)
+    .attr('class', name => `line-path line-path--${name}`);
 
-    item
-      .append('rect')
-      .attr('width', innerHeight)
-      .attr('height', innerHeight)
-      .classed(name, true);
+  legendGroups
+    .append('rect')
+    .attr('width', innerHeight)
+    .attr('height', innerHeight)
+    .attr('class', name => name);
 
-    item
-      .append('text')
-      .attr('x', 50)
-      .attr('y', innerHeight / 2)
-      .attr('dominant-baseline', 'middle')
-      .classed('label', true)
-      .text(intl.formatMessage({ id: `stats.${name}` }));
-  };
-
-  createItem({ name: 'total', shift: innerWidth / 4 });
-  createItem({ name: 'bottles', shift: (innerWidth / 4) * 2 });
-  createItem({ name: 'cans', shift: (innerWidth / 4) * 3 });
+  legendGroups
+    .append('text')
+    .attr('x', 50)
+    .attr('y', innerHeight / 2)
+    .attr('dominant-baseline', 'middle')
+    .classed('label', true)
+    .text(name => intl.formatMessage({ id: `stats.${name}` }));
 };
 
 export default createLegend;
