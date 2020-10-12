@@ -94,18 +94,51 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
 
   const bars = chart.append('g').attr('data-attr', 'bars');
 
-  bars
-    .selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', innerHeight)
-    .attr('width', xScale.bandwidth())
+  const barGroups = bars
+    .selectAll('g')
+    .data(data.filter(({ beverages }) => beverages));
+
+  const barGroupsEnter = barGroups.enter().append('g');
+
+  barGroupsEnter
+    .classed('bar-group', true)
+    .attr(
+      'transform',
+      d => `translate(${xScale(xValue(d)) || ''}, ${innerHeight})`,
+    )
     .transition()
     .duration(1000)
-    .attr('y', d => yScale(yValue(d)))
+    .attr(
+      'transform',
+      d => `translate(${xScale(xValue(d)) || ''}, ${yScale(yValue(d))})`,
+    );
+
+  barGroupsEnter
+    .append('rect')
+    .classed('bar', true)
+    .attr('width', xScale.bandwidth())
+    .attr('height', 0)
+    .transition()
+    .duration(1000)
     .attr('height', d => innerHeight - yScale(yValue(d)));
+
+  const label = barGroupsEnter.append('g').classed('label-group', true);
+  label.attr('transform', 'translate(4, 0)');
+
+  label
+    .append('rect')
+    .attr('width', 100)
+    .attr('height', 30)
+    .attr('fill', 'green');
+
+  label
+    .append('text')
+    .text(d => {
+      console.log('d', d);
+
+      return 'bim bam';
+    })
+    .attr('transform', 'translate(4, 10)');
 };
 
 export default createChart;

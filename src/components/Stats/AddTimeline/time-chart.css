@@ -1,20 +1,22 @@
+.time-chart .bar-group {
+  opacity: 0.25;
+  transition: opacity var(--transition-default);
+}
+
+.time-chart .bar-group:hover {
+  opacity: 1;
+}
+
 .time-chart rect.total {
   fill: transparent;
 }
 
 .time-chart rect.bottles {
   fill: #e3ba22;
-  opacity: 0.25;
-  transition: opacity var(--transition-default);
-}
-
-.time-chart rect.bottles:hover {
-  opacity: 1;
 }
 
 .time-chart rect.cans {
   fill: #e6842a;
-  opacity: 0.25;
 }
 
 .time-chart .line-path {

@@ -1,3 +1,12 @@
-.alcohol-chart rect {
+.alcohol-chart .bar {
   fill: steelblue;
+}
+
+.alcohol-chart .bar-group .label-group {
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.alcohol-chart .bar-group:hover .label-group {
+  transform: scaleX(1);
 }

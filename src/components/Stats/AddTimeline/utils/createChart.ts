@@ -105,40 +105,29 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
 
   const bars = chart.append('g').attr('data-attr', 'bars');
 
-  const totalGroups = bars.selectAll('g').data(data);
+  const barGroups = bars.selectAll('g').data(data);
 
-  const totalGroupsEnter = totalGroups.enter().append('g');
+  const barGroupsEnter = barGroups.enter().append('g');
 
-  totalGroupsEnter
-    .attr('data-attr', 'total-group')
+  barGroupsEnter
+    .classed('bar-group', true)
     .attr(
       'transform',
       d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
     );
 
-  totalGroupsEnter
+  barGroupsEnter
     .append('rect')
     .classed('cans', true)
     .attr('width', xScale.bandwidth())
     .attr('height', d => innerHeight - yScale(cans(d)));
 
-  totalGroupsEnter
+  barGroupsEnter
     .append('rect')
     .classed('bottles', true)
     .attr('width', xScale.bandwidth())
     .attr('height', d => innerHeight - yScale(bottles(d)))
     .attr('y', d => innerHeight - yScale(cans(d)));
-
-  // totalGroup
-  //   .select('.can')
-  //   .data(data)
-  //   .enter()
-  //   .append('rect')
-  //   .classed('cans', true)
-  //   .attr('x', d => xScale(xValue(d)) || '')
-  //   .attr('y', d => yScale(cans(d)) - innerHeight + yScale(bottles(d)))
-  //   .attr('width', xScale.bandwidth())
-  //   .attr('height', d => innerHeight - yScale(cans(d)));
 
   const lineGenerator = (type: any) =>
     d3
