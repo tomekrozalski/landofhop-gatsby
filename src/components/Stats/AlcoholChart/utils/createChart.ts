@@ -92,53 +92,63 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .classed('label', true)
     .text(formatMessage({ id: 'global.numberOfBeverages' }));
 
-  const bars = chart.append('g').attr('data-attr', 'bars');
+  const handleMouseOver = (d, i) => {
+    const barLabel = chart
+      .append('g')
+      .classed(`bar-label-${i}`, true)
+      .attr('transform', 'translate(8, -10)');
 
-  const barGroups = bars
-    .selectAll('g')
-    .data(data.filter(({ beverages }) => beverages));
+    barLabel
+      .append('rect')
+      .attr('width', 180)
+      .attr('height', 20)
+      .attr('x', xScale(xValue(d)) || '')
+      .attr('y', yScale(yValue(d)))
+      .attr('opacity', '0')
+      .transition()
+      .duration(500)
+      .attr('opacity', '1');
 
-  const barGroupsEnter = barGroups.enter().append('g');
+    barLabel
+      .append('text')
+      .text('3,3% alkoholu, 2 piwa')
+      .attr('dominant-baseline', 'middle')
+      .attr('x', (xScale(xValue(d)) || 0) + 5)
+      .attr('y', yScale(yValue(d)) + 11)
+      .attr('opacity', '0')
+      .transition()
+      .duration(500)
+      .attr('opacity', '1');
+  };
 
-  barGroupsEnter
-    .classed('bar-group', true)
-    .attr(
-      'transform',
-      d => `translate(${xScale(xValue(d)) || ''}, ${innerHeight})`,
-    )
-    .transition()
-    .duration(1000)
-    .attr(
-      'transform',
-      d => `translate(${xScale(xValue(d)) || ''}, ${yScale(yValue(d))})`,
-    );
+  const handleMouseOut = (_, i) => {
+    d3.selectAll(`.bar-label-${i} *`)
+      .transition()
+      .duration(500)
+      .attr('opacity', '0')
+      .on('end', () => {
+        d3.selectAll(`.bar-label-${i}`).remove();
+      });
+  };
 
-  barGroupsEnter
+  const barsGroup = chart.append('g').attr('data-attr', 'bars');
+
+  barsGroup
+    .selectAll('.bar')
+    .data(data.filter(({ beverages }) => beverages))
+    .enter()
     .append('rect')
     .classed('bar', true)
     .attr('width', xScale.bandwidth())
     .attr('height', 0)
+    .attr('x', d => xScale(xValue(d)) || '')
+    .attr('y', innerHeight)
+    .on('mouseover', handleMouseOver)
+    .on('mouseout', handleMouseOut)
     .transition()
     .duration(1000)
-    .attr('height', d => innerHeight - yScale(yValue(d)));
-
-  const label = barGroupsEnter.append('g').classed('label-group', true);
-  label.attr('transform', 'translate(4, 0)');
-
-  label
-    .append('rect')
-    .attr('width', 100)
-    .attr('height', 30)
-    .attr('fill', 'green');
-
-  label
-    .append('text')
-    .text(d => {
-      console.log('d', d);
-
-      return 'bim bam';
-    })
-    .attr('transform', 'translate(4, 10)');
+    .attr('height', d => innerHeight - yScale(yValue(d)))
+    .attr('y', d => yScale(yValue(d)));
 };
 
 export default createChart;
