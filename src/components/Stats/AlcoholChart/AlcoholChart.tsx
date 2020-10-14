@@ -6,13 +6,14 @@ import { SectionHeader } from 'elements';
 import { AlcoholData } from './types';
 import {
   createChart,
+  getAverage,
   getMissingAlcoholBeverages,
   normalizeData,
 } from './utils';
 import './alcohol-chart.css';
 
 const AlcoholChart: React.FC = () => {
-  const { formatMessage } = useIntl();
+  const intl = useIntl();
   const svg = useRef<SVGSVGElement>(null!);
 
   const rawData = useStaticQuery(graphql`
@@ -40,6 +41,7 @@ const AlcoholChart: React.FC = () => {
 
   useEffect(() => {
     const data: AlcoholData[] = normalizeData(rawData);
+    const average: number = getAverage(data);
     const missingAlcoholBeverages = getMissingAlcoholBeverages(rawData);
 
     if (missingAlcoholBeverages) {
@@ -49,7 +51,7 @@ const AlcoholChart: React.FC = () => {
       );
     }
 
-    createChart({ data, formatMessage, wrapper: svg.current });
+    createChart({ average, data, intl, wrapper: svg.current });
   }, []);
 
   return (

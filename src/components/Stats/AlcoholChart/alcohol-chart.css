@@ -3,8 +3,13 @@
   cursor: pointer;
 }
 
+.alcohol-chart .bar.average {
+  fill: rgb(70, 180, 116);
+}
+
 .alcohol-chart [class^='bar-label'] rect {
   fill: steelblue;
+  stroke: var(--color-white);
 }
 
 .alcohol-chart [class^='bar-label'] text {

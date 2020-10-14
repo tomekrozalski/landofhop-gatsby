@@ -367,7 +367,8 @@
   "stats": {
     "alcohol": {
       "alcohol": "Alkohol",
-      "beveragesWithUnknownAlcohol": "Ilość piw z nieznaną ilością alkoholu: {value}",
+      "barLabel": "{value}% alkoholu, {beverages, plural, one {# piwo} few {# piwa} other {# piw}}",
+      "isAverage": "średnia ilość alkoholu wszystkich piw",
       "name": "Wykres ilości alkoholu w piwach",
       "numberOfBeverages": "Ilość piw"
     },

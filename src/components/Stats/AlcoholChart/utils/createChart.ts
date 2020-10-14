@@ -1,14 +1,16 @@
 import * as d3 from 'd3';
+import { IntlShape } from 'react-intl';
 
 import { AlcoholData } from '../types';
 
 type Props = {
+  average: number;
   data: AlcoholData[];
-  formatMessage: ({ id }: { id: string }) => string;
+  intl: IntlShape;
   wrapper: SVGSVGElement;
 };
 
-const createChart = ({ data, formatMessage, wrapper }: Props) => {
+const createChart = ({ average, data, intl, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
   const margin = {
@@ -64,7 +66,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .attr('y', 40)
     .attr('text-anchor', 'end')
     .classed('label', true)
-    .text(formatMessage({ id: 'global.alcohol' }));
+    .text(intl.formatMessage({ id: 'global.alcohol' }));
 
   const yAxis = d3
     .axisLeft(yScale)
@@ -90,17 +92,22 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'end')
     .classed('label', true)
-    .text(formatMessage({ id: 'global.numberOfBeverages' }));
+    .text(intl.formatMessage({ id: 'global.numberOfBeverages' }));
 
-  const handleMouseOver = (d, i) => {
+  const handleMouseOver = (
+    d: { beverages: number; value: number },
+    i: number,
+  ) => {
+    const directLeft = d.value > 15;
+
     const barLabel = chart
       .append('g')
       .classed(`bar-label-${i}`, true)
       .attr('transform', 'translate(8, -10)');
 
-    barLabel
+    const background = barLabel
       .append('rect')
-      .attr('width', 180)
+      .attr('width', 0)
       .attr('height', 20)
       .attr('x', xScale(xValue(d)) || '')
       .attr('y', yScale(yValue(d)))
@@ -109,16 +116,40 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
       .duration(500)
       .attr('opacity', '1');
 
+    function getTextWidth(this: SVGTextElement) {
+      const { width: textWidth } = this.getBBox();
+      const getLeftTranslate = () => -textWidth - 8 - xScale.bandwidth();
+
+      background.attr('width', textWidth + 10);
+
+      if (directLeft) {
+        barLabel.attr('transform', `translate(${getLeftTranslate()}, -10)`);
+      }
+    }
+
     barLabel
       .append('text')
-      .text('3,3% alkoholu, 2 piwa')
+      .text(
+        `${intl.formatMessage(
+          { id: 'stats.alcohol.barLabel' },
+          {
+            beverages: d.beverages,
+            value: Intl.NumberFormat(intl.locale).format(d.value),
+          },
+        )}${
+          d.value === average
+            ? ` - ${intl.formatMessage({ id: 'stats.alcohol.isAverage' })}`
+            : ''
+        }`,
+      )
       .attr('dominant-baseline', 'middle')
       .attr('x', (xScale(xValue(d)) || 0) + 5)
       .attr('y', yScale(yValue(d)) + 11)
       .attr('opacity', '0')
       .transition()
       .duration(500)
-      .attr('opacity', '1');
+      .attr('opacity', '1')
+      .each(getTextWidth);
   };
 
   const handleMouseOut = (_, i) => {
@@ -139,6 +170,7 @@ const createChart = ({ data, formatMessage, wrapper }: Props) => {
     .enter()
     .append('rect')
     .classed('bar', true)
+    .classed('average', d => d.value === average)
     .attr('width', xScale.bandwidth())
     .attr('height', 0)
     .attr('x', d => xScale(xValue(d)) || '')
