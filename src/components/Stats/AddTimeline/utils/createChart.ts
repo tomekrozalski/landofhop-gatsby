@@ -104,17 +104,34 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('dy', -5);
 
   const bars = chart.append('g').attr('data-attr', 'bars');
+  const lines = chart.append('g').attr('data-attr', 'lines');
 
   const barGroups = bars.selectAll('g').data(data);
 
   const barGroupsEnter = barGroups.enter().append('g');
+
+  const handleMouseOver = () => {
+    lines
+      .transition()
+      .duration(500)
+      .attr('opacity', 0.1);
+  };
+
+  const handleMouseOut = () => {
+    lines
+      .transition()
+      .duration(500)
+      .attr('opacity', 1);
+  };
 
   barGroupsEnter
     .classed('bar-group', true)
     .attr(
       'transform',
       d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
-    );
+    )
+    .on('mouseover', handleMouseOver)
+    .on('mouseout', handleMouseOut);
 
   barGroupsEnter
     .append('rect')
@@ -135,8 +152,6 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       .x(d => xScale(xValue(d)) || 0)
       .y(d => yScale(type(d)))
       .curve(d3.curveBasis);
-
-  const lines = chart.append('g').attr('data-attr', 'lines');
 
   lines
     .append('path')

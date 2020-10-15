@@ -1,6 +1,7 @@
 .time-chart .bar-group {
   opacity: 0.25;
   transition: opacity var(--transition-default);
+  cursor: pointer;
 }
 
 .time-chart .bar-group:hover {
