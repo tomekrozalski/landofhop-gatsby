@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import { curry, sum } from 'lodash';
 
 import { SiteLanguage } from 'utils/enums';
 import { AddData, Sizes } from '../types';
@@ -15,9 +16,16 @@ type Props = {
   wrapper: SVGSVGElement;
 };
 
+enum Types {
+  total = 'total',
+  bottles = 'bottles',
+  cans = 'cans',
+}
+
 const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
+  const types = Object.values(Types);
   const { height, margin, width } = sizes.legend;
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -33,11 +41,10 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
 
   const legendGroups = legend
     .selectAll('g')
-    .data(['total', 'bottles', 'cans'])
+    .data(types)
     .enter()
     .append('g')
-    .attr('data-attr', name => name)
-    .attr('transform', (_, i) => `translate(${(innerWidth / 4) * (i + 1)}, 0)`);
+    .attr('class', name => name);
 
   legendGroups
     .append('rect')
@@ -51,13 +58,49 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('height', innerHeight)
     .attr('class', name => name);
 
+  const legendWidth: any = types.reduce(
+    (acc, curr) => ({
+      ...acc,
+      [curr]: 0,
+    }),
+    {},
+  );
+
+  function translateLabels() {
+    d3.select('g.legend g.total').attr(
+      'transform',
+      `translate(${innerWidth -
+        legendWidth.total -
+        legendWidth.bottles -
+        legendWidth.cans}, 0)`,
+    );
+
+    d3.select('g.legend g.bottles').attr(
+      'transform',
+      `translate(${innerWidth - legendWidth.total - legendWidth.bottles}, 0)`,
+    );
+
+    d3.select('g.legend g.cans').attr(
+      'transform',
+      `translate(${innerWidth - legendWidth.total}, 0)`,
+    );
+  }
+
+  function getTextWidth(this: SVGTextElement, name: Types, i: number) {
+    legendWidth[name] = this.getBBox().width + 70;
+    if (i + 1 === types.length) {
+      translateLabels();
+    }
+  }
+
   legendGroups
     .append('text')
     .attr('x', 50)
     .attr('y', innerHeight / 2)
     .attr('dominant-baseline', 'middle')
     .classed('label', true)
-    .text(name => intl.formatMessage({ id: `stats.${name}` }));
+    .text(name => intl.formatMessage({ id: `stats.${name}` }))
+    .each(getTextWidth);
 };
 
 export default createLegend;
