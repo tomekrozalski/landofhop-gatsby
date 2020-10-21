@@ -373,6 +373,7 @@
       "numberOfBeverages": "Ilość piw"
     },
     "addTimeline": {
+      "depiction": "{date}: {bottle, plural, one {# butelka} few {# butelki} other {# butelek}} i {can, plural, one {# puszka} few {# puszki} other {# puszek}}",
       "month": "Miesiąc",
       "name": "Ilość dodawanych piw do bazy w kolejnych miesiącach",
       "numberOfBeverages": "Ilość piw"

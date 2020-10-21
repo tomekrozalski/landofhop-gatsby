@@ -8,11 +8,17 @@ import { AddData, Sizes } from '../types';
 type Props = {
   data: AddData[];
   intl: {
-    formatMessage: ({ id }: { id: string }) => string;
+    formatMessage: ({ id }: { id: string }, values?: any) => string;
     locale: SiteLanguage;
   };
   sizes: Sizes;
   wrapper: SVGSVGElement;
+};
+
+type BarType = {
+  bottle: number;
+  can: number;
+  date: string;
 };
 
 const createChart = ({ data, intl, sizes, wrapper }: Props) => {
@@ -105,16 +111,42 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
 
   const bars = chart.append('g').attr('data-attr', 'bars');
   const lines = chart.append('g').attr('data-attr', 'lines');
-
   const barGroups = bars.selectAll('g').data(data);
 
   const barGroupsEnter = barGroups.enter().append('g');
 
-  const handleMouseOver = () => {
+  const handleMouseOver = ({ bottle, can, date }: BarType, i: number) => {
     lines
       .transition()
       .duration(500)
       .attr('opacity', 0.1);
+
+    chart
+      .append('text')
+      .classed(`depiction depiction-${i}`, true)
+      .attr('opacity', 0)
+      .text(
+        intl.formatMessage(
+          { id: 'stats.addTimeline.depiction' },
+          {
+            bottle,
+            can,
+            date:
+              intl.locale === SiteLanguage.pl
+                ? format(new Date(date), 'LLLL yyyy', { locale: pl })
+                : format(new Date(date), 'MMMM yyyy'),
+          },
+        ),
+      )
+      .each(function center(this: SVGTextElement) {
+        d3.select(this).attr(
+          'transform',
+          `translate(${innerWidth / 2 - this.getBBox().width / 2}, 25)`,
+        );
+      })
+      .transition()
+      .duration(500)
+      .attr('opacity', 1);
   };
 
   const handleMouseOut = () => {
@@ -122,6 +154,12 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       .transition()
       .duration(500)
       .attr('opacity', 1);
+
+    d3.selectAll('text.depiction')
+      .transition()
+      .duration(500)
+      .attr('opacity', 0)
+      .remove();
   };
 
   barGroupsEnter

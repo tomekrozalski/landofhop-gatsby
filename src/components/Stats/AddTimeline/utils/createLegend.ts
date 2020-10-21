@@ -87,20 +87,41 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
   }
 
   function getTextWidth(this: SVGTextElement, name: Types, i: number) {
-    legendWidth[name] = this.getBBox().width + 70;
+    legendWidth[name] = this.getBBox().width + 80;
     if (i + 1 === types.length) {
       translateLabels();
     }
   }
 
+  const getSum = (name: Types) => {
+    switch (name) {
+      case Types.total:
+        return data.reduce((acc, { bottle, can }) => acc + bottle + can, 0);
+      case Types.bottles:
+        return data.reduce((acc, { bottle }) => acc + bottle, 0);
+      case Types.cans:
+        return data.reduce((acc, { can }) => acc + can, 0);
+      default:
+        return 0;
+    }
+  };
+
   legendGroups
     .append('text')
     .attr('x', 50)
-    .attr('y', innerHeight / 2)
+    .attr('y', innerHeight / 2 - 8)
     .attr('dominant-baseline', 'middle')
     .classed('label', true)
     .text(name => intl.formatMessage({ id: `stats.${name}` }))
     .each(getTextWidth);
+
+  legendGroups
+    .append('text')
+    .attr('x', 50)
+    .attr('y', innerHeight / 2 + 8)
+    .attr('dominant-baseline', 'middle')
+    .classed('asdf', true)
+    .text(getSum);
 };
 
 export default createLegend;

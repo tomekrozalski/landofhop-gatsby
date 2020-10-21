@@ -373,6 +373,7 @@
       "numberOfBeverages": "Number of beverages"
     },
     "addTimeline": {
+      "depiction": "{date}: {bottle, plural, one {# bottle} other {# bottles}} and {can, plural, one {# can} other {# cans}}",
       "month": "Month",
       "name": "Amount of beers added to the database in the following months",
       "numberOfBeverages": "Number of beverages"
