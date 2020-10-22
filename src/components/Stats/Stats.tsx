@@ -4,7 +4,7 @@ import { FormattedMessage } from 'gatsby-plugin-intl';
 import Layout from 'components/Layout';
 import SEO from 'components/Seo';
 import { Header, Wrapper } from 'elements/textPage';
-import { AddTimeline, AlcoholChart } from '.';
+import { AddTimeline, AlcoholChart, TopBrands } from '.';
 import './chart.css';
 
 const Stats: React.FC = () => (
@@ -16,6 +16,7 @@ const Stats: React.FC = () => (
       </Header>
       <AlcoholChart />
       <AddTimeline />
+      <TopBrands />
     </Wrapper>
   </Layout>
 );

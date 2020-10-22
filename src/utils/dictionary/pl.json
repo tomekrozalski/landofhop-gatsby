@@ -373,15 +373,18 @@
       "numberOfBeverages": "Ilość piw"
     },
     "addTimeline": {
+      "bottles": "butelki",
+      "cans": "puszki",
       "depiction": "{date}: {bottle, plural, one {# butelka} few {# butelki} other {# butelek}} i {can, plural, one {# puszka} few {# puszki} other {# puszek}}",
       "month": "Miesiąc",
       "name": "Ilość dodawanych piw do bazy w kolejnych miesiącach",
-      "numberOfBeverages": "Ilość piw"
+      "numberOfBeverages": "Ilość piw",
+      "total": "razem"
     },
-    "bottles": "butelki",
-    "cans": "puszki",
     "name": "Statystyki",
-    "total": "razem"
+    "topBrands": {
+      "name": "Browary o największej ilości piw"
+    }
   },
   "titles": {
     "about": "O stronie",

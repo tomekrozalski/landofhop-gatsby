@@ -112,7 +112,7 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('y', innerHeight / 2 - 8)
     .attr('dominant-baseline', 'middle')
     .classed('label', true)
-    .text(name => intl.formatMessage({ id: `stats.${name}` }))
+    .text(name => intl.formatMessage({ id: `stats.addTimeline.${name}` }))
     .each(getTextWidth);
 
   legendGroups
