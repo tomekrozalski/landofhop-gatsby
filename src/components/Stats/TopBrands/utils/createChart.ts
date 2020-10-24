@@ -1,28 +1,23 @@
 import * as d3 from 'd3';
 import { IntlShape } from 'react-intl';
 
-import { TopBrandsData } from '../types';
+import { Sizes, TopBrandsData } from '../types';
 
 type Props = {
   data: TopBrandsData[];
   intl: IntlShape;
+  sizes: Sizes;
   wrapper: SVGSVGElement;
 };
 
-const createChart = ({ data, intl, wrapper }: Props) => {
+const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
-  const margin = {
-    top: 40,
-    right: 40,
-    bottom: 40,
-    left: 40,
-  };
-
-  const width = 1160;
+  const { height, margin, width } = sizes;
   const innerWidth = width - margin.left - margin.right;
-  const height = 600;
   const innerHeight = height - margin.top - margin.bottom;
+
+  console.log('data', data);
 
   svg
     .attr('viewBox', `0 0 ${width} ${height}`)

@@ -11,7 +11,7 @@ const setSVGAttributes = ({ sizes, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
   svg
-    .attr('viewBox', `0 0 ${sizes.chart.width} ${sizes.chart.height}`)
+    .attr('viewBox', `0 0 ${sizes.width} ${sizes.height}`)
     .classed('chart top-brands-chart', true);
 };
 

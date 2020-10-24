@@ -31,19 +31,17 @@ const TopBrands: React.FC = () => {
 
   useEffect(() => {
     const sizes: Sizes = {
-      chart: {
-        width: 1160,
-        height: 600,
-        margin: {
-          top: 40,
-          right: 40,
-          bottom: 40,
-          left: 40,
-        },
+      width: 1160,
+      height: 600,
+      margin: {
+        top: 40,
+        right: 40,
+        bottom: 40,
+        left: 40,
       },
     };
 
-    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 10 });
+    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 20 });
     setSVGAttributes({ sizes, wrapper: svg.current });
     createChart({ data, intl, sizes, wrapper: svg.current });
   }, []);

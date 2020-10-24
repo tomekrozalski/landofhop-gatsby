@@ -381,6 +381,9 @@
       "numberOfBeverages": "Number of beverages",
       "total": "total"
     },
+    "fermentation": {
+      "name": "Type of fermentation of beverages in time"
+    },
     "name": "Statistics",
     "topBrands": {
       "name": "Browary o największej ilości piw"

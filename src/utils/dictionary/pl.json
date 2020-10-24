@@ -381,6 +381,9 @@
       "numberOfBeverages": "Ilość piw",
       "total": "razem"
     },
+    "fermentation": {
+      "name": "Rodzaj fermentacji dodawanych piw w czasie"
+    },
     "name": "Statystyki",
     "topBrands": {
       "name": "Browary o największej ilości piw"
