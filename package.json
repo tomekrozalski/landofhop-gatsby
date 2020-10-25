@@ -15,7 +15,7 @@
     "date-fns": "^2.15.0",
     "dotenv": "^8.2.0",
     "formik": "^2.1.4",
-    "gatsby": "^2.24.23",
+    "gatsby": "^2.24.85",
     "gatsby-awesome-pagination": "^0.3.5",
     "gatsby-plugin-global-styles": "^1.0.17",
     "gatsby-plugin-intl": "^0.3.1",

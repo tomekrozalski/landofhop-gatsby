@@ -4,6 +4,8 @@ import { pl } from 'date-fns/locale';
 
 import { SiteLanguage } from 'utils/enums';
 import { AddData, Sizes } from '../types';
+import renderBars from './renderBars';
+import renderLines from './renderLines';
 
 type Props = {
   data: AddData[];
@@ -15,12 +17,6 @@ type Props = {
   wrapper: SVGSVGElement;
 };
 
-type BarType = {
-  bottle: number;
-  can: number;
-  date: string;
-};
-
 const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const svg = d3.select(wrapper);
 
@@ -30,8 +26,8 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
 
   const initialData = data.map(({ date }) => ({
     date,
-    can: 20,
-    bottle: 20,
+    can: 0,
+    bottle: 0,
   }));
 
   const xValue = (d: AddData) => d.date;
@@ -116,174 +112,82 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('dy', -5);
 
   const lines = chart.append('g').attr('data-attr', 'lines');
-
-  const handleMouseOver = ({ bottle, can, date }: BarType, i: number) => {
-    lines
-      .transition()
-      .duration(500)
-      .attr('opacity', 0.1);
-
-    chart
-      .append('text')
-      .classed(`depiction depiction-${i}`, true)
-      .attr('opacity', 0)
-      .text(
-        intl.formatMessage(
-          { id: 'stats.addTimeline.depiction' },
-          {
-            bottle,
-            can,
-            date:
-              intl.locale === SiteLanguage.pl
-                ? format(new Date(date), 'LLLL yyyy', { locale: pl })
-                : format(new Date(date), 'MMMM yyyy'),
-          },
-        ),
-      )
-      .each(function center(this: SVGTextElement) {
-        d3.select(this).attr(
-          'transform',
-          `translate(${innerWidth / 2 - this.getBBox().width / 2}, 25)`,
-        );
-      })
-      .transition()
-      .duration(500)
-      .attr('opacity', 1);
-  };
-
-  const handleMouseOut = () => {
-    lines
-      .transition()
-      .duration(500)
-      .attr('opacity', 1);
-
-    d3.selectAll('text.depiction')
-      .transition()
-      .duration(500)
-      .attr('opacity', 0)
-      .remove();
-  };
   const bars = chart.append('g').attr('data-attr', 'bars');
-  const renderBars = (
-    selection: d3.Selection<SVGGElement, unknown, null, undefined>,
-    values: AddData[],
-    create?: boolean,
-  ) => {
-    const barGroups = selection.selectAll('g').data(values);
-    const barGroupsEnter = barGroups.enter().append('g');
 
-    barGroupsEnter
-      .classed('bar-group', true)
-      .on('mouseover', handleMouseOver)
-      .on('mouseout', handleMouseOut)
-      .merge(barGroups)
-      .transition()
-      .duration(500)
-      .attr(
-        'transform',
-        d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
-      );
+  const renderBarsWithDelay = ({
+    create,
+    values,
+  }: {
+    create: boolean;
+    values: AddData[];
+  }) => {
+    renderBars({
+      bottles,
+      cans,
+      chart,
+      create,
+      delay: 500,
+      innerHeight,
+      innerWidth,
+      intl,
+      lines,
+      selection: bars,
+      total,
+      values,
+      xScale,
+      xValue,
+      yScale,
+    });
 
-    if (create) {
-      barGroupsEnter
-        .append('rect')
-        .classed('cans', true)
-        .attr('width', xScale.bandwidth())
-        .attr('height', d => innerHeight - yScale(cans(d)));
+    renderLines({
+      bottles,
+      cans,
+      create,
+      delay: 150,
+      selection: lines,
+      total,
+      values,
+      xScale,
+      xValue,
+      yScale,
+    });
+  };
 
-      barGroupsEnter
-        .append('rect')
-        .classed('bottles', true)
-        .attr('width', xScale.bandwidth())
-        .attr('height', d => innerHeight - yScale(bottles(d)))
-        .attr('y', d => innerHeight - yScale(cans(d)));
+  const render = ({ init }: { init: boolean }) => {
+    if (init) {
+      renderBarsWithDelay({ create: true, values: initialData });
     } else {
-      barGroups
-        .selectAll('rect.cans')
-        .data(values, d => d.date)
-        .transition()
-        .duration(500)
-        .attr('height', d => innerHeight - yScale(cans(d)));
-
-      barGroups
-        .selectAll('rect.bottles')
-        .data(values, d => d.date)
-        .transition()
-        .duration(500)
-        .attr('height', d => innerHeight - yScale(bottles(d)))
-        .attr('y', d => innerHeight - yScale(cans(d)));
+      data.forEach((_, index) => {
+        setTimeout(() => {
+          renderBarsWithDelay({
+            create: false,
+            values: data.map((props, i) =>
+              i <= index
+                ? props
+                : {
+                    date: props.date,
+                    bottle: 0,
+                    can: 0,
+                  },
+            ),
+          });
+        }, index * 25);
+      });
     }
   };
 
-  renderBars(bars, initialData, true);
+  render({ init: true });
 
-  const renderLines = (values: AddData[], create?: boolean) => {
-    const lineGenerator = (type: any) =>
-      d3
-        .line<AddData>()
-        .x(d => xScale(xValue(d)) || 0)
-        .y(d => yScale(type(d)))
-        .curve(d3.curveBasis);
-
-    if (create) {
-      lines
-        .append('path')
-        .datum<any>(values)
-        .attr('d', lineGenerator(cans))
-        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-        .classed('line-path line-path--cans', true);
-
-      lines
-        .append('path')
-        .datum<any>(values)
-        .attr('d', lineGenerator(bottles))
-        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-        .classed('line-path line-path--bottles', true);
-
-      lines
-        .append('path')
-        .datum<any>(values)
-        .attr('d', lineGenerator(total))
-        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-        .classed('line-path line-path--total', true);
-    } else {
-      lines
-        .selectAll('.line-path--cans')
-        .datum<any>(values)
-        .transition()
-        .duration(500)
-        .attr('d', lineGenerator(cans));
-
-      lines
-        .selectAll('.line-path--bottles')
-        .datum<any>(values)
-        .transition()
-        .duration(500)
-        .attr('d', lineGenerator(bottles));
-
-      lines
-        .selectAll('.line-path--total')
-        .datum<any>(values)
-        .transition()
-        .duration(500)
-        .attr('d', lineGenerator(total));
+  const io = new IntersectionObserver(([entry], observer) => {
+    if (entry.isIntersecting) {
+      render({ init: false });
+      observer.disconnect();
     }
-  };
+  }, {});
 
-  renderLines(initialData, true);
-
-  // const observer = new IntersectionObserver(([entry]) => {
-  //   console.log('entry', entry);
-  // }, {});
-
-  // monthAxisElement.each(function observe() {
-  //   observer.observe(this);
-  // });
-
-  setTimeout(() => {
-    renderBars(bars, data);
-    renderLines(data);
-  }, 2000);
+  monthAxisElement.each(function observe() {
+    io.observe(this);
+  });
 };
 
 export default createChart;
