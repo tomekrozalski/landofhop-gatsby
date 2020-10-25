@@ -28,6 +28,12 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
+  const initialData = data.map(({ date }) => ({
+    date,
+    can: 20,
+    bottle: 20,
+  }));
+
   const xValue = (d: AddData) => d.date;
   const bottles = (d: AddData) => d.bottle;
   const cans = (d: AddData) => d.can;
@@ -59,7 +65,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
         : format(new Date(value), 'MMM'),
     );
 
-  chart
+  const monthAxisElement = chart
     .append('g')
     .attr('data-attr', 'monthAxis')
     .call(monthAxis)
@@ -109,11 +115,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .select('text')
     .attr('dy', -5);
 
-  const bars = chart.append('g').attr('data-attr', 'bars');
   const lines = chart.append('g').attr('data-attr', 'lines');
-  const barGroups = bars.selectAll('g').data(data);
-
-  const barGroupsEnter = barGroups.enter().append('g');
 
   const handleMouseOver = ({ bottle, can, date }: BarType, i: number) => {
     lines
@@ -161,56 +163,127 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       .attr('opacity', 0)
       .remove();
   };
+  const bars = chart.append('g').attr('data-attr', 'bars');
+  const renderBars = (
+    selection: d3.Selection<SVGGElement, unknown, null, undefined>,
+    values: AddData[],
+    create?: boolean,
+  ) => {
+    const barGroups = selection.selectAll('g').data(values);
+    const barGroupsEnter = barGroups.enter().append('g');
 
-  barGroupsEnter
-    .classed('bar-group', true)
-    .attr(
-      'transform',
-      d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
-    )
-    .on('mouseover', handleMouseOver)
-    .on('mouseout', handleMouseOut);
+    barGroupsEnter
+      .classed('bar-group', true)
+      .on('mouseover', handleMouseOver)
+      .on('mouseout', handleMouseOut)
+      .merge(barGroups)
+      .transition()
+      .duration(500)
+      .attr(
+        'transform',
+        d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
+      );
 
-  barGroupsEnter
-    .append('rect')
-    .classed('cans', true)
-    .attr('width', xScale.bandwidth())
-    .attr('height', d => innerHeight - yScale(cans(d)));
+    if (create) {
+      barGroupsEnter
+        .append('rect')
+        .classed('cans', true)
+        .attr('width', xScale.bandwidth())
+        .attr('height', d => innerHeight - yScale(cans(d)));
 
-  barGroupsEnter
-    .append('rect')
-    .classed('bottles', true)
-    .attr('width', xScale.bandwidth())
-    .attr('height', d => innerHeight - yScale(bottles(d)))
-    .attr('y', d => innerHeight - yScale(cans(d)));
+      barGroupsEnter
+        .append('rect')
+        .classed('bottles', true)
+        .attr('width', xScale.bandwidth())
+        .attr('height', d => innerHeight - yScale(bottles(d)))
+        .attr('y', d => innerHeight - yScale(cans(d)));
+    } else {
+      barGroups
+        .selectAll('rect.cans')
+        .data(values, d => d.date)
+        .transition()
+        .duration(500)
+        .attr('height', d => innerHeight - yScale(cans(d)));
 
-  const lineGenerator = (type: any) =>
-    d3
-      .line<AddData>()
-      .x(d => xScale(xValue(d)) || 0)
-      .y(d => yScale(type(d)))
-      .curve(d3.curveBasis);
+      barGroups
+        .selectAll('rect.bottles')
+        .data(values, d => d.date)
+        .transition()
+        .duration(500)
+        .attr('height', d => innerHeight - yScale(bottles(d)))
+        .attr('y', d => innerHeight - yScale(cans(d)));
+    }
+  };
 
-  lines
-    .append('path')
-    .datum<any>(data)
-    .attr('d', lineGenerator(cans))
-    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-    .classed('line-path line-path--cans', true);
+  renderBars(bars, initialData, true);
 
-  lines
-    .append('path')
-    .datum<any>(data)
-    .attr('d', lineGenerator(bottles))
-    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-    .classed('line-path line-path--bottles', true);
+  const renderLines = (values: AddData[], create?: boolean) => {
+    const lineGenerator = (type: any) =>
+      d3
+        .line<AddData>()
+        .x(d => xScale(xValue(d)) || 0)
+        .y(d => yScale(type(d)))
+        .curve(d3.curveBasis);
 
-  lines
-    .append('path')
-    .datum<any>(data)
-    .attr('d', lineGenerator(total))
-    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-    .classed('line-path line-path--total', true);
+    if (create) {
+      lines
+        .append('path')
+        .datum<any>(values)
+        .attr('d', lineGenerator(cans))
+        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+        .classed('line-path line-path--cans', true);
+
+      lines
+        .append('path')
+        .datum<any>(values)
+        .attr('d', lineGenerator(bottles))
+        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+        .classed('line-path line-path--bottles', true);
+
+      lines
+        .append('path')
+        .datum<any>(values)
+        .attr('d', lineGenerator(total))
+        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+        .classed('line-path line-path--total', true);
+    } else {
+      lines
+        .selectAll('.line-path--cans')
+        .datum<any>(values)
+        .transition()
+        .duration(500)
+        .attr('d', lineGenerator(cans));
+
+      lines
+        .selectAll('.line-path--bottles')
+        .datum<any>(values)
+        .transition()
+        .duration(500)
+        .attr('d', lineGenerator(bottles));
+
+      lines
+        .selectAll('.line-path--total')
+        .datum<any>(values)
+        .transition()
+        .duration(500)
+        .attr('d', lineGenerator(total));
+    }
+  };
+
+  renderLines(initialData, true);
+
+  // const observer = new IntersectionObserver(([entry]) => {
+  //   console.log('entry', entry);
+  // }, {});
+
+  // monthAxisElement.each(function observe() {
+  //   observer.observe(this);
+  // });
+
+  setTimeout(() => {
+    renderBars(bars, data);
+    renderLines(data);
+  }, 2000);
 };
 
 export default createChart;
