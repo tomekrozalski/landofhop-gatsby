@@ -66,7 +66,9 @@ const AddTimeline: React.FC = () => {
       <SectionHeader>
         <FormattedMessage id="stats.addTimeline.name" />
       </SectionHeader>
-      <svg ref={svg} />
+      <div className="time-chart-wrapper">
+        <svg ref={svg} />
+      </div>
     </>
   );
 };

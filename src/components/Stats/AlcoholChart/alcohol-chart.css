@@ -15,3 +15,15 @@
 .alcohol-chart [class^='bar-label'] text {
   fill: var(--color-white);
 }
+
+@media (min-width: 700px) {
+  .alcohol-chart-wrapper {
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .alcohol-chart-wrapper {
+    min-height: 600px;
+  }
+}

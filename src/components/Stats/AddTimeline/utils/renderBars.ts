@@ -10,7 +10,6 @@ type Props = {
   cans: (d: AddData) => number;
   chart: d3.Selection<SVGGElement, unknown, null, undefined>;
   create: boolean;
-  delay: number;
   innerHeight: number;
   innerWidth: number;
   intl: {
@@ -20,6 +19,7 @@ type Props = {
   lines: d3.Selection<SVGGElement, unknown, null, undefined>;
   selection: d3.Selection<SVGGElement, unknown, null, undefined>;
   total: (d: AddData) => number;
+  transitionTime: number;
   values: AddData[];
   xScale: d3.ScaleBand<string>;
   xValue: (d: AddData) => string;
@@ -36,7 +36,6 @@ const renderBars = ({
   bottles,
   cans,
   chart,
-  delay,
   create,
   innerHeight,
   innerWidth,
@@ -44,6 +43,7 @@ const renderBars = ({
   lines,
   selection,
   total,
+  transitionTime,
   values,
   xScale,
   xValue,
@@ -52,7 +52,7 @@ const renderBars = ({
   const handleMouseOver = ({ bottle, can, date }: BarType, i: number) => {
     lines
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .attr('opacity', 0.1);
 
     chart
@@ -79,19 +79,19 @@ const renderBars = ({
         );
       })
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .attr('opacity', 1);
   };
 
   const handleMouseOut = () => {
     lines
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .attr('opacity', 1);
 
     d3.selectAll('text.depiction')
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .attr('opacity', 0)
       .remove();
   };
@@ -105,7 +105,7 @@ const renderBars = ({
     .on('mouseout', handleMouseOut)
     .merge(barGroups)
     .transition()
-    .duration(delay)
+    .duration(transitionTime)
     .ease(d3.easeQuadOut)
     .attr(
       'transform',
@@ -130,7 +130,7 @@ const renderBars = ({
       .selectAll('rect.cans')
       .data(values, d => d.date)
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .ease(d3.easeQuadOut)
       .attr('height', d => innerHeight - yScale(cans(d)));
 
@@ -138,7 +138,7 @@ const renderBars = ({
       .selectAll('rect.bottles')
       .data(values, d => d.date)
       .transition()
-      .duration(delay)
+      .duration(transitionTime)
       .ease(d3.easeQuadOut)
       .attr('height', d => innerHeight - yScale(bottles(d)))
       .attr('y', d => innerHeight - yScale(cans(d)));

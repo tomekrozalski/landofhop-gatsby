@@ -126,26 +126,13 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       cans,
       chart,
       create,
-      delay: 500,
       innerHeight,
       innerWidth,
       intl,
       lines,
       selection: bars,
       total,
-      values,
-      xScale,
-      xValue,
-      yScale,
-    });
-
-    renderLines({
-      bottles,
-      cans,
-      create,
-      delay: 150,
-      selection: lines,
-      total,
+      transitionTime: 500,
       values,
       xScale,
       xValue,
@@ -156,7 +143,19 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const render = ({ init }: { init: boolean }) => {
     if (init) {
       renderBarsWithDelay({ create: true, values: initialData });
+      renderLines({
+        bottles,
+        cans,
+        selection: lines,
+        total,
+        values: data,
+        xScale,
+        xValue,
+        yScale,
+      });
     } else {
+      const time = 1500 / data.length;
+
       data.forEach((_, index) => {
         setTimeout(() => {
           renderBarsWithDelay({
@@ -171,7 +170,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
                   },
             ),
           });
-        }, index * 25);
+        }, index * time);
       });
     }
   };

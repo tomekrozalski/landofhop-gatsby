@@ -5,8 +5,6 @@ import { AddData } from '../types';
 type Props = {
   bottles: (d: AddData) => number;
   cans: (d: AddData) => number;
-  create: boolean;
-  delay: number;
   selection: d3.Selection<SVGGElement, unknown, null, undefined>;
   total: (d: AddData) => number;
   values: AddData[];
@@ -18,8 +16,6 @@ type Props = {
 const renderLines = ({
   bottles,
   cans,
-  create,
-  delay,
   selection,
   total,
   values,
@@ -34,49 +30,55 @@ const renderLines = ({
       .y(d => yScale(type(d)))
       .curve(d3.curveBasis);
 
-  if (create) {
-    selection
-      .append('path')
-      .datum<any>(values)
-      .attr('d', lineGenerator(cans))
-      .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-      .classed('line-path line-path--cans', true);
+  // if (create) {
+  selection
+    .append('path')
+    .datum<any>(values)
+    .attr('d', lineGenerator(cans))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--cans', true);
 
-    selection
-      .append('path')
-      .datum<any>(values)
-      .attr('d', lineGenerator(bottles))
-      .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-      .classed('line-path line-path--bottles', true);
+  selection
+    .append('path')
+    .datum<any>(values)
+    .attr('d', lineGenerator(bottles))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--bottles', true);
 
-    selection
-      .append('path')
-      .datum<any>(values)
-      .attr('d', lineGenerator(total))
-      .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-      .classed('line-path line-path--total', true);
-  } else {
-    selection
-      .selectAll('.line-path--cans')
-      .datum<any>(values)
-      .transition()
-      .duration(delay)
-      .attr('d', lineGenerator(cans));
+  selection
+    .append('path')
+    .datum<any>(values)
+    .attr('d', lineGenerator(total))
+    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+    .classed('line-path line-path--total', true);
+  // } else {
+  //   selection
+  //     .selectAll('.line-path--cans')
+  //     .datum<any>(values)
+  //     .transition()
+  //     .duration(transitionTime)
+  //     .delay(delay)
+  //     .ease(d3.easeQuadOut)
+  //     .attr('d', lineGenerator(cans));
 
-    selection
-      .selectAll('.line-path--bottles')
-      .datum<any>(values)
-      .transition()
-      .duration(delay)
-      .attr('d', lineGenerator(bottles));
+  //   selection
+  //     .selectAll('.line-path--bottles')
+  //     .datum<any>(values)
+  //     .transition()
+  //     .duration(transitionTime)
+  //     .delay(delay)
+  //     .ease(d3.easeQuadOut)
+  //     .attr('d', lineGenerator(bottles));
 
-    selection
-      .selectAll('.line-path--total')
-      .datum<any>(values)
-      .transition()
-      .duration(delay)
-      .attr('d', lineGenerator(total));
-  }
+  //   selection
+  //     .selectAll('.line-path--total')
+  //     .datum<any>(values)
+  //     .transition()
+  //     .duration(transitionTime)
+  //     .delay(delay)
+  //     .ease(d3.easeQuadOut)
+  //     .attr('d', lineGenerator(total));
+  // }
 };
 
 export default renderLines;

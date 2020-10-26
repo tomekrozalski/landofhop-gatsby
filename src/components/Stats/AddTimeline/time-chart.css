@@ -44,3 +44,15 @@
 .time-chart .depiction {
   font: var(--font-weight-regular) 1.5rem / 1 var(--font-primary);
 }
+
+@media (min-width: 700px) {
+  .time-chart-wrapper {
+    min-height: 420px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .time-chart-wrapper {
+    min-height: 670px;
+  }
+}

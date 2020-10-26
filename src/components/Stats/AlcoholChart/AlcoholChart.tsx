@@ -59,7 +59,9 @@ const AlcoholChart: React.FC = () => {
       <SectionHeader>
         <FormattedMessage id="stats.alcohol.name" />
       </SectionHeader>
-      <svg ref={svg} />
+      <div className="alcohol-chart-wrapper">
+        <svg ref={svg} />
+      </div>
     </>
   );
 };
