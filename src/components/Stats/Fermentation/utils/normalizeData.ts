@@ -1,6 +1,6 @@
 import { add, format, isBefore, max, min } from 'date-fns';
 
-import { ContainerType as ContainerTypeEnum } from 'components/BeverageDetails/utils/enums';
+import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 import { FermentationData, RawData } from '../types';
 
 const normalizeData = (values: RawData): FermentationData[] => {
@@ -18,8 +18,9 @@ const normalizeData = (values: RawData): FermentationData[] => {
   do {
     domain.push({
       date: format(current, 'yyyy-MM'),
-      [ContainerTypeEnum.bottle]: 0,
-      [ContainerTypeEnum.can]: 0,
+      [FermentationEnum.top]: 0,
+      [FermentationEnum.bottom]: 0,
+      [FermentationEnum.spontaneous]: 0,
     });
 
     current = add(current, { months: 1 });
@@ -30,7 +31,25 @@ const normalizeData = (values: RawData): FermentationData[] => {
       ({ date }) => date === format(new Date(node.added), 'yyyy-MM'),
     );
 
-    domain[index][node.container.type] += 1;
+    if (!node.fermentation) {
+      return false;
+    }
+
+    const collectedValues = Object.values(node.fermentation)
+      .flat()
+      .filter(value => value);
+
+    if (collectedValues.includes(FermentationEnum.top)) {
+      domain[index][FermentationEnum.top] += 1;
+    }
+
+    if (collectedValues.includes(FermentationEnum.bottom)) {
+      domain[index][FermentationEnum.bottom] += 1;
+    }
+
+    if (collectedValues.includes(FermentationEnum.spontaneous)) {
+      domain[index][FermentationEnum.spontaneous] += 1;
+    }
   });
 
   return domain;

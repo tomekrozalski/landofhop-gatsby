@@ -5,10 +5,10 @@ import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SectionHeader } from 'elements';
 import { FermentationData, Sizes } from './types';
 import {
-  // createChart,
+  createChart,
   // createLegend,
   normalizeData,
-  // setSVGAttributes,
+  setSVGAttributes,
 } from './utils';
 import './fermentation.css';
 
@@ -22,8 +22,10 @@ const Fermentation: React.FC = () => {
         edges {
           node {
             added
-            container {
-              type
+            fermentation {
+              editorial
+              label
+              producer
             }
           }
         }
@@ -56,8 +58,8 @@ const Fermentation: React.FC = () => {
     };
 
     const data: FermentationData[] = normalizeData(rawData);
-    // setSVGAttributes({ sizes, wrapper: svg.current });
-    // createChart({ data, intl, sizes, wrapper: svg.current });
+    setSVGAttributes({ sizes, wrapper: svg.current });
+    createChart({ data, intl, sizes, wrapper: svg.current });
     // createLegend({ data, intl, sizes, wrapper: svg.current });
   }, []);
 
