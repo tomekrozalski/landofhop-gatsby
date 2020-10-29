@@ -6,11 +6,11 @@ import { SectionHeader } from 'elements';
 import { FermentationData, Sizes } from './types';
 import {
   createChart,
-  // createLegend,
+  createLegend,
   normalizeData,
   setSVGAttributes,
 } from './utils';
-import './fermentation.css';
+import './fermentation-chart.css';
 
 const Fermentation: React.FC = () => {
   const intl = useIntl();
@@ -60,7 +60,7 @@ const Fermentation: React.FC = () => {
     const data: FermentationData[] = normalizeData(rawData);
     setSVGAttributes({ sizes, wrapper: svg.current });
     createChart({ data, intl, sizes, wrapper: svg.current });
-    // createLegend({ data, intl, sizes, wrapper: svg.current });
+    createLegend({ data, intl, sizes, wrapper: svg.current });
   }, []);
 
   return (

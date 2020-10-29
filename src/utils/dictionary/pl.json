@@ -382,7 +382,10 @@
       "total": "razem"
     },
     "fermentation": {
-      "name": "Rodzaj fermentacji dodawanych piw w czasie"
+      "bottom": "dolna, lager",
+      "name": "Rodzaj fermentacji dodawanych piw w czasie",
+      "spontaneous": "spontaniczna, piwa dzikie",
+      "top": "górna, ale"
     },
     "name": "Statystyki",
     "topBrands": {

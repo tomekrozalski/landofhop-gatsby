@@ -4,8 +4,7 @@ import { SiteLanguage } from 'utils/enums';
 import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 import { renderTimelineAxis } from '../../utils';
 import { FermentationData, Sizes } from '../types';
-// import renderBars from './renderBars';
-// import renderLines from './renderLines';
+import renderLines from './renderLines';
 
 type Props = {
   data: FermentationData[];
@@ -67,82 +66,56 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     yTicks: (d3.max(data, total) || 100) / 5,
   });
 
-  // const lines = chart.append('g').attr('data-attr', 'lines');
-  // const bars = chart.append('g').attr('data-attr', 'bars');
+  const lines = chart.append('g').attr('data-attr', 'lines');
 
-  // const renderBarsWithDelay = ({
-  //   create,
-  //   values,
-  // }: {
-  //   create: boolean;
-  //   values: AddData[];
-  // }) => {
-  //   renderBars({
-  //     bottles,
-  //     cans,
-  //     chart,
-  //     create,
-  //     innerHeight,
-  //     innerWidth,
-  //     intl,
-  //     lines,
-  //     selection: bars,
-  //     total,
-  //     transitionTime: 500,
-  //     values,
-  //     xScale,
-  //     xValue,
-  //     yScale,
-  //   });
-  // };
+  const renderLinesWithDelay = ({
+    create,
+    values,
+  }: {
+    create: boolean;
+    values: FermentationData[];
+  }) => {
+    renderLines({
+      bottom,
+      create,
+      selection: lines,
+      spontaneous,
+      top,
+      values,
+      xScale,
+      xValue,
+      yScale,
+    });
+  };
 
-  // const render = ({ init }: { init: boolean }) => {
-  //   if (init) {
-  //     renderBarsWithDelay({ create: true, values: initialData });
-  //     renderLines({
-  //       bottles,
-  //       cans,
-  //       selection: lines,
-  //       total,
-  //       values: data,
-  //       xScale,
-  //       xValue,
-  //       yScale,
-  //     });
-  //   } else {
-  //     const time = 1500 / data.length;
+  const render = ({ init }: { init: boolean }) => {
+    if (init) {
+      renderLinesWithDelay({ create: true, values: initialData });
+    } else {
+      const time = 1500 / data.length;
 
-  //     data.forEach((_, index) => {
-  //       setTimeout(() => {
-  //         renderBarsWithDelay({
-  //           create: false,
-  //           values: data.map((props, i) =>
-  //             i <= index
-  //               ? props
-  //               : {
-  //                   date: props.date,
-  //                   bottle: 0,
-  //                   can: 0,
-  //                 },
-  //           ),
-  //         });
-  //       }, index * time);
-  //     });
-  //   }
-  // };
+      data.forEach((_, index) => {
+        setTimeout(() => {
+          renderLinesWithDelay({
+            create: index === 0,
+            values: data.slice(0, index + 1),
+          });
+        }, index * time);
+      });
+    }
+  };
 
-  // render({ init: true });
+  const io = new IntersectionObserver(
+    ([entry], observer) => {
+      if (entry.isIntersecting) {
+        render({ init: false });
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.8 },
+  );
 
-  // const io = new IntersectionObserver(([entry], observer) => {
-  //   if (entry.isIntersecting) {
-  //     render({ init: false });
-  //     observer.disconnect();
-  //   }
-  // }, {});
-
-  // monthAxisElement.each(function observe() {
-  //   io.observe(this);
-  // });
+  io.observe(wrapper);
 };
 
 export default createChart;

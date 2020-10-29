@@ -1,10 +1,10 @@
 import * as d3 from 'd3';
 
 import { SiteLanguage } from 'utils/enums';
-import { AddData, Sizes } from '../types';
+import { FermentationData, Sizes } from '../types';
 
 type Props = {
-  data: AddData[];
+  data: FermentationData[];
   intl: {
     formatMessage: ({ id }: { id: string }) => string;
     locale: SiteLanguage;
@@ -14,9 +14,9 @@ type Props = {
 };
 
 enum Types {
-  total = 'total',
-  bottles = 'bottles',
-  cans = 'cans',
+  top = 'top',
+  bottom = 'bottom',
+  spontaneous = 'spontaneous',
 }
 
 const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
@@ -44,16 +44,11 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('class', name => name);
 
   legendGroups
-    .append('rect')
-    .attr('width', innerHeight)
-    .attr('height', innerHeight)
+    .append('circle')
+    .attr('cx', innerHeight / 2)
+    .attr('cy', innerHeight / 2)
+    .attr('r', innerHeight / 2)
     .attr('class', name => `line-path line-path--${name}`);
-
-  legendGroups
-    .append('rect')
-    .attr('width', innerHeight)
-    .attr('height', innerHeight)
-    .attr('class', name => name);
 
   const legendWidth: any = types.reduce(
     (acc, curr) => ({
@@ -64,22 +59,24 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
   );
 
   function translateLabels() {
-    d3.select('svg.time-chart g.legend g.total').attr(
+    d3.select('svg.fermentation-chart g.legend g.top').attr(
       'transform',
       `translate(${innerWidth -
-        legendWidth.cans -
-        legendWidth.bottles -
-        legendWidth.total}, 0)`,
+        legendWidth.spontaneous -
+        legendWidth.bottom -
+        legendWidth.top}, 0)`,
     );
 
-    d3.select('svg.time-chart g.legend g.bottles').attr(
+    d3.select('svg.fermentation-chart g.legend g.bottom').attr(
       'transform',
-      `translate(${innerWidth - legendWidth.cans - legendWidth.bottles}, 0)`,
+      `translate(${innerWidth -
+        legendWidth.spontaneous -
+        legendWidth.bottom}, 0)`,
     );
 
-    d3.select('svg.time-chart g.legend g.cans').attr(
+    d3.select('svg.fermentation-chart g.legend g.spontaneous').attr(
       'transform',
-      `translate(${innerWidth - legendWidth.cans}, 0)`,
+      `translate(${innerWidth - legendWidth.spontaneous}, 0)`,
     );
   }
 
@@ -92,12 +89,12 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
 
   const getSum = (name: Types) => {
     switch (name) {
-      case Types.total:
-        return data.reduce((acc, { bottle, can }) => acc + bottle + can, 0);
-      case Types.bottles:
-        return data.reduce((acc, { bottle }) => acc + bottle, 0);
-      case Types.cans:
-        return data.reduce((acc, { can }) => acc + can, 0);
+      case Types.top:
+        return data.reduce((acc, { top }) => acc + top, 0);
+      case Types.bottom:
+        return data.reduce((acc, { bottom }) => acc + bottom, 0);
+      case Types.spontaneous:
+        return data.reduce((acc, { spontaneous }) => acc + spontaneous, 0);
       default:
         return 0;
     }
@@ -109,7 +106,7 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('y', innerHeight / 2 - 8)
     .attr('dominant-baseline', 'middle')
     .classed('label', true)
-    .text(name => intl.formatMessage({ id: `stats.addTimeline.${name}` }))
+    .text(name => intl.formatMessage({ id: `stats.fermentation.${name}` }))
     .each(getTextWidth);
 
   legendGroups
@@ -117,7 +114,6 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('x', 50)
     .attr('y', innerHeight / 2 + 8)
     .attr('dominant-baseline', 'middle')
-    .classed('asdf', true)
     .text(getSum);
 };
 
