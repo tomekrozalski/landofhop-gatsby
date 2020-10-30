@@ -5,6 +5,7 @@ import { pl } from 'date-fns/locale';
 import { SiteLanguage } from 'utils/enums';
 import { AddData } from '../AddTimeline/types';
 import { FermentationData } from '../Fermentation/types';
+import { TopBrandsData } from '../TopBrands/types';
 
 type Props = {
   chart: d3.Selection<SVGGElement, unknown, null, undefined>;
@@ -14,7 +15,7 @@ type Props = {
     formatMessage: ({ id }: { id: string }, values?: any) => string;
     locale: SiteLanguage;
   };
-  values: AddData[] | FermentationData[];
+  values: AddData[] | FermentationData[] | TopBrandsData[];
   xScale: d3.ScaleBand<string>;
   yScale: d3.ScaleLinear<number, number>;
   yTicks: number;

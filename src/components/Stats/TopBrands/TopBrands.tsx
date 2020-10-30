@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { SectionHeader } from 'elements';
 import { Sizes, TopBrandsData } from './types';
 import { createChart, normalizeData, setSVGAttributes } from './utils';
-import './top-brands.css';
+import './top-brands-chart.css';
 
 const TopBrands: React.FC = () => {
   const intl = useIntl();
@@ -16,6 +16,7 @@ const TopBrands: React.FC = () => {
       allBeverage {
         edges {
           node {
+            added
             brand {
               id
               name {
@@ -41,7 +42,7 @@ const TopBrands: React.FC = () => {
       },
     };
 
-    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 20 });
+    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 2 });
     setSVGAttributes({ sizes, wrapper: svg.current });
     createChart({ data, intl, sizes, wrapper: svg.current });
   }, []);

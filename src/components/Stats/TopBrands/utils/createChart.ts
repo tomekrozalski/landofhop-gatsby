@@ -1,11 +1,16 @@
 import * as d3 from 'd3';
-import { IntlShape } from 'react-intl';
 
-import { Sizes, TopBrandsData } from '../types';
+import { SiteLanguage } from 'utils/enums';
+import { renderTimelineAxis } from '../../utils';
+import { TopBrandsData, Sizes } from '../types';
+import renderLines from './renderLines';
 
 type Props = {
   data: TopBrandsData[];
-  intl: IntlShape;
+  intl: {
+    formatMessage: ({ id }: { id: string }, values?: any) => string;
+    locale: SiteLanguage;
+  };
   sizes: Sizes;
   wrapper: SVGSVGElement;
 };
@@ -19,12 +24,8 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
 
   console.log('data', data);
 
-  svg
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .classed('chart alcohol-chart', true);
-
-  const xValue = (d: TopBrandsData) => d.amount.toString();
-  const yValue = (d: TopBrandsData) => d.amount;
+  const xValue = (d: TopBrandsData) => d.date;
+  // const brand = (d: TopBrandsData) => d.brands.find(({id}) => id);
 
   const xScale = d3
     .scaleBand()
@@ -32,78 +33,80 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .range([0, innerWidth])
     .padding(0.1);
 
+  const highestValue = Math.max(
+    ...data[data.length - 1].brands.map(({ amount }) => amount),
+  );
+
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, yValue) || 10 + 3])
+    .domain([0, highestValue + 3])
     .range([innerHeight, 0]);
 
   const chart = svg
     .append('g')
+    .attr('data-attr', 'chart')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  const axis = chart.append('g').attr('data-attr', 'axis');
+  renderTimelineAxis({
+    chart,
+    innerHeight,
+    innerWidth,
+    intl,
+    values: data,
+    xScale,
+    yScale,
+    yTicks: highestValue / 5,
+  });
 
-  const xAxis = d3
-    .axisBottom(xScale)
-    .tickSizeOuter(0)
-    .tickValues(xScale.domain().filter(d => !(+d % 1)))
-    .tickFormat(d => `${d}%`);
+  const lines = chart.append('g').attr('data-attr', 'lines');
 
-  const xAxisGroup = axis
-    .append('g')
-    .call(xAxis)
-    .attr('transform', `translate(0, ${innerHeight})`);
+  const renderLinesWithDelay = ({
+    create,
+    values,
+  }: {
+    create: boolean;
+    values: TopBrandsData[];
+  }) => {
+    renderLines({
+      create,
+      selection: lines,
+      values,
+      xScale,
+      xValue,
+      yScale,
+    });
+  };
 
-  xAxisGroup
-    .append('text')
-    .attr('x', innerWidth)
-    .attr('y', 40)
-    .attr('text-anchor', 'end')
-    .classed('label', true)
-    .text(intl.formatMessage({ id: 'global.alcohol' }));
+  const render = ({ init }: { init: boolean }) => {
+    if (init) {
+      renderLinesWithDelay({ create: true, values: data });
+    } else {
+      const time = 1500 / data.length;
 
-  const yAxis = d3
-    .axisLeft(yScale)
-    .ticks((d3.max(data, yValue) || 100) / 5)
-    .tickSize(-innerWidth);
+      data.forEach((_, index) => {
+        setTimeout(() => {
+          renderLinesWithDelay({
+            create: index === 0,
+            values: data.slice(0, index + 1),
+          });
+        }, index * time);
+      });
+    }
+  };
 
-  const yAxisGroup = axis
-    .append('g')
-    .classed('y-axis-group', true)
-    .call(yAxis);
+  render({ init: true });
 
-  yAxisGroup.select('.domain').remove();
+  // const io = new IntersectionObserver(
+  //   ([entry], observer) => {
+  //     if (entry.isIntersecting) {
+  //       render({ init: false });
+  //       observer.disconnect();
+  //     }
+  //   },
+  //   { threshold: 0.8 },
+  // );
 
-  yAxisGroup
-    .selectAll('.tick')
-    .select('text')
-    .attr('dy', -5);
-
-  yAxisGroup
-    .append('text')
-    .attr('x', 0)
-    .attr('y', -25)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'end')
-    .classed('label', true)
-    .text(intl.formatMessage({ id: 'global.numberOfBeverages' }));
-
-  const barsGroup = chart.append('g').attr('data-attr', 'bars');
-
-  barsGroup
-    .selectAll('.bar')
-    .data(data)
-    .enter()
-    .append('rect')
-    .classed('bar', true)
-    .attr('width', xScale.bandwidth())
-    .attr('height', 0)
-    .attr('x', d => xScale(xValue(d)) || '')
-    .attr('y', innerHeight)
-    .transition()
-    .duration(1000)
-    .attr('height', d => innerHeight - yScale(yValue(d)))
-    .attr('y', d => yScale(yValue(d)));
+  // io.observe(wrapper);
 };
 
 export default createChart;

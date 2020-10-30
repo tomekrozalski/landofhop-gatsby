@@ -1,8 +1,11 @@
 export type TopBrandsData = {
-  amount: number;
-  id: string;
-  name: {
-    language?: string;
-    value: string;
-  };
+  date: string;
+  brands: {
+    amount: number;
+    id: string;
+    name: {
+      language?: string;
+      value: string;
+    }[];
+  }[];
 };
