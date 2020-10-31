@@ -1,4 +1,4 @@
 export type LanguageValue = {
-  language: string | null;
+  language?: string | null;
   value: string;
 };

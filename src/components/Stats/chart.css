@@ -10,3 +10,7 @@
 .chart .y-axis-group .tick:not(:first-of-type) line {
   stroke: var(--color-brighter);
 }
+
+.chart .line-path {
+  stroke-linecap: round;
+}

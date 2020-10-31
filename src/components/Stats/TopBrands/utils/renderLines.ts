@@ -19,59 +19,37 @@ const renderLines = ({
   xValue,
   yScale,
 }: Props) => {
-  const lineGenerator = (type: any) => {
-    console.log('type', type);
-
-    return d3
+  const lineGenerator = (value: string) =>
+    d3
       .line<TopBrandsData>()
       .x(d => xScale(xValue(d)) || 0)
-      .y(d => yScale(type(d)))
+      .y(d => yScale(d.brands.find(({ id }) => id === value)!.amount))
       .curve(d3.curveBasis);
-  };
 
-  console.log('renderLines values', values);
+  if (create) {
+    values[0].brands.forEach(({ id }) => {
+      selection
+        .append('path')
+        .datum<any>(values)
+        .classed('line-path', true)
+        .attr('d', lineGenerator(id))
+        .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`);
+    });
+  } else {
+    values[0].brands.forEach(({ id }, i) => {
+      const path = selection
+        .selectAll(`.line-path:nth-child(${i + 1})`)
+        .datum<any>(values)
+        .transition()
+        .duration(1500)
+        .ease(d3.easeSin)
+        .attr('d', lineGenerator(id));
 
-  // if (create) {
-
-  selection
-    .append('path')
-    .datum<any>(values)
-    .attr(
-      'd',
-      lineGenerator((d: TopBrandsData) => {
-        console.log('d', d);
-        return d.brands.find(({ id }) => id === '5cd71cda9f37434eb28b03ee')!
-          .amount;
-      }),
-    )
-    .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
-    .classed('line-path', true);
-
-  // } else {
-  //   selection
-  //     .selectAll('.line-path--top')
-  //     .datum<any>(values)
-  //     .transition()
-  //     .duration(500)
-  //     .ease(d3.easeQuadOut)
-  //     .attr('d', lineGenerator(top));
-
-  //   selection
-  //     .selectAll('.line-path--bottom')
-  //     .datum<any>(values)
-  //     .transition()
-  //     .duration(500)
-  //     .ease(d3.easeQuadOut)
-  //     .attr('d', lineGenerator(bottom));
-
-  //   selection
-  //     .selectAll('.line-path--spontaneous')
-  //     .datum<any>(values)
-  //     .transition()
-  //     .duration(500)
-  //     .ease(d3.easeQuadOut)
-  //     .attr('d', lineGenerator(spontaneous));
-  // }
+      // const pathLength = path.node().getTotalLength();
+      // path.attr('stroke-dashoffset', pathLength).attr('stroke-dasharray', pathLength);
+      // console.log('pathLength', pathLength);
+    });
+  }
 };
 
 export default renderLines;

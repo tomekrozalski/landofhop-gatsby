@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 
 import { SiteLanguage } from 'utils/enums';
+import { getValueByLanguage } from 'utils/helpers';
 import { renderTimelineAxis } from '../../utils';
 import { TopBrandsData, Sizes } from '../types';
 import renderLines from './renderLines';
@@ -22,10 +23,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  console.log('data', data);
-
   const xValue = (d: TopBrandsData) => d.date;
-  // const brand = (d: TopBrandsData) => d.brands.find(({id}) => id);
 
   const xScale = d3
     .scaleBand()
@@ -58,55 +56,47 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     yTicks: highestValue / 5,
   });
 
+  const labels = chart.append('g').attr('data-attr', 'labels');
+
+  data[data.length - 1].brands.forEach(({ amount, name }) => {
+    labels
+      .append('text')
+      .attr('x', innerWidth)
+      .attr('y', yScale(amount))
+      .attr('dominant-baseline', 'middle')
+      .text(getValueByLanguage(name, intl.locale).value);
+  });
+
   const lines = chart.append('g').attr('data-attr', 'lines');
 
-  const renderLinesWithDelay = ({
-    create,
-    values,
-  }: {
-    create: boolean;
-    values: TopBrandsData[];
-  }) => {
-    renderLines({
-      create,
-      selection: lines,
-      values,
-      xScale,
-      xValue,
-      yScale,
+  const render = () => {
+    const time = 10000 / data.length;
+
+    data.forEach((_, index) => {
+      setTimeout(() => {
+        renderLines({
+          create: index === 0,
+          selection: lines,
+          values: data.slice(0, index + 1),
+          xScale,
+          xValue,
+          yScale,
+        });
+      }, index * time);
     });
   };
 
-  const render = ({ init }: { init: boolean }) => {
-    if (init) {
-      renderLinesWithDelay({ create: true, values: data });
-    } else {
-      const time = 1500 / data.length;
+  const io = new IntersectionObserver(
+    ([entry], observer) => {
+      if (entry.isIntersecting) {
+        render();
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.8 },
+  );
 
-      data.forEach((_, index) => {
-        setTimeout(() => {
-          renderLinesWithDelay({
-            create: index === 0,
-            values: data.slice(0, index + 1),
-          });
-        }, index * time);
-      });
-    }
-  };
-
-  render({ init: true });
-
-  // const io = new IntersectionObserver(
-  //   ([entry], observer) => {
-  //     if (entry.isIntersecting) {
-  //       render({ init: false });
-  //       observer.disconnect();
-  //     }
-  //   },
-  //   { threshold: 0.8 },
-  // );
-
-  // io.observe(wrapper);
+  io.observe(wrapper);
 };
 
 export default createChart;

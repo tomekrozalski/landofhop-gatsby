@@ -36,13 +36,13 @@ const TopBrands: React.FC = () => {
       height: 600,
       margin: {
         top: 40,
-        right: 40,
+        right: 140,
         bottom: 40,
         left: 40,
       },
     };
 
-    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 2 });
+    const data: TopBrandsData[] = normalizeData({ values: rawData, limit: 10 });
     setSVGAttributes({ sizes, wrapper: svg.current });
     createChart({ data, intl, sizes, wrapper: svg.current });
   }, []);

@@ -23,13 +23,6 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  const initialData = data.map(({ date }) => ({
-    date,
-    [FermentationEnum.top]: 0,
-    [FermentationEnum.bottom]: 0,
-    [FermentationEnum.spontaneous]: 0,
-  }));
-
   const xValue = (d: FermentationData) => d.date;
   const top = (d: FermentationData) => d[FermentationEnum.top];
   const bottom = (d: FermentationData) => d[FermentationEnum.bottom];
@@ -68,47 +61,30 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
 
   const lines = chart.append('g').attr('data-attr', 'lines');
 
-  const renderLinesWithDelay = ({
-    create,
-    values,
-  }: {
-    create: boolean;
-    values: FermentationData[];
-  }) => {
-    renderLines({
-      bottom,
-      create,
-      selection: lines,
-      spontaneous,
-      top,
-      values,
-      xScale,
-      xValue,
-      yScale,
+  const render = () => {
+    const time = 1500 / data.length;
+
+    data.forEach((_, index) => {
+      setTimeout(() => {
+        renderLines({
+          bottom,
+          create: index === 0,
+          selection: lines,
+          spontaneous,
+          top,
+          values: data.slice(0, index + 1),
+          xScale,
+          xValue,
+          yScale,
+        });
+      }, index * time);
     });
-  };
-
-  const render = ({ init }: { init: boolean }) => {
-    if (init) {
-      renderLinesWithDelay({ create: true, values: initialData });
-    } else {
-      const time = 1500 / data.length;
-
-      data.forEach((_, index) => {
-        setTimeout(() => {
-          renderLinesWithDelay({
-            create: index === 0,
-            values: data.slice(0, index + 1),
-          });
-        }, index * time);
-      });
-    }
   };
 
   const io = new IntersectionObserver(
     ([entry], observer) => {
       if (entry.isIntersecting) {
-        render({ init: false });
+        render();
         observer.disconnect();
       }
     },
