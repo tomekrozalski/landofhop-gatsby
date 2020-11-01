@@ -1,44 +1,51 @@
-.top-brands-chart .line-path {
-  fill: none;
-  stroke-width: 5;
-}
-
 .top-brands-chart .line-path:nth-child(1) {
-  stroke: #f94144;
+  stroke: var(--chart-color-one);
 }
 
 .top-brands-chart .line-path:nth-child(2) {
-  stroke: #f3722c;
+  stroke: var(--chart-color-two);
 }
 
 .top-brands-chart .line-path:nth-child(3) {
-  stroke: #f8961e;
+  stroke: var(--chart-color-three);
 }
 
 .top-brands-chart .line-path:nth-child(4) {
-  stroke: #f9844a;
+  stroke: var(--chart-color-four);
 }
 
 .top-brands-chart .line-path:nth-child(5) {
-  stroke: #f9c74f;
+  stroke: var(--chart-color-five);
 }
 
 .top-brands-chart .line-path:nth-child(6) {
-  stroke: #90be6d;
+  stroke: var(--chart-color-six);
 }
 
 .top-brands-chart .line-path:nth-child(7) {
-  stroke: #43aa8b;
+  stroke: var(--chart-color-seven);
 }
 
 .top-brands-chart .line-path:nth-child(8) {
-  stroke: #4d908e;
+  stroke: var(--chart-color-eight);
 }
 
 .top-brands-chart .line-path:nth-child(9) {
-  stroke: #577590;
+  stroke: var(--chart-color-nine);
 }
 
 .top-brands-chart .line-path:nth-child(10) {
-  stroke: #277da1;
+  stroke: var(--chart-color-ten);
+}
+
+@media (min-width: 700px) {
+  .top-brands-wrapper {
+    min-height: 370px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .top-brands-wrapper {
+    min-height: 600px;
+  }
 }

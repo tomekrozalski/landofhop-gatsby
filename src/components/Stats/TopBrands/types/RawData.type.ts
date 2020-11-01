@@ -5,10 +5,11 @@ export type RawData = {
         added: Date;
         brand: {
           id: string;
+          badge: string;
           name: {
             language?: string;
             value: string;
-          };
+          }[];
         };
       };
     }[];

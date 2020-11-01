@@ -19,6 +19,7 @@ const TopBrands: React.FC = () => {
             added
             brand {
               id
+              badge
               name {
                 language
                 value
@@ -52,7 +53,9 @@ const TopBrands: React.FC = () => {
       <SectionHeader>
         <FormattedMessage id="stats.topBrands.name" />
       </SectionHeader>
-      <svg ref={svg} />
+      <div className="top-brands-wrapper">
+        <svg ref={svg} />
+      </div>
     </>
   );
 };

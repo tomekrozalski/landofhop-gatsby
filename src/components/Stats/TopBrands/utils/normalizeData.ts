@@ -11,21 +11,24 @@ const getTopBrands = ({ limit, values }: Props) => {
   type AccType = {
     [name: string]: {
       amount: number;
+      badge: string;
       id: string;
-      name: any;
+      name: {
+        language?: string;
+        value: string;
+      }[];
     };
   };
 
   const accumulator = values.allBeverage.edges.reduce(
     (acc: AccType, { node }) => {
-      const { id, name } = node.brand;
+      const { brand } = node;
 
       return {
         ...acc,
-        [id]: {
-          amount: acc[id] ? acc[id].amount + 1 : 1,
-          id,
-          name,
+        [brand.id]: {
+          ...brand,
+          amount: acc[brand.id] ? acc[brand.id].amount + 1 : 1,
         },
       };
     },

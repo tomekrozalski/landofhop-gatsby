@@ -1,3 +1,16 @@
+.chart {
+  --chart-color-one: #f94144;
+  --chart-color-two: #f3722c;
+  --chart-color-three: #f8961e;
+  --chart-color-four: #f9844a;
+  --chart-color-five: #f9c74f;
+  --chart-color-six: #90be6d;
+  --chart-color-seven: #43aa8b;
+  --chart-color-eight: #4d908e;
+  --chart-color-nine: #577590;
+  --chart-color-ten: #277da1;
+}
+
 .chart text {
   font: var(--font-weight-light) 1.2rem / 1 var(--font-primary);
 }
@@ -5,6 +18,8 @@
 .chart .label {
   fill: var(--color-black);
   font: var(--font-weight-regular) 1.5rem / 1 var(--font-primary);
+  cursor: pointer;
+  transition: opacity var(--transition-default);
 }
 
 .chart .y-axis-group .tick:not(:first-of-type) line {
@@ -12,5 +27,13 @@
 }
 
 .chart .line-path {
+  fill: none;
+  stroke-width: 5;
   stroke-linecap: round;
+  cursor: pointer;
+  transition: opacity var(--transition-default);
+}
+
+.chart .fade-out {
+  opacity: 0.2;
 }
