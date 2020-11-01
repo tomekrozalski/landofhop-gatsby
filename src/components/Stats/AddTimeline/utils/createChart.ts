@@ -4,7 +4,6 @@ import { SiteLanguage } from 'utils/enums';
 import { renderTimelineAxis } from '../../utils';
 import { AddData, Sizes } from '../types';
 import renderBars from './renderBars';
-import renderLines from './renderLines';
 
 type Props = {
   data: AddData[];
@@ -23,16 +22,9 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  const initialData = data.map(({ date }) => ({
-    date,
-    can: 0,
-    bottle: 0,
-  }));
+  // Define horizontal scale
 
   const xValue = (d: AddData) => d.date;
-  const bottles = (d: AddData) => d.bottle;
-  const cans = (d: AddData) => d.can;
-  const total = (d: AddData) => d.bottle + d.can;
 
   const xScale = d3
     .scaleBand()
@@ -40,10 +32,18 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .range([0, innerWidth])
     .padding(0.1);
 
+  // Define vertical scale
+
+  const bottles = (d: AddData) => d.bottle;
+  const cans = (d: AddData) => d.can;
+  const total = (d: AddData) => d.bottle + d.can;
+
   const yScale = d3
     .scaleLinear()
     .domain([0, (d3.max(data, total) || 0) + 3])
     .range([innerHeight, 0]);
+
+  // Translate the chart and add axis
 
   const chart = svg
     .append('g')
@@ -61,76 +61,104 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     yTicks: (d3.max(data, total) || 100) / 5,
   });
 
+  // ----------------------------------------------------
+  // behaviour on mouse cursor over
+
+  function handleMouseOver(this: SVGPathElement | SVGTextElement) {
+    const badge = this.classList[1];
+    function isNotCurrent(this: any) {
+      return !this.classList.contains(badge);
+    }
+    d3.selectAll('.time-chart .line-path').classed('fade-out', isNotCurrent);
+    d3.selectAll('.time-chart .legend > g').classed('fade-out', isNotCurrent);
+  }
+
+  function handleMouseOut() {
+    d3.selectAll('.time-chart .fade-out').classed('fade-out', false);
+  }
+
+  // ----------------------------------------------------
+  // Add hidden lines
+
   const lines = chart.append('g').attr('data-attr', 'lines');
+
+  const lineGenerator = (type: any) =>
+    d3
+      .line<AddData>()
+      .x(d => xScale(xValue(d)) || 0)
+      .y(d => yScale(type(d)))
+      .curve(d3.curveBasis);
+
+  function getTotalLength(this: SVGPathElement) {
+    return this.getTotalLength();
+  }
+
+  [cans, bottles, total].forEach(type => {
+    lines
+      .append('path')
+      .datum<any>(data)
+      .classed(`line-path ${type.name}`, true)
+      .attr('d', lineGenerator(type))
+      .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+      .attr('stroke-dashoffset', getTotalLength)
+      .attr('stroke-dasharray', getTotalLength)
+      .on('mouseover', handleMouseOver)
+      .on('mouseout', handleMouseOut);
+  });
+
   const bars = chart.append('g').attr('data-attr', 'bars');
 
-  const renderBarsWithDelay = ({
-    create,
-    values,
-  }: {
-    create: boolean;
-    values: AddData[];
-  }) => {
-    renderBars({
-      bottles,
-      cans,
-      chart,
-      create,
-      innerHeight,
-      innerWidth,
-      intl,
-      lines,
-      selection: bars,
-      total,
-      transitionTime: 250,
-      values,
-      xScale,
-      xValue,
-      yScale,
-    });
-  };
+  const reveal = () => {
+    [cans, bottles, total].forEach(type => {
+      const duration = 1500;
+      const time = duration / data.length;
 
-  const render = ({ init }: { init: boolean }) => {
-    if (init) {
-      renderBarsWithDelay({ create: true, values: initialData });
-      renderLines({
-        bottles,
-        cans,
-        selection: lines,
-        total,
-        values: data,
-        xScale,
-        xValue,
-        yScale,
-      });
-    } else {
-      const time = 500 / data.length;
+      lines
+        .select(`.line-path.${type.name}`)
+        .transition()
+        .duration(duration)
+        .delay(1000)
+        .ease(d3.easeSin)
+        .attr('stroke-dashoffset', 0);
 
       data.forEach((_, index) => {
         setTimeout(() => {
-          renderBarsWithDelay({
-            create: false,
-            values: data.map((props, i) =>
-              i <= index
-                ? props
-                : {
-                    date: props.date,
-                    bottle: 0,
-                    can: 0,
-                  },
-            ),
-          });
-        }, index * time);
-      });
-    }
-  };
+          renderBars({
+            bottles,
+            cans,
+            chart,
+            create: index === 0,
+            innerHeight,
+            innerWidth,
+            intl,
+            lines,
+            selection: bars,
+            total,
+            transitionTime: 11250,
+            values: data.map((props, i) => {
+              if (i <= index) {
+                return props;
+              }
 
-  render({ init: true });
+              return {
+                ...props,
+                can: 1,
+                bottle: 1,
+              };
+            }),
+            xScale,
+            xValue,
+            yScale,
+          });
+        }, 500 * (index + 1));
+      });
+    });
+  };
 
   const io = new IntersectionObserver(
     ([entry], observer) => {
       if (entry.isIntersecting) {
-        render({ init: false });
+        reveal();
         observer.disconnect();
       }
     },

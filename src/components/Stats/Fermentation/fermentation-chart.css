@@ -1,16 +1,23 @@
-.fermentation-chart .line-path {
-  fill: none;
-  stroke-width: 5;
+.fermentation-chart .line-path.top {
+  stroke: var(--chart-color-five);
 }
 
-.fermentation-chart .line-path--top {
-  stroke: #e3ba22;
+.fermentation-chart .line-path.bottom {
+  stroke: var(--chart-color-ten);
 }
 
-.fermentation-chart .line-path--bottom {
-  stroke: #2a5be6;
+.fermentation-chart .line-path.spontaneous {
+  stroke: var(--chart-color-two);
 }
 
-.fermentation-chart .line-path--spontaneous {
-  stroke: #e6842a;
+@media (min-width: 700px) {
+  .fermentation-chart-wrapper {
+    min-height: 345px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .fermentation-chart-wrapper {
+    min-height: 570px;
+  }
 }

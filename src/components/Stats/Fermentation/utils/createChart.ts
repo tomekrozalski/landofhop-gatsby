@@ -4,7 +4,6 @@ import { SiteLanguage } from 'utils/enums';
 import { Fermentation as FermentationEnum } from 'components/BeverageDetails/utils/enums';
 import { renderTimelineAxis } from '../../utils';
 import { FermentationData, Sizes } from '../types';
-import renderLines from './renderLines';
 
 type Props = {
   data: FermentationData[];
@@ -23,7 +22,18 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
+  // Define horizontal scale
+
   const xValue = (d: FermentationData) => d.date;
+
+  const xScale = d3
+    .scaleBand()
+    .domain(data.map(xValue))
+    .range([0, innerWidth])
+    .padding(0.1);
+
+  // Define vertical scale
+
   const top = (d: FermentationData) => d[FermentationEnum.top];
   const bottom = (d: FermentationData) => d[FermentationEnum.bottom];
   const spontaneous = (d: FermentationData) => d[FermentationEnum.spontaneous];
@@ -32,16 +42,12 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     d[FermentationEnum.bottom] +
     d[FermentationEnum.spontaneous];
 
-  const xScale = d3
-    .scaleBand()
-    .domain(data.map(xValue))
-    .range([0, innerWidth])
-    .padding(0.1);
-
   const yScale = d3
     .scaleLinear()
     .domain([0, (d3.max(data, total) || 0) + 3])
     .range([innerHeight, 0]);
+
+  // Translate the chart and add axis
 
   const chart = svg
     .append('g')
@@ -59,32 +65,70 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     yTicks: (d3.max(data, total) || 100) / 5,
   });
 
+  // ----------------------------------------------------
+  // behaviour on mouse cursor over
+
+  function handleMouseOver(this: SVGPathElement | SVGTextElement) {
+    const badge = this.classList[1];
+    function isNotCurrent(this: any) {
+      return this.classList[1] !== badge;
+    }
+    d3.selectAll('.fermentation-chart .line-path').classed(
+      'fade-out',
+      isNotCurrent,
+    );
+  }
+
+  function handleMouseOut() {
+    d3.selectAll('.fermentation-chart .fade-out').classed('fade-out', false);
+  }
+
+  // ----------------------------------------------------
+  // Add hidden lines
+
   const lines = chart.append('g').attr('data-attr', 'lines');
 
-  const render = () => {
-    const time = 1500 / data.length;
+  const lineGenerator = (type: any) =>
+    d3
+      .line<FermentationData>()
+      .x(d => xScale(xValue(d)) || 0)
+      .y(d => yScale(type(d)))
+      .curve(d3.curveBasis);
 
-    data.forEach((_, index) => {
-      setTimeout(() => {
-        renderLines({
-          bottom,
-          create: index === 0,
-          selection: lines,
-          spontaneous,
-          top,
-          values: data.slice(0, index + 1),
-          xScale,
-          xValue,
-          yScale,
-        });
-      }, index * time);
+  function getTotalLength(this: SVGPathElement) {
+    return this.getTotalLength();
+  }
+
+  [top, bottom, spontaneous].forEach(type => {
+    lines
+      .append('path')
+      .datum<any>(data)
+      .classed(`line-path ${type.name}`, true)
+      .attr('d', lineGenerator(type))
+      .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
+      .attr('stroke-dashoffset', getTotalLength)
+      .attr('stroke-dasharray', getTotalLength)
+      .on('mouseover', handleMouseOver)
+      .on('mouseout', handleMouseOut);
+  });
+
+  // Reveal lines and label when the chart is visible
+
+  const reveal = () => {
+    [top, bottom, spontaneous].forEach(type => {
+      lines
+        .select(`.line-path.${type.name}`)
+        .transition()
+        .duration(1500)
+        .ease(d3.easeSin)
+        .attr('stroke-dashoffset', 0);
     });
   };
 
   const io = new IntersectionObserver(
     ([entry], observer) => {
       if (entry.isIntersecting) {
-        render();
+        reveal();
         observer.disconnect();
       }
     },

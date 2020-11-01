@@ -13,28 +13,23 @@
 }
 
 .time-chart rect.bottles {
-  fill: #e3ba22;
+  fill: var(--chart-color-six);
 }
 
 .time-chart rect.cans {
-  fill: #e6842a;
+  fill: var(--chart-color-two);
 }
 
-.time-chart .line-path {
-  fill: none;
-  stroke-width: 5;
+.time-chart .line-path.total {
+  stroke: var(--chart-color-ten);
 }
 
-.time-chart .line-path--total {
-  stroke: var(--color-black);
+.time-chart .line-path.bottles {
+  stroke: var(--chart-color-six);
 }
 
-.time-chart .line-path--bottles {
-  stroke: #e3ba22;
-}
-
-.time-chart .line-path--cans {
-  stroke: #e6842a;
+.time-chart .line-path.cans {
+  stroke: var(--chart-color-two);
 }
 
 .time-chart .legend .label {

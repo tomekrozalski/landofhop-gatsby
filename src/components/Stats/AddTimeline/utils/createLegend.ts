@@ -47,7 +47,7 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .append('rect')
     .attr('width', innerHeight)
     .attr('height', innerHeight)
-    .attr('class', name => `line-path line-path--${name}`);
+    .attr('class', name => `line-path ${name}`);
 
   legendGroups
     .append('rect')
@@ -117,7 +117,6 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('x', 50)
     .attr('y', innerHeight / 2 + 8)
     .attr('dominant-baseline', 'middle')
-    .classed('asdf', true)
     .text(getSum);
 };
 

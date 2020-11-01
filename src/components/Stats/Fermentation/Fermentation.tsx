@@ -37,7 +37,7 @@ const Fermentation: React.FC = () => {
     const sizes: Sizes = {
       chart: {
         width: 1160,
-        height: 600,
+        height: 500,
         margin: {
           top: 40,
           right: 40,
@@ -68,7 +68,9 @@ const Fermentation: React.FC = () => {
       <SectionHeader>
         <FormattedMessage id="stats.fermentation.name" />
       </SectionHeader>
-      <svg ref={svg} />
+      <div className="fermentation-chart-wrapper">
+        <svg ref={svg} />
+      </div>
     </>
   );
 };

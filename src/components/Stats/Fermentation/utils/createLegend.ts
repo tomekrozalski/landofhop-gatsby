@@ -48,9 +48,11 @@ const createLegend = ({ data, intl, sizes, wrapper }: Props) => {
     .attr('cx', innerHeight / 2)
     .attr('cy', innerHeight / 2)
     .attr('r', innerHeight / 2)
-    .attr('class', name => `line-path line-path--${name}`);
+    .attr('class', name => `line-path ${name}`);
 
-  const legendWidth: any = types.reduce(
+  const legendWidth: {
+    [name: string]: number;
+  } = types.reduce(
     (acc, curr) => ({
       ...acc,
       [curr]: 0,

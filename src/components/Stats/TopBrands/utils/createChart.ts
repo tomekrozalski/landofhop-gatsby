@@ -43,6 +43,8 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     .domain([0, highestValue + 3])
     .range([innerHeight, 0]);
 
+  // Translate the chart and add axis
+
   const chart = svg
     .append('g')
     .attr('data-attr', 'chart')
@@ -119,7 +121,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     lines
       .append('path')
       .datum<any>(data)
-      .attr('class', `line-path ${badge}`)
+      .classed(`line-path ${badge}`, true)
       .attr('d', lineGenerator(id))
       .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
       .attr('stroke-dashoffset', getTotalLength)

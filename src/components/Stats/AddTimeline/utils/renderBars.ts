@@ -50,69 +50,63 @@ const renderBars = ({
   yScale,
 }: Props) => {
   const handleMouseOver = ({ bottle, can, date }: BarType, i: number) => {
-    lines
-      .transition()
-      .duration(transitionTime)
-      .attr('opacity', 0.1);
-
-    chart
-      .append('text')
-      .classed(`depiction depiction-${i}`, true)
-      .attr('opacity', 0)
-      .text(
-        intl.formatMessage(
-          { id: 'stats.addTimeline.depiction' },
-          {
-            bottle,
-            can,
-            date:
-              intl.locale === SiteLanguage.pl
-                ? format(new Date(date), 'LLLL yyyy', { locale: pl })
-                : format(new Date(date), 'MMMM yyyy'),
-          },
-        ),
-      )
-      .each(function center(this: SVGTextElement) {
-        d3.select(this).attr(
-          'transform',
-          `translate(${innerWidth / 2 - this.getBBox().width / 2}, 25)`,
-        );
-      })
-      .transition()
-      .duration(transitionTime)
-      .attr('opacity', 1);
+    // lines
+    //   .transition()
+    //   .duration(transitionTime)
+    //   .attr('opacity', 0.1);
+    // chart
+    //   .append('text')
+    //   .classed(`depiction depiction-${i}`, true)
+    //   .attr('opacity', 0)
+    //   .text(
+    //     intl.formatMessage(
+    //       { id: 'stats.addTimeline.depiction' },
+    //       {
+    //         bottle,
+    //         can,
+    //         date:
+    //           intl.locale === SiteLanguage.pl
+    //             ? format(new Date(date), 'LLLL yyyy', { locale: pl })
+    //             : format(new Date(date), 'MMMM yyyy'),
+    //       },
+    //     ),
+    //   )
+    //   .each(function center(this: SVGTextElement) {
+    //     d3.select(this).attr(
+    //       'transform',
+    //       `translate(${innerWidth / 2 - this.getBBox().width / 2}, 25)`,
+    //     );
+    //   })
+    //   .transition()
+    //   .duration(transitionTime)
+    //   .attr('opacity', 1);
   };
 
   const handleMouseOut = () => {
-    lines
-      .transition()
-      .duration(transitionTime)
-      .attr('opacity', 1);
-
-    d3.selectAll('text.depiction')
-      .transition()
-      .duration(transitionTime)
-      .attr('opacity', 0)
-      .remove();
+    // lines
+    //   .transition()
+    //   .duration(transitionTime)
+    //   .attr('opacity', 1);
+    // d3.selectAll('text.depiction')
+    //   .transition()
+    //   .duration(transitionTime)
+    //   .attr('opacity', 0)
+    //   .remove();
   };
 
   const barGroups = selection.selectAll('g').data(values);
   const barGroupsEnter = barGroups.enter().append('g');
 
-  barGroupsEnter
-    .classed('bar-group', true)
-    .on('mouseover', handleMouseOver)
-    .on('mouseout', handleMouseOut)
-    .merge(barGroups)
-    .transition()
-    .duration(transitionTime)
-    .ease(d3.easeQuadOut)
-    .attr(
-      'transform',
-      d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
-    );
-
   if (create) {
+    barGroupsEnter
+      .classed('bar-group', true)
+      .on('mouseover', handleMouseOver)
+      .on('mouseout', handleMouseOut)
+      .attr(
+        'transform',
+        d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
+      );
+
     barGroupsEnter
       .append('rect')
       .classed('cans', true)
@@ -127,12 +121,27 @@ const renderBars = ({
       .attr('y', d => innerHeight - yScale(cans(d)));
   } else {
     barGroups
+      .selectAll('.bar-group')
+      .data(values, d => d.date)
+      .transition()
+      .duration(transitionTime)
+      .ease(d3.easeQuadOut)
+      .attr(
+        'transform',
+        d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
+      );
+
+    barGroups
       .selectAll('rect.cans')
       .data(values, d => d.date)
       .transition()
       .duration(transitionTime)
       .ease(d3.easeQuadOut)
-      .attr('height', d => innerHeight - yScale(cans(d)));
+      .attr('height', d => {
+        console.log('cans update');
+
+        return innerHeight - yScale(cans(d));
+      });
 
     barGroups
       .selectAll('rect.bottles')
