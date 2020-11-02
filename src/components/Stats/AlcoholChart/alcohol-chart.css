@@ -1,14 +1,14 @@
 .alcohol-chart .bar {
-  fill: steelblue;
+  fill: var(--chart-color-ten);
   cursor: pointer;
 }
 
 .alcohol-chart .bar.average {
-  fill: rgb(70, 180, 116);
+  fill: var(--chart-color-four);
 }
 
 .alcohol-chart [class^='bar-label'] rect {
-  fill: steelblue;
+  fill: var(--chart-color-ten);
   stroke: var(--color-white);
 }
 

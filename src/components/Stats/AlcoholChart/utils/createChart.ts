@@ -29,8 +29,9 @@ const createChart = ({ average, data, intl, wrapper }: Props) => {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .classed('chart alcohol-chart', true);
 
+  // Define horizontal scale
+
   const xValue = (d: AlcoholData) => d.value.toString();
-  const yValue = (d: AlcoholData) => d.beverages;
 
   const xScale = d3
     .scaleBand()
@@ -38,10 +39,16 @@ const createChart = ({ average, data, intl, wrapper }: Props) => {
     .range([0, innerWidth])
     .padding(0.1);
 
+  // Define vertical scale
+
+  const yValue = (d: AlcoholData) => d.beverages;
+
   const yScale = d3
     .scaleLinear()
     .domain([0, d3.max(data, yValue) || 10 + 3])
     .range([innerHeight, 0]);
+
+  // Translate the chart and add axis
 
   const chart = svg
     .append('g')
@@ -93,6 +100,9 @@ const createChart = ({ average, data, intl, wrapper }: Props) => {
     .attr('text-anchor', 'end')
     .classed('label', true)
     .text(intl.formatMessage({ id: 'global.numberOfBeverages' }));
+
+  // ----------------------------------------------------
+  // behaviour on mouse cursor over
 
   const handleMouseOver = (
     d: { beverages: number; value: number },
@@ -162,9 +172,12 @@ const createChart = ({ average, data, intl, wrapper }: Props) => {
       });
   };
 
+  // ----------------------------------------------------
+  // Add hidden lines
+
   const barsGroup = chart.append('g').attr('data-attr', 'bars');
 
-  barsGroup
+  const bars = barsGroup
     .selectAll('.bar')
     .data(data.filter(({ beverages }) => beverages))
     .enter()
@@ -176,11 +189,27 @@ const createChart = ({ average, data, intl, wrapper }: Props) => {
     .attr('x', d => xScale(xValue(d)) || '')
     .attr('y', innerHeight)
     .on('mouseover', handleMouseOver)
-    .on('mouseout', handleMouseOut)
-    .transition()
-    .duration(1000)
-    .attr('height', d => innerHeight - yScale(yValue(d)))
-    .attr('y', d => yScale(yValue(d)));
+    .on('mouseout', handleMouseOut);
+
+  const reveal = () => {
+    bars
+      .transition()
+      .duration(1000)
+      .attr('height', d => innerHeight - yScale(yValue(d)))
+      .attr('y', d => yScale(yValue(d)));
+  };
+
+  const io = new IntersectionObserver(
+    ([entry], observer) => {
+      if (entry.isIntersecting) {
+        reveal();
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.8 },
+  );
+
+  io.observe(wrapper);
 };
 
 export default createChart;

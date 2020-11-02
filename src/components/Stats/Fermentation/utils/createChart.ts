@@ -96,7 +96,7 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       .curve(d3.curveBasis);
 
   function getTotalLength(this: SVGPathElement) {
-    return this.getTotalLength();
+    return this.getTotalLength() + 20;
   }
 
   [top, bottom, spontaneous].forEach(type => {
