@@ -99,12 +99,14 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     return this.getTotalLength() + 20;
   }
 
-  [top, bottom, spontaneous].forEach(type => {
+  const types = { top, bottom, spontaneous };
+
+  Object.entries(types).forEach(([name, func]) => {
     lines
       .append('path')
       .datum<any>(data)
-      .classed(`line-path ${type.name}`, true)
-      .attr('d', lineGenerator(type))
+      .classed(`line-path ${name}`, true)
+      .attr('d', lineGenerator(func))
       .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
       .attr('stroke-dashoffset', getTotalLength)
       .attr('stroke-dasharray', getTotalLength)
@@ -115,9 +117,9 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   // Reveal lines and label when the chart is visible
 
   const reveal = () => {
-    [top, bottom, spontaneous].forEach(type => {
+    Object.keys(types).forEach(name => {
       lines
-        .select(`.line-path.${type.name}`)
+        .select(`.line-path.${name}`)
         .transition()
         .duration(1500)
         .ease(d3.easeSin)
