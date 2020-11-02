@@ -1,9 +1,10 @@
 import * as d3 from 'd3';
+import { format } from 'date-fns';
+import { pl } from 'date-fns/locale';
 
 import { SiteLanguage } from 'utils/enums';
 import { renderTimelineAxis } from '../../utils';
 import { AddData, Sizes } from '../types';
-import renderBars from './renderBars';
 
 type Props = {
   data: AddData[];
@@ -13,6 +14,12 @@ type Props = {
   };
   sizes: Sizes;
   wrapper: SVGSVGElement;
+};
+
+type BarType = {
+  bottle: number;
+  can: number;
+  date: string;
 };
 
 const createChart = ({ data, intl, sizes, wrapper }: Props) => {
@@ -62,9 +69,9 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
   });
 
   // ----------------------------------------------------
-  // behaviour on mouse cursor over
+  // behaviour on mouse cursor over lines
 
-  function handleMouseOver(this: SVGPathElement | SVGTextElement) {
+  function handleMouseOverLine(this: SVGPathElement | SVGTextElement) {
     const badge = this.classList[1];
     function isNotCurrent(this: any) {
       return !this.classList.contains(badge);
@@ -73,9 +80,53 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
     d3.selectAll('.time-chart .legend > g').classed('fade-out', isNotCurrent);
   }
 
-  function handleMouseOut() {
+  function handleMouseOutLine() {
     d3.selectAll('.time-chart .fade-out').classed('fade-out', false);
   }
+
+  // ----------------------------------------------------
+  // behaviour on mouse cursor over bars
+
+  const handleMouseOverBar = ({ bottle, can, date }: BarType, i: number) => {
+    chart.selectAll('.line-path').classed('fade-out', true);
+
+    chart
+      .append('text')
+      .classed(`depiction depiction-${i}`, true)
+      .attr('opacity', 0)
+      .text(
+        intl.formatMessage(
+          { id: 'stats.addTimeline.depiction' },
+          {
+            bottle,
+            can,
+            date:
+              intl.locale === SiteLanguage.pl
+                ? format(new Date(date), 'LLLL yyyy', { locale: pl })
+                : format(new Date(date), 'MMMM yyyy'),
+          },
+        ),
+      )
+      .each(function center(this: SVGTextElement) {
+        d3.select(this).attr(
+          'transform',
+          `translate(${innerWidth / 2 - this.getBBox().width / 2}, 25)`,
+        );
+      })
+      .transition()
+      .duration(500)
+      .attr('opacity', 1);
+  };
+
+  const handleMouseOutBar = () => {
+    d3.selectAll('.time-chart .fade-out').classed('fade-out', false);
+
+    d3.selectAll('text.depiction')
+      .transition()
+      .duration(500)
+      .attr('opacity', 0)
+      .remove();
+  };
 
   // ----------------------------------------------------
   // Add hidden lines
@@ -102,17 +153,53 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
       .attr('transform', `translate(${xScale.bandwidth() / 2}, 0)`)
       .attr('stroke-dashoffset', getTotalLength)
       .attr('stroke-dasharray', getTotalLength)
-      .on('mouseover', handleMouseOver)
-      .on('mouseout', handleMouseOut);
+      .on('mouseover', handleMouseOverLine)
+      .on('mouseout', handleMouseOutLine);
   });
 
+  // ----------------------------------------------------
+  // Add hidden bars
+
   const bars = chart.append('g').attr('data-attr', 'bars');
+  const barGroups = bars.selectAll('g').data(
+    data.map(
+      ({ date }) => ({
+        date,
+        bottle: 0,
+        can: 0,
+      }),
+      d => d.date,
+    ),
+  );
+  const barGroupsEnter = barGroups.enter().append('g');
+
+  const barGroupsEnterElements = barGroupsEnter
+    .classed('bar-group', true)
+    .attr(
+      'transform',
+      d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
+    )
+    .on('mouseover', handleMouseOverBar)
+    .on('mouseout', handleMouseOutBar);
+
+  const canBars = barGroupsEnter
+    .append('rect')
+    .classed('cans', true)
+    .attr('width', xScale.bandwidth())
+    .attr('height', d => innerHeight - yScale(cans(d)));
+
+  const bottleBars = barGroupsEnter
+    .append('rect')
+    .classed('bottles', true)
+    .attr('width', xScale.bandwidth())
+    .attr('height', d => innerHeight - yScale(bottles(d)))
+    .attr('y', d => innerHeight - yScale(cans(d)));
 
   const reveal = () => {
-    [cans, bottles, total].forEach(type => {
-      const duration = 1500;
-      const time = duration / data.length;
+    const duration = 3500;
+    const time = duration / data.length;
 
+    [cans, bottles, total].forEach(type => {
       lines
         .select(`.line-path.${type.name}`)
         .transition()
@@ -120,38 +207,47 @@ const createChart = ({ data, intl, sizes, wrapper }: Props) => {
         .delay(1000)
         .ease(d3.easeSin)
         .attr('stroke-dashoffset', 0);
+    });
 
-      data.forEach((_, index) => {
-        setTimeout(() => {
-          renderBars({
-            bottles,
-            cans,
-            chart,
-            create: index === 0,
-            innerHeight,
-            innerWidth,
-            intl,
-            lines,
-            selection: bars,
-            total,
-            transitionTime: 11250,
-            values: data.map((props, i) => {
-              if (i <= index) {
-                return props;
-              }
+    data.forEach((_, index) => {
+      setTimeout(() => {
+        const updatedData = data.map((props, i) =>
+          i <= index
+            ? props
+            : {
+                date: props.date,
+                bottle: 0,
+                can: 0,
+              },
+        );
 
-              return {
-                ...props,
-                can: 1,
-                bottle: 1,
-              };
-            }),
-            xScale,
-            xValue,
-            yScale,
+        barGroupsEnterElements
+          .data(updatedData, d => d.date)
+          .transition()
+          .duration(1500)
+          .ease(d3.easeQuadOut)
+          .attr(
+            'transform',
+            d => `translate(${xScale(xValue(d)) || ''}, ${yScale(total(d))})`,
+          );
+
+        canBars
+          .data(updatedData, d => d.date)
+          .transition()
+          .duration(1500)
+          .ease(d3.easeQuadOut)
+          .attr('height', d => {
+            return innerHeight - yScale(cans(d));
           });
-        }, 500 * (index + 1));
-      });
+
+        bottleBars
+          .data(updatedData, d => d.date)
+          .transition()
+          .duration(1500)
+          .ease(d3.easeQuadOut)
+          .attr('height', d => innerHeight - yScale(bottles(d)))
+          .attr('y', d => innerHeight - yScale(cans(d)));
+      }, (index + 1) * time);
     });
   };
 
