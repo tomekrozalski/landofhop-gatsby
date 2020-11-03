@@ -6,7 +6,6 @@ const StyledLink = styled(Link)`
   width: var(--size-input-height);
   height: var(--size-input-height);
   border-radius: 50%;
-  margin-right: 1rem;
   overflow: hidden;
   position: relative;
 
