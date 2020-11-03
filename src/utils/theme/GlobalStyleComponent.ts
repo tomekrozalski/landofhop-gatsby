@@ -19,9 +19,10 @@ const GlobalStyleComponent = createGlobalStyle`
     --color-producer-strong: #c67e89;
     --color-editorial-light: #c1d5f8;
     --color-editorial-strong: #577dc0;
-    --color-ingredients-hop: #7bc86f;
-    --color-ingredients-malt: #d2c938;
-    --color-ingredients-appendix: #cd869a;
+    --color-ingredients-hop: #2a9d8f;
+    --color-ingredients-malt: #264653;
+    --color-ingredients-yeast: #e9c46a;
+    --color-ingredients-appendix: #f4a261;
 
     --font-primary: 'fira-sans', sans-serif;
     --font-weight-light: 300;

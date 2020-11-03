@@ -26,7 +26,7 @@ const Aside: React.FC = () => {
     <Wrapper>
       {link && <BackToDetails link={link} />}
       <Button to="/manage-ingredients">
-        <FormattedMessage id="dashboard.manageIngredients" />
+        <FormattedMessage id="dashboard.manageIngredients.name" />
       </Button>
       <OpenSubform
         direction="right"

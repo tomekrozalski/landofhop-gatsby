@@ -174,7 +174,9 @@
     },
     "continue": "Continue",
     "loadError": "Load error",
-    "manageIngredients": "Manage ingredients",
+    "manageIngredients": {
+      "name": "Manage ingredients"
+    },
     "notLoggedInError": "Not logged in. Access denied",
     "reset": "Reset",
     "reveal": "Reveal",
@@ -284,9 +286,9 @@
     "ingredientsDescription": "Ingredients",
     "ingredientsList": "Ingredients list",
     "ingredientType": {
-      "appendix": "appendix",
-      "hop": "hop",
-      "malt": "malt",
+      "appendix": "{value, plural, one {appendix} other {appendixes}}",
+      "hop": "{value, plural, one {hop} other {hops}}",
+      "malt": "{value, plural, one {malt} other {malts}}",
       "yeast": "yeast"
     },
     "institution": "Institution",
@@ -400,6 +402,7 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
+    "manageIngredients": "🔒 Manage ingredients",
     "notFound": "404 Not Found",
     "stats": "📈 Statistics",
     "updateBeverage": "🔒 Update beverage data",

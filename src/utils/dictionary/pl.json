@@ -174,7 +174,9 @@
     },
     "continue": "Dalej",
     "loadError": "Błąd pobierania",
-    "manageIngredients": "Zarządzaj składnikami",
+    "manageIngredients": {
+      "name": "Edycja składników"
+    },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "reset": "Zresetuj",
     "reveal": "Dodaj",
@@ -284,9 +286,9 @@
     "ingredientsDescription": "Składniki",
     "ingredientsList": "Lista składników",
     "ingredientType": {
-      "appendix": "dodatek",
-      "hop": "chmiel",
-      "malt": "słód",
+      "appendix": "{value, plural, one {dodatek} other {dodatki}}",
+      "hop": "{value, plural, one {chmiel} other {chmiele}}",
+      "malt": "{value, plural, one {słód} other {słody}}",
       "yeast": "drożdże"
     },
     "institution": "Instytucja",
@@ -400,6 +402,7 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Błąd logowania",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
+    "manageIngredients": "🔒 Zarządzaj składnikami",
     "notFound": "404 Nie znaleziono",
     "stats": "📈 Statystyki",
     "updateBeverage": "🔒 Popraw informacje dla napoju",

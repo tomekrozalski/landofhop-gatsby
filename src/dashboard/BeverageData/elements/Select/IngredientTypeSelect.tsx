@@ -19,7 +19,10 @@ const IngredientTypeSelect: React.FC<Props> = props => {
     <Select
       {...props}
       options={ingredient.map(value => ({
-        label: formatMessage({ id: `global.ingredientType.${value}` }),
+        label: formatMessage(
+          { id: `global.ingredientType.${value}` },
+          { value: 1 },
+        ),
         value,
         type: value as IngredientType,
       }))}
