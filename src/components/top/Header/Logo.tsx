@@ -1,50 +1,40 @@
 import React from 'react';
-import { FormattedMessage, Link } from 'gatsby-plugin-intl';
+import { Link } from 'gatsby-plugin-intl';
 import styled from 'styled-components';
 
 import { breakpoints } from 'utils/theme';
+import { Hop as HopIcon } from 'elements/icons';
 
 const StyledLink = styled(Link)`
   grid-area: logo;
   display: flex;
   justify-content: center;
 
-  &:hover h1 {
-    transform: scaleX(1.2);
+  &:hover svg {
+    transform: scale(1.1);
   }
 `;
 
 const Header = styled.h1`
-  width: 3rem;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  transform: scaleX(1);
-  transition: transform var(--transition-default);
+  display: flex;
 
-  @media (min-width: ${breakpoints.md}) {
+  svg {
+    fill: var(--color-white);
     width: 4rem;
-  }
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform var(--transition-default);
 
-  @media (min-width: ${breakpoints.xl}) {
-    width: 5rem;
-  }
-
-  &::before {
-    content: '';
-    background: var(--color-white);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    @media (min-width: ${breakpoints.xl}) {
+      width: 6rem;
+    }
   }
 `;
 
 const Logo: React.FC = () => (
   <StyledLink to="/">
     <Header>
-      <FormattedMessage id="header.name" />
+      <HopIcon />
     </Header>
   </StyledLink>
 );
