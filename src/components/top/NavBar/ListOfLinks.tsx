@@ -38,6 +38,9 @@ const ListOfLinks: React.FC = () => {
         <StyledLink to="/stats">
           <FormattedMessage id="navbar.stats" />
         </StyledLink>
+        <StyledLink to="/ingredients">
+          <FormattedMessage id="navbar.ingredients" />
+        </StyledLink>
       </ListItem>
       {isLoggedIn && (
         <ListItem>

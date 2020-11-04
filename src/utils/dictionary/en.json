@@ -354,6 +354,7 @@
   "navbar": {
     "about": "About the app",
     "addBeverage": "Add beverage",
+    "ingredients": "Ingredients",
     "logIn": "Log in",
     "logOut": "Log out",
     "stats": "Stats"
@@ -402,7 +403,7 @@
     "beverageDetails": "🍻 {brand}, {name}",
     "loginFailed": "Login failed",
     "main": "Land of Hop{page, plural, one {} other {, 📄 #} }",
-    "manageIngredients": "🔒 Manage ingredients",
+    "ingredients": "Ingredients 🔥",
     "notFound": "404 Not Found",
     "stats": "📈 Statistics",
     "updateBeverage": "🔒 Update beverage data",

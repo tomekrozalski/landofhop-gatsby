@@ -2,9 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 
 import { IngredientType } from 'components/BeverageDetails/utils/enums';
-import List from './List';
-import Item from './Item';
-import Button from './Button';
+import Wrapper from './Wrapper';
 
 type Props = {
   type: IngredientType;
@@ -12,23 +10,24 @@ type Props = {
 };
 
 const IngredientsTypeNavigation: React.FC<Props> = ({ setType, type }) => (
-  <nav>
-    <List>
+  <Wrapper>
+    <ul>
       {Object.values(IngredientType).map(value => (
-        <Item>
-          <Button
-            onClick={() => setType(value)}
+        <li key={value}>
+          <button
             className={type === value ? `${value} selected` : value}
+            onClick={() => setType(value)}
+            type="button"
           >
             <FormattedMessage
               id={`global.ingredientType.${value}`}
               values={{ value: 2 }}
             />
-          </Button>
-        </Item>
+          </button>
+        </li>
       ))}
-    </List>
-  </nav>
+    </ul>
+  </Wrapper>
 );
 
 export default IngredientsTypeNavigation;
