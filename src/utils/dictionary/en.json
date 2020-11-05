@@ -174,9 +174,6 @@
     },
     "continue": "Continue",
     "loadError": "Load error",
-    "manageIngredients": {
-      "name": "Manage ingredients"
-    },
     "notLoggedInError": "Not logged in. Access denied",
     "reset": "Reset",
     "reveal": "Reveal",
@@ -331,6 +328,10 @@
       "open": "Open"
     },
     "search": "Search"
+  },
+  "ingredients": {
+    "name": "Ingredients",
+    "counted": "{amount, plural, one {in # beverage} other {in # beverages}}"
   },
   "language": {
     "group": {

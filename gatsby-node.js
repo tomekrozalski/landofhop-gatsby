@@ -7,14 +7,28 @@ require('dotenv').config({
 });
 
 exports.sourceNodes = async ({ actions, createContentDigest }) => {
-  const results = await axios.get(`${process.env.API_SERVER}/beverage`);
+  const beverages = await axios.get(`${process.env.API_SERVER}/beverage`);
 
-  results.data.forEach(beverage => {
+  beverages.data.forEach(beverage => {
     const node = {
       ...beverage,
       internal: {
         type: 'Beverage',
         contentDigest: createContentDigest(beverage),
+      },
+    };
+
+    actions.createNode(node);
+  });
+
+  const ingredients = await axios.get(`${process.env.API_SERVER}/ingredient`);
+
+  ingredients.data.forEach(ingredient => {
+    const node = {
+      ...ingredient,
+      internal: {
+        type: 'Ingredient',
+        contentDigest: createContentDigest(ingredient),
       },
     };
 
@@ -413,6 +427,28 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         cover: Cover
         gallery: Int
         outlines: Outlines
+      }
+    `,
+    schema.buildObjectType({
+      name: 'Ingredient',
+      fields: {
+        badge: 'String!',
+        name: '[LanguageValue!]!',
+        parent: 'String',
+        type: 'Type!',
+      },
+      interfaces: ['Node'],
+    }),
+    `
+      type LanguageValue {
+        language: String
+        value: String!
+      }
+      enum Type {
+        malt
+        hop
+        yeast
+        appendix
       }
     `,
   ];

@@ -174,9 +174,6 @@
     },
     "continue": "Dalej",
     "loadError": "Błąd pobierania",
-    "manageIngredients": {
-      "name": "Edycja składników"
-    },
     "notLoggedInError": "Nie zalogowano. Dostęp wstrzymany",
     "reset": "Zresetuj",
     "reveal": "Dodaj",
@@ -331,6 +328,10 @@
       "open": "Otwórz"
     },
     "search": "Szukaj"
+  },
+  "ingredients": {
+    "name": "Składniki",
+    "counted": "{amount, plural, one {w # napoju} other {w # napojach}}"
   },
   "language": {
     "group": {

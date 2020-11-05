@@ -1,3 +1,3 @@
-import GatsbyAPI from './GatsbyAPI';
+import Ingredients from './Ingredients';
 
-export default GatsbyAPI;
+export default Ingredients;

@@ -1,44 +1,78 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'gatsby-plugin-intl';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import { Spinner } from 'elements';
 import { Header, Wrapper } from 'elements/textPage';
-import { Status as StatusEnum } from 'utils/enums';
-import { IngredientContext } from 'dashboard/utils/contexts';
 import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { Layout, SEO } from '..';
+import { RawData as RawDataType } from './utils/types';
 import IngredientsList from './IngredientsList';
 import IngredientsTypeNavigation from './IngredientsTypeNavigation';
 
-type Props = {
-  data: {
-    allBeverage: {
-      edges: { node: any }[];
-    };
-  };
-};
-
-const Ingredients: React.FC<Props> = props => {
-  const { getIngredients, status } = useContext(IngredientContext);
+const Ingredients: React.FC = () => {
   const [type, setType] = useState(IngredientType.malt);
 
-  console.log('props', props);
-
-  useEffect(getIngredients, []);
+  const rawData: RawDataType = useStaticQuery(graphql`
+    query BeveragesWithIngredients {
+      allBeverage {
+        edges {
+          node {
+            brand {
+              name {
+                language
+                value
+              }
+              badge
+              shortId
+            }
+            badge
+            name {
+              language
+              value
+            }
+            ingredientsList {
+              label {
+                id
+              }
+              producer {
+                id
+              }
+            }
+          }
+        }
+      }
+      allIngredient {
+        edges {
+          node {
+            badge
+            id
+            parent {
+              id
+            }
+            type
+            name {
+              language
+              value
+            }
+          }
+        }
+      }
+    }
+  `);
 
   return (
     <Layout>
       <SEO title="ingredients" />
       <Wrapper>
         <Header>
-          <FormattedMessage id="dashboard.manageIngredients.name" />
+          <FormattedMessage id="ingredients.name" />
         </Header>
         <IngredientsTypeNavigation type={type} setType={setType} />
-        {status !== StatusEnum.fulfilled ? (
-          <Spinner />
-        ) : (
-          <IngredientsList type={type} />
-        )}
+        <IngredientsList
+          beverages={rawData.allBeverage.edges.map(({ node }) => node)}
+          ingredients={rawData.allIngredient.edges.map(({ node }) => node)}
+          type={type}
+        />
       </Wrapper>
     </Layout>
   );
