@@ -19,7 +19,7 @@ const IngredientsList: React.FC<Props> = ({ fieldName, formName }) => {
     <Grid>
       <Label name={fieldName} form={formName} />
       <Condition name={fieldName} empty={[]} />
-      <IngredientSelect name={fieldName} form={formName} />
+      <IngredientSelect name={fieldName} form={formName} isMulti />
       <OpenSubform
         label="dashboard.addNewIngredient.openButton"
         onClick={() => setSubform(SubformEnum.ingredient)}

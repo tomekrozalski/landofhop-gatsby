@@ -13,6 +13,11 @@ export type IngredientInput = {
     label: string;
     value: IngredientTypeEnum;
   };
+  parent: {
+    label: string;
+    type: IngredientTypeEnum;
+    value: string;
+  };
 };
 
 export type IngredientOutput = {
@@ -22,4 +27,5 @@ export type IngredientOutput = {
     value: string;
   }[];
   type: IngredientTypeEnum;
+  parent?: string;
 };

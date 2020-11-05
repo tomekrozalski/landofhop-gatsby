@@ -18,6 +18,7 @@ const DryHopped: React.FC<Props> = ({ fieldName, formName }) => (
     <Condition name={fieldName} empty={[]} />
     <IngredientSelect
       filterByType={IngredientType.hop}
+      isMulti
       name={fieldName}
       form={formName}
     />

@@ -39,7 +39,6 @@ const IngredientSelect: React.FC<Props> = ({ filterByType, ...rest }) => {
   return (
     <Select
       {...rest}
-      isMulti
       options={values
         .filter(({ type }) => (filterByType ? type === filterByType : true))
         .map(({ id, name, type }) => ({

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
+import { AuthenticationContext } from 'utils/contexts';
 import { getValueByLanguage } from 'utils/helpers';
 import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { Beverage, Ingredient } from '../utils/types';
@@ -14,6 +15,7 @@ type Props = {
 
 const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
   const { locale } = useIntl();
+  const { isLoggedIn } = useContext(AuthenticationContext);
 
   const getCount = (value: string) =>
     beverages.filter(
@@ -43,6 +45,7 @@ const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
                 values={{ amount: getCount(id) }}
               />
             </span>
+            {isLoggedIn && <button type="button">edytuj</button>}
           </li>
         ))}
     </Wrapper>

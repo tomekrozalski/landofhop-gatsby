@@ -24,6 +24,7 @@ import Fullness from './Fullness';
 import Hoppyness from './Hoppyness';
 import HopRate from './HopRate';
 import IngredientsDescription from './IngredientsDescription';
+import IngredientParent from './IngredientParent';
 import IngredientsList from './IngredientsList';
 import IngredientType from './IngredientType';
 import Latitude from './Latitude';
@@ -72,6 +73,7 @@ export {
   Hoppyness,
   HopRate,
   IngredientsDescription,
+  IngredientParent,
   IngredientsList,
   IngredientType,
   Latitude,

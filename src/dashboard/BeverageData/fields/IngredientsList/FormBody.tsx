@@ -6,7 +6,12 @@ import { FormName } from 'utils/enums';
 import { Button } from 'elements';
 import { IngredientFieldNames } from 'dashboard/utils/enums';
 import { SubformWrapper } from 'dashboard/BeverageData/elements';
-import { Badge, IngredientType, Name } from 'dashboard/BeverageData/fields';
+import {
+  Badge,
+  IngredientParent,
+  IngredientType,
+  Name,
+} from 'dashboard/BeverageData/fields';
 import { Footer } from 'dashboard/BeverageData/elements/grids';
 import { FormValues } from './utils';
 
@@ -30,6 +35,10 @@ const FormBody: React.FC<FormikProps<FormValues>> = ({
       fieldName={IngredientFieldNames.type}
       formName={FormName.ingredient}
       required
+    />
+    <IngredientParent
+      fieldName={IngredientFieldNames.parent}
+      formName={FormName.ingredient}
     />
     <Footer>
       <Button type="submit" disabled={!isValid} isSubmitting={isSubmitting}>

@@ -15,4 +15,8 @@ export default {
     label: '',
     value: '',
   },
+  [FieldName.parent]: {
+    label: '',
+    value: '',
+  },
 };
