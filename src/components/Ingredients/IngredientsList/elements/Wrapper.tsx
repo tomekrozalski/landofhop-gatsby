@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
-  > li {
-    margin: 0.5rem 2rem;
+  li {
+    margin: 0.5rem 0 0.5rem 2rem;
     list-style-type: square;
+    position: relative;
   }
 
-  span {
-    color: var(--color-darker);
+  li li {
+    list-style-type: circle;
   }
 `;
 

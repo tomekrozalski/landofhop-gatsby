@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 import { AuthenticationContext } from 'utils/contexts';
 import { getValueByLanguage } from 'utils/helpers';
 import { IngredientType } from 'components/BeverageDetails/utils/enums';
 import { Beverage, Ingredient } from '../utils/types';
-import Wrapper from './Wrapper';
+import { Counted, EditButton, Wrapper } from './elements';
 
 type Props = {
   beverages: Beverage[];
@@ -24,28 +24,61 @@ const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
         ingredientsList?.producer?.find(({ id }) => id === value),
     ).length;
 
-  console.log('beverages', beverages, ingredients);
+  const sortedIngredients = useMemo(
+    () =>
+      ingredients
+        .filter(({ type: itemType }) => itemType === type)
+        .sort(({ name: a }, { name: b }) =>
+          getValueByLanguage(a, locale).value <
+          getValueByLanguage(b, locale).value
+            ? -1
+            : 1,
+        ),
+    [ingredients],
+  );
+
+  const getChildren = (value: string) => {
+    const children = sortedIngredients.filter(
+      ({ parent }) => parent?.id === value,
+    );
+
+    if (children.length) {
+      return (
+        <ul>
+          {children.map(({ id, name }) => (
+            <li key={id}>
+              {getValueByLanguage(name, locale).value}{' '}
+              <Counted>
+                <FormattedMessage
+                  id="ingredients.counted"
+                  values={{ amount: getCount(id) }}
+                />
+              </Counted>
+              {isLoggedIn && <EditButton />}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <Wrapper>
-      {ingredients
-        .filter(({ type: itemType }) => itemType === type)
-        .sort((a, b) =>
-          getValueByLanguage(a.name, locale).value <
-          getValueByLanguage(b.name, locale).value
-            ? -1
-            : 1,
-        )
+      {sortedIngredients
+        .filter(({ parent }) => !parent)
         .map(({ id, name }) => (
           <li key={id}>
             {getValueByLanguage(name, locale).value}{' '}
-            <span>
+            <Counted>
               <FormattedMessage
                 id="ingredients.counted"
                 values={{ amount: getCount(id) }}
               />
-            </span>
-            {isLoggedIn && <button type="button">edytuj</button>}
+            </Counted>
+            {isLoggedIn && <EditButton />}
+            {getChildren(id)}
           </li>
         ))}
     </Wrapper>

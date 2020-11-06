@@ -5,15 +5,11 @@ const formatData = ({
   name,
   parent,
   type,
-}: IngredientInput): IngredientOutput => {
-  console.log('pa', parent);
-
-  return {
-    badge,
-    name: name.map(({ lang, value }) => ({ lang: lang.value, value })),
-    type: type.value,
-    ...(parent.value && { parent: parent.value }),
-  };
-};
+}: IngredientInput): IngredientOutput => ({
+  badge,
+  name: name.map(({ lang, value }) => ({ lang: lang.value, value })),
+  type: type.value,
+  ...(parent.value && { parent: parent.value }),
+});
 
 export default formatData;
