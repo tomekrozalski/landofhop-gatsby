@@ -8,8 +8,10 @@ import { Layout, SEO } from '..';
 import { RawData as RawDataType } from './utils/types';
 import IngredientsList from './IngredientsList';
 import IngredientsTypeNavigation from './IngredientsTypeNavigation';
+import EditModal from './EditModal';
 
 const Ingredients: React.FC = () => {
+  const [isModalOpened, setModalOpen] = useState(false);
   const [type, setType] = useState(IngredientType.malt);
 
   const rawData: RawDataType = useStaticQuery(graphql`
@@ -71,9 +73,11 @@ const Ingredients: React.FC = () => {
         <IngredientsList
           beverages={rawData.allBeverage.edges.map(({ node }) => node)}
           ingredients={rawData.allIngredient.edges.map(({ node }) => node)}
+          openModal={() => setModalOpen(true)}
           type={type}
         />
       </Wrapper>
+      <EditModal close={() => setModalOpen(false)} isVisible={isModalOpened} />
     </Layout>
   );
 };

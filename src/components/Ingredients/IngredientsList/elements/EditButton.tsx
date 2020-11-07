@@ -27,8 +27,12 @@ const Button = styled.button`
   }
 `;
 
-const EditButton = () => (
-  <Button type="button">
+type Props = {
+  onClick: () => void;
+};
+
+const EditButton: React.FC<Props> = ({ onClick }) => (
+  <Button type="button" onClick={onClick}>
     <EditIcon />
   </Button>
 );

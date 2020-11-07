@@ -10,10 +10,16 @@ import { Counted, EditButton, Wrapper } from './elements';
 type Props = {
   beverages: Beverage[];
   ingredients: Ingredient[];
+  openModal: () => void;
   type: IngredientType;
 };
 
-const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
+const IngredientsList: React.FC<Props> = ({
+  beverages,
+  ingredients,
+  openModal,
+  type,
+}) => {
   const { locale } = useIntl();
   const { isLoggedIn } = useContext(AuthenticationContext);
 
@@ -54,7 +60,7 @@ const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
                   values={{ amount: getCount(id) }}
                 />
               </Counted>
-              {isLoggedIn && <EditButton />}
+              {isLoggedIn && <EditButton onClick={openModal} />}
             </li>
           ))}
         </ul>
@@ -77,7 +83,7 @@ const IngredientsList: React.FC<Props> = ({ beverages, ingredients, type }) => {
                 values={{ amount: getCount(id) }}
               />
             </Counted>
-            {isLoggedIn && <EditButton />}
+            {isLoggedIn && <EditButton onClick={openModal} />}
             {getChildren(id)}
           </li>
         ))}

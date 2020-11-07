@@ -6,7 +6,7 @@ import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'utils/enums';
 import { FormType } from 'dashboard/utils/enums';
 import { NavigationContext } from 'dashboard/utils/contexts';
-import { Modal } from 'dashboard/elements';
+import { DashboardModal } from 'dashboard/elements';
 import { Navigation } from './elements';
 import { Form } from '.';
 
@@ -26,7 +26,7 @@ const Add: React.FC = () => {
       </Header>
       <Navigation />
       {beverageDataLoadStatus !== StatusEnum.idle ? <Spinner /> : <Form />}
-      <Modal />
+      <DashboardModal />
     </Wrapper>
   );
 };

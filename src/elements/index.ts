@@ -7,6 +7,7 @@ import ErrorWrapper from './ErrorWrapper';
 import FieldStatusIndicator from './FieldStatusIndicator';
 import FormattedList from './FormattedList';
 import Label from './Label';
+import Modal from './Modal';
 import SectionHeader from './SectionHeader';
 import Spinner from './Spinner';
 import TextInput from './TextInput';
@@ -22,6 +23,7 @@ export {
   FieldStatusIndicator,
   FormattedList,
   Label,
+  Modal,
   SectionHeader,
   Spinner,
   TextInput,

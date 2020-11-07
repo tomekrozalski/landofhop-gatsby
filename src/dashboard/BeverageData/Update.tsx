@@ -6,7 +6,7 @@ import { Header, Wrapper } from 'elements/textPage';
 import { Status as StatusEnum } from 'utils/enums';
 import { FormType } from 'dashboard/utils/enums';
 import { NavigationContext, LanguageContext } from 'dashboard/utils/contexts';
-import { Modal } from 'dashboard/elements';
+import { DashboardModal } from 'dashboard/elements';
 import { Navigation } from './elements';
 import { Form } from '.';
 
@@ -58,7 +58,7 @@ const Update: React.FC<Props> = ({ location }) => {
       </Header>
       <Navigation />
       {beverageDataLoadStatus === StatusEnum.fulfilled ? <Form /> : <Spinner />}
-      <Modal />
+      <DashboardModal />
     </Wrapper>
   );
 };

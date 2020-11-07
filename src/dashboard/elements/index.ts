@@ -1,4 +1,4 @@
 import DashboardWrapper from './DashboardWrapper';
-import Modal from './Modal';
+import DashboardModal from './DashboardModal';
 
-export { DashboardWrapper, Modal };
+export { DashboardWrapper, DashboardModal };

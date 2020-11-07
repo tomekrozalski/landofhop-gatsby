@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useContext } from 'react';
 
-import { Danger } from 'elements/icons';
+import { Modal } from 'elements';
 import { NavigationContext } from 'dashboard/utils/contexts';
 import { Subform as SubformEnum } from 'dashboard/utils/enums';
 import { Subform as CountrySubform } from 'dashboard/BeverageData/fields/Country';
@@ -9,9 +8,8 @@ import { Subform as IngredientSubform } from 'dashboard/BeverageData/fields/Ingr
 import { Subform as InstitutionSubform } from 'dashboard/BeverageData/fields/Brand';
 import LanguageSubform from 'dashboard/BeverageData/elements/Navigation/Aside/Language';
 import { Subform as PlaceSubform } from 'dashboard/BeverageData/fields/Place';
-import { Backdrop, CloseButton, Wrapper } from '.';
 
-const Modal: React.FC = () => {
+const DashboardModal: React.FC = () => {
   const { setSubform, subform } = useContext(NavigationContext);
   const close = () => setSubform(null);
 
@@ -32,31 +30,11 @@ const Modal: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const classList = document?.querySelector('body')?.classList;
-
-    if (classList) {
-      if (subform) {
-        classList.add('scroll-lock');
-      } else {
-        classList.remove('scroll-lock');
-      }
-    }
-  }, [subform]);
-
-  return subform
-    ? ReactDOM.createPortal(
-        <Backdrop>
-          <Wrapper>
-            <CloseButton onClick={close}>
-              <Danger />
-            </CloseButton>
-            {getContent()}
-          </Wrapper>
-        </Backdrop>,
-        document.getElementById('modal-root')!,
-      )
-    : null;
+  return (
+    <Modal close={close} isVisible={!!subform}>
+      {getContent()}
+    </Modal>
+  );
 };
 
-export default Modal;
+export default DashboardModal;
