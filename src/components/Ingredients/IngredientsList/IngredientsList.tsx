@@ -10,14 +10,14 @@ import { Counted, EditButton, Wrapper } from './elements';
 type Props = {
   beverages: Beverage[];
   ingredients: Ingredient[];
-  openModal: () => void;
+  setEditIngredientData: (value: Ingredient) => void;
   type: IngredientType;
 };
 
 const IngredientsList: React.FC<Props> = ({
   beverages,
   ingredients,
-  openModal,
+  setEditIngredientData,
   type,
 }) => {
   const { locale } = useIntl();
@@ -43,50 +43,33 @@ const IngredientsList: React.FC<Props> = ({
     [ingredients],
   );
 
-  const getChildren = (value: string) => {
-    const children = sortedIngredients.filter(
-      ({ parent }) => parent?.id === value,
-    );
-
-    if (children.length) {
-      return (
-        <ul>
-          {children.map(({ id, name }) => (
-            <li key={id}>
-              {getValueByLanguage(name, locale).value}{' '}
-              <Counted>
-                <FormattedMessage
-                  id="ingredients.counted"
-                  values={{ amount: getCount(id) }}
-                />
-              </Counted>
-              {isLoggedIn && <EditButton onClick={openModal} />}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-
-    return null;
-  };
+  const List = ({ values }: { values: Ingredient[] }) => (
+    <ul>
+      {values.map(props => (
+        <li key={props.id}>
+          {getValueByLanguage(props.name, locale).value}{' '}
+          <Counted>
+            <FormattedMessage
+              id="ingredients.counted"
+              values={{ amount: getCount(props.id) }}
+            />
+          </Counted>
+          {isLoggedIn && (
+            <EditButton onClick={() => setEditIngredientData(props)} />
+          )}
+          <List
+            values={sortedIngredients.filter(
+              ({ parent }) => parent?.id === props.id,
+            )}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <Wrapper>
-      {sortedIngredients
-        .filter(({ parent }) => !parent)
-        .map(({ id, name }) => (
-          <li key={id}>
-            {getValueByLanguage(name, locale).value}{' '}
-            <Counted>
-              <FormattedMessage
-                id="ingredients.counted"
-                values={{ amount: getCount(id) }}
-              />
-            </Counted>
-            {isLoggedIn && <EditButton onClick={openModal} />}
-            {getChildren(id)}
-          </li>
-        ))}
+      <List values={sortedIngredients.filter(({ parent }) => !parent)} />
     </Wrapper>
   );
 };

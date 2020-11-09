@@ -1,6 +1,6 @@
 import formatData from './formatData';
-import initialValues from './initialValues';
+import setInitialValues from './setInitialValues';
 import validationSchema from './validationSchema';
 
 export * from './FormValues.type';
-export { formatData, initialValues, validationSchema };
+export { formatData, setInitialValues, validationSchema };
