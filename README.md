@@ -20,4 +20,8 @@ The most persistent part of the app is my Mongo database 💾 which I keep on ex
 
 Naturally work is still in progress. More in the [CHANGELOG.md](https://github.com/tomekrozalski/landofhop-gatsby/blob/master/CHANGELOG.md).
 
-Live preview: [hop.land](https://hop.land)
+---
+
+I stopped work on the project. NextJS evolved last year to a real butterfly, so I skipped to [NextJS here](https://github.com/tomekrozalski/landofhop-nextjs).
+
+
